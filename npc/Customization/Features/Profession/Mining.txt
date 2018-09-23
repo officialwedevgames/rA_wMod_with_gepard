@@ -1,0 +1,292 @@
+
+/////////////////////////////////////////
+//-- Mining System
+/////////////////////////////////////////
+
+-	script	minerals	FAKE_NPC,{
+	
+	function checking;
+	function f_miningexp;
+	function f_miningrank;
+	
+	if(getequipid(EQI_HAND_L) == Mining_Tool1 || getequipid(EQI_HAND_L) == Mining_Tool2 || getequipid(EQI_HAND_L) == Mining_Tool3 || getequipid(EQI_HAND_L) == Mining_Tool4) {
+		if(!MiningLevel){
+			set MiningLevel, 1;
+		}
+		checking();
+		for(set .@x,0; .@x < getarraysize(.re_lvrange$); set .@x,.@x + 1){
+			
+			explode(.@lr$,.re_lvrange$[.@x],"|");
+				
+			for(set .@l,0; .@l < getarraysize(.@lr$); set .@l,.@l + 1){
+				set .@it[.@l], atoi(.@lr$[.@l]);
+			}
+			set .@reward, .@lr$[0];	
+			if(.@lr$[0] == strnpcinfo(NPC_NAME_HIDDEN)){
+			
+				.@success = rand(1,1000);
+				
+				//-- Increase the number of items they can get.
+				.@adddrop = rand(1,1000);
+				if(MiningDrop >= .@adddrop){
+					.@MiningDrop = rand(1,2);
+				}
+						
+				//-- Increase the amount of exp that they can get.
+				.@adde = strnpcinfo(NPC_NAME_HIDDEN);
+				.@addexp = rand(1*.@adde,20*.@adde);
+			
+				if(MiningLevel >= .@it[1] && .@success >= 301 && .@success <= 700){
+				
+						explode(.@o$,.re_common$[.@reward],"|");
+						for(set .@y,0; .@y < getarraysize(.@o$); set .@y,.@y + 1){
+							set .@t[.@y], atoi(.@o$[.@y]);		
+						}
+											
+						for(set .@a,1; .@a < getarraysize(.@t); set .@a,.@a + 1){
+							set .@k$, .@k$ + .@t[.@a]+"|";
+						}
+											
+						explode(.@y$,.@k$,"|");
+						for(set .@n,0; .@n < getarraysize(.@y$); set .@n,.@n + 1){
+							set .@b[.@n], atoi(.@y$[.@n]);	
+						}
+						
+						//-- getitem
+						getitem .@b[0],1 + .@MiningDrop;
+						
+						//-- Rankings
+						f_miningrank(.@b[1] * 1);
+											
+						//-- effect
+						specialeffect2 EF_TEMP_OK;	
+						f_miningexp(.@addexp + Mining);
+						
+				}else if(MiningLevel >= .@it[1] && .@success >= 701 && .@success <= 850){
+
+						explode(.@o$,.re_rare$[.@reward],"|");
+						for(set .@y,0; .@y < getarraysize(.@o$); set .@y,.@y + 1){
+							set .@t[.@y], atoi(.@o$[.@y]);		
+						}
+											
+						for(set .@a,1; .@a < getarraysize(.@t); set .@a,.@a + 1){
+							set .@k$, .@k$ + .@t[.@a]+"|";
+						}
+											
+						explode(.@y$,.@k$,"|");
+						for(set .@n,0; .@n < getarraysize(.@y$); set .@n,.@n + 1){
+							set .@b[.@n], atoi(.@y$[.@n]);	
+						}
+						
+						//-- getitem
+						getitem .@b[0],1 + .@MiningDrop;
+						
+						//-- Rankings
+						f_miningrank(.@b[1] * 1);
+											
+						//-- effect
+						specialeffect2 EF_TEMP_OK;	
+						f_miningexp(.@addexp + Mining);
+						
+				}else if(MiningLevel >= .@it[1] && .@success >= 851 && .@success <= 950){
+
+						explode(.@o$,.re_epic$[.@reward],"|");
+						for(set .@y,0; .@y < getarraysize(.@o$); set .@y,.@y + 1){
+							set .@t[.@y], atoi(.@o$[.@y]);		
+						}
+											
+						for(set .@a,1; .@a < getarraysize(.@t); set .@a,.@a + 1){
+							set .@k$, .@k$ + .@t[.@a]+"|";
+						}
+											
+						explode(.@y$,.@k$,"|");
+						for(set .@n,0; .@n < getarraysize(.@y$); set .@n,.@n + 1){
+							set .@b[.@n], atoi(.@y$[.@n]);	
+						}
+						
+						//-- getitem
+						getitem .@b[0],1 + .@MiningDrop;
+						
+						//-- Rankings
+						f_miningrank(.@b[1] * 1);
+											
+						//-- effect
+						specialeffect2 EF_TEMP_OK;	
+						f_miningexp(.@addexp + Mining);
+						
+				}else if(MiningLevel >= .@it[1] && .@success >= 951){
+				
+						explode(.@o$,.re_legenday$[.@reward],"|");
+						for(set .@y,0; .@y < getarraysize(.@o$); set .@y,.@y + 1){
+							set .@t[.@y], atoi(.@o$[.@y]);		
+						}
+											
+						for(set .@a,1; .@a < getarraysize(.@t); set .@a,.@a + 1){
+							set .@k$, .@k$ + .@t[.@a]+"|";
+						}
+											
+						explode(.@y$,.@k$,"|");
+						for(set .@n,0; .@n < getarraysize(.@y$); set .@n,.@n + 1){
+							set .@b[.@n], atoi(.@y$[.@n]);	
+						}
+						
+						//-- getitem
+						getitem .@b[0],1 + .@MiningDrop;
+						
+						//-- Rankings
+						f_miningrank(.@b[1] * 1);
+											
+						//-- effect
+						specialeffect2 EF_TEMP_OK;	
+						f_miningexp(.@addexp + Mining);
+						
+				}else{
+					specialeffect2 EF_TEMP_FAIL;
+					dispbottom "You didn't gatherd anything.";
+				}
+			}
+		}
+	}
+	end;
+
+
+
+function checking {
+	specialeffect2 EF_REPAIRWEAPON;
+	progressbar "ffff00",5;
+}
+
+function f_miningexp {
+	if(MiningLevel < .max_mining_level){
+		.@getexp = getarg(0);
+		MiningEXP += getarg(0);
+		dispbottom "You recieved "+.@getexp+" Mining EXP.",0xFF0000;
+		if(MiningEXP >= MiningLevel*$LevelMultiplier){
+			MiningLevel += 1;
+			MiningEXP = 0;
+			dispbottom "Your Mining level is now "+MiningLevel+".",0xFF0000;
+		}
+	}
+}
+
+function f_miningrank {
+	set .@rankpoints, getarg(0);
+	//- Check the guild if its already registered in our registration table.
+	query_sql "SELECT `char_id` FROM `profession_rank_db` WHERE `char_id` = '"+getcharid(CHAR_ID_CHAR)+"' AND `type` = 'Mining'", .@char_data;
+	if(.@char_data){
+		query_sql("UPDATE `profession_rank_db` SET `points` = `points` + '"+.@rankpoints+"' WHERE `char_id` = '"+getcharid(CHAR_ID_CHAR)+"' AND `type` = 'Mining'"); 
+	}else{
+		query_sql "INSERT INTO `profession_rank_db` (`char_id`, `type`, `points`) VALUES ('"+getcharid(CHAR_ID_CHAR)+"','Mining','"+.@rankpoints+"')";
+	}
+	return;
+}
+
+OnInit:
+	.userl_limit = 10;
+	.max_mining_level = 10;
+	setarray .re_lvrange$[0],
+					"1|1|10",
+					"2|11|20",
+					"3|21|30",
+					"4|31|40",
+					"5|41|50",
+					"6|51|60",
+					"7|61|70",
+					"8|71|80",
+					"9|81|90",
+					"10|91|99";
+
+	setarray .re_common$[1],
+					"1|32501|3",
+					"2|32505|9",
+					"3|32509|18",
+					"4|32513|36",
+					"5|32517|45",
+					"6|32521|54",
+					"7|32525|63",
+					"8|32529|72",
+					"9|32533|81",
+					"10|32537|90";
+				
+	setarray .re_rare$[1],
+					"1|32502|6",
+					"2|32506|18",
+					"3|32510|36",
+					"4|32514|72",
+					"5|32518|90",
+					"6|32522|108",
+					"7|32526|126",
+					"8|32530|144",
+					"9|32534|162",
+					"10|32538|180";	
+				
+	setarray .re_epic$[1],
+					"1|32503|9",
+					"2|32507|27",
+					"3|32511|54",
+					"4|32515|81",
+					"5|32519|108",
+					"6|32523|135",
+					"7|32527|162",
+					"8|32531|216",
+					"9|32535|243",
+					"10|32539|270";
+						
+	setarray .re_legenday$[1],
+					"1|32504|12",
+					"2|32508|36",
+					"3|32512|72",
+					"4|32516|108",
+					"5|32520|144",
+					"6|32524|180",
+					"7|32526|252",
+					"8|32532|288",
+					"9|32536|324",
+					"10|32540|360";
+						
+end;
+}
+
+
+geffen,126,105,4	trader	Mining Trader	4_M_EINMAN,{
+	mes "[ Trader ]";
+	mes "We are selling a lot of Mining Tools and its durability will be good only for 30 minutes.";
+	next;
+	mes "[ Trader ]";
+	mes "I will now open the shop.";
+	close2;
+	callshop "Mining_Trader",4;
+	end;
+}
+-	trader	Mining_Trader	FAKE_NPC,{
+OnInit:
+	tradertype(NST_CUSTOM);
+	sellitem Mining_Tool1,200,30;
+	sellitem Mining_Rare,350,0,1;
+	sellitem Mining_Epic,750,0,1;
+	sellitem Mining_Legendary,1500,0,1;
+	end;
+
+/* allows currency to be item 501 and 502 */
+OnCountFunds:
+	setcurrency(#FREEPOINTS);
+	end;
+
+/* receives @price (total cost) and @points (the secondary input field for cash windows) */
+OnPayFunds:
+	if( #FREEPOINTS < @points)end;
+	set #FREEPOINTS,#FREEPOINTS - @price;
+	purchaseok();
+	end;
+}
+
+geffen,112,99,4	duplicate(minerals)	Minerals Lv. 1~10#1::c_npc1	S_EMPEL_1
+geffen,127,99,4	duplicate(minerals)	Minerals Lv. 11~20#2::c_npc2	S_EMPEL_2
+geffen,140,112,4	duplicate(minerals)	Minerals Lv. 21~30#3::c_npc3	S_EMPEL_1
+geffen,140,127,4	duplicate(minerals)	Minerals Lv. 31~40#4::c_npc4	S_EMPEL_2
+geffen,127,140,4	duplicate(minerals)	Minerals Lv. 41~50#5::c_npc5	S_EMPEL_1
+geffen,112,140,4	duplicate(minerals)	Minerals Lv. 51~60#6::c_npc6	S_EMPEL_2
+geffen,99,127,4	duplicate(minerals)	Minerals Lv. 61~70#7::c_npc7	S_EMPEL_1
+geffen,99,112,4	duplicate(minerals)	Minerals Lv. 71~80#8::c_npc8	S_EMPEL_2
+geffen,111,111,4	duplicate(minerals)	Minerals Lv. 81~90#9::c_npc9	S_EMPEL_1
+geffen,128,111,4	duplicate(minerals)	Minerals Lv. 91~99#10::c_npc10	S_EMPEL_2

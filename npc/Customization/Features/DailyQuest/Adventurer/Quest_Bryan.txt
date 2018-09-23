@@ -1,0 +1,89 @@
+iz_dun00,163,172,5	script	Bryan	4_M_SCIENCE,{
+		if(checkquest(8600) == 2){
+			mes "[ Bryan ]";
+			mes "Hurry up.. Someone is waiting for the medicine.";
+			close;
+		}
+		else if(checkquest(8600) == 1){
+			if(quest_bryan){
+				if(countitem("Quest_Extract1") >= BaseLevel/.reqcount && countitem("Quest_Extract2") >= BaseLevel/.reqcount && countitem("Quest_Extract3") >= BaseLevel/.reqcount){
+					mes "[ Bryan ]";
+					mes "Do you have it?";
+					next;
+					if (select("Yes.") == 1) {
+						mes "[ Bryan ]";
+						mes "Give me a minute and I will extract it.";
+						next;
+						mes "[ Bryan ]";
+						mes "Tsuk..tsik..cook.";
+						next;
+						mes "[ Bryan ]";
+						mes "Tsuk..tsik..cook.";
+						mes "Shik...shook..";
+						next;
+						sleep2 3000;
+						
+						specialeffect(EF_PHARMACY_OK);
+						
+						//-- Delete Items
+						delitem "Quest_Extract1",countitem("Quest_Extract1");
+						delitem "Quest_Extract2",countitem("Quest_Extract2");
+						delitem "Quest_Extract3",countitem("Quest_Extract3");
+						
+						//-- Get quest items
+						getitem "Quest_SC_Extract",1;
+						
+						quest_bryan = 0;
+						relay_activate = 2;
+						completequest(8600);
+						
+						mes "[ Bryan ]";
+						mes "Well done! Now give this ^0000ff"+getitemname("Quest_SC_Extract")+"^000000 to Thaddeus for his cough.";
+						close;
+					}
+
+
+				}else{
+					mes "[ Bryan ]";
+					mes "You have to kill some monsters on this dungeon and collect this items.";
+					mes " ";
+					mes "* ^ff0000"+getitemname("Quest_Extract1")+"^000000 ("+countitem("Quest_Extract1")+"/"+(BaseLevel/.reqcount)+")";
+					mes "* ^ff0000"+getitemname("Quest_Extract2")+"^000000 ("+countitem("Quest_Extract2")+"/"+(BaseLevel/.reqcount)+")";
+					mes "* ^ff0000"+getitemname("Quest_Extract3")+"^000000 ("+countitem("Quest_Extract3")+"/"+(BaseLevel/.reqcount)+")";
+					mes " ";
+					mes "";
+					mes "You only have until 23:59 server time to collect this items or else you will go back to Thaddeus and start again.";
+					close;
+				}
+
+			}
+			mes "[ Bryan ]";
+			mes "We are here to make a research and extract rare items to make a medicine. Anything you need from us?";
+			next;
+			if (select("Nothing, but I'm here for a mission.") == 1) {
+				mes "[ Bryan ]";
+				mes "I think Thaddeus sent you here to cure his cough.";
+				next;
+				mes "[ Bryan ]";
+				mes "In able to create this kind of medicine, you need eliminate the monsters in this dungeon and collect this items.";
+				mes " ";
+				mes "* ^ff0000"+getitemname("Quest_Extract1")+"^000000 "+(BaseLevel/.reqcount)+"";
+				mes "* ^ff0000"+getitemname("Quest_Extract2")+"^000000 "+(BaseLevel/.reqcount)+"";
+				mes "* ^ff0000"+getitemname("Quest_Extract3")+"^000000 "+(BaseLevel/.reqcount)+"";
+				mes " ";
+				next;
+				mes "[ Bryan ]";
+				mes "You only have until 23:59 server time to collect this items or else you will go back to Thaddeus and start again..";
+				quest_bryan = 1;
+				close;
+				
+			}
+		}else{
+			mes "[ Bryan ]";
+			mes "We are conducting some research here.";
+			close;
+		}
+	OnInit:
+		.reqcount = 9;
+	end;
+}

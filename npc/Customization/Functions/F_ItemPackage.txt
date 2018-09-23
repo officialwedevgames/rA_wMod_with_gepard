@@ -1,0 +1,32 @@
+function	script	F_ItemPackage	{
+			
+			for(set .@i,0; .@i < 1; set .@i,.@i + 1){
+				.@chance = rand(1,10000);
+
+				query_sql("SELECT `reward_chance` FROM `item_package_db` WHERE `reward_box_itemid` = "+getarg(0)+" AND `reward_chance` >= '"+.@chance+"' ORDER BY `reward_chance` ASC LIMIT 1", .@rate);
+
+				if(.@rate){
+					query_sql("SELECT `reward_box_itemid`, `reward_itemid`, `reward_amount`, `reward_announce` FROM `item_package_db` WHERE `reward_box_itemid` = "+getarg(0)+" AND `reward_chance` = '"+.@rate+"'",.@costumebox, .@itemid, .@amount, .@announce);
+
+					if(getarraysize(.@itemid) > 1){
+						.@randitem = rand(getarraysize(.@itemid));
+						getitem .@itemid[.@randitem], .@amount[.@randitem];
+						.@ann = .@announce[.@randitem];
+						if(.@ann){
+							announce "Citizens of Midgard,Lady Luck shines upon ["+strcharinfo(0)+"]!! ["+getitemname(getarg(0))+"] has awarded the player with ["+getitemname(.@itemid[.@randitem])+"]",0;
+						}
+					}else{
+						getitem .@itemid, .@amount;
+						.@ann = .@announce;
+						if(.@ann){
+							announce "Citizens of Midgard,Lady Luck shines upon ["+strcharinfo(0)+"]!! ["+getitemname(getarg(0))+"] has awarded the player with ["+getitemname(.@itemid)+"]",0;
+						}
+					}
+					break;
+				}else{
+					set .@i, .@i - 1;
+				}
+			}
+
+
+}

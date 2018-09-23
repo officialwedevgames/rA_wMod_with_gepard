@@ -1,0 +1,74 @@
+-	script	party_search	FAKE_NPC,{
+
+	function Comma;
+
+OnInit:
+	//-------------------------------------------------------------------------------------------------	
+		set .lparty,5;			// 5 = 5 minutes Town
+		set .need,3000;
+		set .n$, "^FF0000[ Party Search ]^000000";
+		bindatcmd "sp","party_search::OnDoSearch",0,100;		// Admin reset command
+end;
+
+OnDoSearch:
+	mes .n$;	
+	mes "This command is very useful in able for you to search a party.";
+	mes " ";
+	mes "What do you want me to do?";
+	next;
+	set .@select, select("SEARCH...","I am a [ PAID BOOSTER ] ["+Comma(.need, 3)+"z].");
+	
+
+		set .@time,gettimetick(2);
+		set .@cd,(60*.lparty);
+		if(.@time - #maptimer < .@cd) {
+				set .@k,#maptimer - (gettimetick(2)-.@cd);
+				set .@m,.@k % 3600 / 60;
+				set .@s,.@k % 60;
+				set .@m$, .@m+" minute"+((.@m <= 1)?"":"s");
+				set .@s$, .@s+" second"+((.@s <= 1)?"":"s");
+				set .@time$,""+.@m$+" "+.@s$+"";
+				mes .n$;	
+				mes "I'm sorry but you have to wait"; 
+				mes ""+.@time$+" before you can request again.";
+				close;	
+		}
+		if(.@select == 1){
+			set .@megaphone$ , "I AM [ lv:"+BaseLevel+" "+jobname(Class)+" ] LOOKING FOR PARTY.";
+		}else if(.@select == 2){
+			if(Zeny < .need){
+				mes .n$;	
+				mes "Sorry you don't have enough zeny.";
+				mes "We need at least "+Comma(.need, 3)+" zeny.";
+				close;
+			}
+			set Zeny, Zeny - .need;
+			set .@megaphone$ , "I AM [ lv:"+BaseLevel+" "+jobname(Class)+" ] [ PAID BOOSTER SERVICE ] PM FOR DETAILS.";
+		}
+		mes .n$;	
+		mes "There you go.. goodluck.";
+		set #maptimer,gettimetick(2);
+		
+		channel_chat("#recruit", ""+strcharinfo(0)+" : "+.@megaphone$);
+		close;
+
+	
+end;
+
+    function Comma {
+        .@value = getarg(0);
+        .@precision = getarg(1,3);
+        .@separator$ = getarg( 2,"," );
+
+        .@str$ = ""+.@value;
+        .@is_negative = ( .@value < 0 );
+
+        .@length = getstrlen( .@str$ ) - .@precision - .@is_negative;
+        while ( .@length > 0 ) {
+            .@str$ = insertchar( .@str$, .@separator$ , ( .@length + .@is_negative ) );
+            .@length -= .@precision;
+        }
+        return .@str$;
+    }	
+	
+}

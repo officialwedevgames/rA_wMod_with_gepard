@@ -1,0 +1,108 @@
+payon,73,117,4	script	Race to 99	2_BULLETIN_BOARD,{
+switch(select("Information:Rankings")){
+	case 1:
+		mes "[ Race to 99 ]";
+		mes "Character Status: "+((getcharid(0) >= .starting_charid)? "^006000Qualified^000000":"^ff0000Not Qualified^000000")+"";
+		mes " ";
+		mes "Mechanics";
+		mes "1. The player must create a 2nd Job Character and reach the max level.";
+		mes "2. Only "+.limit+" winner for each job class and rewards will be sent via rodex.";
+		mes "3. Event will end on September 20,2018 11:59AM GMT+8.";
+		mes " ";
+		mes "[ Rewards ]";
+		mes "* 1,000 Rok Points";
+		mes "* 1pc "+getitemname(31483)+"";
+		mes "* 2,000,000z";
+		mes " ";
+		close;
+	case 2:
+		mes "Top "+.limit+" Character's/Job Class.";
+		mes " ";
+		mes "Availability:";
+			for ( .@o = 0; .@o < getarraysize(.class); .@o++ ) {
+				mes " "+jobname(.class[.@o])+" : ^FF0000"+(.limit - getd ("$job" + .class[.@o]))+"^000000";
+			}
+		mes " ";
+		mes "Note: List will be update once the character re-login.";
+		next;
+		switch(select("Alchemist:Assassin:Bard:Blacksmith:Crusader:Dancer:Hunter:Knight:Monk:Priest:Rogue:Sage:Wizard")){
+			case 1: set @jid,18; break;
+			case 2: set @jid,12; break;
+			case 3: set @jid,19; break;
+			case 4: set @jid,10; break;
+			case 5: set @jid,14; break;
+			case 6: set @jid,20; break;
+			case 7: set @jid,11; break;
+			case 8: set @jid,7; break;
+			case 9: set @jid,15; break;
+			case 10: set @jid,8; break;
+			case 11: set @jid,17; break;
+			case 12: set @jid,16; break;
+			case 13: set @jid,9; break;
+			goto OnProcess;
+		}
+}
+
+
+
+
+OnProcess:
+	query_sql ("SELECT `name`,`base_level`,`job_level`,`base_exp` FROM `char` WHERE `char_id` > '"+.starting_charid+"' AND `class` = '"+@jid+"' ORDER BY base_level DESC,job_level DESC, base_exp DESC Limit 50",.@name$,.@blvl,.@jlvl,.@bexp);
+
+	mes "[ "+jobname(@jid)+" Rankings ]";
+	if(!getarraysize(.@name$)){
+		mes "** Nothing listed **";
+	}else{
+		for ( .@i = 0; .@i < getarraysize(.@name$); .@i++ ) {
+			mes ""+(.@i+1)+". "+.@name$[.@i]+" ^FF0000"+.@blvl[.@i]+"^000000 / ^0000FF"+.@jlvl[.@i]+"^000000";
+		}
+	}
+
+	close;
+
+	
+OnPCLoginEvent:
+
+	while(1){
+		if(!#job_completed && getgroupid() < .min_group && getcharid(0) > .starting_charid){
+		
+			for ( .@o = 0; .@o < getarraysize(.class); .@o++ ) {
+				if(Class == .class[.@o] && getd ("$job" + Class) < .limit){
+					if(BaseLevel == .base && JobLevel == .job){
+						.@charid = getcharid(0);
+						.@sender$ = "System";
+						.@title$ = "Race to 99";
+						.@body$ = "Congratulations! You just received your rewards for being the first "+jobname(Class)+" who reached level 99/50.";
+						.@zeny = 2000000;
+						setarray .@mailitem[0], 31483;
+						setarray .@mailamount[0], 1;
+						setarray .@mailcard0[0], 255;
+						setarray .@mailcard1[0], 0;
+						setarray .@mailcard2[0], getcharid(0);
+						setarray .@mailcard3[0], 0;
+						mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount, .@mailcard0, .@mailcard1, .@mailcard2, .@mailcard3;
+	
+						points #ROKPOINTS, #ROKPOINTS + .reward_points;
+
+						set #job_completed,1;
+						setd "$job" + Class,getd ("$job" + Class) + 1;
+						break;
+					}
+				}
+			}
+		}
+		sleep2 1000;
+	}
+end;
+
+OnInit:
+	setarray .class,7,8,9,10,11,12,14,15,16,17,18,19,20;
+	.reward_points = 1000;
+
+	set .base, 99;
+	set .job, 50;
+	set .limit, 1;
+	.min_group = 5;
+	set .starting_charid, 150876;
+end;
+}

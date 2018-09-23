@@ -1,0 +1,421 @@
+s_server02,1,1,1	script	1vs1_server2::server2	-1,{
+	function OnAward;
+	function OnUpdate;
+	end;
+	
+OnInit:
+	setnpctimer 0;
+	stopnpctimer;
+	donpcevent strnpcinfo(3)+"::OnGenerate";
+end;
+
+OnTimer100:
+	mapannounce strnpcinfo(4),"You have 2 minutes to finish the match.",0;
+	end;
+OnTimer30000:
+	mapannounce strnpcinfo(4),"You have 1 minute and 30 seconds to finish the match.",0;
+	end;
+OnTimer60000:
+	mapannounce strnpcinfo(4),"You have 1 minute to finish the match.",0;
+	end;
+OnTimer90000:
+	mapannounce strnpcinfo(4),"You have 30 seconds to finish the match.",0;
+	end;
+OnTimer110000:
+	mapannounce strnpcinfo(4),"You have 10 seconds to finish the match.",0;
+	end;
+OnTimer115000:
+	mapannounce strnpcinfo(4),"Match will end in 5.",0;
+	end;
+OnTimer116000:
+	mapannounce strnpcinfo(4),"Match will end in 4.",0;
+	end;
+OnTimer117000:
+	mapannounce strnpcinfo(4),"Match will end in 3.",0;
+	end;
+OnTimer118000:
+	mapannounce strnpcinfo(4),"Match will end in 2.",0;
+	end;
+OnTimer119000:
+	mapannounce strnpcinfo(4),"Match will end in 1.",0;
+	end;
+OnTimer120000:
+	setnpctimer 0;
+	stopnpctimer;
+	mapannounce strnpcinfo(4),"Match ended.",0;
+	//- Check Player 1 HP
+	attachrid(.s2_team1_accid);
+	.@p1hp = HP;
+	detachrid;
+	
+	//- Check Player 2 HP
+	attachrid(.s2_team2_accid);
+	.@p2hp = HP;
+	detachrid;
+	OnAward(.@p1hp, .@p2hp);
+	end;	
+		
+		
+OnGenerate:
+	deletearray .@account_1; deletearray .@char_1; deletearray .@points_1; deletearray .@match;
+	deletearray .@account_2; deletearray .@char_2; deletearray .@points_2; deletearray .@match;
+	deletearray .@accid; deletearray .@charid;
+	sleep 2000;
+	
+	//-- Always check if there still an on going match.
+	query_sql "SELECT `match_id` FROM `pvp_arena_server` WHERE `server` = '"+strnpcinfo(1)+"' AND `status` = 1 AND `time_ended` IS NULL LIMIT 1", .@match;
+	if(.@match){
+		.match_id = .@match;
+		query_sql "SELECT `account_id`, `char_id` FROM `pvp_arena_db` WHERE `battle_status` = 1 AND `match_id` = '"+.match_id+"'", .@accid, .@charid;
+		
+		set .s2_team1_accid, .@accid[0];
+		set .s2_team2_accid, .@accid[1];
+		
+		set .s2_team1_charid, .@charid[0];
+		set .s2_team2_charid, .@charid[1];
+
+		if(getarraysize(.@accid) == 2){
+			
+			//- Team 1
+			query_sql "UPDATE `pvp_arena_db` SET `team` = 1, `battle_status` = 2, `match_id` = '"+.match_id+"' WHERE `char_id` = '"+.s2_team1_charid+"'";
+			
+			//- Team 2
+			query_sql "UPDATE `pvp_arena_db` SET `team` = 2, `battle_status` = 2, `match_id` = '"+.match_id+"' WHERE `char_id` = '"+.s2_team2_charid+"'";
+			
+			set .@map, rand(1,4);
+			setarray .@p1X[1], 107,	107, 29, 29;
+			setarray .@p1Y[1], 117,	47,	47, 119;
+			setarray .@p2X[1], 116,	116, 38, 38;
+			setarray .@p2Y[1], 117,	47, 47, 119;
+	
+			//- Attach Player 1
+			attachrid(.s2_team1_accid);
+			setoption OPTION_HIDE, 1;
+			sc_start SC_Freeze,60000,0;
+			specialeffect2 37; sc_start SC_INCREASEAGI,120000,10;
+			specialeffect2 42; sc_start SC_BLESSING,120000,10;
+			warp strnpcinfo(4),.@p1X[.@map],.@p1Y[.@map];
+			detachrid;
+			
+			//- Attach Player 2
+			attachrid(.s2_team2_accid);
+			setoption OPTION_HIDE, 1;
+			sc_start SC_Freeze,60000,0;
+			specialeffect2 37; sc_start SC_INCREASEAGI,120000,10;
+			specialeffect2 42; sc_start SC_BLESSING,120000,10;
+			warp strnpcinfo(4),.@p2X[.@map],.@p2Y[.@map];
+			detachrid;
+			
+			setmapflag strnpcinfo(4),mf_noskill;
+			query_sql "UPDATE `pvp_arena_server` SET `status` = 1 WHERE `match_id` = '"+.@match+"'";
+			callfunc "f_arena_start",strnpcinfo(3),strnpcinfo(4),.s2_team1_accid,.s2_team2_accid;
+			
+		}else if(getarraysize(.@accid) <= 1){
+			query_sql "UPDATE `pvp_arena_db` SET `team` = 0, `loss` = 0, `battle_status` = 0, `match_id` = 0 WHERE `match_id` = '"+.@match+"'";
+			query_sql "DELETE FROM `pvp_arena_server` WHERE `match_id` = '"+.@match+"'";
+			
+			//- Attach Player 1
+			attachrid(.s2_team1_accid);
+			setoption OPTION_HIDE, 0;
+			sc_end SC_Freeze;
+			sleep2 1000;
+			warp @oldloc$,@oldx,@oldy;
+			detachrid;
+			
+			//- Attach Player 2
+			attachrid(.s2_team2_accid);
+			setoption OPTION_HIDE, 0;
+			sc_end SC_Freeze;
+			sleep2 1000;
+			warp @oldloc$,@oldx,@oldy;
+			detachrid;
+			
+			goto OnGenerate;
+		}	
+	}else{
+		
+		//---------------------------------
+		
+		//-- Select 1st player
+		query_sql "SELECT `account_id`, `char_id`, `points` FROM `pvp_arena_db` WHERE `battle_status` = 0 AND `mode` = '1vs1' ORDER BY RAND() LIMIT 1", .@account_1, .@char_1, .@points_1;
+
+		if(.@char_1){
+			query_sql "UPDATE `pvp_arena_db` SET `battle_status` = 1 WHERE `char_id` = '"+.@char_1+"'";
+			
+			if(.@points_1 >= 1300 && .@points_1 < 1500){
+				.@a = 1300;
+				.@b = 1500;
+			}else if(.@points_1 >= 1100 && .@points_1 < 1300){
+				.@a = 1100;
+				.@b = 1300;
+			}else if(.@points_1 >= 0 && .@points_1 < 1100){
+				.@a = 500;
+				.@b = 1100;
+			}else if(.@points_1 >= 1500){
+				.@a = .@points_1 - 25;
+				.@b = .@points_1 + 25;
+			}
+			//-- Select 2nd player
+			query_sql "SELECT `account_id`, `char_id`, `points` FROM `pvp_arena_db` WHERE `battle_status` = 0 AND `char_id` != '"+.@char_1+"' AND `mode` = '1vs1' AND `points` BETWEEN '"+.@a+"' AND '"+.@b+"' ORDER BY RAND() LIMIT 1", .@account_2, .@char_2, .@points_2;
+			
+			//-- Check if both player is available.
+			if(!.@char_2){
+				query_sql "UPDATE `pvp_arena_db` SET `battle_status` = 0 WHERE `char_id` = '"+.@char_1+"'";
+				query_sql "UPDATE `pvp_arena_db` SET `battle_status` = 0 WHERE `char_id` = '"+.@char_2+"'";
+				goto OnGenerate;
+			}else{
+				query_sql "UPDATE `pvp_arena_db` SET `battle_status` = 1 WHERE `char_id` = '"+.@char_2+"'";
+				set .s2_team1_accid, .@account_1;
+				set .s2_team2_accid, .@account_2;
+				
+				set .s2_team1_charid, .@char_1;
+				set .s2_team2_charid, .@char_2;
+				
+				set .s2_team1_points, .@points_1;
+				set .s2_team2_points, .@points_2;
+				
+				set .countteam1, getarraysize(.@char_1);
+				set .countteam2, getarraysize(.@char_2);
+				donpcevent strnpcinfo(3)+"::OnCreateServer";
+			}
+		}else{
+			donpcevent strnpcinfo(3)+"::OnGenerate";
+		}
+	}
+end;
+
+OnCreateServer:
+	sleep 2000;
+	set .match_id, rand(999999999);
+	query_sql "SELECT `id` FROM `pvp_arena_server` WHERE `match_id` = '"+.match_id+"' LIMIT 1", .@matchid;
+	if(.@matchid){
+		goto OnCreateServer;
+	}
+	
+	query_sql "INSERT INTO `pvp_arena_server`(`match_id`, `server`, `status`, `time_created`) VALUES ('"+.match_id+"', '"+strnpcinfo(1)+"', '1', CURRENT_TIMESTAMP)";
+	
+	//- Team 1
+	query_sql "UPDATE `pvp_arena_db` SET `team` = 1, `battle_status` = 2, `match_id` = '"+.match_id+"' WHERE `char_id` = '"+.s2_team1_charid+"'";
+	
+	//- Team 2
+	query_sql "UPDATE `pvp_arena_db` SET `team` = 2, `battle_status` = 2, `match_id` = '"+.match_id+"' WHERE `char_id` = '"+.s2_team2_charid+"'";
+	
+	set .@map, rand(1,4);
+	setarray .@p1X[1], 107,	107, 29, 29;
+	setarray .@p1Y[1], 117,	47,	47, 119;
+	setarray .@p2X[1], 116,	116, 38, 38;
+	setarray .@p2Y[1], 117,	47, 47, 119;
+	
+	
+	//- Attach Player 1
+	attachrid(.s2_team1_accid);
+	setoption OPTION_HIDE, 1;
+	sc_start SC_Freeze,60000,0;
+	if(strnpcinfo(4) != strcharinfo(3)){
+		getmapxy(@oldloc$, @oldx, @oldy, UNITTYPE_PC);
+	}
+	specialeffect2 37; sc_start SC_INCREASEAGI,120000,10;
+	specialeffect2 42; sc_start SC_BLESSING,120000,10;
+	warp strnpcinfo(4),.@p1X[.@map],.@p1Y[.@map];
+	detachrid;
+	
+	//- Attach Player 2
+	attachrid(.s2_team2_accid);
+	setoption OPTION_HIDE, 1;
+	sc_start SC_Freeze,60000,0;
+	if(strnpcinfo(4) != strcharinfo(3)){
+		getmapxy(@oldloc$, @oldx, @oldy, UNITTYPE_PC);
+	}
+	specialeffect2 37; sc_start SC_INCREASEAGI,120000,10;
+	specialeffect2 42; sc_start SC_BLESSING,120000,10;
+	warp strnpcinfo(4),.@p2X[.@map],.@p2Y[.@map];
+	detachrid;
+	setmapflag strnpcinfo(4),mf_noskill;
+	setnpctimer 0;
+	stopnpctimer;
+	callfunc "f_arena_start",strnpcinfo(3),strnpcinfo(4),.s2_team1_accid,.s2_team2_accid;
+end;
+
+OnPCDieEvent:
+	if(strnpcinfo(4) == strcharinfo(3)){
+		//- Check Player 1 HP
+		attachrid(.s2_team1_accid);
+		.@p1hp = HP;
+		detachrid;
+		
+		//- Check Player 2 HP
+		attachrid(.s2_team2_accid);
+		.@p2hp = HP;
+		detachrid;
+			
+		OnAward(.@p1hp, .@p2hp);
+		setnpctimer 0;
+		stopnpctimer;
+	}
+end;
+
+OnPCLogoutEvent:
+	bonus_script_clear 1;
+	if(strnpcinfo(4) == strcharinfo(3)){
+		if(.s2_team1_charid != getcharid(0) || .s2_team2_charid != getcharid(0)) end;
+		set .@looser, getcharid(0);
+		set .@oldplayer, getcharid(3);
+		query_sql "SELECT `match_id`, `points` FROM `pvp_arena_db` WHERE `char_id` = '"+getcharid(0)+"'",.@matchid, .@points_1;
+		query_sql "SELECT `account_id`, `char_id`, `points` FROM `pvp_arena_db` WHERE `char_id` != '"+getcharid(0)+"'",.@accountid, .@charid, .@points_2;
+		solo_old_enemy = .@accountid;
+		OnUpdate(getcharid(0),"LOSS",50,.@matchid);
+		
+		.@r = rand(5,10);
+		
+		//- Attach Player 1
+		attachrid(.@accountid);
+		bonus_script_clear 1;
+		
+		if(solo_old_enemy != .@oldplayer && .@points_1 > .@points_2){
+			callfunc "points","#LOYALPOINTS",10,"Battle Arena",getcharid(0),getcharid(3);
+		}
+		if(solo_old_enemy != .@oldplayer){
+			getitem 7773,1;
+		}
+		solo_old_enemy = .@looser;
+		
+		set .@winner, getcharid(0);
+		dispbottom "Your [ Arena Points ] increased by "+.@r+".";
+		OnUpdate(getcharid(0),"WIN",.@r,.match_id);
+		sleep2 1000;
+		warp @oldloc$,@oldx,@oldy;
+		HP = @oldhp;
+		SP = @oldsp;
+		detachrid;
+		
+		//-- Stop Timer
+		setnpctimer 0;
+		stopnpctimer;
+		
+		query_sql "UPDATE `pvp_arena_server` SET `winner` = '"+.@winner+"', `looser` = '"+.@looser+"', `status` = '2', `time_ended` = CURRENT_TIMESTAMP WHERE `match_id` = '"+.@matchid+"'";
+			
+		query_sql "DELETE FROM `pvp_arena_db` WHERE `match_id` = '"+.@matchid+"'";
+			
+		//-- Off PVP
+		pvpoff strnpcinfo(4);
+		//-- Restart and find a new match.
+		donpcevent strnpcinfo(3)+"::OnGenerate";
+	}else{
+		query_sql "DELETE FROM `pvp_arena_db` WHERE `account_id` = '"+getcharid(3)+"'";
+	}
+end;
+
+	function	OnAward	{
+	
+			//- Player 1 HP
+			.@player1hp = getarg(0);
+			
+			//- Player 2 HP			
+			.@player2hp = getarg(1);
+		
+			.@r = rand(5,10);
+			//- Attach Player 1
+			attachrid(.s2_team1_accid);
+			bonus_script_clear 1;
+			if(.@player1hp > .@player2hp){
+			
+				if(solo_old_enemy != .s2_team2_accid && .s2_team2_points > .s2_team1_points){
+					callfunc "points","#LOYALPOINTS",10,"Battle Arena",getcharid(0),getcharid(3);
+				}
+				if(solo_old_enemy != .s2_team2_accid){
+					getitem 7773,1;
+				}
+				set .@winner, getcharid(0);
+				dispbottom "Your [ Arena Points ] increased by "+.@r+".";
+				OnUpdate(getcharid(0),"WIN",.@r,.match_id);
+			}else if(.@player1hp < .@player2hp){
+				set .@looser, getcharid(0);
+				dispbottom "Your [ Arena Points ] decreased by "+.@r+".";
+				OnUpdate(getcharid(0),"LOSS",.@r,.match_id);
+			}else if(.@player1hp == .@player2hp){
+				OnUpdate(getcharid(0),"DRAW",0,.match_id);
+			}
+			set solo_old_enemy, .s2_team2_accid;
+			sleep2 1000;
+			warp @oldloc$,@oldx,@oldy;
+			HP = @oldhp;
+			SP = @oldsp;
+			detachrid;
+			
+			//- Attach Player 2
+			attachrid(.s2_team2_accid);
+			bonus_script_clear 1;
+			if(.@player2hp > .@player1hp){
+
+				if(solo_old_enemy != .s2_team1_accid && .s2_team2_points > .s2_team1_points){
+					callfunc "points","#LOYALPOINTS",10,"Battle Arena",getcharid(0),getcharid(3);
+				}
+				if(solo_old_enemy != .s2_team1_accid){
+					getitem 7773,1;
+				}
+				set .@winner, getcharid(0);
+				dispbottom "Your [ Arena Points ] increased by "+.@r+".";
+				OnUpdate(getcharid(0),"WIN",.@r,.match_id);
+			}else if(.@player2hp < .@player1hp){
+				set .@looser, getcharid(0);
+				dispbottom "Your [ Arena Points ] decreased by "+.@r+".";
+				OnUpdate(getcharid(0),"LOSS",.@r,.match_id);
+			}else if(.@player2hp == .@player1hp){
+				OnUpdate(getcharid(0),"DRAW",0,.match_id);
+			}
+			set solo_old_enemy, .s2_team1_accid;
+			sleep2 1000;
+			warp @oldloc$,@oldx,@oldy;
+			HP = @oldhp;
+			SP = @oldsp;
+			detachrid;
+			
+			if(.@player1hp == .@player2hp){
+				query_sql "UPDATE `pvp_arena_server` SET `draw` = 1, `status` = '2', `time_ended` = CURRENT_TIMESTAMP WHERE `match_id` = '"+.match_id+"'";
+			}else{
+				query_sql "UPDATE `pvp_arena_server` SET `winner` = '"+.@winner+"', `looser` = '"+.@looser+"', `status` = '2', `time_ended` = CURRENT_TIMESTAMP WHERE `match_id` = '"+.match_id+"'";
+			}
+			
+			query_sql "DELETE FROM `pvp_arena_db` WHERE `match_id` = '"+.match_id+"'";
+			
+			//-- Off PVP
+			pvpoff strnpcinfo(4);
+			
+			//-- Reset Variables
+			set .s2_team1_accid, 0;
+			set .s2_team2_accid, 0;
+			
+			set .s2_team1_charid, 0;
+			set .s2_team2_charid, 0;
+			
+			set .s2_team1_points, 0;
+			set .s2_team2_points, 0;
+			
+			set .countteam1, 0;
+			set .countteam2, 0;
+			donpcevent strnpcinfo(3)+"::OnGenerate";
+			return;
+	}
+	
+	function	OnUpdate	{
+		if(getarg(1) == "LOSS"){
+			query_sql "UPDATE `pvp_arena_char_stats` SET `loss` = `loss` + 1, `points` = `points` - "+getarg(2)+", `last_match_id` = "+getarg(3)+" WHERE `char_id` = '"+getarg(0)+"'";
+		}else if(getarg(1) == "WIN"){
+			query_sql "UPDATE `pvp_arena_char_stats` SET `win` = `win` + 1, `points` = `points` + "+getarg(2)+", `last_match_id` = "+getarg(3)+" WHERE `char_id` = '"+getarg(0)+"'";
+		}else if(getarg(1) == "DRAW"){
+			query_sql "UPDATE `pvp_arena_char_stats` SET `draw` = `draw` + 1, `points` = `points` + "+getarg(2)+", `last_match_id` = "+getarg(3)+" WHERE `char_id` = '"+getarg(0)+"'";
+		}
+		return;
+	}
+}
+
+s_server02	mapflag	nowarp
+s_server02	mapflag	nowarpto
+s_server02	mapflag	noteleport
+s_server02	mapflag	nosave
+s_server02	mapflag	nomemo
+s_server02	mapflag	nobranch
+s_server02	mapflag	pvp_noparty
+s_server02	mapflag	pvp_noguild
+s_server02	mapflag	noreturn
+s_server02	mapflag	restricted	9

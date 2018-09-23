@@ -1,0 +1,2 @@
+alb_ship	mapflag	nopenalty
+alb_ship	mapflag	noskill

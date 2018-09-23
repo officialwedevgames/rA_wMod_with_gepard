@@ -1,0 +1,164 @@
+prontera,115,125,5	script	Kordel	4_M_ZONDAOYAJI,{
+	mes "[ Profession Manager ]";
+	mes "Good day, I am kordel and I can show you the rankings for this week.";
+	next;
+	switch(select("Mining:Fishing:Gathering")){
+		case 1:
+			mes "[ Mining Rankings ]";
+			mes "[ ^ff0000-----------------------------^000000 ]";
+			query_sql( "SELECT `char_id`, `points` FROM `profession_rank_db` WHERE `type` = 'Mining' ORDER BY points DESC LIMIT "+.rank_limit+"", .@char_id, .@points );
+			for(set .@x,0; .@x < getarraysize(.@char_id); set .@x,.@x + 1){
+				explode(.@reward$, .reward_list$[.@x],"|");
+				for(set .@y,0; .@y < getarraysize(.@reward$); set .@y,.@y + 1){
+					set .@r[.@y], atoi(.@reward$[.@y]);		
+				}
+				
+				query_sql( "SELECT `name` FROM `char` WHERE `char_id` = '"+.@char_id[.@x]+"'", .@name$);
+				
+				mes "Rank "+(.@x+1)+" : ^0000ff"+.@name$+"^000000";
+				mes "CID: ^007800"+.@char_id[.@x]+"^000000";
+				mes "Score: ^007800"+.@points[.@x]+"^000000";
+				mes "Reward : ^ff0000"+getitemname(.@r[0])+" x "+.@r[1]+"^000000";
+				mes "[ ^ff0000-----------------------------^000000 ]";
+				if(getcharid(CHAR_ID_CHAR) == .@char_id[.@x]){
+					set .@listed, 1;
+				}
+				set .@count, .@count + 1;
+			}
+			if(!.@count){
+				mes "      Not yet available.      ";
+				mes "[ ^ff0000-----------------------------^000000 ]";
+				close;
+			}
+			
+			if(!.@listed){
+				dispbottom "You are not on the list.",0x00ff00;
+			}
+		close;
+		
+		case 2:
+			mes "[ Fishing Rankings ]";
+			mes "[ ^ff0000-----------------------------^000000 ]";
+			query_sql( "SELECT `char_id`, `points` FROM `profession_rank_db` WHERE `type` = 'Fishing' ORDER BY points DESC LIMIT "+.rank_limit+"", .@char_id, .@points );
+			for(set .@x,0; .@x < getarraysize(.@char_id); set .@x,.@x + 1){
+				explode(.@reward$, .reward_list$[.@x],"|");
+				for(set .@y,0; .@y < getarraysize(.@reward$); set .@y,.@y + 1){
+					set .@r[.@y], atoi(.@reward$[.@y]);		
+				}
+				
+				query_sql( "SELECT `name` FROM `char` WHERE `char_id` = '"+.@char_id[.@x]+"'", .@name$);
+				
+				mes "Rank "+(.@x+1)+" : ^0000ff"+.@name$+"^000000";
+				mes "CID: ^007800"+.@char_id[.@x]+"^000000";
+				mes "Score: ^007800"+.@points[.@x]+"^000000";
+				mes "Reward : ^ff0000"+getitemname(.@r[0])+" x "+.@r[1]+"^000000";
+				mes "[ ^ff0000-----------------------------^000000 ]";
+				if(getcharid(CHAR_ID_CHAR) == .@char_id[.@x]){
+					set .@listed, 1;
+				}
+				set .@count, .@count + 1;
+			}
+			if(!.@count){
+				mes "      Not yet available.      ";
+				mes "[ ^ff0000-----------------------------^000000 ]";
+				close;
+			}
+			
+			if(!.@listed){
+				dispbottom "You are not on the list.",0x00ff00;
+			}
+		close;
+		
+		case 3:
+			mes "[ Gathering Rankings ]";
+			mes "[ ^ff0000-----------------------------^000000 ]";
+			query_sql( "SELECT `char_id`, `points` FROM `profession_rank_db` WHERE `type` = 'Gathering' ORDER BY points DESC LIMIT "+.rank_limit+"", .@char_id, .@points );
+			for(set .@x,0; .@x < getarraysize(.@char_id); set .@x,.@x + 1){
+				explode(.@reward$, .reward_list$[.@x],"|");
+				for(set .@y,0; .@y < getarraysize(.@reward$); set .@y,.@y + 1){
+					set .@r[.@y], atoi(.@reward$[.@y]);		
+				}
+				
+				query_sql( "SELECT `name` FROM `char` WHERE `char_id` = '"+.@char_id[.@x]+"'", .@name$);
+				
+				mes "Rank "+(.@x+1)+" : ^0000ff"+.@name$+"^000000";
+				mes "CID: ^007800"+.@char_id[.@x]+"^000000";
+				mes "Score: ^007800"+.@points[.@x]+"^000000";
+				mes "Reward : ^ff0000"+getitemname(.@r[0])+" x "+.@r[1]+"^000000";
+				mes "[ ^ff0000-----------------------------^000000 ]";
+				if(getcharid(CHAR_ID_CHAR) == .@char_id[.@x]){
+					set .@listed, 1;
+				}
+				set .@count, .@count + 1;
+			}
+			if(!.@count){
+				mes "      Not yet available.      ";
+				mes "[ ^ff0000-----------------------------^000000 ]";
+				close;
+			}
+			
+			if(!.@listed){
+				dispbottom "You are not on the list.",0x00ff00;
+			}
+		close;
+	}
+	
+OnInit:
+	//- Weekly Rank Limit
+	.rank_limit = 10;
+	
+	//- Commands
+	bindatcmd "proreset", "Kordel::OnFri1800", 99,100;
+	//- Reward
+	setarray .reward_list$[0],
+							"32068|2",
+							"32068|1",
+							"32067|1",
+							"32066|1",
+							"32066|1",
+							"32066|1",
+							"32066|1",
+							"32066|1",
+							"32066|1",
+							"32066|1";
+end;
+
+OnFri1800:	// Friday 6:00PM
+	query_sql( "SELECT `char_id`, `points` FROM `profession_rank_db` WHERE `type` = 'Mining' ORDER BY points DESC LIMIT "+.rank_limit+"", .@char_id, .@points );
+	for(set .@x,0; .@x < getarraysize(.@char_id); set .@x,.@x + 1){
+		explode(.@reward$, .reward_list$[.@x],"|");
+		for(set .@y,0; .@y < getarraysize(.@reward$); set .@y,.@y + 1){
+			set .@r[.@y], atoi(.@reward$[.@y]);		
+		}
+		set .@message$, "Congratulations!! You are Rank "+(.@x+1)+" in Mining. We just sent you a reward for this week.";
+		query_sql("INSERT INTO `mail` (send_name,dest_id,title,message,nameid,amount,identify,time) VALUES ('Admin',"+.@char_id[.@x]+",'Mining System','"+.@message$+"',"+.@r[0]+","+.@r[1]+",1,UNIX_TIMESTAMP(NOW()))");
+	}
+	deletearray .@char_id,.@points;
+	
+	query_sql( "SELECT `char_id`, `points` FROM `profession_rank_db` WHERE `type` = 'Fishing' ORDER BY points DESC LIMIT "+.rank_limit+"", .@char_id, .@points );
+	for(set .@x,0; .@x < getarraysize(.@char_id); set .@x,.@x + 1){
+		explode(.@reward$, .reward_list$[.@x],"|");
+		for(set .@y,0; .@y < getarraysize(.@reward$); set .@y,.@y + 1){
+			set .@r[.@y], atoi(.@reward$[.@y]);		
+		}
+		set .@message$, "Congratulations!! You are Rank "+(.@x+1)+" in Fishing. We just sent you a reward for this week.";
+		query_sql("INSERT INTO `mail` (send_name,dest_id,title,message,nameid,amount,identify,time) VALUES ('Admin',"+.@char_id[.@x]+",'Fishing System','"+.@message$+"',"+.@r[0]+","+.@r[1]+",1,UNIX_TIMESTAMP(NOW()))");
+	}
+	deletearray .@char_id,.@points;
+	
+	query_sql( "SELECT `char_id`, `points` FROM `profession_rank_db` WHERE `type` = 'Gathering' ORDER BY points DESC LIMIT "+.rank_limit+"", .@char_id, .@points );
+	for(set .@x,0; .@x < getarraysize(.@char_id); set .@x,.@x + 1){
+		explode(.@reward$, .reward_list$[.@x],"|");
+		for(set .@y,0; .@y < getarraysize(.@reward$); set .@y,.@y + 1){
+			set .@r[.@y], atoi(.@reward$[.@y]);		
+		}
+		set .@message$, "Congratulations!! You are Rank "+(.@x+1)+" in Gathering. We just sent you a reward for this week.";
+		query_sql("INSERT INTO `mail` (send_name,dest_id,title,message,nameid,amount,identify,time) VALUES ('Admin',"+.@char_id[.@x]+",'Gathering System','"+.@message$+"',"+.@r[0]+","+.@r[1]+",1,UNIX_TIMESTAMP(NOW()))");
+	}
+	deletearray .@char_id,.@points;
+	
+	query_sql("TRUNCATE TABLE profession_rank_db");
+	dispbottom "Profession Rankings has been reset.",0xff0000;
+end;
+
+}

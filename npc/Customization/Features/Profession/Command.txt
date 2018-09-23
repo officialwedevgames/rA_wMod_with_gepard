@@ -1,0 +1,55 @@
+/////////////////////////////////////////
+//-- Show the Professions data like level and experience.
+/////////////////////////////////////////
+
+-	script	Professions_Data	FAKE_NPC,{
+
+OnInit:
+	bindatcmd "prodata", "Professions_Data::OnDoData", 0,100;
+	set $LevelMultiplier, 10000;
+end;
+
+OnDoData:
+	if ( compare( .@atcmd_parameters$, "Mining" ) ) { goto OnMining; }
+	else if ( compare( .@atcmd_parameters$, "Fishing" ) ) { goto OnFishing; }
+	else if ( compare( .@atcmd_parameters$, "Gathering" ) ) { goto OnGathering; }
+	else{
+		dispbottom "Profession Type: Mining | Fishing | Gathering",0x00ff00;
+		dispbottom "Usage: @prodata <Profession Type>",0x00ff00;
+		dispbottom "@prodata failed.",0x00ff00;
+	}
+end;
+
+OnMining:
+		query_sql "SELECT `points` FROM `profession_rank_db` WHERE `char_id` = '"+getcharid(CHAR_ID_CHAR)+"' AND `type` = 'Mining'", .@mining_data;
+		dispbottom "<<<< Mining Data >>>>",0x00ff00;
+		dispbottom " Level: "+MiningLevel+"",0x00ff00;
+		dispbottom " Exp: "+((MiningLevel)?""+MiningEXP+" / "+MiningLevel*10000+"":"N/A")+"",0x00ff00;
+		dispbottom " Scores: "+((.@mining_data)?""+.@mining_data+"":"N/A")+"",0x00ff00;	
+end;
+
+OnFishing:
+		query_sql "SELECT `points` FROM `profession_rank_db` WHERE `char_id` = '"+getcharid(CHAR_ID_CHAR)+"' AND `type` = 'Fishing'", .@fishing_data;
+		dispbottom "<<<< Fishing Data >>>>",0x00ff00;
+		dispbottom " Level: "+FishingLevel+" ",0x00ff00;
+		dispbottom " Exp: "+((FishingLevel)?""+FishingExp+" / "+FishingLevel*10000+"":"N/A")+"",0x00ff00;
+		dispbottom " Scores: "+((.@fishing_data)?""+.@fishing_data+"":"N/A")+"",0x00ff00;	
+end;
+
+OnGathering:
+		query_sql "SELECT `points` FROM `profession_rank_db` WHERE `char_id` = '"+getcharid(CHAR_ID_CHAR)+"' AND `type` = 'Gathering'", .@gathering_data;
+		dispbottom "<<<< Gathering Data >>>>",0x00ff00;
+		dispbottom " Level: "+GatheringLevel+"",0x00ff00;
+		dispbottom " Exp: "+((GatheringLevel)?""+GatheringEXP+" / "+GatheringLevel*10000+"":"N/A")+"",0x00ff00;
+		dispbottom " Scores: "+((.@gathering_data)?""+.@gathering_data+"":"N/A")+"",0x00ff00;	
+end;
+
+OnPCLogoutEvent:
+	Mining = 0;
+	MiningDrop = 0;
+	Fishing = 0;
+	FishingDrop = 0;
+	Gathering = 0;
+	GatheringDrop = 0;
+end;
+}

@@ -1,0 +1,13 @@
+-	script	CBT_Rewards	FAKE_NPC,{
+
+OnPCLoginEvent:
+	query_sql "SELECT `account_id` FROM `beta_key_accounts` WHERE `account_id` = '"+getcharid(3)+"' AND `status` = '0'", .@data;
+    if(.@data){
+        query_sql("UPDATE `beta_key_accounts` SET `status` = '1', `claimed_date` = CURRENT_TIMESTAMP WHERE `account_id` = '"+.@data+"' AND `status` = '0'"); 
+        atcommand "@vip 7d "+strcharinfo(0);
+        getitem 12210,10;
+        getitem 12208,10;
+    }
+end;
+
+}

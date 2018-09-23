@@ -1,0 +1,10 @@
+-	script	Free Points	FAKE_NPC,{
+
+OnPCLoginEvent:
+	if(!#Acc_Free_Points){
+		points #ROKPOINTS, #ROKPOINTS + 30000;
+		set #Acc_Free_Points,1;
+	}
+end;
+
+}

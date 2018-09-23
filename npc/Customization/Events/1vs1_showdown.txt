@@ -1,0 +1,175 @@
+-	script	1vs1_showdown	-1,{
+
+OnInit:
+	set .ongoing, 0;
+	set .account_id1, 0;
+	set .account_id2, 0;
+	set .char_id1, 0;
+	set .char_id2, 0;
+	bindatcmd "showdown","1vs1_showdown::OnDoStart",90,100;		// Admin reset command	
+end;
+	
+OnPCDieEvent:
+	if("poring_c02" == strcharinfo(3)){
+		if(strcharinfo(0) == .char_name1$){
+			sleep2 1000;
+			warp @oldloc$, @oldx, @oldy;
+			announce .char_name2$+" won the match versus "+.char_name2$,0;
+			sleep2 1000;
+			warp @oldloc$, @oldx, @oldy,.char_id2;
+		}else if(strcharinfo(0) == .char_name2$){
+			sleep2 1000;
+			warp @oldloc$, @oldx, @oldy;
+			announce .char_name1$+" won the match versus "+.char_name2$,0;
+			sleep2 1000;
+			warp @oldloc$, @oldx, @oldy,.char_id1;
+		}
+		setnpctimer 0;
+		stopnpctimer;
+		pvpoff "poring_c02";
+		set .ongoing, 0;
+	}
+end;
+
+OnDoStart:
+	if(.ongoing){
+		dispbottom .char_name1$+" vs "+.char_name2$+" is still ongoing";
+	}
+	set .account_id1, .@atcmd_parameters$[0];
+	set .account_id2, .@atcmd_parameters$[1];
+	
+	if ( !isloggedin( .account_id1 ) ){
+		dispbottom "Player 1 is offline.";
+		end;
+	}else if ( !isloggedin( .account_id2 ) ){
+		dispbottom "Player 2 is offline.";
+		end;
+	}
+	
+	attachrid(.account_id1);
+		set .char_id1, getcharid(0);
+		set .char_name1$, strcharinfo(0);
+	detachrid;
+	
+	attachrid(.account_id2);
+		set .char_id2, getcharid(0);
+		set .char_name2$, strcharinfo(0);
+	detachrid;
+	
+	if ( !isloggedin( .account_id1, .char_id1 ) ){
+		dispbottom "Player "+.char_name1$+" is offline.";
+		end;
+	}else if ( !isloggedin( .account_id2, .char_id2 ) ){
+		dispbottom "Player "+.char_name2$+" is offline.";
+		end;
+	}
+	
+	announce .char_name1$+" vs "+.char_name2$+" match will start after 30 seconds.",0;
+	set .ongoing, 1;
+	
+	attachrid(.account_id1);
+		setoption OPTION_HIDE, 1;
+		sc_start SC_Freeze,60000,0;
+		if("poring_c02" != strcharinfo(3)){
+			getmapxy(@oldloc$, @oldx, @oldy, UNITTYPE_PC);
+		}
+		percentheal 100,100;
+		warp "poring_c02",13,221;
+	detachrid;
+	
+	
+	attachrid(.account_id2);
+		setoption OPTION_HIDE, 1;
+		sc_start SC_Freeze,60000,0;
+		if("poring_c02" != strcharinfo(3)){
+			getmapxy(@oldloc$, @oldx, @oldy, UNITTYPE_PC);
+		}
+		percentheal 100,100;
+		warp "poring_c02",24,220;
+	detachrid;
+	
+	setmapflag "poring_c02",mf_noskill;
+	sleep 30000;
+	mapannounce  "poring_c02", "Match will start in 5...",0;
+	sleep 1000;
+	mapannounce  "poring_c02", "4",0;
+	sleep 1000;
+	mapannounce  "poring_c02", "3",0;
+	sleep 1000;
+	mapannounce  "poring_c02", "2",0;
+	sleep 1000;
+	mapannounce  "poring_c02", "1",0;
+	sleep 1000;
+	mapannounce  "poring_c02", "GO!",0;
+	initnpctimer;
+	pvpon "poring_c02";
+	//- Attach Player 1
+	attachrid(.account_id1);
+	setoption OPTION_HIDE, 0;
+	sc_end SC_Freeze;
+	detachrid;
+
+	//- Attach Player 2
+	attachrid(.account_id2);
+	setoption OPTION_HIDE, 0;
+	sc_end SC_Freeze;
+	detachrid;
+	removemapflag "poring_c02",mf_noskill;
+end;
+
+OnTimer100:
+	mapannounce "poring_c02","You have 2 minutes to finish the match.",0;
+	end;
+OnTimer30000:
+	mapannounce "poring_c02","You have 1 minute and 30 seconds to finish the match.",0;
+	end;
+OnTimer60000:
+	mapannounce "poring_c02","You have 1 minute to finish the match.",0;
+	end;
+OnTimer90000:
+	mapannounce "poring_c02","You have 30 seconds to finish the match.",0;
+	end;
+OnTimer110000:
+	mapannounce "poring_c02","You have 10 seconds to finish the match.",0;
+	end;
+OnTimer115000:
+	mapannounce "poring_c02","Match will end in 5.",0;
+	end;
+OnTimer116000:
+	mapannounce "poring_c02","Match will end in 4.",0;
+	end;
+OnTimer117000:
+	mapannounce "poring_c02","Match will end in 3.",0;
+	end;
+OnTimer118000:
+	mapannounce "poring_c02","Match will end in 2.",0;
+	end;
+OnTimer119000:
+	mapannounce "poring_c02","Match will end in 1.",0;
+	end;
+OnTimer120000:
+	setnpctimer 0;
+	stopnpctimer;
+	mapannounce "poring_c02","Match ended.",0;
+	pvpoff "poring_c02";
+	set .ongoing, 0;
+	attachrid(.account_id1);
+	warp @oldloc$, @oldx, @oldy;
+	detachrid;
+	attachrid(.account_id2);
+	warp @oldloc$, @oldx, @oldy;
+	detachrid;
+	end;
+	
+}
+
+
+s_server01	mapflag	nowarp
+s_server01	mapflag	nowarpto
+s_server01	mapflag	noteleport
+s_server01	mapflag	nosave
+s_server01	mapflag	nomemo
+s_server01	mapflag	nobranch
+s_server01	mapflag	pvp_noparty
+s_server01	mapflag	pvp_noguild
+s_server01	mapflag	noreturn

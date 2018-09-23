@@ -1,0 +1,398 @@
+//--- Kafra Warper 1.0.0 -----------------------------------------//
+//----------------------------------------------------------------//
+//    ttt              000000000
+//    ttt              000   000
+// ttttttttt rrrrrrrrr 000   000 nnnnnnnnn
+//    ttt    rrr       000   000 nnn   nnn
+//    ttt    rrr       000   000 nnn   nnn
+//    ttt    rrr       000   000 nnn   nnn
+//    ttttt  rrr       000000000 nnn   nnn
+//----------------------------------------------------------------//
+//--- Changelogs: ------------------------------------------------//
+// 1.0.0 Release
+//----------------------------------------------------------------//
+//--- Main Script ------------------------------------------------//
+-	script	Kafra Warper#1-1	4_F_KAFRA3,{
+
+//- Default Function
+	function LastWarp;
+	function Comma;
+
+//- Partner Function
+	function AddPartnerTown;
+	function AddPartnerDungeon;
+	function AddPartnerField;
+
+//- Premium Function
+	function AddPremiumTown;
+	function AddPremiumDungeon;
+	function AddPremiumField;
+
+//- Last Warp Activate|Deactivate Menu
+    set .lastwarp, 1;
+
+//- Partner Activate|Deactivate Menu
+    set .partnertowns, 1;
+    set .partnerdungeons, 1;
+    set .partnerfields, 0;
+
+//- Premium Activate|Deactivate Menu
+    set .premiumtowns, 1;
+    set .premiumdungeons, 1;
+    set .premiumfields, 0;
+
+//- Warp Cooldown Time
+    set .seconds, 300;
+
+//- Last Warp Price
+// Calculation: Original Price - % = Last Warp
+// Default: 10 = 10% of Original Price
+    set .lastwarpprice, 50;
+
+	//Checks if maps are loaded, (prevents out of index)
+	if(.mapsloaded == 1) goto L_warpmenu;
+	set .mapsloaded, 1;
+
+    ///////////////////////
+    //- Premium Access
+    ///////////////////////
+    //Add Town here
+    //AddPremiumTown("<Map Menu Name>", <"map name">, <x>, <y>, <zeny>);
+    AddPremiumTown("Capital of Rune Midgard", "prontera", 116, 73, 300);
+    AddPremiumTown("Morroc Town", "morocc", 156, 46, 300);
+    AddPremiumTown("Geffen", "geffen", 119, 40, 300);
+    AddPremiumTown("Alberta", "alberta", 117, 57, 300);
+    AddPremiumTown("Izlude Town", "izlude", 94, 103, 300);
+    AddPremiumTown("Aldebaran", "aldebaran", 168, 112, 300);
+	AddPremiumTown("Yuno", "yuno", 158, 125, 300);
+	
+    //Add Dungeon here
+    //AddPremiumDungeon("<Map Menu Name>", <"map name">, <x>, <y>, <zeny>);
+	AddPremiumDungeon("Ant Hell", "moc_fild04", 205, 328, 0);
+	AddPremiumDungeon("Geffen Tower", "gef_tower", 153, 31, 0);
+	AddPremiumDungeon("Glast Heim", "gef_fild06", 27, 304, 0);
+	AddPremiumDungeon("Inside Pyramid", "moc_ruins", 62, 166, 0);
+	AddPremiumDungeon("Mjolnir Dead Pit", "mjolnir_02", 86, 357, 0);
+	AddPremiumDungeon("Sphinx", "moc_fild19", 106, 99, 0);
+	AddPremiumDungeon("Toy Factory Warehouse", "xmas", 150, 313, 0);
+	AddPremiumDungeon("Treasure Island", "alb2trea", 85, 107, 0);
+	AddPremiumDungeon("Turtle Island Dungeon", "tur_dun01", 160, 35, 0);
+	AddPremiumDungeon("Undersea Tunnel", "izlu2dun", 108, 88, 0);
+	AddPremiumDungeon("Nogg Road F1", "yuno_fild03", 37, 140, 0);
+	
+    //Add Field here
+    //AddPremiumField("<Map Menu Name>", <"map name">, <x>, <y>, <zeny>);
+
+
+    ///////////////////////
+    //- Partner Access
+    ///////////////////////
+    //Add Town here
+    //AddPartnerTown("<Map Menu Name>", <"map name">, <x>, <y>, <zeny>);
+    AddPartnerTown("Capital of Rune Midgard", "prontera", 116, 73, 300);
+    AddPartnerTown("Morroc Town", "morocc", 156, 46, 300);
+    AddPartnerTown("Geffen", "geffen", 119, 40, 300);
+    AddPartnerTown("Alberta", "alberta", 117, 57, 300);
+    AddPartnerTown("Izlude Town", "izlude", 94, 103, 300);
+    AddPartnerTown("Aldebaran", "aldebaran", 168, 112, 300);
+	AddPartnerTown("Yuno", "yuno", 158, 125, 300);
+
+    //Add Dungeon here
+    //AddPartnerDungeon("<Map Menu Name>", <"map name">, <x>, <y>, <zeny>);
+	AddPartnerDungeon("Ant Hell", "moc_fild04", 205, 328, 1500);
+	AddPartnerDungeon("Geffen Tower", "gef_tower", 153, 31, 1500);
+	AddPartnerDungeon("Glast Heim", "gef_fild06", 27, 304, 1500);
+	AddPartnerDungeon("Inside Pyramid", "moc_ruins", 62, 166, 1500);
+	AddPartnerDungeon("Mjolnir Dead Pit", "mjolnir_02", 86, 357, 1500);
+	AddPartnerDungeon("Sphinx", "moc_fild19", 106, 99, 1500);
+	AddPartnerDungeon("Toy Factory Warehouse", "xmas", 150, 313, 1500);
+	AddPartnerDungeon("Treasure Island", "alb2trea", 85, 107, 1500);
+	AddPartnerDungeon("Turtle Island Dungeon", "tur_dun01", 160, 35, 1500);
+	AddPartnerDungeon("Undersea Tunnel", "izlu2dun", 108, 88, 1500);
+	AddPartnerDungeon("Nogg Road F1", "yuno_fild03", 37, 140, 1500);
+	
+	
+    //Add Field here
+    //AddPartnerField("<Map Menu Name>", <"map name">, <x>, <y>, <zeny>);
+    //AddPartnerField("Glast Heim", "gef_fild06", 27, 304, 0);
+
+end;
+
+L_warpmenu:
+	mes "[ ^FF7700Kafra Warper^000000 ]";
+	if(warp_cd > gettimetick(2)) {
+			set .@k,warp_cd - (gettimetick(2)-(.seconds));
+			set .@m,.@k % 300 / 60;
+			set .@s,.@k % 60;
+			set .@m$, .@m+" minute"+((.@m <= 1)?"":"s");
+			set .@s$, .@s+" second"+((.@s <= 1)?"":"s");
+			set .@time$,""+.@m$+" "+.@s$+"";
+			mes "I'm sorry but you have to wait";
+			mes "^ff0000"+.@time$+"^000000 before you can warp again!";
+			close;
+	}
+
+    if(getgroupid() < 1){
+        mes "Welcome Citizen of Midgard!";
+        mes "Our Warper system is applicable only for ^ff0000Premium and Partner Accounts^000000. You can ask our support team or message us how you can avail it.";
+        close;
+    }
+
+	mes "Welcome Citizen of Midgard!";
+	mes "Where is your destination?";
+	next;
+    if(getgroupid() == 1){
+            switch(select(((.lastwarp)?"Last Warp [^0000FF"+((lastwarpname$)?lastwarpname$:"^0000FF Not Available ^000000")+"^000000]":""),
+                    ((.premiumtowns)?"Towns":""),
+                    ((.premiumdungeons)?"Dungeons":""),
+                    ((.premiumfields)?"Fields":""))) {
+            case 1:
+                if (lastwarpname$ == ""){
+                    mes "[^FF7700Kafra Warper^000000]";
+                    mes "Please try again.";
+                    close;
+                }
+
+                if(Zeny < lastwarpfee){
+                    mes "[^FF7700Kafra Warper^000000]";
+                    mes "You don't have enough zeny.";
+                    close;
+                }
+
+                set Zeny,Zeny-lastwarpfee;
+                set warp_cd,gettimetick(2)+ .seconds;	// 5 minutes Warp Cooldown
+                warp lastwarpmap$, lastwarpx, lastwarpy;
+                break;
+            case 2:
+                set .@PremiumTownMenu$,"";
+                for (set .@j,0; .@j < getarraysize(.PremiumTownname$); set .@j,.@j+1) {
+                    if (.@j) set .@PremiumTownMenu$,.@PremiumTownMenu$+":";
+                        set .@PremiumTownMenu$,.@PremiumTownMenu$+.PremiumTownname$[.@j]+" "+((!.PremiumTownwf[.@j])?"":"( ^0000ff"+Comma(.PremiumTownwf[.@j],3)+"z^000000 )")+"";
+                }
+                set .@selection2,select(.@PremiumTownMenu$)-1;
+                if(Zeny < .PremiumTownwf[.@selection2]){
+                    mes "[^FF7700Kafra Warper^000000]";
+                    mes "You don't have enough zeny.";
+                    close;
+                }
+                set Zeny,Zeny-.PremiumTownwf[.@selection2];
+                set warp_cd,gettimetick(2)+ .seconds;	// 5 minutes Warp Cooldown
+                warp .PremiumTownmap$[.@selection2],.PremiumTownx[.@selection2],.PremiumTowny[.@selection2];
+                LastWarp(.PremiumTownname$[.@selection2], .PremiumTownmap$[.@selection2], .PremiumTownx[.@selection2], .PremiumTowny[.@selection2],.PremiumTownwf[.@selection2],.PremiumTownlwf[.@selection2]);
+            break;
+
+            case 3:
+                set .@PremiumDungeonMenu$,"";
+                for (set .@j,0; .@j < getarraysize(.PremiumDungeonname$); set .@j,.@j+1) {
+                    if (.@j) set .@PremiumDungeonMenu$,.@PremiumDungeonMenu$+":";
+                        set .@PremiumDungeonMenu$,.@PremiumDungeonMenu$+.PremiumDungeonname$[.@j]+" "+((!.PremiumDungeonwf[.@j])?"":"( ^0000ff"+Comma(.PremiumDungeonwf[.@j],3)+"z^000000 )")+"";
+                }
+                set .@selection2,select(.@PremiumDungeonMenu$)-1;
+                if(Zeny < .PremiumDungeonwf[.@selection2]){
+                    mes "[^FF7700Kafra Warper^000000]";
+                    mes "You don't have enough zeny.";
+                    close;
+                }
+                set Zeny,Zeny-.PremiumDungeonwf[.@selection2];
+                set warp_cd,gettimetick(2)+ .seconds;	// 5 minutes Warp Cooldown
+                warp .PremiumDungeonmap$[.@selection2],.PremiumDungeonx[.@selection2],.PremiumDungeony[.@selection2];
+                LastWarp(.PremiumDungeonname$[.@selection2], .PremiumDungeonmap$[.@selection2], .PremiumDungeonx[.@selection2], .PremiumDungeony[.@selection2],.PremiumDungeonwf[.@selection2],.PremiumDungeonlwf[.@selection2]);
+            break;
+
+            case 4:
+                set .@PremiumFieldMenu$,"";
+                for (set .@j,0; .@j < getarraysize(.PremiumFieldname$); set .@j,.@j+1) {
+                    if (.@j) set .@PremiumFieldMenu$,.@PremiumFieldMenu$+":";
+                        set .@PremiumFieldMenu$,.@PremiumFieldMenu$+.PremiumFieldname$[.@j]+" "+((!.PremiumFieldwf[.@j])?"":"( ^0000ff"+Comma(.PremiumFieldwf[.@j],3)+"z^000000 )")+"";
+                }
+                set .@selection2,select(.@PremiumFieldMenu$)-1;
+                if(Zeny < .PremiumFieldwf[.@selection2]){
+                    mes "[^FF7700Kafra Warper^000000]";
+                    mes "You don't have enough zeny.";
+                    close;
+                }
+                set Zeny,Zeny-.PremiumFieldwf[.@selection2];
+                set warp_cd,gettimetick(2)+ .seconds;	// 5 minutes Warp Cooldown
+                warp .PremiumFieldmap$[.@selection2],.PremiumFieldx[.@selection2],.PremiumFieldy[.@selection2];
+                LastWarp(.PremiumFieldname$[.@selection2], .PremiumFieldmap$[.@selection2], .PremiumFieldx[.@selection2], .PremiumFieldy[.@selection2],.PremiumFieldwf[.@selection2],.PremiumFieldlwf[.@selection2]);
+                break;
+        }
+    } else if(getgroupid() >= 2){
+			switch(select(((.lastwarp)?"Last Warp [^0000FF"+((lastwarpname$)?lastwarpname$:"^0000FF Not Available ^000000")+"^000000]":""),
+                    ((.partnertowns)?"Towns":""),
+                    ((.partnerdungeons)?"Dungeons":""),
+                    ((.partnerfields)?"Fields":""))) {
+            case 1:
+                if (lastwarpname$ == ""){
+                    mes "[^FF7700Kafra Warper^000000]";
+                    mes "Please try again.";
+                    close;
+                }
+
+                if(Zeny < lastwarpfee){
+                    mes "[^FF7700Kafra Warper^000000]";
+                    mes "You don't have enough zeny.";
+                    close;
+                }
+
+                set Zeny,Zeny-lastwarpfee;
+                set warp_cd,gettimetick(2)+ .seconds;	// 5 minutes Warp Cooldown
+                warp lastwarpmap$, lastwarpx, lastwarpy;
+                break;
+            case 2:
+                set .@PartnerTownMenu$,"";
+                for (set .@j,0; .@j < getarraysize(.PartnerTownname$); set .@j,.@j+1) {
+                    if (.@j) set .@PartnerTownMenu$,.@PartnerTownMenu$+":";
+                        set .@PartnerTownMenu$,.@PartnerTownMenu$+.PartnerTownname$[.@j]+" "+((!.PartnerTownwf[.@j])?"":"( ^0000ff"+Comma(.PartnerTownwf[.@j],3)+"z^000000 )")+"";
+                }
+                set .@selection2,select(.@PartnerTownMenu$)-1;
+                if(Zeny < .PartnerTownwf[.@selection2]){
+                    mes "[^FF7700Kafra Warper^000000]";
+                    mes "You don't have enough zeny.";
+                    close;
+                }
+                set Zeny,Zeny-.PartnerTownwf[.@selection2];
+                set warp_cd,gettimetick(2)+ .seconds;	// 5 minutes Warp Cooldown
+                warp .PartnerTownmap$[.@selection2],.PartnerTownx[.@selection2],.PartnerTowny[.@selection2];
+                LastWarp(.PartnerTownname$[.@selection2], .PartnerTownmap$[.@selection2], .PartnerTownx[.@selection2], .PartnerTowny[.@selection2],.PartnerTownwf[.@selection2],.PartnerTownlwf[.@selection2]);
+            break;
+
+            case 3:
+                set .@PartnerDungeonMenu$,"";
+                for (set .@j,0; .@j < getarraysize(.PartnerDungeonname$); set .@j,.@j+1) { 
+                    if (.@j) set .@PartnerDungeonMenu$,.@PartnerDungeonMenu$+":";
+                        set .@PartnerDungeonMenu$,.@PartnerDungeonMenu$+.PartnerDungeonname$[.@j]+" "+((!.PartnerDungeonwf[.@j])?"":"( ^0000ff"+Comma(.PartnerDungeonwf[.@j],3)+"z^000000 )")+"";
+                }
+                set .@selection2,select(.@PartnerDungeonMenu$)-1;
+                if(Zeny < .PartnerDungeonwf[.@selection2]){
+                    mes "[^FF7700Kafra Warper^000000]";
+                    mes "You don't have enough zeny.";
+                    close;
+                }
+                set Zeny,Zeny-.PartnerDungeonwf[.@selection2];
+                set warp_cd,gettimetick(2)+ .seconds;	// 5 minutes Warp Cooldown
+                warp .PartnerDungeonmap$[.@selection2],.PartnerDungeonx[.@selection2],.PartnerDungeony[.@selection2];
+                LastWarp(.PartnerDungeonname$[.@selection2], .PartnerDungeonmap$[.@selection2], .PartnerDungeonx[.@selection2], .PartnerDungeony[.@selection2],.PartnerDungeonwf[.@selection2],.PartnerDungeonlwf[.@selection2]);
+            break;
+
+            case 4:
+                set .@PartnerFieldMenu$,"";
+                for (set .@j,0; .@j < getarraysize(.PartnerFieldname$); set .@j,.@j+1) { 
+                    if (.@j) set .@PartnerFieldMenu$,.@PartnerFieldMenu$+":";
+                        set .@PartnerFieldMenu$,.@PartnerFieldMenu$+.PartnerFieldname$[.@j]+" "+((!.PartnerFieldwf[.@j])?"":"( ^0000ff"+Comma(.PartnerFieldwf[.@j],3)+"z^000000 )")+"";
+                }
+                set .@selection2,select(.@PartnerFieldMenu$)-1;
+                if(Zeny < .PartnerFieldwf[.@selection2]){
+                    mes "[^FF7700Kafra Warper^000000]";
+                    mes "You don't have enough zeny.";
+                    close;
+                }
+                set Zeny,Zeny-.PartnerFieldwf[.@selection2];
+                set warp_cd,gettimetick(2)+ .seconds;	// 5 minutes Warp Cooldown
+                warp .PartnerFieldmap$[.@selection2],.PartnerFieldx[.@selection2],.PartnerFieldy[.@selection2];
+                LastWarp(.PartnerFieldname$[.@selection2], .PartnerFieldmap$[.@selection2], .PartnerFieldx[.@selection2], .PartnerFieldy[.@selection2],.PartnerFieldwf[.@selection2],.PartnerFieldlwf[.@selection2]);
+                break;
+        }
+    }
+
+    function LastWarp {
+        set lastwarpname$, getarg(0);
+        set lastwarpmap$, getarg(1);
+        set lastwarpx, getarg(2);
+        set lastwarpy, getarg(3);
+        set lastwarpfee, getarg(5);
+        return;
+    }
+
+    function AddPremiumTown {
+        if(getmapusers(getarg(1)) >= 0) {
+            set .PremiumTownname$[getarraysize(.PremiumTownname$)], getarg(0);
+            set .PremiumTownmap$[getarraysize(.PremiumTownmap$)], getarg(1);
+            set .PremiumTownx[getarraysize(.PremiumTownx)], getarg(2);
+            set .PremiumTowny[getarraysize(.PremiumTowny)], getarg(3);
+            set .PremiumTownwf[getarraysize(.PremiumTownwf)], getarg(4);
+            set .PremiumTownlwf[getarraysize(.PremiumTownlwf)], getarg(4) - (getarg(4) * (100 / .lastwarpprice));
+        }
+        return;
+    }
+
+    function AddPremiumDungeon {
+        if(getmapusers(getarg(1)) >= 0) {
+            set .PremiumDungeonname$[getarraysize(.PremiumDungeonname$)], getarg(0);
+            set .PremiumDungeonmap$[getarraysize(.PremiumDungeonmap$)], getarg(1);
+            set .PremiumDungeonx[getarraysize(.PremiumDungeonx)], getarg(2);
+            set .PremiumDungeony[getarraysize(.PremiumDungeony)], getarg(3);
+            set .PremiumDungeonwf[getarraysize(.PremiumDungeonwf)], getarg(4);
+            set .PremiumDungeonlwf[getarraysize(.PremiumDungeonlwf)], getarg(4) - (getarg(4) * (100 / .lastwarpprice));
+        }
+        return;
+    }
+
+    function AddPremiumField {
+        if(getmapusers(getarg(1)) >= 0) {
+            set .PremiumFieldname$[getarraysize(.PremiumFieldname$)], getarg(0);
+            set .PremiumFieldmap$[getarraysize(.PremiumFieldmap$)], getarg(1);
+            set .PremiumFieldx[getarraysize(.PremiumFieldx)], getarg(2);
+            set .PremiumFieldy[getarraysize(.PremiumFieldy)], getarg(3);
+            set .PremiumFieldwf[getarraysize(.PremiumFieldwf)], getarg(4);
+            set .PremiumFieldlwf[getarraysize(.PremiumFieldlwf)], getarg(4) - (getarg(4) * (100 / .lastwarpprice));
+        }
+        return;
+    }
+
+    function AddPartnerTown {
+        if(getmapusers(getarg(1)) >= 0) {
+            set .PartnerTownname$[getarraysize(.PartnerTownname$)], getarg(0);
+            set .PartnerTownmap$[getarraysize(.PartnerTownmap$)], getarg(1);
+            set .PartnerTownx[getarraysize(.PartnerTownx)], getarg(2);
+            set .PartnerTowny[getarraysize(.PartnerTowny)], getarg(3);
+            set .PartnerTownwf[getarraysize(.PartnerTownwf)], getarg(4);
+            set .PartnerTownlwf[getarraysize(.PartnerTownlwf)], getarg(4) - (getarg(4) * (100 / .lastwarpprice));
+        }
+        return;
+    }
+
+    function AddPartnerDungeon {
+        if(getmapusers(getarg(1)) >= 0) {
+            set .PartnerDungeonname$[getarraysize(.PartnerDungeonname$)], getarg(0);
+            set .PartnerDungeonmap$[getarraysize(.PartnerDungeonmap$)], getarg(1);
+            set .PartnerDungeonx[getarraysize(.PartnerDungeonx)], getarg(2);
+            set .PartnerDungeony[getarraysize(.PartnerDungeony)], getarg(3);
+            set .PartnerDungeonwf[getarraysize(.PartnerDungeonwf)], getarg(4);
+            set .PartnerDungeonlwf[getarraysize(.PartnerDungeonlwf)], getarg(4) - (getarg(4) * (100 / .lastwarpprice));
+        }
+        return;
+    }
+
+    function AddPartnerField {
+        if(getmapusers(getarg(1)) >= 0) {
+            set .PartnerFieldname$[getarraysize(.PartnerFieldname$)], getarg(0);
+            set .PartnerFieldmap$[getarraysize(.PartnerFieldmap$)], getarg(1);
+            set .PartnerFieldx[getarraysize(.PartnerFieldx)], getarg(2);
+            set .PartnerFieldy[getarraysize(.PartnerFieldy)], getarg(3);
+            set .PartnerFieldwf[getarraysize(.PartnerFieldwf)], getarg(4);
+            set .PartnerFieldlwf[getarraysize(.PartnerFieldlwf)], getarg(4) - (getarg(4) * (100 / .lastwarpprice));
+        }
+        return;
+    }
+
+    function Comma {
+        .@value = getarg(0);
+        .@precision = getarg(1,3);
+        .@separator$ = getarg( 2,"," );
+
+        .@str$ = ""+.@value;
+        .@is_negative = ( .@value < 0 );
+
+        .@length = getstrlen( .@str$ ) - .@precision - .@is_negative;
+        while ( .@length > 0 ) {
+            .@str$ = insertchar( .@str$, .@separator$ , ( .@length + .@is_negative ) );
+            .@length -= .@precision;
+        }
+        return .@str$;
+    }	
+
+}
+
+prontera,146,94,3	duplicate(Kafra Warper#1-1)	Kafra Warper#pront	4_F_KAFRA7
+payon,75,120,5	duplicate(Kafra Warper#1-1)	Kafra Warper#pay	4_F_KAFRA7

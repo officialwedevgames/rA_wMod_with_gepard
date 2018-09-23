@@ -1,0 +1,94 @@
+//- New Payon
+//payon,271,228,3	script	Irish	4_F_04,{
+payon,152,104,5	script	Irish	4_F_04,{
+		if(checkquest(8604) == 2){
+			mes "[ Irish ]";
+			mes "Tell Thaddeus that I am okay now. Thank you for your help.";
+			close;
+		}
+		else if(checkquest(8604) == 1){
+			if(quest_irish){
+				if(!countitem("Quest_Shovel")){
+					mes "[ Irish ]";
+					mes "What happened to your shovel?";
+					next;
+					if (select("It's broke, can you give me again.") == 1) {
+						mes "[ Irish ]";
+						mes "Okay.. dont let it broke again.";
+						rentitem "Quest_Shovel",1,30;
+					}
+					close;
+				}else if(countitem("Quest_Fruit1") < BaseLevel/.reqcount || countitem("Quest_Fruit2") < BaseLevel/.reqcount){
+					mes "[ Irish ]";
+					mes "This is not enough. Bring me at least "+(BaseLevel/.reqcount)+"pcs each fruits.";
+					close;
+				}else if(countitem("Quest_Fruit1") == 0 && countitem("Quest_Fruit2") == 0){
+					mes "[ Irish ]";
+					mes "You haven't started it yet?";
+					close;
+				}else{
+					mes "[ Irish ]";
+					mes "Are you done collecting them all?";
+					next;
+					if (select("Yes, I already get them all", "I'm not yet done, I'll be back later.") == 1) {
+						if(countitem("Quest_Fruit1") >= BaseLevel/.reqcount && countitem("Quest_Fruit2") >= BaseLevel/.reqcount){
+							mes "[ Irish ]";
+							mes "Wow this is to much for today.";
+							next;
+							mes "[ Irish ]";
+							mes "Go back to Thaddeus and give this ^ff0000"+getitemname("Quest_Fruit3")+"^000000 as a confirmation that you helped me.";
+							
+							delitem "Quest_Fruit1",countitem("Quest_Fruit1");
+							delitem "Quest_Fruit2",countitem("Quest_Fruit2");
+							delitem "Quest_Shovel",countitem("Quest_Shovel");
+							
+							getitem "Quest_Fruit3",1;
+							
+							relay_activate = 6;
+							completequest(8604);
+							quest_irish = 0;
+							
+							close;
+						}
+					}else{
+							mes "[ Irish ]";
+							mes "We better hurry its getting late.";
+							close;
+					}
+				}
+			}else{
+				mes "[ Irish ]";
+				mes "Cough** Cough**";
+				mes "How can I help you?";
+				next;
+				if (select("Thaddeus sent me to help you.") == 1) {
+					mes "[ Irish ]";
+					mes "He is so thoughtful.. Maybe I can visit him when I get recovered.";
+					next;
+					if (select("By the way, how can I help you?") == 1) {
+						mes "[ Irish ]";
+						mes "Hmnmnmnmn...";
+						next;
+						mes "[ Irish ]";
+						mes "Hmnmnmnmn...";
+						mes "They said that there is a ^FF0000Wild Plants^000000 in this town that have a delicious fruit and good for sick. I want you to get me ^ff0000"+getitemname("Quest_Fruit1")+"^000000 and ^ff0000"+getitemname("Quest_Fruit1")+"^000000.";
+						next;
+						mes "[ Irish ]";
+						mes "Grab this shovel and you can use to gather the fruits for 30 minutes.";
+						rentitem "Quest_Shovel",1,30;
+						quest_irish = 1;
+						close;
+					}	
+				}
+			}
+		}else{
+			mes "[ Irish ]";
+			mes "Cough**...";
+			mes "It's hard to work when you are sick.";
+			close;
+		}
+		
+	OnInit:
+		.reqcount = 9;
+	end;
+}

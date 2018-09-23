@@ -1,0 +1,307 @@
+
+/////////////////////////////////////////
+//-- Fishing System
+/////////////////////////////////////////
+
+-	script	fishing	FAKE_NPC,{
+	
+	function checking;
+	function f_fishingexp;
+	function f_fishingrank;
+	
+	if(getequipid(EQI_HAND_L) == Fishing_Tool1 || getequipid(EQI_HAND_L) == Fishing_Tool2 || getequipid(EQI_HAND_L) == Fishing_Tool3 || getequipid(EQI_HAND_L) == Fishing_Tool4) {
+		if(!FishingLevel){
+			set FishingLevel, 1;
+		}
+		checking();
+		for(set .@x,0; .@x < getarraysize(.re_lvrange$); set .@x,.@x + 1){
+			
+			explode(.@lr$,.re_lvrange$[.@x],"|");
+				
+			for(set .@l,0; .@l < getarraysize(.@lr$); set .@l,.@l + 1){
+				set .@it[.@l], atoi(.@lr$[.@l]);
+			}
+			set .@reward, .@lr$[0];
+			if(.@lr$[0] == strnpcinfo(NPC_NAME_HIDDEN)){
+			
+				.@success = rand(1,1000);
+				
+				//-- Increase the number of items they can get.
+				.@adddrop = rand(1,1000);
+				if(FishingDrop >= .@adddrop){
+					.@FishingDrop = rand(1,2);
+				}
+						
+				//-- Increase the amount of exp that they can get.
+				.@adde = strnpcinfo(NPC_NAME_HIDDEN);
+				.@addexp = rand(1*.@adde,20*.@adde);
+			
+				if(FishingLevel >= .@it[1] && .@success >= 301 && .@success <= 700){
+						
+						explode(.@o$,.re_common$[.@reward],"|");
+						for(set .@y,0; .@y < getarraysize(.@o$); set .@y,.@y + 1){
+							set .@t[.@y], atoi(.@o$[.@y]);		
+						}
+											
+						for(set .@a,1; .@a < getarraysize(.@t); set .@a,.@a + 1){
+							set .@k$, .@k$ + .@t[.@a]+"|";
+						}
+											
+						explode(.@y$,.@k$,"|");
+						for(set .@n,0; .@n < getarraysize(.@y$); set .@n,.@n + 1){
+							set .@b[.@n], atoi(.@y$[.@n]);	
+						}
+						
+						//-- getitem
+						getitem .@b[0],1 + .@FishingDrop;
+						
+						//-- Rankings
+						f_fishingrank(.@b[1] * 1);
+											
+						//-- effect
+						specialeffect2 EF_TEMP_OK;	
+						f_fishingexp(.@addexp + Fishing);
+						
+				}else if(FishingLevel >= .@it[1] && .@success >= 701 && .@success <= 850){
+
+						explode(.@o$,.re_rare$[.@reward],"|");
+						for(set .@y,0; .@y < getarraysize(.@o$); set .@y,.@y + 1){
+							set .@t[.@y], atoi(.@o$[.@y]);		
+						}
+											
+						for(set .@a,1; .@a < getarraysize(.@t); set .@a,.@a + 1){
+							set .@k$, .@k$ + .@t[.@a]+"|";
+						}
+											
+						explode(.@y$,.@k$,"|");
+						for(set .@n,0; .@n < getarraysize(.@y$); set .@n,.@n + 1){
+							set .@b[.@n], atoi(.@y$[.@n]);	
+						}
+						
+						//-- getitem
+						getitem .@b[0],1 + .@FishingDrop;
+						
+						//-- Rankings
+						f_fishingrank(.@b[1] * 1);
+											
+						//-- effect
+						specialeffect2 EF_TEMP_OK;	
+						f_fishingexp(.@addexp + Fishing);
+						
+				}else if(FishingLevel >= .@it[1] && .@success >= 851 && .@success <= 950){
+
+						explode(.@o$,.re_epic$[.@reward],"|");
+						for(set .@y,0; .@y < getarraysize(.@o$); set .@y,.@y + 1){
+							set .@t[.@y], atoi(.@o$[.@y]);		
+						}
+											
+						for(set .@a,1; .@a < getarraysize(.@t); set .@a,.@a + 1){
+							set .@k$, .@k$ + .@t[.@a]+"|";
+						}
+											
+						explode(.@y$,.@k$,"|");
+						for(set .@n,0; .@n < getarraysize(.@y$); set .@n,.@n + 1){
+							set .@b[.@n], atoi(.@y$[.@n]);	
+						}
+						
+						//-- getitem
+						getitem .@b[0],1 + .@FishingDrop;
+						
+						//-- Rankings
+						f_fishingrank(.@b[1] * 1);
+											
+						//-- effect
+						specialeffect2 EF_TEMP_OK;	
+						f_fishingexp(.@addexp + Fishing);
+						
+				}else if(FishingLevel >= .@it[1] && .@success >= 951){
+				
+						explode(.@o$,.re_legenday$[.@reward],"|");
+						for(set .@y,0; .@y < getarraysize(.@o$); set .@y,.@y + 1){
+							set .@t[.@y], atoi(.@o$[.@y]);		
+						}
+											
+						for(set .@a,1; .@a < getarraysize(.@t); set .@a,.@a + 1){
+							set .@k$, .@k$ + .@t[.@a]+"|";
+						}
+											
+						explode(.@y$,.@k$,"|");
+						for(set .@n,0; .@n < getarraysize(.@y$); set .@n,.@n + 1){
+							set .@b[.@n], atoi(.@y$[.@n]);	
+						}
+						
+						//-- getitem
+						getitem .@b[0],1 + .@FishingDrop;
+						
+						//-- Rankings
+						f_fishingrank(.@b[1] * 1);
+											
+						//-- effect
+						specialeffect2 EF_TEMP_OK;	
+						f_fishingexp(.@addexp + Fishing);
+						
+				}else{
+					specialeffect2 EF_TEMP_FAIL;
+					dispbottom "You didn't catch anything.";
+				}
+			}
+		}
+	}
+	end;
+
+function checking {
+	specialeffect2 EF_REPAIRWEAPON;
+	progressbar "ffff00",5;
+}
+
+function f_fishingexp {
+	if(FishingLevel < .max_fishing_level){
+		.@getexp = getarg(0);
+		FishingExp += getarg(0);
+		dispbottom "You recieved "+.@getexp+" Fishing EXP.",0xFF0000;
+		if(FishingExp >= FishingLevel*$LevelMultiplier){
+			FishingLevel += 1;
+			FishingExp = 0;
+			dispbottom "Your Fishing level is now "+FishingLevel+".",0xFF0000;
+		}
+	}
+}
+
+function f_fishingrank {
+	set .@rankpoints, getarg(0);
+	//- Check the guild if its already registered in our registration table.
+	query_sql "SELECT `char_id` FROM `profession_rank_db` WHERE `char_id` = '"+getcharid(CHAR_ID_CHAR)+"' AND `type` = 'Fishing'", .@char_data;
+	if(.@char_data){
+		query_sql("UPDATE `profession_rank_db` SET `points` = `points` + '"+.@rankpoints+"' WHERE `char_id` = '"+getcharid(CHAR_ID_CHAR)+"' AND `type` = 'Fishing'"); 
+	}else{
+		query_sql "INSERT INTO `profession_rank_db` (`char_id`, `type`, `points`) VALUES ('"+getcharid(CHAR_ID_CHAR)+"','Fishing','"+.@rankpoints+"')";
+	}
+	return;
+}
+
+OnInit:
+	.userl_limit = 10;
+	.max_fishing_level = 10;
+	setarray .re_lvrange$[0],
+					"1|1|10",
+					"2|11|20",
+					"3|21|30",
+					"4|31|40",
+					"5|41|50",
+					"6|51|60",
+					"7|61|70",
+					"8|71|80",
+					"9|81|90",
+					"10|91|99";
+
+	setarray .re_common$[1],
+					"1|32541|3",
+					"2|32545|9",
+					"3|32549|18",
+					"4|32553|36",
+					"5|32557|45",
+					"6|32561|54",
+					"7|32565|63",
+					"8|32569|72",
+					"9|32573|81",
+					"10|32577|90";
+				
+	setarray .re_rare$[1],
+					"1|32542|6",
+					"2|32546|18",
+					"3|32550|36",
+					"4|32554|72",
+					"5|32558|90",
+					"6|32562|108",
+					"7|32566|126",
+					"8|32570|144",
+					"9|32574|162",
+					"10|32578|180";	
+				
+	setarray .re_epic$[1],
+					"1|32543|9",
+					"2|32547|27",
+					"3|32551|54",
+					"4|32555|81",
+					"5|32559|108",
+					"6|32563|135",
+					"7|32567|162",
+					"8|32571|216",
+					"9|32575|243",
+					"10|32579|270";
+						
+	setarray .re_legenday$[1],
+					"1|32544|12",
+					"2|32548|36",
+					"3|32552|72",
+					"4|32556|108",
+					"5|32560|144",
+					"6|32564|180",
+					"7|32566|252",
+					"8|32572|288",
+					"9|32576|324",
+					"10|32580|360";
+						
+end;
+}
+
+
+
+prontera,162,326,3	trader	Fishing Trader	4W_SAILOR,{
+	mes "[ Trader ]";
+	mes "We are selling a lot of Fishing Tools and its durability will be good only for 30 minutes.";
+	next;
+	mes "[ Trader ]";
+	mes "I will now open the shop.";
+	close2;
+	callshop "Fishing_Trader",4;
+	end;
+}
+
+-	trader	Fishing_Trader	FAKE_NPC,{
+OnInit:
+	tradertype(NST_CUSTOM);
+	sellitem Fishing_Tool1,200,30;
+	sellitem Fishing_Rare,350,0,1;
+	sellitem Fishing_Epic,750,0,1;
+	sellitem Fishing_Legendary,1500,0,1;
+	end;
+
+/* allows currency to be item 501 and 502 */
+OnCountFunds:
+	setcurrency(#FREEPOINTS);
+	end;
+
+/* receives @price (total cost) and @points (the secondary input field for cash windows) */
+OnPayFunds:
+	if( #FREEPOINTS < @points) end;
+	set #FREEPOINTS,#FREEPOINTS - @price;
+	purchaseok();
+	end;
+}
+
+
+//-- level 1 ~ 10
+prontera,128,345,4	duplicate(fishing)	Fish Pond Lv. 1~10#1::f_npc1a	1_SHADOW_NPC
+prontera,144,345,4	duplicate(fishing)	Fish Pond Lv. 1~10#1::f_npc1b	1_SHADOW_NPC
+prontera,167,345,4	duplicate(fishing)	Fish Pond Lv. 1~10#1::f_npc1c	1_SHADOW_NPC
+prontera,183,345,4	duplicate(fishing)	Fish Pond Lv. 1~10#1::f_npc1d	1_SHADOW_NPC
+
+//-- level 11 ~ 20
+//alberta,180,185,4	duplicate(fishing)	Fish Pond Lv. 11~20#2::f_npc2	1_SHADOW_NPC
+//alberta,187,185,4	duplicate(fishing)	Fish Pond Lv. 11~20#2::f_npc2	1_SHADOW_NPC
+//alberta,194,185,4	duplicate(fishing)	Fish Pond Lv. 11~20#2::f_npc2	1_SHADOW_NPC
+//alberta,201,185,4	duplicate(fishing)	Fish Pond Lv. 11~20#2::f_npc2	1_SHADOW_NPC
+//alberta,208,185,4	duplicate(fishing)	Fish Pond Lv. 11~20#2::f_npc2	1_SHADOW_NPC
+
+
+//alberta,187,183,4	duplicate(fishing)	Fish Pond Lv. 11~20#2::f_npc2	1_SHADOW_NPC
+//alberta,194,183,4	duplicate(fishing)	Fish Pond Lv. 21~30#3::f_npc3	1_SHADOW_NPC
+//alberta,201,183,4	duplicate(fishing)	Fish Pond Lv. 31~40#4::f_npc4	1_SHADOW_NPC
+//alberta,208,183,4	duplicate(fishing)	Fish Pond Lv. 41~50#5::f_npc5	1_SHADOW_NPC
+
+//alberta,183,187,4	duplicate(fishing)	Fish Pond Lv. 51~60#6::f_npc6	1_SHADOW_NPC
+//alberta,190,187,4	duplicate(fishing)	Fish Pond Lv. 61~70#7::f_npc7	1_SHADOW_NPC
+//alberta,197,187,4	duplicate(fishing)	Fish Pond Lv. 71~80#8::f_npc8	1_SHADOW_NPC
+//alberta,204,187,4	duplicate(fishing)	Fish Pond Lv. 81~90#9::f_npc9	1_SHADOW_NPC
+//alberta,211,187,4	duplicate(fishing)	Fish Pond Lv. 91~99#10::f_npc10	1_SHADOW_NPC

@@ -1,0 +1,108 @@
+
+//-- Mining
+function	script	item_create_m	{
+	setarray .req_item$[0],
+						"1|32071|32229|1019|10|999|30|32502|10",
+						"2|32072|32230|1019|20|999|40|32503|10",
+						"3|32073|32231|1019|30|999|50|32504|10";
+						
+	for(set .@x,0; .@x < getarraysize(.req_item$); set .@x,.@x + 1){	
+	
+		explode(.@ri$,.req_item$[.@x],"|");
+		
+		for(set .@l,0; .@l < getarraysize(.@ri$); set .@l,.@l + 1){
+			set .@it[.@l], atoi(.@ri$[.@l]);
+		}
+		if(getarg(0) == .@it[0]){
+			if(.@it[3]){
+				for(set .@j,3; .@j < getarraysize(.@it); set .@j,.@j + 2){
+					if(countitem(.@it[.@j]) < .@it[.@j+1]){
+						dispbottom "You don't have enough item requirements.",0xFF0000;
+						end; break;
+					}
+				}
+				for(set .@j,3; .@j < getarraysize(.@it); set .@j,.@j + 2){
+					delitem .@it[.@j],.@it[.@j+1];
+				}
+				delitem .@it[1],1;
+				specialeffect2 EF_REFINEOK;
+				rentitem .@it[2],1,30;
+				dispbottom "You successfully created a "+getitemname(.@it[2])+"",0x00FF00;
+				break;
+			}
+		}
+	}
+	end;
+}
+
+//-- Fishing
+function	script	item_create_f	{
+	setarray .req_item$,
+						"1|32074|32225|1019|10|999|30|32542|10",
+						"2|32075|32226|1019|20|999|40|32543|10",
+						"3|32076|32227|1019|30|999|50|32544|10";
+						
+	for(set .@x,0; .@x < getarraysize(.req_item$); set .@x,.@x + 1){	
+	
+		explode(.@ri$,.req_item$[.@x],"|");
+		
+		for(set .@l,0; .@l < getarraysize(.@ri$); set .@l,.@l + 1){
+			set .@it[.@l], atoi(.@ri$[.@l]);
+		}
+		if(getarg(0) == .@it[0]){
+			if(.@it[3]){
+				for(set .@j,3; .@j < getarraysize(.@it); set .@j,.@j + 2){
+					if(countitem(.@it[.@j]) < .@it[.@j+1]){
+						dispbottom "You don't have enough item requirements.",0xFF0000;
+						end; break;
+					}
+				}
+				for(set .@j,3; .@j < getarraysize(.@it); set .@j,.@j + 2){
+					delitem .@it[.@j],.@it[.@j+1];
+				}
+				delitem .@it[1],1;
+				specialeffect2 EF_REFINEOK;
+				rentitem .@it[2],1,30;
+				dispbottom "You successfully created a "+getitemname(.@it[2])+"",0x00FF00;
+				break;
+			}
+		}
+	}
+	end;
+}
+
+//-- gathering
+function	script	item_create_g	{
+	setarray .req_item$,
+						"1|32077|32233|1019|10|999|30|32582|10",
+						"2|32078|32234|1019|20|999|40|32583|10",
+						"3|32079|32235|1019|30|999|50|32584|10";
+						
+	for(set .@x,0; .@x < getarraysize(.req_item$); set .@x,.@x + 1){	
+	
+		explode(.@ri$,.req_item$[.@x],"|");
+		
+		for(set .@l,0; .@l < getarraysize(.@ri$); set .@l,.@l + 1){
+			set .@it[.@l], atoi(.@ri$[.@l]);
+		}
+		if(getarg(0) == .@it[0]){
+			if(.@it[3]){
+				for(set .@j,3; .@j < getarraysize(.@it); set .@j,.@j + 2){
+					if(countitem(.@it[.@j]) < .@it[.@j+1]){
+						dispbottom "You don't have enough item requirements.",0xFF0000;
+						end; break;
+					}
+				}
+				for(set .@j,3; .@j < getarraysize(.@it); set .@j,.@j + 2){
+					delitem .@it[.@j],.@it[.@j+1];
+				}
+				delitem .@it[1],1;
+				specialeffect2 EF_REFINEOK;
+				rentitem .@it[2],1,30;
+				dispbottom "You successfully created a "+getitemname(.@it[2])+"",0x00FF00;
+				break;
+			}
+		}
+	}
+	end;
+}

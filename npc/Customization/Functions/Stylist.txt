@@ -1,0 +1,18 @@
+function	script	Cloth_Dye	{
+	if(getarg(0) == 1) {
+		setlook LOOK_CLOTHES_COLOR, rand(2,699);
+	}else if(getarg(0) == 2) {
+		setlook LOOK_CLOTHES_COLOR, 1;
+	}
+}
+
+function	script	C&S	{
+	set .@rand, rand(1,100);
+	if(.@rand <= 3){
+		setlook LOOK_HAIR, rand(24,29);
+	}else{
+		setlook LOOK_HAIR, rand(1,23);
+	}
+	setlook LOOK_HAIR_COLOR, rand(1,8);
+}
+

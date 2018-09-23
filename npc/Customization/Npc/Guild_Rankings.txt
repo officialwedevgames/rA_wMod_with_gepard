@@ -1,0 +1,71 @@
+payon,97,146,4	script	Guild Manager	4_F_KAFRA7,{
+	mes "[ Guild Manager ]";
+	mes "On this board you can check the candidate guilds for the server ^FF0000Agit Lord^000000.";
+	mes " ";
+	mes "All conquered active castles after War of Emperium is counted as 100 points and breaking an emperium will add 5 points.";
+	mes " ";
+	mes "[ Rewards ]";
+	mes "* A guild who has a streak of 3 consecutive or more will receive 1,000 Glory Points every monday.";
+	mes "* A guild who has a highest points will receive 1,500 Glory Points and 1,000 Rok Points every first day of the month.";
+	mes " ";
+	mes "Note: Only guild leader will receive the rewards. A leader is responsible to share his/her rewards to his/her members.";
+	next;
+	switch(select("[ ^0000FFRankings^000000 ] Candidates:[ ^0000FFGlory Shop^000000 ] Supplies"+((getgmlevel() >= 99)?":[ ^ff0000Reset^000000 ] Guild Rankings":"")+"")) {	
+	case 1:
+	mes "[ Guild Manager ]";
+    .@nb = query_sql( "select name, woe_points from guild order by woe_points desc limit 10", .@guild_name$, .@points );
+
+    for ( .@i = 0; .@i < .@nb; .@i++ ) {
+        if ( !.@points[.@i] ) break;
+        mes ( .@i +1 )+". ^0000FF"+ .@guild_name$[.@i] +"^000000 -> [^FF0000"+ .@points[.@i]+"^000000]";
+    }
+	
+	if(!.@i){ 
+		mes "Wait for the next War Of Emperium.";
+	}
+
+    close;
+	
+	case 2:
+	mes "[ Guild Manager ]";
+	mes "There you go..";
+	close2;
+	callshop "Glory_Shop",4;
+	end;
+	
+	case 3:
+	mes "[ Guild Manager ]";
+	mes "Guild Rankings has been reset.";
+	close2;
+	query_sql "UPDATE `guild` SET `woe_points` = '0' WHERE `woe_points` > 0";
+	end;
+
+	}
+}
+
+-	trader	Glory_Shop	FAKE_NPC,{
+
+OnInit:
+	tradertype("NST_CUSTOM");
+	sellitem "Elite_Siege_Supply_Box",2,0,2;
+	sellitem "Blessing_10_Scroll_Box",2,0,2;
+	sellitem "Inc_Agi_10_Scroll_Box",2,0,2;
+	sellitem "Battle_Manual_Box2",14,0,2;
+	sellitem "Bubble_Gum_Box",14,0,2;
+	sellitem "Kafra_Card_Box",5,0,2;
+	sellitem "Job_Manual_Box",14,0,2;
+	sellitem "Insurance_Package",10,0,2;
+	end;
+
+/* allows currency to be item 501 and 502 */
+OnCountFunds:
+	setnewcurrency("GLORYPOINTS");
+	end;
+
+/* receives @price (total cost) and @points (the secondary input field for cash windows) */
+OnPayFunds:
+	if( GLORYPOINTS < @points)end;
+	points GLORYPOINTS,GLORYPOINTS - @price;
+	purchaseok();
+	end;
+}

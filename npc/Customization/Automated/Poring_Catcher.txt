@@ -1,0 +1,172 @@
+-	script	Poring Catcher	FAKE_NPC,{     
+OnInit:
+	bindatcmd "pcevent","Poring Catcher::OnDoStart",80,100;	
+	set $pcstart,0;	
+end;
+
+OnDoStart:       
+	if (compare(.@atcmd_parameters$, "on")) {
+		if($pcstart){
+			dispbottom "Poring Catcher is still running.";
+		}else if(gettime(4) == 2 || gettime(4) == 4 || gettime(4) == 6 || gettime(4) == 0){
+			dispbottom "Poring Catcher is not available for this day.";
+		}else{
+			set $pcstart,1;
+			donpcevent "Poring Catcher::OnStart";
+			dispbottom "Poring Catcher has started.";
+		}
+
+	}else if (compare(.@atcmd_parameters$, "off")) {
+			set $pcstart,0;
+			dispbottom "Poring Catcher has ended.";
+	}else{
+		dispbottom "Usage: @pcevent <on/off>";
+	}
+end;
+
+OnCheckUser:
+	if (!getmapusers("poring_w01") && $pcactive == 1) {
+		mapwarp "poring_w01","payon",70,100;
+		killmonster "poring_w01","All";
+		announce "Poring Catcher : We don't have any winner for Poring Catcher.",0;
+		set $pcactive,0;
+	}else{
+		sleep2 1000;
+		goto OnCheckUser;
+	}
+end;
+
+OnClock1300:
+OnClock1600:
+OnClock2000: 
+OnClock2300:
+OnStart:
+			if(gettime(4) == 2 || gettime(4) == 4 || gettime(4) == 6 || gettime(4) == 0){end;}
+			set $pcstart,1;
+            announce "Poring Catcher : It's time to play some Poring Catcher!",0;
+            killmonster "poring_w01","All";
+            sleep 10000;
+            announce "Poring Catcher : Please type @joinevent as soon as possible.",0;
+            sleep 10000;
+            announce "Poring Catcher : After one minute the portal will close.",0;
+            sleep 10000;
+            announce "Poring Catcher : Type @joinevent if you want to join.",0;
+            initnpctimer;
+            end;
+     
+    OnTimer30000:
+            announce "Poring Catcher : Last 30 seconds.",0;
+            sleep 5000;
+            announce "Poring Catcher : Hurry to type @joinevent if you want to join.",0;
+            end;
+           
+    OnTimer50000:
+            announce "Poring Catcher : Last 10 seconds.",0;
+            end;
+           
+    OnTimer55000:
+            announce "Poring Catcher : 5",0;
+            end;
+           
+    OnTimer56000:
+            announce "Poring Catcher : 4",0;
+            end;
+           
+    OnTimer57000:
+            announce "Poring Catcher : 3",0;
+            end;
+           
+    OnTimer58000:
+            announce "Poring Catcher : 2",0;
+            end;
+           
+    OnTimer59000:
+            announce "Poring Catcher : 1",0;
+            end;
+           
+    OnTimer60000:
+            announce "Poring Catcher : Time's up.",0;
+			set $pcstart,0;
+            end;
+           
+    OnTimer61000:
+			set $pcactive,1;
+            donpcevent "Poring Catcher::OnEnable";
+            stopnpctimer;
+            end;
+			
+	OnEnable:
+            mapannounce "poring_w01","Poring Catcher : I will be summoning 100 different Porings.",0;
+            sleep 10000;
+            mapannounce "poring_w01","Poring Catcher : Only one of these Porings is the correct Poring.",0;
+            sleep 10000;
+            mapannounce "poring_w01","Poring Catcher : The correct Poring is called [ Poring ], all the other Porings have different names.",0;
+            sleep 10000;
+            mapannounce "poring_w01","Poring Catcher : Take your time because if you kill the wrong Poring, your out of the game.",0;
+            sleep 10000;
+            mapannounce "poring_w01","Poring Catcher : The first player to kill the correct Poring wins.",0;
+            sleep 10000;
+            mapannounce "poring_w01","Poring Catcher : That's that.. Now let's play...",0;
+            goto L_Start;
+            end;
+           
+    L_Start:
+            mapannounce "poring_w01","Poring Catcher : 5",0;
+            sleep 1000;
+            mapannounce "poring_w01","Poring Catcher : 4",0;
+            sleep 1000;
+            mapannounce "poring_w01","Poring Catcher : 3",0;
+            sleep 1000;
+            mapannounce "poring_w01","Poring Catcher : 2",0;
+            sleep 1000;
+            mapannounce "poring_w01","Poring Catcher : 1",0;
+            sleep 1000;
+            mapannounce "poring_w01","Poring Catcher : Lets Do This!",0;
+            areamonster "poring_w01",84,119,121,90,"Poring",1002,1,"Poring Catcher::OnMobKillWin";
+            areamonster "poring_w01",84,119,121,90,"Pouring",1002,10,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"Proing",1002,10,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"Poiring",1002,10,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"Poing",1002,10,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"I am not Poring",1002,5,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"Gniriop",1002,1,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"Porring",1113,1,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"Porinng",1062,1,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"Poriiing",1002,10,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"PoriNgg",1002,10,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"Porong",1002,10,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"P0ring",1002,10,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"Por1ng",1002,10,"Poring Catcher::OnMobKillLose";
+            areamonster "poring_w01",84,119,121,90,"Porng",1002,1,"Poring Catcher::OnMobKillLose";
+			goto OnCheckUser;
+            end;
+			
+OnMobKillWin:
+	set $pcactive,0;
+	dispbottom "Poring Catcher : Congratulations. You've got me.";
+	.@amount = rand(50,100);
+	callfunc "points","#LOYALPOINTS",.@amount,"Poring Catcher",getcharid(0),getcharid(3);           
+	warp @oldloc$,@oldx,@oldy;	
+	mapwarp "poring_w01","payon",70,100;
+	killmonster "poring_w01","All";
+	announce "Poring Catcher : Congratulations. "+strcharinfo(0)+" killed the real poring.",0;
+end;
+
+OnMobKillLose:
+	dispbottom "Poring Catcher : Wahaha, your a loser! - I wasnt the correct Poring.";
+	warp @oldloc$,@oldx,@oldy;	
+end;
+
+}
+           
+
+     
+// == Mapflags
+poring_w01	mapflag	nowarp
+poring_w01	mapflag	nowarpto
+poring_w01	mapflag	noteleport
+poring_w01	mapflag	nosave
+poring_w01	mapflag	nomemo
+poring_w01	mapflag	nobranch
+poring_w01	mapflag	noloot
+poring_w01	mapflag	noskill
+poring_w01	mapflag	nopenalty

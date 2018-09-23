@@ -1,0 +1,43 @@
+-	script	Player_Return	FAKE_NPC,{
+
+OnPCLoginEvent:
+	query_sql "SELECT `account_id`, `login_date`, `logout_date` FROM `player_return_db` WHERE `account_id` = "+getcharid(3)+"", .@accid, .@login, .@logout;
+	
+
+	
+	if(!.@accid){
+		query_sql "INSERT INTO `player_return_db`(`account_id`,`login_date`) VALUES ('"+getcharid(3)+"', '"+gettimetick(2)+"')";
+	}else{
+		set .@k, .@logout - .@login;
+		set .@d, .@k / 86400;
+		
+		//- 604800 = 7 Days
+		if(.@d >= 7){
+		
+			setarray .@rewards[0], 12210,12208, 31773, 12215, 12216, 12422, 12425;
+			setarray .@amounts[0],    20,	20,     1, 	 200,   200,   200,   200;
+			set .@renddays, 4320;
+			
+			for(set .@i,0; .@i < getarraysize(.@rewards); set .@i,.@i+1) {
+				rentitem .@rewards[.@i], .@amounts[.@i], .@renddays;
+			}
+			
+		}
+		
+		
+		query_sql "UPDATE `player_return_db` SET `login_date`= '"+gettimetick(2)+"' WHERE `account_id` = "+getcharid(3)+"";
+	}
+end;
+
+
+OnPCLogoutEvent:
+	query_sql "SELECT `account_id` FROM `player_return_db` WHERE `account_id` = "+getcharid(3)+"", .@accid;
+	
+	if(!.@accid){
+		query_sql "INSERT INTO `player_return_db`(`account_id`,`login_date`,`logout_date`) VALUES ('"+getcharid(3)+"', '"+gettimetick(2)+"', '"+gettimetick(2)+"')";
+	}else{
+		query_sql "UPDATE `player_return_db` SET `logout_date`= '"+gettimetick(2)+"' WHERE `account_id` = "+getcharid(3)+"";
+	}
+end;
+
+}

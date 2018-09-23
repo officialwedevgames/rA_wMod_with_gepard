@@ -1,0 +1,11 @@
+function	script	F_GymPass	{
+	.@lv = getskilllv("ALL_INCCARRY");
+	if(.@lv < 10){
+		if(.@lv){
+			addtoskill "ALL_INCCARRY",.@lv + 1,SKILL_PERM_GRANT;
+		}else{
+			skill "ALL_INCCARRY",1,SKILL_PERM_GRANT;
+		}
+		delitem 7776,1;
+	}
+}

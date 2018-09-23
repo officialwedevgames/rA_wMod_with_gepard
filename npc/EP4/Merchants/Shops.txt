@@ -1,0 +1,865 @@
+//===== Special Modification =================================
+//===== By: ==================================================
+//= Ragnarok World
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena, rAthena, Hercules
+//===== Additional Comments: =================================
+//= 
+//============================================================
+
+//== Prontera ==============================================
+prontera,73,134,5	trader3	Milk Merchant#prt1	4_F_01,{
+OnInit:
+	sellitem "Milk";
+}
+
+prontera,104,49,1	trader	Fruit Merchant#prt1	8_F,{
+OnInit:
+	sellitem "Apple";
+	sellitem "Banana";
+}
+
+prontera,64,125,1	trader	Butcher#prt1	4_M_BARBER,{
+OnInit:
+	sellitem "Meat";
+	sellitem "Monster's_Feed";
+}
+
+prontera,58,182,1	trader	Flower Girl#prt1	4W_KID,{
+OnInit:
+	sellitem "Flower";
+	sellitem "Bunch_Of_Flowers";
+}
+
+prontera,113,42,1	trader	Flower Lady#prt1	4_F_01,{
+OnInit:
+	sellitem "Flower";
+	sellitem "Bunch_Of_Flowers";
+}
+
+prontera,105,87,6	trader	Gift Merchant#prt1	4_F_02,{
+OnInit:
+	sellitem "Red_Frame";
+	sellitem "Blue_Porcelain";
+	sellitem "White_Platter";
+	sellitem "Black_Ladle";
+	sellitem "Glass_Bead";
+}
+
+prontera,218,211,4	trader	Pet Merchant#prt1	4_M_TELEPORTER,{
+OnInit:
+	sellitem "Pet_Food";
+	sellitem "Pet_Incubator";
+	sellitem "Backpack";
+	sellitem "Rocker_Glasses";
+}
+
+prontera,248,153,1	trader	Doll Merchant#prt1	4_M_03,{
+OnInit:
+	sellitem "Stuffed_Doll";
+	sellitem "Poring_Doll";
+	sellitem "Chonchon_Doll";
+}
+
+prt_church,108,124,1 	trader	Nun#prt1	1_F_PRIEST,{
+OnInit:
+	sellitem "Rosary";
+	sellitem "Biretta";
+	sellitem "Scapulare";
+	sellitem "Saint_Robe";
+	sellitem "Club";
+	sellitem "Mace";
+	sellitem "Smasher";
+	sellitem "Flail";
+	sellitem "Morning_Star";
+	sellitem "Chain";
+}
+
+prt_fild05,290,221,1	trader	Tool Dealer#prt1	4_M_01,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Spectacles";
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Green_Potion";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+
+prt_in,211,169,1	trader	Wedding Goods Merchant	1_F_LIBRARYGIRL,{
+OnInit:
+	sellitem "Bunch_Of_Flowers";
+	sellitem "Wedding_Bouquet";
+	sellitem "Wedding_Dress";
+	sellitem "Wedding_Veil";
+	sellitem "Tuxedo";
+}
+
+prt_in,126,76,1	trader	Tool Dealer#prt2	1_M_INNKEEPER,{
+OnInit:
+	sellitem "Spectacles";
+	sellitem "Arrow";
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Panacea";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Booby_Trap";
+	sellitem "One_Eyed_Glass";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+
+prt_in,172,130,1	trader	Weapon Dealer#prt1	1_M_JOBGUIDER,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Silver_Arrow";
+	sellitem "Bow";
+	sellitem "Knife";
+	sellitem "Cutter";
+	sellitem "Main_Gauche";
+	sellitem "Rod";
+	sellitem "Sword";
+	sellitem "Falchion";
+	sellitem "Blade";
+	sellitem "Lapier";
+	sellitem "Scimiter";
+	sellitem "Ring_Pommel_Saber";
+	sellitem "Tsurugi";
+	sellitem "Haedonggum";
+	sellitem "Saber";
+	sellitem "Two_Hand_Sword";
+	sellitem "Flamberge";
+	sellitem "Katana";
+	sellitem "Axe";
+}
+
+prt_in,172,132,1	trader	Armor Dealer#prt1	1_M_02,{
+OnInit:
+	sellitem "Guard";
+	sellitem "Buckler";
+	sellitem "Sandals";
+	sellitem "Shoes";
+	sellitem "Hood";
+	sellitem "Muffler";
+	sellitem "Hat";
+	sellitem "Cap";
+	sellitem "Cotton_Shirt";
+	sellitem "Leather_Jacket";
+	sellitem "Adventure_Suit";
+	sellitem "Wooden_Mail";
+	sellitem "Mantle";
+	sellitem "Coat";
+	sellitem "Padded_Armor";
+	sellitem "Chain_Mail";
+}
+
+prt_in,171,140,1	trader	Weapon Dealer#prt2	1_M_01,{
+OnInit:
+	sellitem "Javelin";
+	sellitem "Spear";
+	sellitem "Pike";
+	sellitem "Guisarme";
+	sellitem "Glaive";
+	sellitem "Partizan";
+	sellitem "Trident";
+	sellitem "Halberd";
+	sellitem "Lance";
+}
+//== Morroc ================================================
+
+morocc_in,141,67,1	trader	Weapon Dealer#mor1	1_M_MERCHANT,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Silver_Arrow";
+	sellitem "Bow";
+	sellitem "Rod";
+	sellitem "Knife";
+	sellitem "Cutter";
+	sellitem "Main_Gauche";
+	sellitem "Dirk";
+	sellitem "Dagger";
+	sellitem "Stiletto";
+	sellitem "Gladius";
+	sellitem "Damascus";
+	sellitem "Jur";
+	sellitem "Katar";
+	sellitem "Jamadhar";
+}
+
+morocc_in,141,60,1	trader	Armor Dealer#mor1	1_M_MERCHANT,{
+OnInit:
+	sellitem "Guard";
+	sellitem "Buckler";
+	sellitem "Sandals";
+	sellitem "Shoes";
+	sellitem "Boots";
+	sellitem "Hood";
+	sellitem "Muffler";
+	sellitem "Flu_Mask";
+	sellitem "Cotton_Shirt";
+	sellitem "Leather_Jacket";
+	sellitem "Adventure_Suit";
+	sellitem "Silk_Robe";
+	sellitem "Wooden_Mail";
+	sellitem "Silver_Robe";
+	sellitem "Mantle";
+	sellitem "Coat";
+	sellitem "Thief_Clothes";	
+}
+
+morocc,35,69,7	trader	Trader#mor1	4_M_ORIENT02,{
+OnInit:
+	sellitem "Skul_Ring";
+	sellitem "Sword_Mace";
+	sellitem "Stunner";
+}
+
+morocc,139,92,7	trader	Trader#mor2	4W_M_03,{
+OnInit:
+	sellitem "Banana";
+}
+
+morocc,145,44,7	trader	Jewel Seller#mor1	4W_M_03,{
+OnInit:
+	sellitem "Crystal_Jewel";
+	sellitem "Diamond_Ring";
+}
+
+morocc,147,102,5	trader	Tool Dealer#mor1	4_F_04,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Spectacles";
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Panacea";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Booby_Trap";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+
+morocc,151,243,1	trader	Tool Dealer#mor2	4W_M_03,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Spectacles";
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Panacea";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Luxury_Sunglasses";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+
+morocc,157,72,6	trader	Butcher#mor1	1_M_03,{
+OnInit:
+	sellitem "Meat";
+}
+morocc,166,51,3	trader	Jewel Seller#mor2	8_F,{
+OnInit:
+	sellitem "Azure_Jewel";
+	sellitem "Cardinal_Jewel";
+	sellitem "Blue_Jewel";
+	sellitem "Golden_Jewel";
+	sellitem "Bluish_Green_Jewel";
+}
+
+morocc,170,101,3	trader	Tool Dealer#mor3	4_M_03,{
+OnInit:
+	sellitem "Jellopy";
+	sellitem "Monster's_Feed";
+	sellitem "Animal's_Skin";
+	sellitem "Bill_Of_Birds";
+}
+
+morocc,206,250,1	trader	Tool Dealer#mor4	4_M_03,{
+OnInit:
+	sellitem "Jellopy";
+	sellitem "Monster's_Feed";
+	sellitem "Animal's_Skin";
+	sellitem "Bill_Of_Birds";
+}
+
+morocc,244,134,1	trader	Trader#mor3	4_F_04,{
+OnInit:
+	sellitem "Flower_Ring";
+}
+
+morocc,259,193,1	trader	Trader#mor4	4W_M_03,{
+OnInit:
+	sellitem "Crystal_Mirror";
+}
+
+morocc,268,193,1	trader	Trader#mor5	4_F_04,{
+OnInit:
+	sellitem "Witherless_Rose";
+}
+
+morocc,269,167,4	trader	Pet Merchant#mor1	4_M_TELEPORTER,{
+OnInit:
+	sellitem "Pet_Food";
+	sellitem "Pet_Incubator";
+	sellitem "Backpack";
+	sellitem "Rocker_Glasses";
+}
+
+
+//== Alberta ===============================================
+
+alb2trea,87,65,1	trader	Tool Dealer#alb1	4_M_01,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Silver_Arrow";
+	sellitem "Fire_Arrow";
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+
+alberta_in,94,56,4	trader	Tool Dealer#alb2	4_M_01,{
+OnInit:
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Spectacles";
+	sellitem "Leaf_Of_Yggdrasil";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+
+alberta_in,165,96,1	trader	Item Collector#alb1	1_F_MERCHANT_02,{
+OnInit:
+	sellitem "Jellopy";
+	sellitem "Monster's_Feed";
+}
+
+alberta_in,182,96,1	trader	Tool Dealer#alb3	1_F_MERCHANT_01,{
+OnInit:
+	sellitem "Spectacles";
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Panacea";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Arrow";
+	sellitem "Spinning_Eyes";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+
+alberta_in,180,15,1	trader	Armor Dealer#alb1	4W_F_01,{
+OnInit:
+	sellitem "Guard";
+	sellitem "Buckler";
+	sellitem "Sandals";
+	sellitem "Shoes";
+	sellitem "Boots";
+	sellitem "Hood";
+	sellitem "Muffler";
+	sellitem "Manteau";
+	sellitem "Glasses";
+	sellitem "Sunglasses";
+	sellitem "Diver's_Goggles";
+	sellitem "Cap";
+	sellitem "Cotton_Shirt";
+	sellitem "Leather_Jacket";
+	sellitem "Adventure_Suit";
+	sellitem "Silk_Robe";
+	sellitem "Wooden_Mail";
+	sellitem "Silver_Robe";
+	sellitem "Mantle";
+	sellitem "Coat";
+	sellitem "Padded_Armor";
+	sellitem "Chain_Mail";
+}
+
+alberta_in,188,21,1	trader	Weapon Dealer#alb1	1_M_03,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Silver_Arrow";
+	sellitem "Sword";
+	sellitem "Falchion";
+	sellitem "Blade";
+	sellitem "Knife";
+	sellitem "Cutter";
+	sellitem "Main_Gauche";
+	sellitem "Rod";
+	sellitem "Bow";
+	sellitem "Axe";
+	sellitem "Battle_Axe";
+	sellitem "Hammer";
+	sellitem "Buster";
+	sellitem "Two_Handed_Axe";
+}
+
+//== Aldebaran =============================================
+
+aldeba_in,20,60,5	trader	Armor Dealer#alde1	4W_F_01,{
+OnInit:
+	sellitem "Helm";
+	sellitem "Buckler";
+	sellitem "Shield";
+	sellitem "Mantle";
+	sellitem "Coat";
+	sellitem "Padded_Armor";
+	sellitem "Chain_Mail";
+	sellitem "Plate_Armor";
+	sellitem "Manteau";
+	sellitem "Boots";
+}
+
+aldeba_in,28,54,5	trader	Weapon Dealer#alde1	4_M_03,{
+OnInit:
+	sellitem "Knife";
+	sellitem "Cutter";
+	sellitem "Main_Gauche";
+	sellitem "Dirk";
+	sellitem "Dagger";
+	sellitem "Stiletto";
+	sellitem "Gladius";
+	sellitem "Damascus";
+}
+
+aldeba_in,94,56,5	trader	Tool Dealer#alde1	4_M_01,{
+OnInit:
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Spectacles";
+	sellitem "Leaf_Of_Yggdrasil";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+//== Geffen =============================================
+
+geffen_in,25,177,4	trader	Armor Dealer#gef1	1_F_01,{
+OnInit:
+	sellitem "Guard";
+	sellitem "Mirror_Shield";
+	sellitem "Sandals";
+	sellitem "Hood";
+	sellitem "Gemmed_Sallet";
+	sellitem "Cotton_Shirt";
+	sellitem "Leather_Jacket";
+	sellitem "Adventure_Suit";
+	sellitem "Silk_Robe";
+	sellitem "Silver_Robe";
+}
+
+geffen_in,29,177,4	trader	Weapon Dealer#gef1	1_M_01,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Silver_Arrow";
+	sellitem "Sword";
+	sellitem "Bow";
+	sellitem "Knife";
+	sellitem "Cutter";
+	sellitem "Main_Gauche";
+	sellitem "Dirk";
+	sellitem "Dagger";
+	sellitem "Stiletto";
+	sellitem "Rod";
+	sellitem "Wand";
+	sellitem "Staff";
+	sellitem "Arc_Wand";
+	
+}
+
+geffen_in,74,144,1	trader	Trader#gef1	1_F_01,{
+OnInit:
+	sellitem "Jellopy";
+	sellitem "Scell";
+	sellitem "Garlet";
+	sellitem "Zargon";
+
+}
+
+geffen_in,77,167,1	trader	Tool Dealer#gef2	1_F_03,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Spectacles";
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Panacea";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Granpa_Beard";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+
+geffen_in,77,173,1	trader	Magical Tool Trade#gef1	1_M_WIZARD,{
+OnInit:
+	sellitem "Blue_Gemstone";
+	sellitem "Rod";
+	sellitem "Wand";
+	sellitem "Staff";
+	sellitem "Arc_Wand";
+	sellitem "Circlet";
+	sellitem "Silk_Robe";
+	sellitem "Silver_Robe";
+}
+
+geffen_in,171,123,1	trader	Tool Dealer#gef3	1_M_WIZARD,{
+OnInit:
+	sellitem "Empty_Cylinder";
+	sellitem "Empty_Potion";
+}
+
+geffen,193,152,3	trader	Pet Merchant#gef1	4_M_TELEPORTER,{
+OnInit:
+	sellitem "Pet_Food";
+	sellitem "Pet_Incubator";
+	sellitem "Backpack";
+	sellitem "Rocker_Glasses";
+}
+
+//== Izlude ================================================
+
+izlude_in,60,127,4	trader	Weapon Dealer#izl1	4W_M_02,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Silver_Arrow";
+	sellitem "Bow";
+	sellitem "Rod";
+	sellitem "Knife";
+	sellitem "Cutter";
+	sellitem "Main_Gauche";
+	sellitem "Sword";
+	sellitem "Falchion";
+	sellitem "Blade";
+	sellitem "Katana";
+	sellitem "Slayer";
+	sellitem "Bastard_Sword";
+	sellitem "Two_Hand_Sword";
+	sellitem "Broad_Sword";
+	sellitem "Axe";
+}
+
+izlude_in,70,127,4	trader	Armor Dealer#izl1	4W_F_01,{
+OnInit:
+	sellitem "Buckler";
+	sellitem "Shield";
+	sellitem "Shoes";
+	sellitem "Boots";
+	sellitem "Muffler";
+	sellitem "Manteau";
+	sellitem "Cap";
+	sellitem "Helm";
+	sellitem "Leather_Jacket";
+	sellitem "Adventure_Suit";
+	sellitem "Wooden_Mail";
+	sellitem "Mantle";
+	sellitem "Coat";
+	sellitem "Padded_Armor";
+	sellitem "Chain_Mail";
+	sellitem "Plate_Armor";
+}
+
+izlude_in,115,61,1	trader	Tool Dealer#izl1	1_M_01,{
+OnInit:
+	sellitem "Spectacles";
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Panacea";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Arrow";
+	sellitem "Booby_Trap";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+
+izlude,121,138,1 	trader	Butcher#izl1	1_M_JOBGUIDER,{
+OnInit:
+	sellitem "Meat";
+}
+
+izlude,127,120,1	trader	Fruit Merchant#izl1	1_F_MARIA,{
+OnInit:
+	sellitem "Apple";
+	sellitem "Banana";
+	sellitem "Carrot";
+	sellitem "Sweet_Potato";
+}
+
+izlude,137,126,3	trader	Milk Merchant#izl1	4_F_GODEMOM,{
+OnInit:
+	sellitem "Milk";
+}
+
+izlude,164,138,4	trader	Pet Merchant#izl1	4_M_TELEPORTER,{
+OnInit:
+	sellitem "Pet_Food";
+	sellitem "Pet_Incubator";
+	sellitem "Backpack";
+	sellitem "Rocker_Glasses";
+}
+
+//== Old Payon ================================================= 
+
+payon_in01,125,51,4	trader	Weapon Dealer#pay1	1_F_ORIENT_03,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Silver_Arrow";
+	sellitem "Sword";
+	sellitem "Falchion";
+	sellitem "Blade";
+	sellitem "Knife";
+	sellitem "Cutter";
+	sellitem "Main_Gauche";
+	sellitem "Rod";
+	sellitem "Bow";
+	sellitem "Composite_Bow";
+	sellitem "Great_Bow";
+	sellitem "CrossBow";
+	sellitem "Arbalest";
+	sellitem "Kakkung";
+	sellitem "Hunter_Bow";
+}
+
+payon_in01,134,51,4	trader	Armor Dealer#pay1	1_F_ORIENT_02,{
+OnInit:
+	sellitem "Sandals";
+	sellitem "Shoes";
+	sellitem "Boots";
+	sellitem "Hood";
+	sellitem "Muffler";
+	sellitem "Manteau";
+	sellitem "Ribbon";
+	sellitem "Bandana";
+	sellitem "Eye_Bandage";
+	sellitem "Cotton_Shirt";
+	sellitem "Leather_Jacket";
+	sellitem "Adventure_Suit";
+	sellitem "Silk_Robe";
+	sellitem "Wooden_Mail";
+	sellitem "Silver_Robe";
+	sellitem "Coat";
+	sellitem "Tights";
+}
+
+payon_in02,87,34,1	trader	Tool Dealer#pay1	1_F_ORIENT_01,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Silver_Arrow";
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Panacea";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Booby_Trap";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+
+payon,79,124,4	trader	Tool Dealer#pay2	4_M_ORIENT01,{
+OnInit:
+	sellitem "Arrow";
+	sellitem "Spectacles";
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Panacea";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Booby_Trap";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+}
+
+payon,142,104,4	trader	Pet Merchant#pay1	4_M_TELEPORTER,{
+OnInit:
+	sellitem "Pet_Food";
+	sellitem "Pet_Incubator";
+	sellitem "Backpack";
+	sellitem "Rocker_Glasses";
+}
+
+pay_arche,125,108,3	trader	Milk Merchant#pay1	4_F_01,{
+
+OnInit:
+	sellitem "Milk";
+}
+
+pay_arche,132,101,3	trader	Vegetable Merchant#pay1	8_F,{
+OnInit:
+	sellitem "Carrot";
+	sellitem "Sweet_Potato";
+}
+
+pay_arche,140,124,3	trader	Butcher#pay1	4_M_BARBER,{
+OnInit:
+	sellitem "Meat";
+	sellitem "Monster's_Feed";
+}
+
+//== Lutie ================================================= 
+
+xmas_in,39,37,4	trader	Tool Dealer#lut1	4_M_01,{
+OnInit:
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Green_Potion";
+	sellitem "Spectacles";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Leaf_Of_Yggdrasil";
+}
+xmas_in,168,104,4	trader	Armor Dealer#lut1	4W_F_01,{
+OnInit:
+	sellitem "Helm";
+	sellitem "Buckler";
+	sellitem "Shield";
+	sellitem "Mantle";
+	sellitem "Coat";
+	sellitem "Padded_Armor";
+	sellitem "Chain_Mail";
+	sellitem "Plate_Armor";
+	sellitem "Manteau";
+	sellitem "Boots";
+}
+xmas_in,169,34,2	trader	Gift Merchant#lut1	4_F_GON,{
+OnInit:
+	sellitem "Flower_Ring";
+	sellitem "Bunch_Of_Flowers";
+	sellitem "Witherless_Rose";
+	sellitem "White_Platter";
+	sellitem "Glass_Bead";
+	sellitem "Stuffed_Doll";
+	sellitem "Diamond_Ring";
+}
+xmas_in,174,98,2	trader	Weapon Dealer#lut1	1_M_03,{
+OnInit:
+	sellitem "Knife";
+	sellitem "Cutter";
+	sellitem "Main_Gauche";
+	sellitem "Dirk";
+	sellitem "Dagger";
+	sellitem "Stiletto";
+	sellitem "Gladius";
+	sellitem "Damascus";
+}
+xmas,144,207,4	trader	Tool Dealer#lut2	4_M_01,{
+OnInit:
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+}
+
+//== Comodo ================================================= 
+
+cmd_in01,117,165,4	trader	Armor Dealer#como1	4W_F_01,{
+OnInit:
+	sellitem "Cap";
+	sellitem "Helm";
+	sellitem "Buckler";
+	sellitem "Shield";
+	sellitem "Boots";
+	sellitem "Muffler";
+	sellitem "Manteau";
+	sellitem "Adventure_Suit";
+	sellitem "Silk_Robe";
+	sellitem "Mantle";
+	sellitem "Coat";
+	sellitem "Thief_Clothes";
+	sellitem "Padded_Armor";
+	sellitem "Chain_Mail";
+	sellitem "Plate_Armor";
+}
+
+cmd_in01,128,165,2	trader	Weapon Dealer#como1	1_M_03,{
+OnInit:
+	sellitem "Javelin";
+	sellitem "Spear";
+	sellitem "Pike";
+	sellitem "Guisarme";
+	sellitem "Glaive";
+	sellitem "Partizan";
+	sellitem "Trident";
+	sellitem "Halberd";
+	sellitem "Lance";
+}
+
+cmd_in01,79,182,5	trader	Tool Dealer#como1	4_M_01,{
+OnInit:
+	sellitem "Steel_Arrow";
+	sellitem "Red_Potion";
+	sellitem "Orange_Potion";
+	sellitem "Yellow_Potion";
+	sellitem "White_Potion";
+	sellitem "Center_Potion";
+	sellitem "Awakening_Potion";
+	sellitem "Berserk_Potion";
+	sellitem "Wing_Of_Fly";
+	sellitem "Wing_Of_Butterfly";
+	sellitem "Spectacles";
+	sellitem "Booby_Trap";
+}
+
+comodo,296,125,4	trader	Souvenir Merchant#como1	4W_F_01,{
+OnInit:
+	sellitem "Clam_Shell";
+	sellitem "Crap_Shell";
+}
+
+comodo,244,296,7	trader	Item Collector#como1	1_F_MERCHANT_02,{
+
+OnInit:
+	sellitem "Jellopy";
+}

@@ -1,0 +1,102 @@
+function	script	Invitational_Package	{
+    set .@package, getarg(0);
+	
+	
+	//- Coat[1], Muffler[1], Guard[1], Shoes[1]
+	setarray .@leader[0],		12261,	673,	5336,	32375,	12210,	12208,	2310,	2102,	2504,	2404;
+	setarray .@lamount[0],		    1,	  5,	   1,	   10,	   10,	   10,	   1,	   1,	   1,	   1;
+	
+	setarray .@member[0],	12261,	673,	32375,	12210,	12208,	2310,	2102,	2504,	2404;
+	setarray .@mamount[0],	    1,	  1,	   10,	   10,	   10,	   1,	   1,	   1,	   1;	
+
+								
+								
+    if(.@package == 1){
+        .@GID = getcharid(2);
+        if (.@GID == 0) {
+            dispbottom "Sorry, you are not in a guild.";
+            end;
+        }else if (strcharinfo(0) != getguildmaster(.@GID)) {
+            dispbottom "Sorry, you don't own the guild you are in.";
+            end;
+        }
+        if (!checkweight2(.@leader,.@lamount)) {
+            dispbottom "Sorry, this item is applicable for guild leader only.";
+            end;
+        }else{
+			for( .@i = 0; .@i < getarraysize(.@leader); .@i++ ){
+				getitembound .@leader[.@i],.@lamount[.@i],1;
+			}
+			rentitem 32108,1,4320;
+			Zeny += 100000;
+            delitem 32373,1;
+        }
+
+    }else if(.@package == 2){
+        .@GID = getcharid(2);
+        if (.@GID == 0) {
+            dispbottom "Sorry, you are not in a guild.";
+            end;
+        }else if (strcharinfo(0) == getguildmaster(.@GID)) {
+            dispbottom "Sorry, this item is applicable for members only.";
+            end;
+        }
+        if (!checkweight2(.@member,.@mamount)) {
+            dispbottom "Sorry, you cannot hold the items.";
+            end;
+        }else{
+			for( .@i = 0; .@i < getarraysize(.@member); .@i++ ){
+				getitembound .@member[.@i],.@mamount[.@i],1;
+			}
+			rentitem 32108,1,4320;
+			Zeny += 100000;
+            delitem 32374,1;
+        }
+    }
+    
+}
+
+
+-	script	guild_code	-1,{
+OnInit:
+	set .code_length, 8;
+	setarray .code_code$[0],"A","B","C","D","E","F","G","H","I","J","K","L",
+								  "M","N","O","P","Q","R","S","T","U","V","W","X",
+								  "Y","Z","0","1","2","3","4","5","6","7","8","9";
+								  
+	bindatcmd "guildcode","guild_code::OnDoCode",0,100;
+end;
+
+OnDoCode:
+	if(getcharid(2)){
+		if(getguildmasterid(getcharid(2)) == getcharid(0)){
+				
+			query_sql("SELECT `guild_id`, `guild_code`, `status` FROM `guild_invitational_code` WHERE `guild_id` = '"+getcharid(2)+"'", .@gid, .@gcode$, .@status);
+			
+			if(!.@gid){
+				for(set .@i, 0; .@i < 1; set .@i, .@i+1){
+					for(set .@i, 0; .@i < .code_length; set .@i, .@i+1){
+						set .@random_char, rand(0,(getarraysize(.code_code$)-1));
+						set .@new_code$, .@new_code$ + .code_code$[.@random_char];
+					}
+					query_sql("SELECT `guild_code` FROM `guild_invitational_code` WHERE `guild_code` = '"+.@new_code$+"'", .@gcode);
+					if(.@gcode){
+						set .@i, 0;
+					}
+				}
+				dispbottom "Guild Code: "+.@new_code$;
+				query_sql("INSERT INTO `guild_invitational_code` ( `guild_id`,`guild_leader_id`, `guild_code` ) VALUES ('"+getcharid(2)+"', '"+getcharid(0)+"', '"+.@new_code$+"')");
+			}else{
+				if(!.@status){
+					dispbottom "Guild Code: "+.@gcode$;
+				}else{
+					dispbottom "Guild Code is already used.";
+				}
+			}
+			
+		}
+	}
+end;
+
+
+}
