@@ -1,0 +1,218 @@
+//===== Special Modification =================================
+//===== By: ==================================================
+//= Ragnarok World
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena, rAthena, Hercules
+//===== Additional Comments: =================================
+//= 
+//============================================================
+
+//================== gl_cas01 ===============//
+gl_cas01,0,0,0,0	monster	Joker	1131,10,0,0,0
+gl_cas01,0,0,0,0	monster	Khalitzburg	1132,5,0,0,1
+gl_cas01,0,0,0,0	monster	Whisper	1179,10,0,0,0
+gl_cas01,0,0,0,0	monster	Rideword	1195,30,0,0,0
+gl_cas01,0,0,0,0	monster	Tyrfing	1204,1,7200000,3600000,1
+gl_cas01,0,0,0,0	monster	Dark Frame	1260,20,0,0,0
+gl_cas01,0,0,0,0	monster	Carat	1267,40,0,0,0
+gl_cas01,0,0,0,0	monster	Alice	1275,1,0,0,0
+gl_cas01,0,0,0,0	monster	Sageworm	1281,50,0,0,0
+gl_cas01,0,0,0,0	monster	Owl Duke	1320,3,0,0,1
+
+
+//================== gl_cas02 ===============//
+gl_cas02,0,0,0,0	boss_monster	Baphomet	1039,1,3600000,600000,1
+gl_cas02,0,0,0,0	monster	Nightmare	1061,10,0,0,0
+gl_cas02,0,0,0,0	monster	Raydric	1163,45,0,0,0
+gl_cas02,0,0,0,0	monster	Mysteltainn	1203,1,7200000,3600000,1
+gl_cas02,0,0,0,0	monster	Wanderer	1208,20,0,0,0
+gl_cas02,0,0,0,0	monster	Alice	1275,1,0,0,0
+gl_cas02,0,0,0,0	monster	Raydric Archer	1276,19,0,0,0
+gl_cas02,102,180,0,0	monster	Whisper	1179,1,1800000,900000,1
+gl_cas02,104,145,5,5	monster	Mysteltainn	1203,1,7200000,3600000,1
+gl_cas02,104,38,4,4	monster	Knight of Abyss	1219,1,1800000,900000,1
+gl_cas02,105,180,0,0	monster	Whisper	1179,1,1800000,900000,1
+gl_cas02,115,177,3,3	monster	Knight of Abyss	1219,1,1800000,900000,1
+gl_cas02,133,83,3,3	monster	Khalitzburg	1132,1,360000,180000,1
+gl_cas02,16,186,10,10	monster	Marionette	1143,8,360000,180000,1
+gl_cas02,173,127,3,3	monster	Khalitzburg	1132,1,360000,180000,1
+gl_cas02,173,167,3,3	monster	Khalitzburg	1132,1,360000,180000,1
+gl_cas02,174,11,8,8	monster	Deviruchi	1109,4,120000,60000,1
+gl_cas02,182,65,3,3	monster	Khalitzburg	1132,1,360000,180000,1
+gl_cas02,185,11,8,8	monster	Rideword	1195,4,120000,60000,1
+gl_cas02,189,20,1,1	monster	Khalitzburg	1132,1,360000,180000,0
+gl_cas02,190,23,1,1	monster	Wanderer	1208,1,360000,180000,0
+gl_cas02,190,38,1,1	monster	Raydric Archer	1276,1,360000,180000,0
+gl_cas02,24,35,4,4	monster	Knight of Abyss	1219,1,1800000,900000,1
+gl_cas02,45,177,3,3	monster	Khalitzburg	1132,1,360000,180000,1
+gl_cas02,46,124,15,15	monster	Rideword	1195,15,360000,180000,1
+gl_cas02,93,177,3,3	monster	Knight of Abyss	1219,1,1800000,900000,1
+
+
+//================== gl_church ===============//
+gl_church,0,0,0,0	monster	Ghoul	1036,25,0,0,0
+gl_church,0,0,0,0	monster	Nightmare	1061,20,0,0,0
+gl_church,0,0,0,0	monster	Evil Druid	1117,15,0,0,0
+gl_church,0,0,0,0	monster	Joker	1131,5,0,0,0
+gl_church,0,0,0,0	monster	Whisper	1179,20,0,0,0
+gl_church,0,0,0,0	monster	Brilight	1211,15,0,0,0
+
+
+//================== gl_chyard ===============//
+gl_chyard,0,0,0,0	monster	Zombie	1015,20,0,0,0
+gl_chyard,0,0,0,0	monster	Hunter Fly	1035,15,0,0,0
+gl_chyard,0,0,0,0	monster	Ghoul	1036,25,0,0,0
+gl_chyard,0,0,0,0	monster	Wraith	1192,5,0,0,0
+gl_chyard,0,0,0,0	monster	Skeleton Prisoner	1196,10,0,0,0
+gl_chyard,0,0,0,0	monster	Zombie Prisoner	1197,10,0,0,0
+gl_chyard,0,0,0,0	boss_monster	Dark Lord	1272,1,3600000,1800000,0
+
+
+//================== gl_dun01 ===============//
+gl_dun01,0,0,0,0	monster	Arclouse	1194,100,0,0,0
+gl_dun01,0,0,0,0	monster	Stalactite Golem	1278,40,0,0,0
+
+
+//================== gl_dun02 ===============//
+gl_dun02,0,0,0,0	monster	Gargoyle	1253,20,0,0,0
+gl_dun02,0,0,0,0	monster	Majoruros	1310,40,0,0,0
+
+
+//================== gl_in01 ===============//
+gl_in01,0,0,0,0	monster	Marionette	1143,10,0,0,0
+gl_in01,0,0,0,0	monster	Rideword	1195,10,0,0,0
+gl_in01,0,0,0,0	monster	Wanderer	1208,1,0,0,0
+gl_in01,0,0,0,0	monster	Dark Frame	1260,10,0,0,0
+gl_in01,0,0,0,0	monster	Alice	1275,1,0,0,0
+gl_in01,0,0,0,0	monster	Sageworm	1281,20,0,0,0
+gl_in01,0,0,0,0	monster	Owl Duke	1320,12,0,0,0
+
+
+//================== gl_knt01 ===============//
+gl_knt01,0,0,0,0	monster	Raydric	1163,60,0,0,0
+gl_knt01,0,0,0,0	monster	Raydric Archer	1276,20,0,0,0
+gl_knt01,117,271,0,0	monster	Evil Druid	1117,1,240000,120000,1
+gl_knt01,118,266,0,0	monster	Evil Druid	1117,1,240000,120000,1
+gl_knt01,121,274,0,0	monster	Evil Druid	1117,1,240000,120000,1
+gl_knt01,122,266,0,0	monster	Rideword	1195,1,120000,60000,1
+gl_knt01,124,266,0,0	monster	Evil Druid	1117,1,240000,120000,1
+gl_knt01,126,271,0,0	monster	Evil Druid	1117,1,240000,120000,1
+gl_knt01,21,278,0,0	monster	Giant Whisper	1186,1,3600000,1800000,1
+gl_knt01,235,238,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,235,239,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,235,240,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,235,241,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,235,242,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,235,243,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,235,244,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,235,245,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,243,233,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,243,254,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,243,263,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,244,258,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,259,239,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,26,223,20,20	monster	Rideword	1195,10,120000,60000,1
+gl_knt01,264,239,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,265,155,0,0	monster	Flora	1118,1,120000,60000,1
+gl_knt01,269,239,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,272,263,25,25	monster	Brilight	1211,10,60000,30000,1
+gl_knt01,278,239,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,283,239,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,288,239,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,292,233,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,33,120,30,30	monster	Rideword	1195,30,120000,60000,1
+gl_knt01,4,184,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,4,185,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,48,13,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,5,184,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,5,185,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,56,206,0,0	monster	Mandragora	1020,1,120000,60000,1
+gl_knt01,6,184,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,6,185,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,7,184,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,7,185,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,8,184,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,8,185,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,9,184,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,9,185,0,0	monster	Black Mushroom	1084,1,3600000,1800000,1
+gl_knt01,93,224,0,0	monster	Mandragora	1020,1,120000,60000,1
+
+
+//================== gl_knt02 ===============//
+gl_knt02,0,0,0,0	monster	Joker	1131,10,0,0,0
+gl_knt02,0,0,0,0	monster	Joker	1131,10,0,0,0
+gl_knt02,0,0,0,0	monster	Raydric	1163,50,0,0,0
+gl_knt02,0,0,0,0	monster	Whisper	1179,10,0,0,0
+gl_knt02,0,0,0,0	monster	Blood Knight	1268,1,3600000,1800000,1
+gl_knt02,0,0,0,0	monster	Raydric Archer	1276,40,0,0,0
+gl_knt02,114,194,5,5	monster	Khalitzburg	1132,1,1800000,900000,1
+gl_knt02,118,241,5,5	monster	Khalitzburg	1132,1,1800000,900000,1
+gl_knt02,149,26,5,5	monster	Knight of Abyss	1219,1,3600000,1800000,1
+gl_knt02,196,239,5,5	monster	Khalitzburg	1132,1,1800000,900000,1
+gl_knt02,208,45,5,5	monster	Khalitzburg	1132,1,1800000,900000,1
+gl_knt02,232,132,5,5	monster	Khalitzburg	1132,1,1800000,900000,1
+gl_knt02,243,74,5,5	monster	Khalitzburg	1132,1,1800000,900000,1
+gl_knt02,60,242,5,5	monster	Khalitzburg	1132,1,1800000,900000,1
+gl_knt02,62,80,5,5	monster	Khalitzburg	1132,1,1800000,900000,1
+gl_knt02,82,134,5,5	monster	Khalitzburg	1132,1,1800000,900000,1
+gl_knt02,99,49,5,5	monster	Khalitzburg	1132,1,1800000,900000,1
+
+
+//================== gl_prison ===============//
+gl_prison,0,0,0,0	monster	Hunter Fly	1035,10,0,0,0
+gl_prison,0,0,0,0	monster	Whisper	1179,10,0,0,0
+gl_prison,0,0,0,0	monster	Skeleton Prisoner	1196,20,0,0,0
+gl_prison,0,0,0,0	monster	Zombie Prisoner	1197,20,0,0,0
+gl_prison,0,0,0,0	monster	Zherlthsh	1200,1,3600000,0,0
+gl_prison,0,0,0,0	monster	Brilight	1211,20,0,0,0
+
+
+//================== gl_prison1 ===============//
+gl_prison1,0,0,0,0	monster	Arclouse	1194,20,0,0,0
+gl_prison1,0,0,0,0	monster	Zherlthsh	1200,1,3600000,0,0
+gl_prison1,0,0,0,0	monster	Cramp	1209,30,0,0,0
+gl_prison1,0,0,0,0	monster	Brilight	1211,20,0,0,0
+gl_prison1,0,0,0,0	monster	Injustice	1257,50,0,0,0
+
+
+//================== gl_sew01 ===============//
+gl_sew01,0,0,0,0	monster	Drainliar	1111,50,0,0,0
+gl_sew01,0,0,0,0	monster	Anolian	1206,30,0,0,0
+gl_sew01,0,0,0,0	monster	Cramp	1209,20,0,0,0
+
+
+//================== gl_sew02 ===============//
+gl_sew02,0,0,0,0	monster	Anolian	1206,40,0,0,0
+gl_sew02,0,0,0,0	monster	Cramp	1209,30,0,0,0
+gl_sew02,0,0,0,0	monster	Gargoyle	1253,30,0,0,0
+
+
+//================== gl_sew03 ===============//
+gl_sew03,0,0,0,0	monster	Sting	1207,50,0,0,0
+gl_sew03,0,0,0,0	monster	Cramp	1209,40,0,0,0
+gl_sew03,0,0,0,0	monster	Gargoyle	1253,40,0,0,0
+
+
+//================== gl_sew04 ===============//
+gl_sew04,0,0,0,0	monster	Sting	1207,30,0,0,0
+gl_sew04,0,0,0,0	monster	Cramp	1209,50,0,0,0
+gl_sew04,0,0,0,0	monster	Wind Ghost	1263,30,0,0,0
+
+
+//================== gl_step ===============//
+gl_step,0,0,0,0	monster	Wraith	1192,50,0,0,0
+gl_step,0,0,0,0	monster	Wind Ghost	1263,15,0,0,0
+gl_step,0,0,0,0	monster	Raydric Archer	1276,30,0,0,0
+
+
+//================== glast_01 ===============//
+glast_01,0,0,0,0	monster	Poison Spore	1077,10,0,0,0
+glast_01,0,0,0,0	monster	Bathory	1102,5,180000,90000,1
+glast_01,0,0,0,0	monster	Jakk	1130,5,180000,90000,1
+glast_01,0,0,0,0	monster	Myst	1151,15,0,0,0
+glast_01,0,0,0,0	monster	Knight of Abyss	1219,1,7200000,3600000,1
+glast_01,233,209,15,15	monster	Blue Plant	1079,2,900000,450000,1
+glast_01,233,209,15,15	monster	Green Plant	1080,8,360000,180000,1
+glast_01,233,209,15,15	monster	Shining Plant	1083,1,1800000,900000,1

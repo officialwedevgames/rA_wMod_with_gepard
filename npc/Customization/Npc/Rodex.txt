@@ -1,0 +1,83 @@
+-	script	RODEX	FAKE_NPC,{
+OnDoClaim:
+	function Comma;
+	deletearray .@id;deletearray .@send_name$;deletearray .@send_id;deletearray .@dest_name$;deletearray .@dest_id;deletearray .@title$;deletearray .@message$;deletearray .@zeny; deletearray .@status;
+	query_sql("SELECT `id`, `send_name`, `send_id`, `dest_name`, `dest_id`, `title`, `message`, `zeny`, `status` FROM `mail` WHERE `dest_id` = '"+getcharid(0)+"'",.@id,.@send_name$,.@send_id,.@dest_name$,.@dest_id,.@title$,.@message$,.@zeny,.@status);
+	set .@mailtitle$,"";
+	for (set .@j,0; .@j < getarraysize(.@id); set .@j,.@j+1) {
+		if (.@j) set .@mailtitle$,.@mailtitle$+":";
+			set .@mailtitle$,.@mailtitle$+.@title$[.@j];
+	}
+	set .@selection,select(.@mailtitle$)-1;
+	mes .n$;
+	mes "^ff0000Title:^000000 "+.@title$[.@selection]+"";
+	mes "^ff0000Message:^000000 "+.@message$[.@selection]+"";
+	mes " ";
+	
+	query_sql("SELECT `id`, `nameid`, `amount`, `refine`, `attribute`, `identify`, `card0`, `card1`, `card2`, `card3` FROM `mail_attachments` WHERE `id` = '"+.@id[.@selection]+"'",.@iid,.@nameid,.@amount,.@refine,.@attribute,.@identify,.@card0,.@card1,.@card2,.@card3);
+	if(.@zeny > 0 || .@iid > 0){
+		mes "[^0000ffRewards^000000]";
+		if(.@zeny > 0){
+			mes "Zeny: "+Comma(.@zeny,3);
+		}
+		for (set .@i,0; .@i < getarraysize(.@iid); set .@i,.@i+1) {
+			mes ""+(.@i+1)+". "+getitemname(.@nameid[.@i])+" x "+.@amount[.@i];
+		}
+		mes " ";
+		mes "What do you want to do?";
+		next;
+		if (select("Claim Rewards" )){
+			if (!checkweight2(.@nameid,.@amount)) {
+				mes .n$;
+				mes "Sorry, you can't handle more items.";
+				close;
+			}
+			if(getarraysize(.@iid) > 0){
+				for (set .@i,0; .@i < getarraysize(.@iid); set .@i,.@i+1) {
+					query_sql("DELETE FROM `mail_attachments` WHERE `id` = "+.@iid[.@i]+"");
+					getitem2 .@nameid[.@i],.@amount[.@i],.@identify,.@refine,.@attribute,.@card0,.@card1,.@card2,.@card3;
+				}
+			}
+			
+			if(.@zeny > 0){
+				Zeny += .@zeny;
+			}
+			query_sql("UPDATE `mail` SET `status` = '2', `zeny` = '0' WHERE `id` = '"+.@id[.@selection]+"'"); 
+			mes .n$;
+			mes "CLAIMING OF REWARDS COMPLETED.";
+			close;
+		}	
+	}else{
+		next;
+		if (select("Delete" )){
+			query_sql("DELETE FROM `mail` WHERE `id` = "+.@id[.@selection]+"");
+			mes .n$;
+			mes "DELETION COMPLETED";
+			close;
+		}
+	}
+
+
+OnInit:
+	.n$ = "[ ^0000FFRODEX MAIL^000000 ]";
+	bindatcmd "rodex","RODEX::OnDoClaim",0,100;
+end;
+
+    function Comma {
+        .@value = getarg(0);
+        .@precision = getarg(1,3);
+        .@separator$ = getarg( 2,"," );
+
+        .@str$ = ""+.@value;
+        .@is_negative = ( .@value < 0 );
+
+        .@length = getstrlen( .@str$ ) - .@precision - .@is_negative;
+        while ( .@length > 0 ) {
+            .@str$ = insertchar( .@str$, .@separator$ , ( .@length + .@is_negative ) );
+            .@length -= .@precision;
+        }
+        return .@str$;
+    }	
+
+}
+		

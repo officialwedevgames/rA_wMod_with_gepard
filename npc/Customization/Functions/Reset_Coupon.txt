@@ -1,0 +1,5 @@
+function	script	Reset_Coupon	{
+    resetstatus;
+	resetskill;
+	dispbottom "Status and Skills has been reset.";
+}

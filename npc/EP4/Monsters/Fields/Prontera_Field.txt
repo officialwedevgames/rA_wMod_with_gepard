@@ -1,0 +1,148 @@
+//===== Special Modification =================================
+//===== By: ==================================================
+//= Ragnarok World
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena, rAthena, Hercules
+//===== Additional Comments: =================================
+//= 
+//============================================================
+
+
+//================== prt_fild00 ===============//
+prt_fild00,0,0,0,0	monster	Poring	1002,55,0,0,0
+prt_fild00,0,0,0,0	monster	Hornet	1004,20,0,0,0
+prt_fild00,0,0,0,0	monster	Fabre	1007,50,0,0,0
+prt_fild00,0,0,0,0	monster	Pupa	1008,10,0,0,0
+prt_fild00,0,0,0,0	monster	Roda Frog	1012,15,0,0,0
+prt_fild00,0,0,0,0	monster	Creamy	1018,20,0,0,0
+prt_fild00,0,0,0,0	monster	Lunatic	1063,40,0,0,0
+prt_fild00,227,212,0,0	monster	Shining Plant	1083,1,1800000,900000,1
+prt_fild00,285,138,10,10	monster	Green Plant	1080,5,360000,180000,1
+
+
+//================== prt_fild01 ===============//
+prt_fild01,0,0,0,0	monster	Poring	1002,50,0,0,0
+prt_fild01,0,0,0,0	monster	Fabre	1007,25,0,0,0
+prt_fild01,0,0,0,0	monster	Pupa	1008,5,0,0,0
+prt_fild01,0,0,0,0	monster	Roda Frog	1012,20,0,0,0
+prt_fild01,0,0,0,0	monster	Thief Bug Egg	1048,10,0,0,0
+prt_fild01,0,0,0,0	monster	Thief Bug Larva	1051,30,0,0,0
+prt_fild01,0,0,0,0	monster	Lunatic	1063,70,0,0,0
+prt_fild01,199,266,3,3	monster	Blue Plant	1079,1,900000,450000,1
+prt_fild01,199,266,3,3	monster	Green Plant	1080,3,360000,180000,1
+
+
+//================== prt_fild02 ===============//
+prt_fild02,0,0,0,0	monster	Poring	1002,50,0,0,0
+prt_fild02,0,0,0,0	monster	Fabre	1007,40,0,0,0
+prt_fild02,0,0,0,0	monster	Pupa	1008,15,0,0,0
+prt_fild02,0,0,0,0	monster	Mandragora	1020,75,0,0,0
+prt_fild02,0,0,0,0	monster	Thief Bug Larva	1051,20,0,0,0
+prt_fild02,0,0,0,0	monster	Thief Bug Female	1053,15,0,0,0
+prt_fild02,0,0,0,0	monster	Lunatic	1063,30,0,0,0
+prt_fild02,0,0,0,0	monster	Eclipse	1093,1,1800000,200000,1
+prt_fild02,339,309,3,3	monster	Shining Plant	1083,1,1800000,900000,1
+
+
+//================== prt_fild03 ===============//
+prt_fild03,0,0,0,0	monster	Fabre	1007,40,0,0,0
+prt_fild03,0,0,0,0	monster	Pupa	1008,15,0,0,0
+prt_fild03,0,0,0,0	monster	Creamy	1018,30,0,0,0
+prt_fild03,0,0,0,0	monster	Poporing	1031,35,0,0,0
+prt_fild03,0,0,0,0	monster	Thief Bug Egg	1048,10,0,0,0
+prt_fild03,0,0,0,0	monster	Yoyo	1057,65,0,0,0
+prt_fild03,0,0,0,0	monster	Lunatic	1063,30,0,0,0
+prt_fild03,0,0,0,0	monster	Choco	1214,3,1800000,200000,1
+prt_fild03,296,58,15,15	monster	Blue Plant	1079,2,900000,450000,1
+prt_fild03,296,58,15,15	monster	Green Plant	1080,5,180000,90000,1
+
+
+//================== prt_fild04 ===============//
+prt_fild04,0,0,0,0	monster	Poring	1002,35,0,0,0
+prt_fild04,0,0,0,0	monster	Hornet	1004,15,0,0,0
+prt_fild04,0,0,0,0	monster	Roda Frog	1012,10,0,0,0
+prt_fild04,0,0,0,0	monster	Rocker	1052,45,0,0,0
+prt_fild04,0,0,0,0	monster	Lunatic	1063,25,0,0,0
+prt_fild04,147,319,5,5	monster	Green Plant	1080,5,360000,180000,1
+prt_fild04,148,107,5,5	monster	Green Plant	1080,5,360000,180000,1
+prt_fild04,307,75,5,5	monster	Green Plant	1080,5,360000,180000,1
+
+
+//================== prt_fild05 ===============//
+prt_fild05,0,0,0,0	monster	Poring	1002,55,0,0,0
+prt_fild05,0,0,0,0	monster	Fabre	1007,65,0,0,0
+prt_fild05,0,0,0,0	monster	Pupa	1008,20,0,0,0
+prt_fild05,0,0,0,0	monster	Roda Frog	1012,15,0,0,0
+prt_fild05,0,0,0,0	monster	Lunatic	1063,35,0,0,0
+prt_fild05,208,37,10,10	monster	Blue Plant	1079,1,900000,450000,1
+prt_fild05,208,37,10,10	monster	Green Plant	1080,6,900000,450000,1
+
+
+//================== prt_fild06 ===============//
+prt_fild06,0,0,0,0	monster	Poring	1002,60,0,0,0
+prt_fild06,0,0,0,0	monster	Fabre	1007,60,0,0,0
+prt_fild06,0,0,0,0	monster	Pupa	1008,10,0,0,0
+prt_fild06,0,0,0,0	monster	Roda Frog	1012,20,0,0,0
+prt_fild06,0,0,0,0	monster	Thief Bug Egg	1048,10,0,0,0
+prt_fild06,0,0,0,0	monster	Thief Bug Larva	1051,20,0,0,0
+prt_fild06,0,0,0,0	monster	Lunatic	1063,40,0,0,0
+prt_fild06,222,30,40,10	monster	Green Plant	1080,15,900000,450000,1
+
+
+//================== prt_fild07 ===============//
+prt_fild07,0,0,0,0	monster	Poring	1002,45,0,0,0
+prt_fild07,0,0,0,0	monster	Fabre	1007,45,0,0,0
+prt_fild07,0,0,0,0	monster	Roda Frog	1012,30,0,0,0
+prt_fild07,0,0,0,0	monster	Creamy	1018,35,0,0,0
+prt_fild07,0,0,0,0	monster	Rocker	1052,67,0,0,0
+prt_fild07,0,0,0,0	monster	Lunatic	1063,40,0,0,0
+prt_fild07,0,0,0,0	monster	Vocal	1088,1,1800000,200000,1
+prt_fild07,225,110,5,5	monster	Black Mushroom	1084,3,360000,180000,1
+
+
+//================== prt_fild08 ===============//
+prt_fild08,0,0,0,0	monster	Poring	1002,80,0,0,0
+prt_fild08,0,0,0,0	monster	Fabre	1007,40,0,0,0
+prt_fild08,0,0,0,0	monster	Pupa	1008,10,0,0,0
+prt_fild08,0,0,0,0	monster	ChonChon	1011,20,0,0,0
+prt_fild08,0,0,0,0	monster	Roda Frog	1012,15,0,0,0
+prt_fild08,0,0,0,0	monster	Lunatic	1063,15,0,0,0
+prt_fild08,350,114,10,10	monster	Green Plant	1080,5,900000,450000,1
+
+
+//================== prt_fild09 ===============//
+prt_fild09,0,0,0,0	monster	Condor	1009,25,0,0,0
+prt_fild09,0,0,0,0	monster	ChonChon	1011,45,0,0,0
+prt_fild09,0,0,0,0	monster	Steel ChonChon	1042,5,300000,150000,1
+prt_fild09,0,0,0,0	monster	PecoPeco Egg	1047,20,0,0,0
+prt_fild09,0,0,0,0	monster	Picky	1049,40,0,0,0
+prt_fild09,0,0,0,0	monster	Super Picky	1050,40,0,0,0
+prt_fild09,0,0,0,0	monster	Muka	1055,5,300000,150000,1
+prt_fild09,0,0,0,0	monster	Desert Wolf Puppy	1107,20,0,0,0
+prt_fild09,0,0,0,0	monster	Drops	1113,65,0,0,0
+prt_fild09,237,115,5,5	monster	Yellow Plant	1081,3,360000,180000,1
+
+
+//================== prt_fild10 ===============//
+prt_fild10,0,0,0,0	monster	Willow	1010,5,0,0,0
+prt_fild10,0,0,0,0	monster	Creamy	1018,10,0,0,0
+prt_fild10,0,0,0,0	monster	Poporing	1031,15,0,0,0
+prt_fild10,0,0,0,0	monster	Elder Willow	1033,65,0,0,0
+prt_fild10,0,0,0,0	monster	Lunatic	1063,10,0,0,0
+prt_fild10,0,0,0,0	monster	Savage Babe	1167,45,0,0,0
+prt_fild10,155,179,10,10	monster	Shining Plant	1083,1,1800000,900000,1
+prt_fild10,99,114,20,5	monster	Red Mushroom	1085,15,360000,180000,1
+
+
+//================== prt_fild11 ===============//
+prt_fild11,0,0,0,0	monster	Poporing	1031,10,0,0,0
+prt_fild11,0,0,0,0	monster	Elder Willow	1033,10,0,0,0
+prt_fild11,0,0,0,0	monster	Yoyo	1057,5,0,0,0
+prt_fild11,0,0,0,0	monster	Lunatic	1063,10,0,0,0
+prt_fild11,0,0,0,0	monster	Red Mushroom	1085,10,180000,90000,1
+prt_fild11,0,0,0,0	monster	Coco	1104,15,0,0,0
+prt_fild11,0,0,0,0	monster	Coco	1104,20,0,0,0
+prt_fild11,0,0,0,0	monster	Savage	1166,45,0,0,0
+prt_fild11,0,0,0,0	monster	Savage Babe	1167,65,0,0,0

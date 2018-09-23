@@ -1,0 +1,92 @@
+function	script	mob_normal_kills	{  
+	set .@charid, getarg(0);	
+	set .@accid, getarg(1);
+	set .@mobkills, getarg(2);
+	set .@points, getarg(3);
+	
+	query_sql "SELECT `char_id` FROM `player_rankings` WHERE `char_id` = '"+.@charid+"'", .@cid;
+
+	
+	if(.@cid){
+		query_sql "UPDATE `player_rankings` SET `account_id`='"+.@accid+"',`mob_normal_kills`= `mob_normal_kills` + "+.@mobkills+", `points`= `points` + "+.@points+" WHERE `char_id` = "+.@charid+"";
+	}else{
+		query_sql "INSERT INTO `player_rankings` ( `char_id`, `account_id`, `mob_normal_kills`, `points` ) VALUES ('"+.@charid+"', '"+.@accid+"', '"+.@mobkills+"', '"+.@points+"')";
+	}
+	
+	return;
+}
+
+
+function	script	mob_mvp_kills	{  
+	set .@charid, getarg(0);	
+	set .@accid, getarg(1);
+	set .@mvpkills, getarg(2);
+	set .@points, getarg(3);
+	
+	query_sql "SELECT `char_id` FROM `player_rankings` WHERE `char_id` = '"+.@charid+"'", .@cid;
+
+	
+	if(.@cid){
+		query_sql "UPDATE `player_rankings` SET `account_id`='"+.@accid+"',`mob_mvp_kills`= `mob_mvp_kills` + "+.@mvpkills+" ,`points`= `points` + "+.@points+" WHERE `char_id` = "+.@charid+"";
+	}else{
+		query_sql "INSERT INTO `player_rankings` ( `char_id`, `account_id`, `mob_mvp_kills`, `points` ) VALUES ('"+.@charid+"', '"+.@accid+"', '"+.@mvpkills+"', '"+.@points+"')";
+	}
+	
+	return;
+}
+
+
+function	script	pvp_kills	{  
+	set .@charid, getarg(0);	
+	set .@accid, getarg(1);
+	set .@pvpkills, getarg(2);
+	set .@points, getarg(3);
+	
+	query_sql "SELECT `char_id` FROM `player_rankings` WHERE `char_id` = '"+.@charid+"'", .@cid;
+
+	
+	if(.@cid){
+		query_sql "UPDATE `player_rankings` SET `account_id`='"+.@accid+"',`pvp_kills`= `pvp_kills` + "+.@pvpkills+" ,`points`= `points` + "+.@points+" WHERE `char_id` = "+.@charid+"";
+	}else{
+		query_sql "INSERT INTO `player_rankings` ( `char_id`, `account_id`, `pvp_kills`, `points` ) VALUES ('"+.@charid+"', '"+.@accid+"', '"+.@pvpkills+"', '"+.@points+"')";
+	}
+	
+	return;
+}
+
+
+function	script	online_time	{  
+	set .@charid, getarg(0);	
+	set .@accid, getarg(1);
+	set .@onlinetime, getarg(2);
+	set .@points, getarg(3);
+	
+	query_sql "SELECT `char_id` FROM `player_rankings` WHERE `char_id` = '"+.@charid+"'", .@cid;
+
+	
+	if(.@cid){
+		query_sql "UPDATE `player_rankings` SET `account_id`='"+.@accid+"',`online_time`= `online_time` + "+.@onlinetime+" ,`points`= `points` + "+.@points+" WHERE `char_id` = "+.@charid+"";
+	}else{
+		query_sql "INSERT INTO `player_rankings` ( `char_id`, `account_id`, `online_time`, `points` ) VALUES ('"+.@charid+"', '"+.@accid+"', '"+.@onlinetime+"', '"+.@points+"')";
+	}
+	
+	return;
+}
+
+function	script	quest	{  
+	set .@charid, getarg(0);	
+	set .@accid, getarg(1);
+	set .@completedquest, getarg(2);
+	set .@points, getarg(3);
+	
+	query_sql "SELECT `char_id` FROM `player_rankings` WHERE `char_id` = '"+.@charid+"'", .@cid;
+
+	
+	if(.@cid){
+		query_sql "UPDATE `player_rankings` SET `account_id`='"+.@accid+"',`quest`= `quest` + "+.@completedquest+" ,`points`= `points` + "+.@points+" WHERE `char_id` = "+.@charid+"";
+	}else{
+		query_sql "INSERT INTO `player_rankings` ( `char_id`, `account_id`, `quest`, `points` ) VALUES ('"+.@charid+"', '"+.@accid+"', '"+.@completedquest+"', '"+.@points+"')";
+	}
+	
+	return;
+}

@@ -1,0 +1,200 @@
+
+-	script	Dice Event	FAKE_NPC,{     
+OnInit:
+	bindatcmd "dice","Dice Event::OnDoStart",80,100;
+	bindatcmd "diceprize","Dice Event::OnDoPrize",0,100;
+	
+	set $dice,0;	
+end;
+
+OnDoStart:
+	setoption OPTION_HIDE, 1;
+	sc_start SC_Freeze,10000,0;
+	if (compare(.@atcmd_parameters$, "on")) {
+		if($dice){
+			dispbottom "Dice Event is still active.";
+			end;
+		}else if(gettime(4) == 1 || gettime(4) == 3 || gettime(4) == 5 || gettime(4) == 0){
+			dispbottom "Dice Event is not available for this day.";
+			end;
+		} 
+		callsub OnStart;
+	}
+end;
+
+OnDoPrize:
+	if (strcharinfo(3) == "quiz_01" && getmapusers("quiz_01") == 1 && $dice == 0) {
+			announce "Mr. Dice : Congratulations "+strcharinfo(PC_NAME)+"!.",0;
+			.@amount = rand(50,100);
+			callfunc "points","#LOYALPOINTS",.@amount,"Dice Event",getcharid(0),getcharid(3);           
+			warp "SavePoint",0,0;
+	}
+end;
+
+
+OnClock1400:
+OnClock1700:
+OnClock1900:
+OnClock2200:
+OnStart:
+			if(gettime(4) == 1 || gettime(4) == 3 || gettime(4) == 5 || gettime(4) == 0){end;}
+			set $dice,1;
+			announce "Mr. Dice: The Dice event will be starting shortly.",0;
+			sleep 10000;
+			announce "Mr. Dice: Those who want to play, please type @joinevent.",0;
+			sleep 10000;
+			announce "Mr. Dice: After 1 Minute the Portal will close.",0;
+			sleep 10000;
+			announce "Mr. Dice: Please type @joinevent now if you want to join.",0;
+			initnpctimer;
+			end;
+
+	OnTimer30000:
+			announce "Mr. Dice: Last 30 seconds.",0;
+			sleep 5000;
+			announce "Mr. Dice: If you want to join please type @joinevent.",0;
+			end;
+	
+	OnTimer50000:
+			announce "Mr. Dice: Last 10 seconds.",0;
+			end;
+	
+	OnTimer55000:
+			announce "Mr. Dice: 5.",0;
+			end;
+	
+	OnTimer56000:
+			announce "Mr. Dice: 4.",0;
+			end;
+	
+	OnTimer57000:
+			announce "Mr. Dice: 3.",0;
+			end;
+	
+	OnTimer58000:
+			announce "Mr. Dice: 2.",0;
+			end;
+	
+	OnTimer59000:
+			announce "Mr. Dice: 1.",0;
+			end;
+	
+	OnTimer60000:
+			announce "Mr. Dice: Time's up.",0;
+			end;
+	
+	OnTimer61000:
+			set $dice,0;
+			donpcevent "Dice Event::OnEnable";
+			stopnpctimer;
+			end;
+
+	
+OnEnable:
+			mapannounce "quiz_01","Mr. Dice: We are about to start the Dice event.",0;
+			sleep 10000;
+			mapannounce "quiz_01","Mr. Dice: But before we start the event here's how to play the game...",0;
+			sleep 10000;
+			mapannounce "quiz_01","Mr. Dice: I'm only gonna say this once so read carefully.",0;
+			sleep 10000;
+			mapannounce "quiz_01","Mr. Dice: I'm going to roll a number, 1 to 4. Then I'll do a count down from 5 to 0.",0;
+			sleep 10000;
+			mapannounce "quiz_01","Mr. Dice: All you have to do is go stand on the box of the number you want.",0;
+			sleep 10000;
+			mapannounce "quiz_01","Mr. Dice: For example, If I roll a number 4, All the players standing on numbers 1 to 3 will be warped back to town.",0;
+			sleep 10000;
+			mapannounce "quiz_01","Mr. Dice: We will do it until we only have 1 player left on the map.",0;
+			sleep 10000;
+			mapannounce "quiz_01","Mr. Dice: Oh yeah! Before I forget you MUST GO INSIDE THE BOX, because if you're caught standing on the stairs you'll be automatically disqualified.",0;
+			sleep 10000;
+			mapannounce "quiz_01","Mr. Dice: Simple huh?.. Let's play...",0;
+			sleep 10000;
+			goto L_Start;
+			end;
+			
+L_Champ:
+			mapannounce "quiz_01","Mr. Dice: Congratulations. now type ' @diceprize ' for your rewards.",0;
+end;	
+L_None:
+	announce "Mr. Dice: We don't have any winner on our Dice event. See you next time..",0;
+end;	
+L_Start:
+	if(getmapusers("quiz_01") == 0) goto L_None;
+	if(getmapusers("quiz_01") > 1) {
+	mapannounce "quiz_01","Mr. Dice: . . . . .",0;
+	set $@number, rand(1,4);
+	sleep 10000;
+	mapannounce "quiz_01","Mr. Dice: I have rolled. Please pick a number and go stand there.... GO!",0;
+	sleep 10000;
+	mapannounce "quiz_01","Mr. Dice: 5",0;
+	sleep 5000;
+	mapannounce "quiz_01","Mr. Dice: 4",0;
+	sleep 4000;
+	mapannounce "quiz_01","Mr. Dice: 3",0;
+	sleep 3000;
+	mapannounce "quiz_01","Mr. Dice: 2",0;
+	sleep 2000;
+	mapannounce "quiz_01","Mr. Dice: 1",0;
+	sleep 1000;
+	mapannounce "quiz_01","Mr. Dice: Time's up.",0;
+	donpcevent "DiceWarp#1::OnEnable";
+	sleep 1000;
+	mapannounce "quiz_01","Mr. Dice: The winning number is "+$@number+".",0;
+	if(($@number != 1) && ($@number != 2) && ($@number != 3)) goto L_Lose1;
+	if(($@number != 1) && ($@number != 2) && ($@number != 4)) goto L_Lose2;
+	if(($@number != 1) && ($@number != 3) && ($@number != 4)) goto L_Lose3;
+	if(($@number != 2) && ($@number != 3) && ($@number != 4)) goto L_Lose4;
+	end;
+	}
+
+L_Lose1:
+	areawarp "quiz_01",183,81,191,59,"payon",70,100;
+	areawarp "quiz_01",195,81,203,59,"payon",70,100;
+	areawarp "quiz_01",207,81,215,59,"payon",70,100;
+	if(getmapusers("quiz_01") == 1) {goto L_Champ;}else{goto L_Start;}
+	end;
+
+L_Lose2:
+	areawarp "quiz_01",183,81,191,59,"payon",70,100;
+	areawarp "quiz_01",195,81,203,59,"payon",70,100;
+	areawarp "quiz_01",219,81,227,59,"payon",70,100;
+	if(getmapusers("quiz_01") == 1) {goto L_Champ;}else{goto L_Start;}
+	end;
+	
+L_Lose3:
+	areawarp "quiz_01",183,81,191,59,"payon",70,100;
+	areawarp "quiz_01",207,81,215,59,"payon",70,100;
+	areawarp "quiz_01",219,81,227,59,"payon",70,100;
+	if(getmapusers("quiz_01") == 1) {goto L_Champ;}else{goto L_Start;}
+	end;
+	
+L_Lose4:
+	areawarp "quiz_01",195,81,203,59,"payon",70,100;
+	areawarp "quiz_01",207,81,215,59,"payon",70,100;
+	areawarp "quiz_01",219,81,227,59,"payon",70,100;
+	if(getmapusers("quiz_01") == 1) {goto L_Champ;}else{goto L_Start;}
+	end;
+
+	
+}
+
+
+	
+-	script	DiceWarp#1	FAKE_NPC,{
+
+OnEnable:
+	areawarp "quiz_01",182,94,228,88,"payon",70,100;
+	areawarp "quiz_01",185,87,188,82,"payon",70,100;
+	areawarp "quiz_01",197,87,200,82,"payon",70,100;
+	areawarp "quiz_01",209,87,212,82,"payon",70,100;
+	areawarp "quiz_01",221,87,224,82,"payon",70,100;
+	end;
+}
+
+// -- Mapflags
+quiz_01	mapflag	nowarp
+quiz_01	mapflag	nowarpto
+quiz_01	mapflag	noteleport
+quiz_01	mapflag	nosave
+quiz_01	mapflag	nomemo
+quiz_01	mapflag	nobranch

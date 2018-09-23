@@ -1,0 +1,24 @@
+payon,107,116,4	script	Points Checker	2_BULLETIN_BOARD,{
+	mes "[ Points Checker ]";
+	mes "* Rok Points: ^ff0000"+#ROKPOINTS+"^000000";
+	mes "* Loyal Points: ^ff0000"+#LOYALPOINTS+"^000000";
+	mes "* Glory Points: ^ff0000"+GLORYPOINTS+"^000000";
+	next;
+	switch(select("> Rok Points:> Loyal Points:> Glory Points")){
+	case 1:
+		mes "[ Points Checker ]";
+		mes "^0000ffRok Points^000000 - is used to purchase items in the ^ff0000Item Mall's^000000.";
+		close;
+	case 2:
+		mes "[ Points Checker ]";
+		mes "^0000ffLoyal Points^000000 - is used to purchase items in the Loyal Shop.";
+		close;
+	case 3:
+		mes "[ Points Checker ]";
+		mes "^0000ffGlory Points^000000 - is used to purchase items in the Glory Shop.";
+		close;
+	}
+	
+}
+
+prontera,99,77,4	duplicate(Points Checker)	Points Checker#pront	2_BULLETIN_BOARD

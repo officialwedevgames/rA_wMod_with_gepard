@@ -1,0 +1,50 @@
+//===== Special Modification =================================
+//===== By: ==================================================
+//= Ragnarok World
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena, rAthena, Hercules
+//===== Additional Comments: =================================
+//= 
+//============================================================
+
+//================== in_sphinx1 ===============//
+in_sphinx1,0,0,0,0	monster	Anacondaq	1030,35,0,0,0
+in_sphinx1,0,0,0,0	monster	Drainliar	1111,20,0,0,0
+in_sphinx1,0,0,0,0	monster	Requiem	1164,5,0,0,0
+in_sphinx1,0,0,0,0	monster	Zerom	1178,65,0,0,0
+
+
+//================== in_sphinx2 ===============//
+in_sphinx2,0,0,0,0	monster	Drainliar	1111,25,0,0,0
+in_sphinx2,0,0,0,0	monster	Matyr	1146,45,0,0,0
+in_sphinx2,0,0,0,0	monster	Requiem	1164,15,0,0,0
+in_sphinx2,0,0,0,0	monster	Zerom	1178,20,0,0,0
+in_sphinx2,0,0,0,0	monster	Whisper	1179,15,0,0,0
+
+
+//================== in_sphinx3 ===============//
+in_sphinx3,0,0,0,0	monster	Drainliar	1111,20,0,0,0
+in_sphinx3,0,0,0,0	monster	Marduk	1140,5,0,0,0
+in_sphinx3,0,0,0,0	monster	Matyr	1146,20,0,0,0
+in_sphinx3,0,0,0,0	monster	Requiem	1164,55,0,0,0
+in_sphinx3,0,0,0,0	monster	Whisper	1179,10,0,0,0
+
+
+
+//================== in_sphinx4 ===============//
+in_sphinx4,0,0,0,0	monster	Sidewinder	1037,15,0,0,0
+in_sphinx4,0,0,0,0	monster	Evil Druid	1117,1,600000,300000,1
+in_sphinx4,0,0,0,0	monster	Marduk	1140,25,0,0,0
+in_sphinx4,0,0,0,0	monster	Minorous	1149,45,0,0,0
+
+
+
+//================== in_sphinx5 ===============//
+in_sphinx5,0,0,0,0	monster	Sidewinder	1037,10,0,0,0
+in_sphinx5,0,0,0,0	monster	Marduk	1140,30,0,0,0
+in_sphinx5,0,0,0,0	monster	Matyr	1146,10,0,0,0
+in_sphinx5,0,0,0,0	monster	Requiem	1164,25,0,0,0
+in_sphinx5,0,0,0,0	monster	Whisper	1179,10,0,0,0
+in_sphinx5,0,0,0,0	monster	Wraith	1192,1,3600000,1800000,1

@@ -1,0 +1,211 @@
+// Item Trade Restrictions Database
+// Defines special trade rules for individual items.
+//
+// Structure of Database:
+// Item ID, TradeMask,Group Level Override
+//
+// Legend for 'TradeMask' field (bitmask):
+// 1   - item can't be dropped
+// 2   - item can't be traded (nor vended)
+// 4   - wedded partner can override restriction 2
+// 8   - item can't be sold to npcs
+// 16  - item can't be placed in the cart
+// 32  - item can't be placed in the storage
+// 64  - item can't be placed in the guild storage
+// 128 - item can't be attached to mail
+// 256 - item can't be auctioned
+//
+// Example:
+// 1161,67,50
+//	Balmung cannot be dropped, traded, or placed in Guild Storage (1+2+64).
+//	Only groups of group-level 50 and up can override this setting.
+
+31001,453,100	// Costume_1
+31002,453,100	// Costume_2
+31003,453,100	// Costume_3
+31004,453,100	// Costume_4
+31005,453,100	// Costume_5
+31006,453,100	// Costume_6
+31007,453,100	// Costume_7
+31008,453,100	// Costume_8
+31009,453,100	// Costume_9
+31010,453,100	// Costume_10
+31011,453,100	// Costume_11
+31012,453,100	// Costume_12
+31013,453,100	// Costume_13
+31014,453,100	// Costume_14
+31015,453,100	// Costume_15
+31016,453,100	// Costume_16
+31017,453,100	// Costume_17
+31018,453,100	// Costume_18
+31020,453,100	// Costume_20
+31021,453,100	// Costume_21
+31022,453,100	// Costume_22
+31023,453,100	// Costume_23
+31024,453,100	// Costume_24
+31025,453,100	// Costume_25
+31033,455,100	// Costume_33
+31038,479,100	// Costume_38
+31039,453,100	// Costume_39
+31040,453,100	// Costume_40
+31041,453,100	// Costume_41
+31042,453,100	// Costume_42
+31043,453,100	// Costume_43
+31044,453,100	// Costume_44
+31045,453,100	// Costume_45
+31046,453,100	// Costume_46
+31047,453,100	// Costume_47
+31057,73,100	// Costume_57
+31305,453,100	// Costume_305
+31358,453,100	// Costume_358
+31362,453,100	// Costume_362
+31377,453,100	// Costume_377
+31401,453,100	// Costume_401
+31402,453,100	// Costume_402
+31409,453,100	// Costume_409
+31411,453,100	// Costume_411
+31483,479,100	// Costume_483
+31654,453,100	// Costume_654
+31776,325,100	// Costume_776
+31863,511,100	// BG_Ranked_DH_Bronze
+31864,511,100	// BG_Ranked_DH_Silver
+31865,511,100	// BG_Ranked_DH_Gold
+31866,511,100	// BG_Normal_Bronze
+31867,511,100	// BG_Normal_Silver
+31868,511,100	// BG_Normal_Gold
+32001,511,99	// Beginner_Quest_Book
+32003,471,99	// Poring_Event_Token
+32004,471,99	// Dice_Event_Ticket
+32006,511,99	// Zeny_Envelope
+32012,479,99	// H_Pumpkin
+32013,493,100	// Fragment_Box
+32014,461,100	// Letter_Challenge_Box
+32022,511,50	// L_Costume_A
+32023,511,50	// L_Costume_B
+32024,511,50	// L_Costume_C
+32025,511,50	// L_Costume_S
+32026,511,99	// Guild_Package_Box
+32027,511,99	// BG_Ranked_Reward1
+32028,511,99	// BG_Ranked_Reward2
+32029,511,99	// BG_Ranked_Reward3
+32030,511,99	// BG_Normal_Reward1
+32031,511,99	// BG_Normal_Reward2
+32032,511,99	// BG_Normal_Reward3
+32061,511,99	// Infinity_Treasure_Chest
+32062,511,99	// L_Points1
+32063,511,99	// L_Points5
+32064,511,99	// L_Points10
+32065,511,99	// L_Points50
+32066,511,99	// L_Points100
+32067,511,99	// L_Points500
+32068,511,99	// L_Points1000
+32069,493,99	// C_EXP_Book1
+32070,493,99	// C_EXP_Book2
+32071,453,100	// Mining_Rare
+32072,453,100	// Mining_Epic
+32073,453,100	// Mining_Legendary
+32074,453,100	// Fishing_Rare
+32075,453,100	// Fishing_Epic
+32076,453,100	// Fishing_Legendary
+32077,453,100	// Gathering_Rare
+32078,453,100	// Gathering_Epic
+32079,453,100	// Gathering_Legendary
+32101,503,100	// Baseball_Cap_Black
+32102,503,100	// Baseball_Cap_Blue
+32103,503,100	// Baseball_Cap_Red
+32104,503,100	// Baseball_Cap_White
+32105,503,100	// Baseball_Cap_Yellow
+32106,479,99	// Dimensional_Key1
+32107,461,99	// Dimensional_Key2
+32109,479,99	// Beta_Sign
+32204,511,100	// Quest_Extract1
+32205,511,99	// Quest_Extract2
+32206,511,99	// Quest_Extract3
+32207,511,99	// Quest_SC_Extract
+32208,511,99	// Quest_Soccer_Ball
+32209,511,99	// Quest_Soccer_Shoes
+32210,511,99	// Quest_Golden_Banana
+32211,511,99	// Quest_Fish_Con
+32212,511,99	// Quest_Fish1
+32213,511,99	// Quest_Fish2
+32214,511,99	// Quest_Fish3
+32215,511,99	// Quest_Fish_Soup
+32216,511,99	// Quest_Pickaxe
+32217,511,99	// Quest_Mine1
+32218,511,99	// Quest_Mine2
+32219,511,99	// Quest_Mine3
+32220,511,99	// Quest_Shovel
+32221,511,99	// Quest_Fruit1
+32222,511,99	// Quest_Fruit2
+32223,511,99	// Quest_Fruit3
+32224,511,99	// Fishing_Tool1
+32225,511,99	// Fishing_Tool2
+32226,511,99	// Fishing_Tool3
+32227,511,99	// Fishing_Tool4
+32228,511,99	// Mining_Tool1
+32229,511,99	// Mining_Tool2
+32230,511,99	// Mining_Tool3
+32231,511,99	// Mining_Tool4
+32232,511,99	// Gathering_Tool1
+32233,511,99	// Gathering_Tool2
+32234,511,99	// Gathering_Tool3
+32235,511,99	// Gathering_Tool4
+32301,511,99	// Starter_Coat
+32302,511,99	// Starter_Guard
+32303,511,99	// Starter_Muffler
+32304,511,99	// Starter_Shoes
+32305,511,99	// Starter_Ring
+32306,511,99	// Starter_Earring
+32307,511,99	// Starter_Necklace
+32308,511,99	// Starter_Glove
+32309,511,99	// Starter_Brooch
+32310,511,100	// Costume_Wedding_Ring
+32371,471,100	// Classic_White_Potion
+32372,471,100	// Classic_Blue_Potion
+32373,511,100	// l_invitational_package
+32374,511,100	// m_invitational_package
+32375,479,100	// c_potion_bundle
+32376,511,100	// Classic_Kafra_Card
+32377,511,99	// reset_coupon
+32378,479,100	// c_potion_white_box
+32379,479,100	// c_potion_blue_box
+32401,479,99	// 3DG_Fragment
+32402,479,99	// FLC_Fragment
+32403,479,99	// Academy_Completion_Fragment
+32404,479,99	// Academy_Freshman_Fragment
+32405,479,99	// AFK_Fragment
+32406,479,99	// Afro_Wig_Fragment
+32407,479,99	// Alice_Doll_Fragment
+32408,479,99	// Amistr_Fragment
+32409,479,99	// Ancient_Elven_Ear_Fragment
+32410,479,99	// Angel_Blessing_Fragment
+32411,479,99	// Angel_Spirit_Fragment
+32412,479,99	// Angeling_Hairpin_Fragment
+32413,479,99	// Angeling_Fragment
+32414,479,99	// Anniversary_Fragment
+32501,471,100	// Mineral_1
+32502,471,100	// Mineral_2
+32541,479,100	// Fish_1
+32542,479,100	// Fish_2
+32543,479,100	// Fish_3
+32544,479,100	// Fish_4
+32591,479,100	// Letter_Challenge1
+32592,479,100	// Letter_Challenge2
+32593,479,100	// Letter_Challenge3
+32594,479,100	// Letter_Challenge4
+32595,479,100	// Letter_Challenge5
+32596,479,100	// Letter_Challenge6
+32597,479,100	// Letter_Challenge7
+32598,479,100	// Letter_Challenge8
+32599,479,100	// Letter_Challenge9
+32600,479,100	// Letter_Challenge10
+32601,471,100	// Costume_Fragment1
+32602,471,100	// Costume_Fragment2
+32603,471,100	// Costume_Fragment3
+32604,471,100	// Costume_Fragment4
+32605,471,100	// Costume_Fragment5
+32606,471,100	// Costume_Fragment6
+32607,471,100	// Costume_Fragment7
+32608,471,100	// Costume_Fragment8
+32609,471,100	// Costume_Fragment9
+32610,471,100	// Costume_Fragment10

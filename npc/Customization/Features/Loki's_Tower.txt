@@ -1,0 +1,567 @@
+
+function	script	DisablePortal	{
+	for( set .@i, 1; .@i < 11; set .@i, .@i + 1 ){
+		for( set .@k, 0; .@k < 11; set .@k, .@k + 1 ){
+			disablenpc "endless_"+.@i+"-"+.@k;
+		}
+	}
+	return;
+}
+
+function	script	EnablePortal	{
+	for( set .@i, 1; .@i < 11; set .@i, .@i + 1 ){
+		for( set .@k, 1; .@k < 11; set .@k, .@k + 1 ){
+			enablenpc "endless_"+.@i+"-"+.@k;
+		}
+	}
+	return;
+}
+
+
+-	script	Event_Tower	FAKE_NPC,{  
+
+OnInit:
+	for( set .@i, 1; .@i < 11; set .@i, .@i + 1 ){
+		for( set .@k, 1; .@k < 11; set .@k, .@k + 1 ){
+			disablenpc "endless_"+.@i+"-"+.@k;
+		}
+	}
+	bindatcmd "tower","Event_Tower::OnDoProcess",50,100;
+end;
+
+
+OnDoProcess:
+	if ( compare( .@atcmd_parameters$, "portal" ) ) { 
+		set .@portal$,.@atcmd_parameters$[1];
+		if(.@portal$ == "off"){
+			callfunc "DisablePortal";
+		}else if(.@portal$ == "on"){
+			callfunc "EnablePortal";
+		}else if(.@portal$ == "open"){
+			set .@valuea,.@atcmd_parameters$[2];
+			set .@valueb,.@atcmd_parameters$[3];
+			if(.@valuea < 1 || .@valuea > 10){dispbottom "Invalid Tower Stage Number < 1 ~ 10 >"; dispbottom "@tower portal open < Stage > < Level >"; end;}
+			else if(.@valueb < 1 || .@valueb > 10){dispbottom "Invalid Stage Level Number < 1 ~ 10 >"; dispbottom "@tower portal open < Stage > < Level >"; end;}
+			callfunc "DisablePortal";
+			enablenpc "endless_"+.@atcmd_parameters$[2]+"-"+.@atcmd_parameters$[3];
+		}else{
+			dispbottom "@tower portal <off/on> - Disable/Enable all portals.";
+			dispbottom "@tower portal open < Stage > < Level > - Open only single portal per stage. Value of Stage and Level should be <1~10>";
+		}
+	}else{
+		dispbottom "@tower <portal>";
+	}
+end;
+
+}
+
+evt_twr-1,13,393,0	script	endless_1-1	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-1",392,99;
+end;
+}
+evt_twr-1,355,137,0	script	endless_1-2	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-1",308,271;
+end;
+}
+evt_twr-1,271,309,0	script	endless_1-3	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-1",222,271;
+end;
+}
+evt_twr-1,185,309,0	script	endless_1-4	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-1",222,355;
+end;
+}
+evt_twr-1,185,393,0	script	endless_1-5	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-1",134,183;
+end;
+}
+evt_twr-1,97,221,0	script	endless_1-6	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-1",392,13;
+end;
+}
+evt_twr-1,355,51,0	script	endless_1-7	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-1",222,99;
+end;
+}
+evt_twr-1,185,137,0	script	endless_1-8	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-1",134,355;
+end;
+}
+evt_twr-1,97,393,0	script	endless_1-9	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-1",50,183;
+end;
+}
+evt_twr-1,13,221,0	script	endless_1-10	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-2",50,355;
+end;
+}
+
+
+evt_twr-2,13,393,0	script	endless_2-1	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-2",392,99;
+end;
+}
+evt_twr-2,355,137,0	script	endless_2-2	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-2",308,271;
+end;
+}
+evt_twr-2,271,309,0	script	endless_2-3	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-2",222,271;
+end;
+}
+evt_twr-2,185,309,0	script	endless_2-4	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-2",222,355;
+end;
+}
+evt_twr-2,185,393,0	script	endless_2-5	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-2",134,183;
+end;
+}
+evt_twr-2,97,221,0	script	endless_2-6	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-2",392,13;
+end;
+}
+evt_twr-2,355,51,0	script	endless_2-7	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-2",222,99;
+end;
+}
+evt_twr-2,185,137,0	script	endless_2-8	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-2",134,355;
+end;
+}
+evt_twr-2,97,393,0	script	endless_2-9	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-2",50,183;
+end;
+}
+evt_twr-2,13,221,0	script	endless_2-10	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-3",50,355;
+end;
+}
+
+evt_twr-3,13,393,0	script	endless_3-1	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-3",392,99;
+end;
+}
+evt_twr-3,355,137,0	script	endless_3-2	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-3",308,271;
+end;
+}
+evt_twr-3,271,309,0	script	endless_3-3	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-3",222,271;
+end;
+}
+evt_twr-3,185,309,0	script	endless_3-4	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-3",222,355;
+end;
+}
+evt_twr-3,185,393,0	script	endless_3-5	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-3",134,183;
+end;
+}
+evt_twr-3,97,221,0	script	endless_3-6	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-3",392,13;
+end;
+}
+evt_twr-3,355,51,0	script	endless_3-7	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-3",222,99;
+end;
+}
+evt_twr-3,185,137,0	script	endless_3-8	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-3",134,355;
+end;
+}
+evt_twr-3,97,393,0	script	endless_3-9	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-3",50,183;
+end;
+}
+evt_twr-3,13,221,0	script	endless_3-10	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-4",50,355;
+end;
+}
+
+evt_twr-4,13,393,0	script	endless_4-1	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-4",392,99;
+end;
+}
+evt_twr-4,355,137,0	script	endless_4-2	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-4",308,271;
+end;
+}
+evt_twr-4,271,309,0	script	endless_4-3	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-4",222,271;
+end;
+}
+evt_twr-4,185,309,0	script	endless_4-4	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-4",222,355;
+end;
+}
+evt_twr-4,185,393,0	script	endless_4-5	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-4",134,183;
+end;
+}
+evt_twr-4,97,221,0	script	endless_4-6	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-4",392,13;
+end;
+}
+evt_twr-4,355,51,0	script	endless_4-7	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-4",222,99;
+end;
+}
+evt_twr-4,185,137,0	script	endless_4-8	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-4",134,355;
+end;
+}
+evt_twr-4,97,393,0	script	endless_4-9	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-4",50,183;
+end;
+}
+evt_twr-4,13,221,0	script	endless_4-10	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-5",50,355;
+end;
+}
+
+evt_twr-5,13,393,0	script	endless_5-1	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-5",392,99;
+end;
+}
+evt_twr-5,355,137,0	script	endless_5-2	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-5",308,271;
+end;
+}
+evt_twr-5,271,309,0	script	endless_5-3	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-5",222,271;
+end;
+}
+evt_twr-5,185,309,0	script	endless_5-4	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-5",222,355;
+end;
+}
+evt_twr-5,185,393,0	script	endless_5-5	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-5",134,183;
+end;
+}
+evt_twr-5,97,221,0	script	endless_5-6	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-5",392,13;
+end;
+}
+evt_twr-5,355,51,0	script	endless_5-7	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-5",222,99;
+end;
+}
+evt_twr-5,185,137,0	script	endless_5-8	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-5",134,355;
+end;
+}
+evt_twr-5,97,393,0	script	endless_5-9	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-5",50,183;
+end;
+}
+evt_twr-5,13,221,0	script	endless_5-10	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-6",50,355;
+end;
+}
+
+evt_twr-6,13,393,0	script	endless_6-1	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-6",392,99;
+end;
+}
+evt_twr-6,355,137,0	script	endless_6-2	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-6",308,271;
+end;
+}
+evt_twr-6,271,309,0	script	endless_6-3	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-6",222,271;
+end;
+}
+evt_twr-6,185,309,0	script	endless_6-4	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-6",222,355;
+end;
+}
+evt_twr-6,185,393,0	script	endless_6-5	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-6",134,183;
+end;
+}
+evt_twr-6,97,221,0	script	endless_6-6	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-6",392,13;
+end;
+}
+evt_twr-6,355,51,0	script	endless_6-7	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-6",222,99;
+end;
+}
+evt_twr-6,185,137,0	script	endless_6-8	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-6",134,355;
+end;
+}
+evt_twr-6,97,393,0	script	endless_6-9	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-6",50,183;
+end;
+}
+evt_twr-6,13,221,0	script	endless_6-10	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-7",50,355;
+end;
+}
+
+evt_twr-7,13,393,0	script	endless_7-1	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-7",392,99;
+end;
+}
+evt_twr-7,355,137,0	script	endless_7-2	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-7",308,271;
+end;
+}
+evt_twr-7,271,309,0	script	endless_7-3	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-7",222,271;
+end;
+}
+evt_twr-7,185,309,0	script	endless_7-4	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-7",222,355;
+end;
+}
+evt_twr-7,185,393,0	script	endless_7-5	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-7",134,183;
+end;
+}
+evt_twr-7,97,221,0	script	endless_7-6	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-7",392,13;
+end;
+}
+evt_twr-7,355,51,0	script	endless_7-7	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-7",222,99;
+end;
+}
+evt_twr-7,185,137,0	script	endless_7-8	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-7",134,355;
+end;
+}
+evt_twr-7,97,393,0	script	endless_7-9	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-7",50,183;
+end;
+}
+evt_twr-7,13,221,0	script	endless_7-10	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-8",50,355;
+end;
+}
+
+evt_twr-8,13,393,0	script	endless_8-1	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-8",392,99;
+end;
+}
+evt_twr-8,355,137,0	script	endless_8-2	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-8",308,271;
+end;
+}
+evt_twr-8,271,309,0	script	endless_8-3	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-8",222,271;
+end;
+}
+evt_twr-8,185,309,0	script	endless_8-4	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-8",222,355;
+end;
+}
+evt_twr-8,185,393,0	script	endless_8-5	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-8",134,183;
+end;
+}
+evt_twr-8,97,221,0	script	endless_8-6	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-8",392,13;
+end;
+}
+evt_twr-8,355,51,0	script	endless_8-7	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-8",222,99;
+end;
+}
+evt_twr-8,185,137,0	script	endless_8-8	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-8",134,355;
+end;
+}
+evt_twr-8,97,393,0	script	endless_8-9	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-8",50,183;
+end;
+}
+evt_twr-8,13,221,0	script	endless_8-10	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-9",50,355;
+end;
+}
+
+evt_twr-9,13,393,0	script	endless_9-1	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-9",392,99;
+end;
+}
+evt_twr-9,355,137,0	script	endless_9-2	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-9",308,271;
+end;
+}
+evt_twr-9,271,309,0	script	endless_9-3	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-9",222,271;
+end;
+}
+evt_twr-9,185,309,0	script	endless_9-4	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-9",222,355;
+end;
+}
+evt_twr-9,185,393,0	script	endless_9-5	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-9",134,183;
+end;
+}
+evt_twr-9,97,221,0	script	endless_9-6	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-9",392,13;
+end;
+}
+evt_twr-9,355,51,0	script	endless_9-7	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-9",222,99;
+end;
+}
+evt_twr-9,185,137,0	script	endless_9-8	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-9",134,355;
+end;
+}
+evt_twr-9,97,393,0	script	endless_9-9	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-9",50,183;
+end;
+}
+evt_twr-9,13,221,0	script	endless_9-10	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-10",50,355;
+end;
+}
+
+evt_twr-10,13,393,0	script	endless_10-1	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-10",392,99;
+end;
+}
+evt_twr-10,355,137,0	script	endless_10-2	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-10",308,271;
+end;
+}
+evt_twr-10,271,309,0	script	endless_10-3	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-10",222,271;
+end;
+}
+evt_twr-10,185,309,0	script	endless_10-4	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-10",222,355;
+end;
+}
+evt_twr-10,185,393,0	script	endless_10-5	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-10",134,183;
+end;
+}
+evt_twr-10,97,221,0	script	endless_10-6	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-10",392,13;
+end;
+}
+evt_twr-10,355,51,0	script	endless_10-7	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-10",222,99;
+end;
+}
+evt_twr-10,185,137,0	script	endless_10-8	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-10",134,355;
+end;
+}
+evt_twr-10,97,393,0	script	endless_10-9	WARPNPC,3,3,{
+OnTouch:
+		warp "evt_twr-10",50,183;
+end;
+}
+evt_twr-10,13,221,0	script	endless_10-10	WARPNPC,3,3,{
+OnTouch:
+		warp "prontera",116,73;
+end;
+}

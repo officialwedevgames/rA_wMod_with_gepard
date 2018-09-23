@@ -1,0 +1,65 @@
+payon,75,123,5	script	Payon Maiden	1_F_ORIENT_01,{
+	mes "[ Payon Maiden ]";
+	mes "^008000Event^000000: ^ff0000Level Challenge^000000";
+    mes " ";
+	mes "^008000Mechanics^000000:";
+	mes "1. All registered players during the CBT period (April 6 to April 13) are qualified to join the event. ";
+	mes "2. Play Classic Server this coming CBT and level up your character to reach the milestones!";
+	mes "3. The higher the level that you reach, the more exclusive items you can get. ";
+	mes "4. Items will be automatically inserted to the player's account storage on OBT. ";
+	next;
+    for(set .@l,0; .@l < getarraysize(.level_rewards$); set .@l,.@l + 1){
+
+        explode(.@x$,.level_rewards$[.@l],"|");
+
+        set .@level, atoi(.@x$[0]);
+
+		if(BaseLevel >= .@level){
+            set .@status$, "[ ^ff0000Completed^000000 ] ";
+		}else{
+            set .@status$, "";
+        }
+        set .@LevelChallenge$,.@LevelChallenge$+""+.@status$+"[ ^0000ffLevel Challenge^000000 "+.@x$[0]+" ]:";
+    }
+    set .@selection,select(.@LevelChallenge$);
+
+    explode(.@LevelChallenge$,.level_rewards$[.@selection-1],"|");
+
+    mes "[ ^008000Level Challenge "+.@LevelChallenge$[0]+"^000000 ]";
+    mes "List of Rewards:";
+    for(set .@k,1; .@k < getarraysize(.@LevelChallenge$); set .@k,.@k + 2){
+        set .@it[.@k], atoi(.@LevelChallenge$[.@k]);
+
+        mes "* ^0000ff"+getitemname(atoi(.@LevelChallenge$[.@k]))+"^000000 ["+atoi(.@LevelChallenge$[.@k+1])+"]";
+    }
+    
+
+
+    close;
+
+    OnInit:
+        setarray .level_rewards$[0],
+                "45|569|300|12323|100|12324|20|7059|20",
+                "55|12215|10|12216|10|12208|1|12210|1|12209|1|11503|50|11504|50",
+                "65|7621|10|12208|2|12210|2|12209|2|11503|100|11504|100",
+                "75|12107|1|12208|3|12210|3|12209|3|11503|150|11504|150",
+                "85|12106|1|12208|4|12210|4|12209|4|11503|200|11504|200",
+                "95|32109|1|12208|5|12210|5|12209|5|11503|250|11504|250";
+    end;
+
+OnPCBaseLvUpEvent:
+    for(set .@l,0; .@l < getarraysize(.level_rewards$); set .@l,.@l + 1){
+        if(@charlevel == .@l){
+            explode(.@x$,.level_rewards$[@charlevel],"|");
+
+            if(BaseLevel >= atoi(.@x$[0])){
+                for(set .@k,1; .@k < getarraysize(.@x$); set .@k,.@k + 2){
+                    query_logsql("INSERT INTO `beta_storage` (`account_id`,`nameid`,`amount`,`identify`,`refine`,`bound`) VALUES ('"+getcharid(3)+"','"+atoi(.@x$[.@k])+"','"+atoi(.@x$[.@k+1])+"','1','0','1')");
+                }
+		        
+                set @charlevel, @charlevel + 1;
+            }
+        }
+    }
+end;
+}

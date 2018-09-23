@@ -1,0 +1,90 @@
+yuno,128,202,5	script	Adventurer#LC	1_M_KNIGHTMASTER,{
+	mes "[ Ellis ]";
+	mes "Did you hear about Letter Challenge? Most of the adventurer is looking for it. I can sign your letter if you have it. Do you have any?";
+	next;
+
+	for(set .@l,1; .@l < getarraysize(.Quest_List$); set .@l,.@l + 1){
+		explode(.@x$,.Quest_List$[.@l],"|");
+		
+		for(set .@k,0; .@k < getarraysize(.@x$); set .@k,.@k + 1){
+			set .@it[.@k], atoi(.@x$[.@k]);
+		}
+		set .@menu$,.@menu$ +"> "+getitemname(.@it[1])+":";
+	}
+	.@i = select( .@menu$ );
+	
+	explode(.@x$,.Quest_List$[.@i],"|");
+	
+	for(set .@k,0; .@k < getarraysize(.@x$); set .@k,.@k + 1){
+		set .@it[.@k], atoi(.@x$[.@k]);
+	}
+
+	if(checkquest(getd(".@it[2]"),PLAYTIME) == 2) {
+			mes "[ Ellis ]";
+			mes "We have to erase the current quest due to time limit. Make sure that you can complete the quest next time.";
+			erasequest getd(".@it[2]");
+			dispbottom "Your current quest has been removed due to time limit.",0xff0000;
+			close;
+	}else if(checkquest(getd(".@it[2]"),HUNTING) == 0 || checkquest(getd(".@it[2]"),HUNTING) == 1){
+		mes "[ Ellis ]";
+		mes "Your quest is still on going and we can't do anything about it.";
+		close;
+	}
+	
+	
+	if(select("Accept"+((checkquest(.@it[2],HUNTING) == 2)?":Claim Reward":"")+"") == 1){
+		if(checkquest(getd(".@it[2]"),HUNTING) == 2){
+			mes "[ Ellis ]";
+			mes "Please click the Claim Reward.";
+			close;
+		}else if(!countitem(.@it[1])){
+			mes "[ Ellis ]";
+			mes "^ff0000"+getitemname(.@it[1])+"^000000 is needed.";
+			close;
+		}else if(checkquest(getd(".@it[2]"),PLAYTIME) == 1) {
+			mes "[ Ellis ]";
+			mes "Current quest is still in progress. You only have 24 hours to complete the quest.";
+			close;
+		}else{
+			mes "[ Ellis ]";
+			mes "There you go.. you can now start your quest and complete within 24 hours.";
+			setquest(getd(".@it[2]"));
+			delitem getd(".@it[1]"),1;
+			close;
+		}
+	}else{
+		if(checkquest(getd(".@it[2]"),PLAYTIME) == 2) {
+			mes "[ Ellis ]";
+			mes "We have to erase the current quest due to time limit. Make sure that you can complete the quest next time.";
+			erasequest getd(".@it[2]");
+			dispbottom "Your current quest has been removed due to time limit.",0xff0000;
+			close;
+		}else if(checkquest(getd(".@it[2]"),HUNTING) == 2){
+			goto OnQuestReward;
+		}
+	}
+end;
+
+OnQuestReward:
+	mes "[ Ellis ]";
+	mes "Congratulations! You completed the ^ff0000"+getitemname(.@it[1])+"^000000 quest. Here is your reward.";
+	getitem .@it[0],1;
+	erasequest getd(".@it[2]");
+	dispbottom "You already completed the quest.",0xff0000;
+	close;
+end;
+OnInit:
+//-- <Reward Item>, <Required Item>, <Quest ID>
+setarray .Quest_List$[1],
+			"32601|32591|8651",
+			"32602|32592|8652",
+			"32603|32593|8653",
+			"32604|32594|8654",
+			"32605|32595|8655",
+			"32606|32596|8656",
+			"32607|32597|8657",
+			"32608|32598|8658",
+			"32609|32599|8659",
+			"32610|32600|8660";
+end;
+}

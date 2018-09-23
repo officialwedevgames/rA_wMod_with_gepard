@@ -1,0 +1,67 @@
+function	script	f_arena_start	{
+		sleep 5000;
+		mapannounce  getarg(0), "Match will start in 5...",0;
+		sleep 1000;
+		mapannounce  getarg(0), "4",0;
+		sleep 1000;
+		mapannounce  getarg(0), "3",0;
+		sleep 1000;
+		mapannounce  getarg(0), "2",0;
+		sleep 1000;
+		mapannounce  getarg(0), "1",0;
+		sleep 1000;
+		mapannounce  getarg(0), "GO!",0;
+		removemapflag getarg(0),mf_noskill;
+	return;
+}
+
+
+function	script	f_arena_start	{
+		//- Attach Player 1
+		attachrid(getarg(2));
+		set @oldhp, HP;
+		set @oldsp, SP;
+		set @hp, 200000 - MaxHp;
+		bonus_script "{ bonus bHitRate, 100; bonus bMaxHP, @hp;  }",120;
+		percentheal 100,100;
+		detachrid;
+		
+		//- Attach Player 2
+		attachrid(getarg(3));
+		set @oldhp, HP;
+		set @oldsp, SP;
+		set @hp, 200000 - MaxHp;
+		bonus_script "{ bonus bHitRate, 100; bonus bMaxHP, @hp; }",120;
+		percentheal 100,100;
+		detachrid;
+	
+		sleep 5000;
+		mapannounce  getarg(1), "Match will start in 5...",0;
+		sleep 1000;
+		mapannounce  getarg(1), "4",0;
+		sleep 1000;
+		mapannounce  getarg(1), "3",0;
+		sleep 1000;
+		mapannounce  getarg(1), "2",0;
+		sleep 1000;
+		mapannounce  getarg(1), "1",0;
+		sleep 1000;
+		mapannounce  getarg(1), "GO!",0;
+		removemapflag getarg(1),mf_noskill;
+		
+		//- Attach Player 1
+		attachrid(getarg(2));
+		setoption OPTION_HIDE, 0;
+		sc_end SC_Freeze;
+		detachrid;
+		
+		//- Attach Player 2
+		attachrid(getarg(3));
+		setoption OPTION_HIDE, 0;
+		sc_end SC_Freeze;
+		detachrid;
+
+		initnpctimer ""+getarg(0);
+		pvpon getarg(1);
+	return;
+}

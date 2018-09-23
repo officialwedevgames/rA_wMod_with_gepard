@@ -1,0 +1,138 @@
+//===== Special Modification =================================
+//===== By: ==================================================
+//= Ragnarok World
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena, rAthena, Hercules
+//===== Additional Comments: =================================
+//= 
+//============================================================
+
+//================== alde_dun01 ===============//
+alde_dun01,0,0,0,0	monster	Drainliar	1111,25,0,0,0
+alde_dun01,0,0,0,0	monster	Stem Worm	1215,60,0,0,0
+
+
+//================== alde_dun02 ===============//
+alde_dun02,0,0,0,0	monster	Drainliar	1111,40,0,0,0
+alde_dun02,0,0,0,0	monster	Orc Archer	1189,25,0,0,0
+alde_dun02,0,0,0,0	monster	High Orc	1213,40,0,0,0
+
+
+//================== alde_dun03 ===============//
+alde_dun03,0,0,0,0	monster	Cramp	1209,45,0,0,0
+alde_dun03,0,0,0,0	monster	Brilight	1211,45,0,0,0
+alde_dun03,102,40,10,10	monster	Penomena	1216,8,300000,150000,0
+alde_dun03,120,157,8,8	monster	Penomena	1216,5,300000,150000,0
+alde_dun03,126,53,20,20	monster	Penomena	1216,10,300000,150000,0
+alde_dun03,127,204,9,9	monster	Penomena	1216,7,300000,150000,0
+alde_dun03,130,220,40,40	monster	Penomena	1216,25,300000,150000,0
+alde_dun03,135,140,8,8	monster	Penomena	1216,5,300000,150000,0
+alde_dun03,142,157,8,8	monster	Penomena	1216,5,300000,150000,0
+alde_dun03,147,30,8,8	monster	Penomena	1216,5,300000,150000,0
+alde_dun03,155,201,25,25	monster	Penomena	1216,13,300000,150000,0
+alde_dun03,160,181,8,8	monster	Penomena	1216,5,300000,150000,0
+alde_dun03,163,56,10,10	monster	Penomena	1216,7,300000,150000,0
+alde_dun03,168,42,6,6	monster	Penomena	1216,4,300000,150000,0
+alde_dun03,179,166,6,6	monster	Penomena	1216,4,300000,150000,0
+alde_dun03,184,61,30,30	monster	Penomena	1216,15,300000,150000,0
+alde_dun03,194,37,8,8	monster	Penomena	1216,5,300000,150000,0
+alde_dun03,276,48,0,0	monster	Alarm	1193,1,360000,180000,0
+alde_dun03,278,184,0,0	monster	Alarm	1193,1,360000,180000,0
+alde_dun03,77,28,5,5	monster	Cramp	1209,1,40000,20000,0
+alde_dun03,77,28,5,5	monster	Brilight	1211,2,70000,30000,0
+
+
+//================== alde_dun04 ===============//
+alde_dun04,0,0,0,0	monster	Ambernite	1094,15,0,0,0
+alde_dun04,0,0,0,0	monster	Anolian	1206,70,0,0,0
+
+
+
+//================== c_tower1 ===============//
+c_tower1,0,0,0,0	monster	Clock Tower Manager	1270,1,1800000,0,0
+c_tower1,205,210,85,90	monster	Bathory	1102,10,0,0,0
+c_tower1,250,345,110,35	monster	Skeleton Archer	1016,8,0,0,0
+c_tower1,250,345,110,35	monster	Baphomet Jr.	1101,3,0,0,0
+c_tower1,250,345,110,35	monster	Punk	1199,15,0,0,0
+c_tower1,250,60,140,50	monster	Skeleton Archer	1016,1,0,0,0
+c_tower1,250,60,140,50	monster	Baphomet Jr.	1101,20,0,0,0
+c_tower1,250,60,140,50	monster	Punk	1199,15,0,0,0
+c_tower1,60,197,40,177	monster	Skeleton Archer	1016,1,0,0,0
+c_tower1,60,197,40,177	monster	Baphomet Jr.	1101,3,0,0,0
+c_tower1,60,197,40,177	monster	Punk	1199,35,0,0,0
+
+//================== c_tower2 ===============//
+c_tower2,0,0,0,0	monster	Skeleton Archer	1016,10,0,0,0
+c_tower2,0,0,0,0	monster	Skeleton Archer	1016,20,0,0,0
+c_tower2,0,0,0,0	monster	Punk	1199,45,0,0,0
+c_tower2,0,0,0,0	monster	Clock	1269,20,0,0,0
+c_tower2,0,0,0,0	monster	Clock Tower Manager	1270,1,1800000,0,0
+c_tower2,100,233,0,0	monster	Clock	1269,1,355000,150000,1
+c_tower2,100,233,0,0	monster	Clock	1269,1,420000,150000,1
+c_tower2,100,242,0,0	monster	Clock	1269,1,395000,150000,1
+c_tower2,101,242,0,0	monster	Clock	1269,1,325000,150000,1
+c_tower2,102,233,0,0	monster	Clock	1269,1,450000,150000,1
+c_tower2,103,234,0,0	monster	Clock	1269,1,445000,150000,1
+c_tower2,103,238,0,0	monster	Skeleton Archer	1016,1,335000,150000,1
+c_tower2,103,240,0,0	monster	Clock	1269,1,430000,150000,1
+c_tower2,104,236,0,0	monster	Skeleton Archer	1016,1,340000,150000,1
+c_tower2,157,30,0,0	monster	Deviruchi	1109,1,380000,180000,1
+c_tower2,157,41,0,0	monster	Deviruchi	1109,1,330000,180000,1
+c_tower2,168,27,0,0	monster	Deviruchi	1109,1,360000,180000,1
+c_tower2,168,36,9,9	monster	Deviruchi	1109,1,330000,180000,1
+c_tower2,178,30,0,0	monster	Deviruchi	1109,1,340000,180000,1
+c_tower2,178,42,0,0	monster	Deviruchi	1109,1,330000,180000,1
+c_tower2,185,110,0,0	monster	Clock	1269,1,320000,180000,1
+c_tower2,185,154,0,0	monster	Clock	1269,1,340000,180000,1
+c_tower2,187,194,0,0	monster	Clock	1269,1,360000,180000,1
+c_tower2,22,92,0,0	monster	Alarm	1193,1,360000,180000,1
+c_tower2,235,80,0,0	monster	Skeleton Archer	1016,1,300000,150000,1
+c_tower2,239,94,0,0	monster	Skeleton Archer	1016,1,300000,150000,1
+c_tower2,243,80,0,0	monster	Skeleton Archer	1016,1,300000,150000,1
+c_tower2,247,93,0,0	monster	Skeleton Archer	1016,1,300000,150000,1
+c_tower2,251,80,0,0	monster	Skeleton Archer	1016,1,300000,150000,1
+c_tower2,39,236,5,5	monster	Skeleton Archer	1016,2,300000,150000,1
+c_tower2,40,269,12,12	monster	Skeleton Archer	1016,2,300000,150000,1
+c_tower2,52,249,15,15	monster	Skeleton Archer	1016,2,300000,150000,1
+c_tower2,60,263,15,15	monster	Skeleton Archer	1016,2,300000,150000,1
+c_tower2,95,234,0,0	monster	Skeleton Archer	1016,1,370000,150000,1
+c_tower2,95,237,0,0	monster	Clock	1269,1,475000,150000,1
+c_tower2,95,238,0,0	monster	Clock	1269,1,480000,150000,1
+c_tower2,95,241,0,0	monster	Clock	1269,1,385000,150000,1
+c_tower2,96,233,0,0	monster	Skeleton Archer	1016,1,365000,150000,1
+c_tower2,96,242,0,0	monster	Clock	1269,1,490000,150000,1
+c_tower2,99,233,0,0	monster	Skeleton Archer	1016,1,360000,150000,1
+c_tower2,99,242,0,0	monster	Clock	1269,1,400000,150000,1
+
+
+//================== c_tower3 ===============//
+c_tower3,0,0,0,0	monster	Skeleton Archer	1016,40,0,0,0
+c_tower3,0,0,0,0	monster	Alarm	1193,50,0,0,0
+c_tower3,0,0,0,0	monster	Clock Tower Manager	1270,1,1800000,0,0
+
+
+//================== c_tower4 ===============//
+c_tower4,0,0,0,0	monster	Skeleton Archer	1016,30,0,0,0
+c_tower4,0,0,0,0	monster	Alarm	1193,70,0,0,0
+c_tower4,0,0,0,0	monster	Clock Tower Manager	1270,1,3600000,0,0
+c_tower4,0,0,0,0	monster	Clock Tower Manager	1270,2,1800000,0,0
+c_tower4,42,41,0,0	monster	Executioner	1205,1,7200000,3600000,1
+c_tower4,68,80,0,0	monster	Knight of Abyss	1219,1,3600000,1800000,1
+c_tower4,80,179,0,0	monster	Rideword	1195,1,360000,150000,1
+c_tower4,80,180,0,0	monster	Rideword	1195,1,350000,150000,1
+c_tower4,80,181,0,0	monster	Rideword	1195,1,290000,150000,1
+c_tower4,80,182,0,0	monster	Rideword	1195,1,300000,150000,1
+c_tower4,80,183,0,0	monster	Rideword	1195,1,340000,150000,1
+c_tower4,86,180,0,0	monster	Rideword	1195,1,380000,150000,1
+c_tower4,87,180,0,0	monster	Rideword	1195,1,400000,150000,1
+c_tower4,91,180,0,0	monster	Rideword	1195,1,330000,150000,1
+c_tower4,92,180,0,0	monster	Rideword	1195,1,280000,150000,1
+c_tower4,93,180,0,0	monster	Rideword	1195,1,260000,150000,1
+c_tower4,94,180,0,0	monster	Rideword	1195,1,320000,150000,1
+c_tower4,95,180,0,0	monster	Rideword	1195,1,410000,150000,1
+c_tower4,96,180,0,0	monster	Rideword	1195,1,350000,150000,1
+c_tower4,97,180,0,0	monster	Rideword	1195,1,240000,150000,1
+c_tower4,97,194,0,0	monster	Horong	1129,1,300000,120000,1
+c_tower4,98,180,0,0	monster	Rideword	1195,1,300000,150000,1

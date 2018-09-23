@@ -1,0 +1,65 @@
+prontera,123,84,3	script	In-Game Support::IGS	4_F_OPERATION,{
+	mes "[ In-Game Support ]";
+	if(getgroupid() >= .MinGMID){
+		mes "You are not allowed to use this service.";
+		close;
+	}
+		if(support > gettimetick(2)) {
+			set .@k,support - (gettimetick(2)-(.seconds));
+			set .@m,.@k % .seconds / 60;
+			set .@s,.@k % 60;
+			set .@m$, .@m+" minute"+((.@m <= 1)?"":"s");
+			set .@s$, .@s+" second"+((.@s <= 1)?"":"s");
+			set .@time$,""+.@m$+" "+.@s$+"";
+			mes "I'm sorry but you have to wait";
+			mes "^ff0000"+.@time$+"^000000 and I'm still busy right now.";
+			close;
+		}
+	mes "I'm here to forward your concerns to all online gm's.";
+	mes " ";
+	mes "GM Status: "+((getarraysize(.GM_Name$) == 0)?"^ff0000NOT AVAILABLE^000000":"^009500AVAILABLE^000000")+"";
+	next;
+	switch(select("Bug Report:Technical Assistance:TOP-UP Follow-UP:How to TOP-UP?")){
+		case 1:
+			set .@string$,"Hi.. I am "+strcharinfo(0)+" and I would like to report a bug issue.";
+			break;
+		case 2:
+			set .@string$,"Hi.. I am "+strcharinfo(0)+" and I need your techinical assistance.";
+			break;
+		case 3:
+			set .@string$,"Hi.. I am "+strcharinfo(0)+" and I would like to follow up my TOP-UP.";
+			break;
+		case 4:
+			mes "[ In-Game Support ]";
+			mes "Visit our website ^0000ffhttp://wedevgames.net^000000 for more details.";
+			close;
+	
+	}
+	
+	mes "[ In-Game Support ]";
+	mes "Thank you for choosing WeDevGames. I hope you will try our service again.";
+	atcommand "@request "+.@string$;
+	set support,gettimetick(2)+(.seconds);	// Cooldown
+	close;
+	
+OnPCLoginEvent:
+	if(getgroupid() < .MinGMID) end;
+	.GM_Name$[getarraysize(.GM_Name$)] = strcharinfo(0);
+end;
+
+OnPCLogoutEvent:
+		if(getgroupid() < .MinGMID) end;
+		for(.@i = 0; .@i < getarraysize(.GM_Name$); .@i++) {
+			if(strcharinfo(0) != .GM_Name$[.@i]) continue;
+			deletearray .GM_Name$[.@i],1;
+			end;
+		}
+end;
+		
+OnInit:
+	set .seconds, 300;
+	set .MinGMID, 10;
+end;
+}
+
+payon,72,117,5	duplicate(IGS)	In-Game Support#pay	4_F_OPERATION

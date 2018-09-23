@@ -1,0 +1,50 @@
+//- Exp Function
+function	script	Quest_Exp	{
+			
+	set .@base, (($Multiplier * BaseLevel) * 100) * (getbattleflag("base_exp_rate")/100);
+	set .@job, (($Multiplier * BaseLevel) * 50) * (getbattleflag("job_exp_rate")/100);
+	
+	getexp(.@base , .@job);
+	
+	guildgetexp 499995 * $Multiplier;
+	
+	//-- Effects
+	specialeffect2(EF_MAGNUMBREAK);
+	specialeffect2(EF_STEAL);
+	specialeffect2(EF_ANGEL);
+	
+	return;
+}
+
+
+//- Quest_Captain ~ Fish Container
+function	script	Quest_Fish	{
+	setarray .@reward$[1],
+					"0|32212|3",
+					"0|32213|3",
+					"0|32214|3",
+					"0|1023|3",
+					"0|963|3",
+					"0|951|3",
+					"0|956|3",
+					"0|501|3",
+					"0|502|3",
+					"0|503|3",
+					"0|504|3";
+
+	set .@num,rand(1,getarraysize(.@reward$)-1);
+	
+	explode(.@rt$,.@reward$[.@num],"|");
+	for(set .@l,0; .@l < getarraysize(.@rt$); set .@l,.@l + 1){
+		set .@it[.@l], atoi(.@rt$[.@l]);
+	}
+	if(.@it[0]){
+		set Zeny,Zeny + .@it[0];
+		dispbottom "Gained "+.@it[0]+" Zeny. Total "+Zeny+" Zeny.";
+	}
+	if(.@it[1]){
+		for(set .@x,1; .@x < getarraysize(.@it); set .@x,.@x + 2){
+			getitem .@it[.@x],rand(1,.@it[.@x+1]);
+		}
+	}	
+}

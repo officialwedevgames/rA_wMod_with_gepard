@@ -1,0 +1,40 @@
+-	script	Auto_Buffs	FAKE_NPC,{
+
+OnInit:
+	.lvreq = 50;
+	.viplvreq = 80;
+	bindatcmd "ab", "Hourly Rewards::OnAtcommand", 0, 100;
+end;
+
+OnAtcommand:
+	if ( compare( .@atcmd_parameters$, "on" ) && BaseLevel <= .lvreq ) {
+		set #auto_buffs,1;
+		dispbottom "Auto Buffs is now enabled.";
+	}
+	else if ( compare( .@atcmd_parameters$, "off" ) && BaseLevel <= .lvreq ) { 
+		set #auto_buffs,0;
+		dispbottom "Auto Buffs is now disabled.";
+	}
+	else {
+		dispbottom "Your level is to high for this command.";
+	}
+end;
+
+OnPCLoginEvent:
+	while(BaseLevel <= .lvreq || vip_status(VIP_STATUS_ACTIVE) && BaseLevel <= .viplvreq){
+		if(!#auto_buffs){
+			if(auto_buffs >= 900){
+				specialeffect2 37; sc_start SC_INCREASEAGI,300000,10;
+				specialeffect2 42; sc_start SC_BLESSING,300000,10;
+				auto_buffs = 0;
+			}else if(!auto_buffs){
+				sleep2 5000;
+				specialeffect2 37; sc_start SC_INCREASEAGI,300000,10;
+				specialeffect2 42; sc_start SC_BLESSING,300000,10;
+			}	
+			set auto_buffs,auto_buffs + 1;
+		}
+		sleep2 1000;
+	}
+end;
+}
