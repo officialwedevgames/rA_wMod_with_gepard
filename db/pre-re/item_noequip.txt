@@ -18,8 +18,7 @@
 // 512  - restricted in zone 5
 // 1024 - restricted in zone 6
 // 2048 - restricted in zone 7
-// 8192 - restricted in zone 8
-// 8192 - restricted in zone 9
+// 4096 - restricted in zone 8
 //
 // Passing negative value as flag will unset the flag instead.
 //

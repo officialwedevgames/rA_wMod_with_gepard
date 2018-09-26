@@ -16,7 +16,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ###########################################################################
-# Custom Achievement Database
+# Pre-Renewal Achievement Database
 ###########################################################################
 #
 # Achievement Settings
@@ -990,119 +990,552 @@ Achievements:
     Target:
       - Count: 100000
     Score: 10
+  - ID: 127005
+    Group: "AG_CHATTING"
+    Name: "Yuno Contribution"
+    Map: "yuno"
+    Target:
+      - Count: 100000
+    Score: 10
+  - ID: 127006
+    Group: "AG_CHATTING"
+    Name: "Lighthalzen Contribution"
+    Map: "lighthalzen"
+    Target:
+      - Count: 100000
+    Score: 10
+  - ID: 127007
+    Group: "AG_CHATTING"
+    Name: "Einbroch Contribution"
+    Map: "einbroch"
+    Target:
+      - Count: 100000
+    Score: 10
+  - ID: 127008
+    Group: "AG_CHATTING"
+    Name: "Rachel Contribution"
+    Map: "rachel"
+    Target:
+      - Count: 100000
+    Score: 10
+  - ID: 127009
+    Group: "AG_CHATTING"
+    Name: "Veins Contribution"
+    Map: "veins"
+    Target:
+      - Count: 100000
+    Score: 10
+  - ID: 128000
+    Group: "AG_BATTLE"
+    Name: "Uninvited Guest"
+    #Target:
+    #  - MobID: 2996
+    #    Count: 1
+    Score: 10
+  - ID: 128001
+    Group: "AG_BATTLE"
+    Name: "Strange Guest"
+    #Target:
+    #  - MobID: 2996
+    #    Count: 10
+    Score: 10
+  - ID: 128002
+    Group: "AG_BATTLE"
+    Name: "Get along with map..."
+    #Target:
+    #  - MobID: 2996
+    #    Count: 25
+    Score: 20
+  - ID: 128003
+    Group: "AG_BATTLE"
+    Name: "Welcomed Guest"
+    #Target:
+    #  - MobID: 2996
+    #    Count: 50
+    Score: 30
+  - ID: 128004
+    Group: "AG_BATTLE"
+    Name: "Kimmy's best friend"
+    #Target:
+    #  - MobID: 2996
+    #    Count: 100
+    Score: 50
+  - ID: 128005
+    Group: "AG_BATTLE"
+    Name: "Novice Angler"
+    #Target:
+    #  - MobID: 2322
+    #    Count: 1
+    Score: 10
+  - ID: 128006
+    Group: "AG_BATTLE"
+    Name: "Juicy Hunter"
+    #Target:
+    #  - MobID: 2322
+    #    Count: 10
+    Score: 20
+  - ID: 128007
+    Group: "AG_BATTLE"
+    Name: "Rhythm Master"
+    #Target:
+    #  - MobID: 2322
+    #    Count: 50
+    Score: 50
+  - ID: 128008
+    Group: "AG_BATTLE"
+    Name: "Bold Adventurer"
+    Target:
+      - MobID: 1929
+        Count: 1
+    Score: 10
+  - ID: 128009
+    Group: "AG_BATTLE"
+    Name: "Baphomet Hatred"
+    Target:
+      - MobID: 1929
+        Count: 10
+    Score: 20
+  - ID: 128010
+    Group: "AG_BATTLE"
+    Name: "Goat's Nemesis"
+    Target:
+      - MobID: 1929
+        Count: 50
+    Score: 50
+  - ID: 128011
+    Group: "AG_BATTLE"
+    Name: "Ordinary Tourist"
+    #Target:
+    #  - MobID: 3029
+    #    Count: 1
+    Score: 10
+  - ID: 128012
+    Group: "AG_BATTLE"
+    Name: "Backcountry Expert"
+    #Target:
+    #  - MobID: 3029
+    #    Count: 10
+    Score: 20
+  - ID: 128013
+    Group: "AG_BATTLE"
+    Name: "Able to eat more like this"
+    #Target:
+    #  - MobID: 3029
+    #    Count: 50
+    Score: 50
+  - ID: 128014
+    Group: "AG_BATTLE"
+    Name: "Digest hard meat"
+    #Target:
+    #  - MobID: 2319
+    #    Count: 1
+    Score: 10
+  - ID: 128015
+    Group: "AG_BATTLE"
+    Name: "Master of Escape"
+    #Target:
+    #  - MobID: 2319
+    #    Count: 10
+    Score: 20
+  - ID: 128016
+    Group: "AG_BATTLE"
+    Name: "Immortal Hunter"
+    #Target:
+    #  - MobID: 2319
+    #    Count: 50
+    Score: 50
+  - ID: 128017
+    Group: "AG_BATTLE"
+    Name: "Stood up and overcame despair"
+    #Target:
+    #  - MobID: 3097
+    #    Count: 1
+    Score: 10
+  - ID: 128018
+    Group: "AG_BATTLE"
+    Name: "Ember of Hope"
+    #Target:
+    #  - MobID: 3097
+    #    Count: 10
+    Score: 10
+  - ID: 128019
+    Group: "AG_BATTLE"
+    Name: "Pouring Aurora"
+    #Target:
+    #  - MobID: 3097
+    #    Count: 25
+    Score: 20
+  - ID: 128020
+    Group: "AG_BATTLE"
+    Name: "Who is desperate? I am hopeless!"
+    #Target:
+    #  - MobID: 3097
+    #    Count: 50
+    Score: 30
+  - ID: 128021
+    Group: "AG_BATTLE"
+    Name: "I know god will save the world"
+    #Target:
+    #  - MobID: 3097
+    #    Count: 100
+    Score: 50
+  - ID: 128022
+    Group: "AG_BATTLE"
+    Name: "There was mercy in Morocc army"
+    #Target:
+    #  - MobID: 3000
+    #  Count: 1
+    Score: 10
+  - ID: 128023
+    Group: "AG_BATTLE"
+    Name: "There was fear in Morocc army"
+    #Target:
+    #  - MobID: 3000
+    #    Count: 10
+    Score: 20
+  - ID: 128024
+    Group: "AG_BATTLE"
+    Name: "Guard of weak army"
+    #Target:
+    #  - MobID: 3000
+    #    Count: 50
+    Score: 50
+  - ID: 128025
+    Group: "AG_BATTLE"
+    Name: "Audience with the queen"
+    #Target:
+    #  - MobID: 2529
+    #    Count: 1
+    Score: 10
+  - ID: 128026
+    Group: "AG_BATTLE"
+    Name: "Warm earth"
+    #Target:
+    #  - MobID: 2533
+    #    Count: 1
+    Score: 10
+  - ID: 128027
+    Group: "AG_BATTLE"
+    Name: "Water is very good exactly"
+    #Target:
+    #  - MobID: 2534
+    #    Count: 1
+    Score: 10
+  - ID: 128028
+    Group: "AG_BATTLE"
+    Name: "Pleasant breeze"
+    #Target:
+    #  - MobID: 2535
+    #    Count: 1
+    Score: 10
+  - ID: 128029
+    Group: "AG_BATTLE"
+    Name: "Visitor of old castle"
+    #Target:
+    #  - MobID: 2476
+    #    Count: 1
+    Score: 10
+  - ID: 128030
+    Group: "AG_BATTLE"
+    Name: "Lord of old castle"
+    #Target:
+    #  - MobID: 2476
+    #    Count: 10
+    Score: 20
+  - ID: 128031
+    Group: "AG_BATTLE"
+    Name: "Conqueror of old castle"
+    #Target:
+    #  - MobID: 2476
+    #    Count: 50
+    Score: 50
+  - ID: 128032
+    Group: "AG_BATTLE"
+    Name: "Haggard sucker"
+    #Target:
+    #  - MobID: 3150
+    #    Count: 1
+    Score: 10
+  - ID: 128033
+    Group: "AG_BATTLE"
+    Name: "Hope of the Knight"
+    #Target:
+    #  - MobID: 3150
+    #    Count: 10
+    Score: 20
+  - ID: 128034
+    Group: "AG_BATTLE"
+    Name: "Guardian of the Dawn"
+    #Target:
+    #  - MobID: 3150
+    #    Count: 50
+    Score: 50
+  - ID: 128035
+    Group: "AG_BATTLE"
+    Name: "Time Traveler"
+    #Target:
+    #  - MobID: 3190
+    #    Count: 1
+    Score: 10
+  - ID: 128036
+    Group: "AG_BATTLE"
+    Name: "Restore ancient relic"
+    #Target:
+    #  - MobID: 3190
+    #    Count: 10
+    Score: 20
+  - ID: 128037
+    Group: "AG_BATTLE"
+    Name: "Master of relic transport"
+    #Target:
+    #  - MobID: 3190
+    #    Count: 50
+    Score: 50
+  - ID: 128038
+    Group: "AG_BATTLE"
+    Name: "Show Jailbreak to the captain"
+    #Target:
+    #  - MobID: 3181
+    #    Count: 1
+    Score: 10
+  - ID: 128039
+    Group: "AG_BATTLE"
+    Name: "Show Jailbreak to the weak captain"
+    #Target:
+    #  - MobID: 3188
+    #    Count: 1
+    Score: 10
+  - ID: 128040
+    Group: "AG_BATTLE"
+    Name: "Riot on board"
+    #Target:
+    #  - MobID: 3181
+    #    Count: 1
+    Score: 20
+  - ID: 128041
+    Group: "AG_BATTLE"
+    Name: "Turmoil on board"
+    #Target:
+    #  - MobID: 3181
+    #    Count: 10
+    Score: 20
+  - ID: 128042
+    Group: "AG_BATTLE"
+    Name: "Rebellion on board"
+    #Target:
+    #  - MobID: 3181
+    #    Count: 50
+    Score: 50
+  - ID: 128043
+    Group: "AG_BATTLE"
+    Name: "Revolt of Riot"
+    #Target:
+    #  - MobID: 3188
+    #    Count: 50
+    Score: 50
+  - ID: 128044
+    Group: "AG_BATTLE"
+    Name: "Magic tournament champion"
+    #Target:
+    #  - MobID: 2564
+    #    Count: 1
+    Score: 10
+  - ID: 128045
+    Group: "AG_BATTLE"
+    Name: "Gladiator of Coliseum"
+    #Target:
+    #  - MobID: 2564
+    #    Count: 10
+    Score: 20
+  - ID: 128046
+    Group: "AG_BATTLE"
+    Name: "Slayer of Colosseum"
+    #Target:
+    #  - MobID: 2564
+    #    Count: 50
+    Score: 50
+  - ID: 128047
+    Group: "AG_BATTLE"
+    Name: "Endless Tower challenger"
+    Target:
+      - MobID: 1956
+        Count: 1
+    Score: 10
+  - ID: 128048
+    Group: "AG_BATTLE"
+    Name: "Endless Tower Slayer"
+    Target:
+      - MobID: 1956
+        Count: 10
+    Score: 20
+  - ID: 128049
+    Group: "AG_BATTLE"
+    Name: "Lord of the tower"
+    Target:
+      - MobID: 1956
+        Count: 50
+    Score: 50
+  - ID: 128050
+    Group: "AG_BATTLE"
+    Name: "Novice Exorcist"
+    #Target:
+    #  - MobID: 2327
+    #    Count: 1
+    Score: 10
+  - ID: 128051
+    Group: "AG_BATTLE"
+    Name: "Experienced Exorcist"
+    #Target:
+    #  - MobID: 2327
+    #    Count: 10
+    Score: 20
+  - ID: 128052
+    Group: "AG_BATTLE"
+    Name: "Legendary Exorcist"
+    #Target:
+    #  - MobID: 2327
+    #    Count: 50
+    Score: 50
   - ID: 129001
     Group: "AG_ADVENTURE"
     Name: "Prontera Explorer"
     Dependent: [120001, 120002, 120003, 120004, 120005, 120006, 120007, 120008, 120009, 120010]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129002
     Group: "AG_ADVENTURE"
     Name: "Geffen Explorer"
     Dependent: [120011, 120012, 120013, 120014, 120015, 120016, 120017]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129003
     Group: "AG_ADVENTURE"
     Name: "Sograt Desert Explorer"
     Dependent: [120018, 120019, 120020, 120021, 120022, 120023]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129004
     Group: "AG_ADVENTURE"
     Name: "Payon Explorer"
     Dependent: [120024, 120025, 120026, 120027, 120028, 120029, 120030, 120031]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129005
     Group: "AG_ADVENTURE"
     Name: "North Mjolnir Explorer"
     Dependent: [120032, 120033, 120034, 120035, 120036]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129006
     Group: "AG_ADVENTURE"
     Name: "South Mjolnir Explorer"
     Dependent: [120037, 120038, 120039, 120040, 120041, 120042, 120043]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129007
     Group: "AG_ADVENTURE"
     Name: "Comodo Explorer"
     Dependent: [120044, 120045, 120046, 120047, 120048, 120049, 120050, 120051]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129008
     Group: "AG_ADVENTURE"
     Name: "Rune Midgard Explorer"
     Dependent: [129001, 129002, 129003, 129004, 129005, 129006, 129007]
     Reward:
-      ItemID: 32376
-      Amount: 5
+      ItemID: 617
     Score: 50
   - ID: 129009
     Group: "AG_ADVENTURE"
     Name: "Yuno Explorer"
     Dependent: [120052, 120053, 120054, 120055, 120056, 120057, 120058, 120059, 120060, 120061]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129010
     Group: "AG_ADVENTURE"
     Name: "Hugel Explorer"
     Dependent: [120062, 120063, 120064, 120065, 120066]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129011
     Group: "AG_ADVENTURE"
     Name: "Einbroch Explorer"
     Dependent: [120067, 120068, 120069, 120070, 120071, 120072, 120073, 120074]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129012
     Group: "AG_ADVENTURE"
     Name: "Lighthalzen Explorer"
     Dependent: [120075, 120076, 120077]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
+  - ID: 129013
+    Group: "AG_ADVENTURE"
+    Name: "Schwarzwald Explorer"
+    Dependent: [129009, 129010, 129011, 129012]
+    Reward:
+      ItemID: 617
+    Score: 50
   - ID: 129014
     Group: "AG_ADVENTURE"
     Name: "Rachel Explorer"
     Dependent: [120078, 120079, 120080, 120081, 120082, 120083, 120084]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129015
     Group: "AG_ADVENTURE"
     Name: "Veins Explorer"
     Dependent: [120085, 120086, 120087, 120088, 120089]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
+  - ID: 129016
+    Group: "AG_ADVENTURE"
+    Name: "Arunafeltz Explorer"
+    Dependent: [129014, 129015]
+    Reward:
+      ItemID: 617
+    Score: 50
   - ID: 129017
     Group: "AG_ADVENTURE"
     Name: "Laphine Explorer"
     Dependent: [120090, 120091, 120092, 120093, 120094, 120095]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
   - ID: 129018
     Group: "AG_ADVENTURE"
     Name: "Manuk Explorer"
     Dependent: [120096, 120097, 120098, 120099, 120100]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
     Score: 20
+  - ID: 129019
+    Group: "AG_ADVENTURE"
+    Name: "Eclage Explorer"
+    Dependent: [129017, 129018]
+    Reward:
+      ItemID: 617
+    Score: 50
+  - ID: 129020
+    Group: "AG_ADVENTURE"
+    Name: "Localizing fields explorer"
+    Dependent: [120101, 120102, 120103, 120104, 120105, 120106, 120107, 120108, 120109]
+    Reward:
+      ItemID: 617
+    Score: 50
   - ID: 130000 # Talk to Prince NPC (npc/quests/quests_morocc.txt L5288)
     Group: "AG_CHATTING"
     Name: "Socialite debut"
@@ -1122,27 +1555,54 @@ Achievements:
     Name: "Acquire the first aura!"
     Condition: " BaseLevel >= 99 "
     Reward:
-      ItemID: 32377
+      ItemID: 12549
       Script: " specialeffect2 EF_BLESSING; sc_start SC_BLESSING,30000,10; "
       TitleID: 1000
     Score: 50
+  - ID: 200001
+    Group: "AG_GOAL_LEVEL"
+    Name: "Acquire the second aura!"
+    Condition: " BaseLevel >= 150 "
+    Dependent: [200000]
+    Reward:
+      ItemID: 5364
+      Script: " specialeffect2 EF_BLESSING; sc_start SC_BLESSING,30000,10; "
+      TitleID: 1001
+    Score: 60
+  - ID: 200002
+    Group: "AG_GOAL_LEVEL"
+    Name: "Acquire the third aura!"
+    Condition: " BaseLevel >= 175 "
+    Dependent: [200001]
+    Reward:
+    #  ItemID: 18880
+      Script: " specialeffect2 EF_BLESSING; sc_start SC_BLESSING,30000,10; "
+      TitleID: 1002
+    Score: 70
   - ID: 200003
     Group: "AG_GOAL_LEVEL"
     Name: "Master Job level!"
     Condition: " JobLevel >= 50 "
     Reward:
-      ItemID: 32376
-      Amount: 5
+      ItemID: 617
       Script: " specialeffect2 EF_BLESSING; sc_start SC_BLESSING,30000,10; "
       TitleID: 1003
     Score: 30
+  - ID: 200004
+    Group: "AG_GOAL_LEVEL"
+    Name: "Grandmaster Job level!"
+    Condition: " JobLevel >= 70 "
+    Dependent: [200003]
+    Reward:
+    #  ItemID: 12817
+      Script: " specialeffect2 EF_BLESSING; sc_start SC_BLESSING,30000,10; "
+      TitleID: 1004
+    Score: 50
   - ID: 200005
     Group: "AG_JOB_CHANGE"
     Name: "Official Adventurer"
     Condition: " Class >= JOB_SWORDMAN && Class <= JOB_THIEF "
     Reward:
-      ItemID: 32371
-      Amount: 50
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 200006
@@ -1159,6 +1619,79 @@ Achievements:
     Reward:
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 25
+  - ID: 200008
+    Group: "AG_JOB_CHANGE"
+    Name: "Veteran Adventurer! (2)"
+    Condition: " Class >= JOB_CRUSADER && Class <= JOB_DANCER "
+    Reward:
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 25
+  - ID: 200009
+    Group: "AG_JOB_CHANGE"
+    Name: "Warrior (1)"
+    Condition: " Class >= JOB_LORD_KNIGHT && Class <= JOB_ASSASSIN_CROSS "
+    Reward:
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 30
+  - ID: 200010
+    Group: "AG_JOB_CHANGE"
+    Name: "Warrior (2)"
+    Condition: " Class >= JOB_PALADIN && Class <= JOB_GYPSY "
+    Reward:
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 30
+  - ID: 200011
+    Group: "AG_JOB_CHANGE"
+    Name: "Elite Adventurer! (1)"
+    Condition: " Class >= JOB_RUNE_KNIGHT && Class <= JOB_GUILLOTINE_CROSS "
+    Reward:
+    #  ItemID: 16483
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 50
+  - ID: 200012
+    Group: "AG_JOB_CHANGE"
+    Name: "Transcendentaler! (1)"
+    Condition: " Class >= JOB_RUNE_KNIGHT_T && Class <= JOB_GUILLOTINE_CROSS_T "
+    Reward:
+    #  ItemID: 16483
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 60
+  - ID: 200013
+    Group: "AG_JOB_CHANGE"
+    Name: "Elite Adventurer! (2)"
+    Condition: " Class >= JOB_ROYAL_GUARD && Class <= JOB_SHADOW_CHASER "
+    Reward:
+    #  ItemID: 16483
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 50
+  - ID: 200014
+    Group: "AG_JOB_CHANGE"
+    Name: "Transcendentaler! (2)"
+    Condition: " Class >= JOB_ROYAL_GUARD_T && Class <= JOB_SHADOW_CHASER_T "
+    Reward:
+    #  ItemID: 16483
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 60
+  - ID: 200015
+    Group: "AG_JOB_CHANGE"
+    Name: "The way of exceptional character"
+    Condition: " Class == JOB_SUPER_NOVICE || Class == JOB_GUNSLINGER || Class == JOB_NINJA || Class == JOB_TAEKWON "
+    Reward:
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - ID: 200016
+    Group: "AG_JOB_CHANGE"
+    Name: "This is My way!"
+    Condition: " Class == JOB_STAR_GLADIATOR || Class == JOB_SOUL_LINKER || Class == JOB_KAGEROU || Class == JOB_OBORO || Class == JOB_REBELLION "
+    Reward:
+    #  ItemID: 16483
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 20
+  - ID: 200017
+    Group: "AG_GOAL_STATUS"
+    Name: "Bearish Power!"
+    Condition: " bStr >= 90 "
+    Score: 10
   - ID: 200018
     Group: "AG_GOAL_STATUS"
     Name: "Overflowing Magic!"
@@ -1184,6 +1717,48 @@ Achievements:
     Name: "Maximum Luck"
     Condition: " bLuk >= 90 "
     Score: 10
+  - ID: 200023
+    Group: "AG_GOAL_STATUS"
+    Name: "Dragonlike Power!"
+    Condition: " bStr >= 125 "
+    Reward:
+      Script: " sc_start SC_GIANTGROWTH,180000,1; "
+    Score: 20
+  - ID: 200024
+    Group: "AG_GOAL_STATUS"
+    Name: "Magic Insanity"
+    Condition: " bInt >= 125 "
+    Reward:
+      Script: " specialeffect2 EF_HASTEUP; bonus_script \"{ bonus2 bHPLossRate,100,10000; bonus bBaseAtk,20; bonus bAspdRate,25; }\",60,0,0,EFST_STEAMPACK; "
+    Score: 20
+  - ID: 200025
+    Group: "AG_GOAL_STATUS"
+    Name: "Rock Alloy"
+    Condition: " bVit >= 125 "
+    Reward:
+      Script: " specialeffect2 EF_HEAL3; sc_start2 SC_S_LIFEPOTION,600000,-5,5; "
+    Score: 20
+  - ID: 200026
+    Group: "AG_GOAL_STATUS"
+    Name: "Speed of Light"
+    Condition: " bAgi >= 125 "
+    Reward:
+      Script: " specialeffect2 EF_STEAL; sc_start SC_INCFLEE2,60000,20; "
+    Score: 20
+  - ID: 200027
+    Group: "AG_GOAL_STATUS"
+    Name: "Falcon's Eyes"
+    Condition: " bDex >= 125 "
+    Reward:
+      Script: " specialeffect2 EF_MAGICALATTHIT; sc_start SC_INCCRI,300000,30; "
+    Score: 20
+  - ID: 200028
+    Group: "AG_GOAL_STATUS"
+    Name: "Lucky Fever"
+    Condition: " bLuk >= 125 "
+    Reward:
+      Script: " specialeffect2 EF_GLORIA; sc_start SC_GLORIA,15000,0; "
+    Score: 20
   - ID: 200029
     Group: "AG_GOAL_STATUS"
     Name: "Incarnation of Love and Hate"
@@ -1200,6 +1775,21 @@ Achievements:
     #  ItemID: 16504
       Script: " specialeffect2 EF_BLESSING; sc_start SC_BLESSING,30000,10; "
     Score: 30
+  - ID: 200031
+    Group: "AG_JOB_CHANGE"
+    Name: "Reborn in Valhalla!"
+    Condition: " Class == JOB_NOVICE_HIGH "
+    Reward:
+    #  ItemID: 23575
+      Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
+    Score: 10
+  - ID: 200032
+    Group: "AG_GOAL_LEVEL"
+    Name: "The start of another adventure!"
+    Condition: " BaseLevel == 100 "
+    #Reward:
+    #  ItemID: 23585
+    Score: 10
   - ID: 230100
     Group: "AG_TAMING"
     Name: "Poring is Love"
@@ -1498,21 +2088,41 @@ Achievements:
     Name: "I can't quit from refining! (1)"
     Condition: " ARG0 == 1 && ARG1 >= 7 "
     Score: 10
+  - ID: 220015
+    Group: "AG_ENCHANT_SUCCESS"
+    Name: "I can't quit from refining! (2)"
+    Condition: " ARG0 == 1 && ARG1 >= 12 "
+    Score: 15
   - ID: 220016
     Group: "AG_ENCHANT_SUCCESS"
     Name: "I can't quit from refining! (3)"
     Condition: " ARG0 == 2 && ARG1 >= 7 "
     Score: 10
+  - ID: 220017
+    Group: "AG_ENCHANT_SUCCESS"
+    Name: "I can't quit from refining! (4)"
+    Condition: " ARG0 == 2 && ARG1 >= 12 "
+    Score: 15
   - ID: 220018
     Group: "AG_ENCHANT_SUCCESS"
     Name: "I can't quit from refining! (5)"
     Condition: " ARG0 == 3 && ARG1 >= 7 "
     Score: 15
+  - ID: 220019
+    Group: "AG_ENCHANT_SUCCESS"
+    Name: "I can't quit from refining! (6)"
+    Condition: " ARG0 == 3 && ARG1 >= 12 "
+    Score: 20
   - ID: 220020
     Group: "AG_ENCHANT_SUCCESS"
     Name: "I can't quit from refining! (7)"
     Condition: " ARG0 == 4 && ARG1 >= 7 "
     Score: 20
+  - ID: 220021
+    Group: "AG_ENCHANT_SUCCESS"
+    Name: "I can't quit from refining! (8)"
+    Condition: " ARG0 == 4 && ARG1 >= 12 "
+    Score: 30
   - ID: 220022
     Group: "AG_ENCHANT_FAIL"
     Name: "Human's greed has no ending.."
@@ -1617,7 +2227,7 @@ Achievements:
         Count: 1
       - MobID: 1120
         Count: 1
-    Score: 15
+    Score: 20
   - ID: 230203
     Group: "AG_BATTLE"
     Name: "Exploring Poring's life (3)"
@@ -1637,7 +2247,7 @@ Achievements:
     Group: "AG_GOAL_ACHIEVE"
     Name: "Reaching Level 1"
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240002
@@ -1645,7 +2255,7 @@ Achievements:
     Name: "Reaching Level 2"
     Dependent: [240001]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240003
@@ -1653,7 +2263,7 @@ Achievements:
     Name: "Reaching Level 3"
     Dependent: [240002]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240004
@@ -1661,7 +2271,7 @@ Achievements:
     Name: "Reaching Level 4"
     Dependent: [240003]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240005
@@ -1669,7 +2279,7 @@ Achievements:
     Name: "Reaching Level 5"
     Dependent: [240004]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240006
@@ -1677,7 +2287,7 @@ Achievements:
     Name: "Reaching Level 6"
     Dependent: [240005]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240007
@@ -1685,7 +2295,7 @@ Achievements:
     Name: "Reaching Level 7"
     Dependent: [240006]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240008
@@ -1693,7 +2303,7 @@ Achievements:
     Name: "Reaching Level 8"
     Dependent: [240007]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240009
@@ -1701,7 +2311,7 @@ Achievements:
     Name: "Reaching Level 9"
     Dependent: [240008]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240010
@@ -1709,7 +2319,7 @@ Achievements:
     Name: "Reaching Level 10"
     Dependent: [240009]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
       TitleID: 1023
     Score: 10
@@ -1718,7 +2328,7 @@ Achievements:
     Name: "Reaching Level 11"
     Dependent: [240010]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240012
@@ -1726,7 +2336,7 @@ Achievements:
     Name: "Reaching Level 12"
     Dependent: [240011]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240013
@@ -1734,7 +2344,7 @@ Achievements:
     Name: "Reaching Level 13"
     Dependent: [240012]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240014
@@ -1742,7 +2352,7 @@ Achievements:
     Name: "Reaching Level 14"
     Dependent: [240013]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240015
@@ -1750,7 +2360,7 @@ Achievements:
     Name: "Reaching Level 15"
     Dependent: [240014]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240016
@@ -1758,7 +2368,7 @@ Achievements:
     Name: "Reaching Level 16"
     Dependent: [240015]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240017
@@ -1766,7 +2376,7 @@ Achievements:
     Name: "Reaching Level 17"
     Dependent: [240016]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240018
@@ -1774,7 +2384,7 @@ Achievements:
     Name: "Reaching Level 18"
     Dependent: [240017]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240019
@@ -1782,7 +2392,7 @@ Achievements:
     Name: "Reaching Level 19"
     Dependent: [240018]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
     Score: 10
   - ID: 240020
@@ -1790,15 +2400,7 @@ Achievements:
     Name: "Reaching Level 20"
     Dependent: [240019]
     Reward:
-    #  ItemID: 644
+      ItemID: 644
       Script: " specialeffect2 EF_INCAGILITY; sc_start SC_INCREASEAGI,30000,10; "
       TitleID: 1024
     Score: 10
-  - ID: 220036
-    Group: "AG_EAT"
-    Name: "The beginning of outdoor"
-    Score: 20
-  - ID: 220037
-    Group: "AG_EAT"
-    Name: "The first step becoming a chef"
-    Score: 20

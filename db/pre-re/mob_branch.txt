@@ -87,6 +87,7 @@ MOBG_Branch_Of_Dead_Tree,1094,Ambernite,357142
 MOBG_Branch_Of_Dead_Tree,1095,Andre,357142
 MOBG_Branch_Of_Dead_Tree,1096,Angeling,71428
 MOBG_Branch_Of_Dead_Tree,1097,Ant Egg,71428
+MOBG_Branch_Of_Dead_Tree,1098,Anubis,71428
 MOBG_Branch_Of_Dead_Tree,1099,Argiope,71428
 MOBG_Branch_Of_Dead_Tree,1100,Argos,214285
 MOBG_Branch_Of_Dead_Tree,1101,Baphomet Jr.,71428
@@ -257,6 +258,7 @@ MOBG_Branch_Of_Dead_Tree,1320,Owl Duke,71428
 MOBG_Branch_Of_Dead_Tree,1321,Dragon Tail,71428
 MOBG_Branch_Of_Dead_Tree,1322,Spring Rabbit,71428
 MOBG_Branch_Of_Dead_Tree,1323,Sea Otter,71428
+MOBG_Branch_Of_Dead_Tree,1365,Apocalypse,71428
 MOBG_Branch_Of_Dead_Tree,1366,Lava Golem,71428
 MOBG_Branch_Of_Dead_Tree,1367,Blazer,71428
 MOBG_Branch_Of_Dead_Tree,1368,Geographer,71428
@@ -311,3 +313,157 @@ MOBG_Branch_Of_Dead_Tree,1507,Bloody Murderer,71428
 MOBG_Branch_Of_Dead_Tree,1508,Quve,214285
 MOBG_Branch_Of_Dead_Tree,1509,Lude,214285
 MOBG_Branch_Of_Dead_Tree,1510,Heirozoist,71428
+MOBG_Branch_Of_Dead_Tree,1512,Yao Jun,71428
+MOBG_Branch_Of_Dead_Tree,1513,Mao Guai,71428
+MOBG_Branch_Of_Dead_Tree,1514,Zhu Po Long,71428
+MOBG_Branch_Of_Dead_Tree,1515,Baby Hatii,71428
+MOBG_Branch_Of_Dead_Tree,1516,Mi Gao,71428
+MOBG_Branch_Of_Dead_Tree,1517,Jing Guai,71428
+MOBG_Branch_Of_Dead_Tree,1519,Green Maiden,71428
+MOBG_Branch_Of_Dead_Tree,1520,Boiled Rice,71428
+MOBG_Branch_Of_Dead_Tree,1582,Deviling,71428
+MOBG_Branch_Of_Dead_Tree,1584,Tamruan,71428
+MOBG_Branch_Of_Dead_Tree,1586,Leaf Cat,71428
+MOBG_Branch_Of_Dead_Tree,1587,Kraben,71428
+MOBG_Branch_Of_Dead_Tree,1613,Metaling,71428
+MOBG_Branch_Of_Dead_Tree,1614,Mineral,71428
+MOBG_Branch_Of_Dead_Tree,1615,Obsidian,71428
+MOBG_Branch_Of_Dead_Tree,1616,Pitman,71428
+MOBG_Branch_Of_Dead_Tree,1617,Old Stove,71428
+MOBG_Branch_Of_Dead_Tree,1618,Ungoliant,71428
+MOBG_Branch_Of_Dead_Tree,1619,Porcellio,71428
+MOBG_Branch_Of_Dead_Tree,1620,Noxious,71428
+MOBG_Branch_Of_Dead_Tree,1621,Venomous,71428
+MOBG_Branch_Of_Dead_Tree,1622,Teddy Bear,71428
+MOBG_Branch_Of_Dead_Tree,1627,Anopheles,71428
+MOBG_Branch_Of_Dead_Tree,1628,Holden,71428
+MOBG_Branch_Of_Dead_Tree,1629,Hill Wind,71428
+MOBG_Branch_Of_Dead_Tree,1631,Green Maiden,71428
+MOBG_Branch_Of_Dead_Tree,1632,Gremlin,71428
+MOBG_Branch_Of_Dead_Tree,1633,Beholder,71428
+MOBG_Branch_Of_Dead_Tree,1634,Seyren Windsor,71428
+MOBG_Branch_Of_Dead_Tree,1635,Eremes Guile,71428
+MOBG_Branch_Of_Dead_Tree,1636,Howard Alt-Eisen,71428
+MOBG_Branch_Of_Dead_Tree,1637,Margaretha Sorin,71428
+MOBG_Branch_Of_Dead_Tree,1638,Cecil Damon,71428
+MOBG_Branch_Of_Dead_Tree,1639,Kathryne Keyron,71428
+MOBG_Branch_Of_Dead_Tree,1652,Egnigem Cenia,71428
+MOBG_Branch_Of_Dead_Tree,1653,Wickebine Tres,71428
+MOBG_Branch_Of_Dead_Tree,1654,Armeyer Dinze,71428
+MOBG_Branch_Of_Dead_Tree,1655,Errende Ebecee,71428
+MOBG_Branch_Of_Dead_Tree,1656,Kavach Icarus,71428
+MOBG_Branch_Of_Dead_Tree,1657,Laurell Weinder,71428
+MOBG_Branch_Of_Dead_Tree,1664,Photon Cannon,71428
+MOBG_Branch_Of_Dead_Tree,1665,Photon Cannon,71428
+MOBG_Branch_Of_Dead_Tree,1666,Photon Cannon,71428
+MOBG_Branch_Of_Dead_Tree,1667,Photon Cannon,71428
+MOBG_Branch_Of_Dead_Tree,1668,Archdam,71428
+MOBG_Branch_Of_Dead_Tree,1669,Dimik,71428
+MOBG_Branch_Of_Dead_Tree,1670,Dimik,71428
+MOBG_Branch_Of_Dead_Tree,1671,Dimik,71428
+MOBG_Branch_Of_Dead_Tree,1672,Dimik,71428
+MOBG_Branch_Of_Dead_Tree,1673,Dimik,71428
+MOBG_Branch_Of_Dead_Tree,1675,Venatu,71428
+MOBG_Branch_Of_Dead_Tree,1676,Venatu,71428
+MOBG_Branch_Of_Dead_Tree,1677,Venatu,71428
+MOBG_Branch_Of_Dead_Tree,1678,Venatu,71428
+MOBG_Branch_Of_Dead_Tree,1679,Venatu,71428
+MOBG_Branch_Of_Dead_Tree,1680,Hill Wind,71428
+MOBG_Branch_Of_Dead_Tree,1681,Gemini-S58,71428
+MOBG_Branch_Of_Dead_Tree,1682,Remover,71428
+MOBG_Branch_Of_Dead_Tree,1686,Orc Baby,71428
+MOBG_Branch_Of_Dead_Tree,1687,Grove,71428
+MOBG_Branch_Of_Dead_Tree,1692,Breeze,71428
+MOBG_Branch_Of_Dead_Tree,1693,Plasma,71428
+MOBG_Branch_Of_Dead_Tree,1694,Plasma,71428
+MOBG_Branch_Of_Dead_Tree,1695,Plasma,71428
+MOBG_Branch_Of_Dead_Tree,1696,Plasma,71428
+MOBG_Branch_Of_Dead_Tree,1699,Ancient Mimic,71428
+MOBG_Branch_Of_Dead_Tree,1703,Lady Solace,71428
+MOBG_Branch_Of_Dead_Tree,1704,Odium of Thanatos,71428
+MOBG_Branch_Of_Dead_Tree,1705,Despero of Thanatos,71428
+MOBG_Branch_Of_Dead_Tree,1706,Maero of Thanatos,71428
+MOBG_Branch_Of_Dead_Tree,1707,Dolor of Thanatos,71428
+MOBG_Branch_Of_Dead_Tree,1713,Acidus,71428
+MOBG_Branch_Of_Dead_Tree,1714,Ferus,71428
+MOBG_Branch_Of_Dead_Tree,1715,Novus,71428
+MOBG_Branch_Of_Dead_Tree,1717,Ferus,71428
+MOBG_Branch_Of_Dead_Tree,1718,Novus,71428
+MOBG_Branch_Of_Dead_Tree,1720,Hydrolancer,71428
+MOBG_Branch_Of_Dead_Tree,1721,Dragon Egg,71428
+MOBG_Branch_Of_Dead_Tree,1736,Aliot,71428
+MOBG_Branch_Of_Dead_Tree,1737,Aliza,71428
+MOBG_Branch_Of_Dead_Tree,1738,Constant,71428
+MOBG_Branch_Of_Dead_Tree,1752,Skogul,71428
+MOBG_Branch_Of_Dead_Tree,1753,Frus,71428
+MOBG_Branch_Of_Dead_Tree,1754,Skeggiold,71428
+MOBG_Branch_Of_Dead_Tree,1755,Skeggiold,71428
+MOBG_Branch_Of_Dead_Tree,1769,Agav,71428
+MOBG_Branch_Of_Dead_Tree,1770,Echio,71428
+MOBG_Branch_Of_Dead_Tree,1771,Vanberk,71428
+MOBG_Branch_Of_Dead_Tree,1772,Isilla,71428
+MOBG_Branch_Of_Dead_Tree,1773,Hodremlin,71428
+MOBG_Branch_Of_Dead_Tree,1774,Seeker,71428
+MOBG_Branch_Of_Dead_Tree,1775,Snowier,71428
+MOBG_Branch_Of_Dead_Tree,1776,Siroma,71428
+MOBG_Branch_Of_Dead_Tree,1777,Ice Titan,71428
+MOBG_Branch_Of_Dead_Tree,1778,Gazeti,71428
+MOBG_Branch_Of_Dead_Tree,1780,Muscipular,71428
+MOBG_Branch_Of_Dead_Tree,1781,Drosera,71428
+MOBG_Branch_Of_Dead_Tree,1782,Roween,71428
+MOBG_Branch_Of_Dead_Tree,1783,Galion,71428
+MOBG_Branch_Of_Dead_Tree,1784,Stapo,142857
+MOBG_Branch_Of_Dead_Tree,1789,Iceicle,71428
+MOBG_Branch_Of_Dead_Tree,1796,Aunoe,142857
+MOBG_Branch_Of_Dead_Tree,1797,Fanat,142857
+MOBG_Branch_Of_Dead_Tree,1829,Sword Guardian,71428
+MOBG_Branch_Of_Dead_Tree,1830,Bow Guardian,71428
+MOBG_Branch_Of_Dead_Tree,1831,Salamander,71428
+MOBG_Branch_Of_Dead_Tree,1833,Kasa,71428
+MOBG_Branch_Of_Dead_Tree,1836,Magmaring,214285
+MOBG_Branch_Of_Dead_Tree,1837,Imp,71428
+MOBG_Branch_Of_Dead_Tree,1838,Knocker,71428
+MOBG_Branch_Of_Dead_Tree,1839,Byrogue,71428
+MOBG_Branch_Of_Dead_Tree,1864,Zombie Slaughter,71428
+MOBG_Branch_Of_Dead_Tree,1865,Ragged Zombie,71428
+MOBG_Branch_Of_Dead_Tree,1866,Hellhound,71428
+MOBG_Branch_Of_Dead_Tree,1867,Banshee,71428
+MOBG_Branch_Of_Dead_Tree,1869,Flame Skull,71428
+MOBG_Branch_Of_Dead_Tree,1870,Necromancer,71428
+MOBG_Branch_Of_Dead_Tree,1872,Hell Fly,71428
+MOBG_Branch_Of_Dead_Tree,1880,Wood Goblin,71428
+MOBG_Branch_Of_Dead_Tree,1881,Les,71428
+MOBG_Branch_Of_Dead_Tree,1882,Baba-Yaga,71428
+MOBG_Branch_Of_Dead_Tree,1883,Uzhas,71428
+MOBG_Branch_Of_Dead_Tree,1884,Mavka,71428
+MOBG_Branch_Of_Dead_Tree,1918,Incarnation of Morroc,71428
+MOBG_Branch_Of_Dead_Tree,1919,Incarnation of Morroc,71428
+MOBG_Branch_Of_Dead_Tree,1920,Incarnation of Morroc,71428
+MOBG_Branch_Of_Dead_Tree,1921,Incarnation of Morroc,71428
+MOBG_Branch_Of_Dead_Tree,1974,Banshee Master,71428
+MOBG_Branch_Of_Dead_Tree,1975,Beholder Master,71428
+MOBG_Branch_Of_Dead_Tree,1976,Cobalt Mineral,71428
+MOBG_Branch_Of_Dead_Tree,1977,Heavy Metaling,71428
+MOBG_Branch_Of_Dead_Tree,1978,Hell Vesper,71428
+MOBG_Branch_Of_Dead_Tree,1979,Zakudam,71428
+MOBG_Branch_Of_Dead_Tree,1986,Tatacho,71428
+MOBG_Branch_Of_Dead_Tree,1987,Centipede,71428
+MOBG_Branch_Of_Dead_Tree,1988,Nepenthes,71428
+MOBG_Branch_Of_Dead_Tree,1989,Hillthrion,71428
+MOBG_Branch_Of_Dead_Tree,1990,Hardrock Mammoth,71428
+MOBG_Branch_Of_Dead_Tree,1991,Tendrillion,71428
+MOBG_Branch_Of_Dead_Tree,1992,Cornus,71428
+MOBG_Branch_Of_Dead_Tree,1993,Naga,71428
+MOBG_Branch_Of_Dead_Tree,1994,Luciola Vespa,71428
+MOBG_Branch_Of_Dead_Tree,1995,Pinguicula,71428
+MOBG_Branch_Of_Dead_Tree,1999,Centipede Larva,71428
+MOBG_Branch_Of_Dead_Tree,2013,Draco,71428
+MOBG_Branch_Of_Dead_Tree,2015,Dark Pinguicula,71428
+MOBG_Branch_Of_Dead_Tree,2016,Aqua Elemental,71428
+MOBG_Branch_Of_Dead_Tree,2017,Rata,71428
+MOBG_Branch_Of_Dead_Tree,2018,Duneyrr,71428
+MOBG_Branch_Of_Dead_Tree,2019,Ancient Tree,71428
+MOBG_Branch_Of_Dead_Tree,2020,Rhyncho,71428
+MOBG_Branch_Of_Dead_Tree,2021,Phylla,71428
+MOBG_Branch_Of_Dead_Tree,2023,Dark Shadow,71428
+MOBG_Branch_Of_Dead_Tree,2024,Bradium Golem,71428
