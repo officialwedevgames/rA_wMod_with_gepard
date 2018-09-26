@@ -1,0 +1,7 @@
+﻿  grammar.c
+  libconfig.c
+  scanctx.c
+  scanner.c
+  strbuf.c
+  Generating Code...
+  libconfig.vcxproj -> D:\Ragnarok_Emulators\rA_wMod_with_gepard\.vs\build\libconfig.lib
