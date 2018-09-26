@@ -154,6 +154,7 @@
 31384,Costume_384,Twin Pompom,4,20,,0,,,,,0xFFFFFFFF,63,2,1024,,,0,390,{},{},{}
 31388,Costume_388,Snake Head Hat,4,20,,0,,,,,0xFFFFFFFF,63,2,1024,,,0,393,{},{},{}
 31395,Costume_395,Tiraya Bonnet,4,20,,0,,,,,0xFFFFFFFF,63,2,1024,,,0,398,{ bonus bAllStats,1; bonus2 bExpAddRace,RC_Formless,2; bonus2 bExpAddRace,RC_Undead,2; bonus2 bExpAddRace,RC_Brute,2; bonus2 bExpAddRace,RC_Plant,2; bonus2 bExpAddRace,RC_Insect,2; bonus2 bExpAddRace,RC_Fish,2; bonus2 bExpAddRace,RC_Demon,2; bonus2 bExpAddRace,RC_DemiHuman,2; bonus2 bExpAddRace,RC_Angel,2; bonus2 bExpAddRace,RC_Dragon,2; },{},{}
+31396,Costume_396,Costume: Magician Hood,4,0,,0,,0,,0,0xFFFFFFFF,63,2,1024,,1,0,1692,{},{},{}
 31401,Costume_401,Costume: Black Frame Glasses,4,20,,0,,,,,0xFFFFFFFF,63,2,2048,,,0,404,{},{},{}
 31402,Costume_402,Costume: Mischievous Fairy,4,20,,0,,,,,0xFFFFFFFF,63,2,2048,,,0,405,{},{},{}
 31409,Costume_409,Costume: Purple Cowboy Hat,4,20,,0,,,,,0xFFFFFFFF,63,2,1024,,,0,411,{},{},{}

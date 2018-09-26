@@ -1,0 +1,2 @@
+prontera	mapflag	autotrade
+payon	mapflag	autotrade

@@ -346,36 +346,38 @@ OnReward:
 					setarray .@mailitem[0], .Reward[0], .Reward[2];
 					setarray .@mailamount[0], .Reward[1], .Reward[3];
 					mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+					
+					//- WoE Event Rewards
+					if(getarraysize($event_reward$)){
+						if(isloggedin(.@aid[.@j],.@cid[.@j])){
+							.@charid = .@cid[.@j];
+							.@sender$ = "Admin";
+							.@title$ = "Event Reward: War of Emperium";
+							.@body$ = "Congratulations! Your guild has successfully occupied territory in the War of Emperium Event.";
+							.@zeny = 0;
+							for(set .@k,0; .@k<getarraysize($event_reward$); set .@k,.@k+1){
+								explode(.@rr_item$, $event_reward$[.@k], ":");
+								set .@itemid, .@rr_item$[0];
+								set .@amount, .@rr_item$[1];
+								set .@mailitem[getarraysize(.@mailitem)],.@itemid;
+								set .@mailamount[getarraysize(.@mailamount)],.@amount;
+							}
+							mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+						}
+					}
+					
 					if (!getd(".@str_"+.@cid[.@j]) && isloggedin(.@aid[.@j],.@cid[.@j])) {
 
 						setd ".@str_"+.@cid[.@j],1;
 						message rid2name(.@aid[.@j]),"You've got mail! Please re-login to update your mailing list.";
 					}
-
+					
 				} else if (isloggedin(.@aid[.@j])) {
 					for(set .@k,0; .@k<getarraysize(.Reward); set .@k,.@k+2)
 						getitem .Reward[.@k], .Reward[.@k+1], .@aid[.@j];
 					message rid2name(.@aid[.@j]),"You have been rewarded for conquering "+getcastlename(.Castles$[.@i])+".";
 				}
 				
-				//- WoE Event Rewards
-				if(getarraysize($event_reward$)){
-					if(isloggedin(.@aid[.@j],.@cid[.@j])){
-						.@charid = .@cid[.@j];
-						.@sender$ = "Admin";
-						.@title$ = "Event Reward: War of Emperium";
-						.@body$ = "Congratulations! Your guild has successfully occupied territory in the War of Emperium Event.";
-						.@zeny = 0;
-						for(set .@k,0; .@k<getarraysize($event_reward$); set .@k,.@k+1){
-							explode(.@rr_item$, $event_reward$[.@k], ":");
-							set .@itemid, .@rr_item$[0];
-							set .@amount, .@rr_item$[1];
-							set .@mailitem[getarraysize(.@mailitem)],.@itemid;
-							set .@mailamount[getarraysize(.@mailamount)],.@amount;
-						}
-						mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
-					}
-				}
 			}
 		}
 	return;

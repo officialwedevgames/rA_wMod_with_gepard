@@ -564,7 +564,8 @@
 6219,507,100	// Eden Group Mark
 13112,499,100	// P_Revolver1
 13113,499,100	// P_Revolver2
-14954,479,100	// Dark_Sword_Scroll
+14953,461,100	// Dark_Magician_Scroll
+14954,461,100	// Dark_Sword_Scroll
 
 // * Third Job-related
 1703,507,100	// Bow__

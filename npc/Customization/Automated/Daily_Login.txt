@@ -11,7 +11,12 @@ OnDoDailyCheckTime:
 	if(getgroupid() < .grouplevel && checkvending() != 2){
 		query_sql "SELECT `status`,`online_status` FROM `daily_login` WHERE `account_id` = '"+getcharid(3)+"'",.@sst, .@ss;
 		.@time_check = #dailytick - gettimetick(2);
-		if (.@time_check <= .online_time && .@time_check >= 1 && .@ss == 0 && .@sst == 0){
+		set .@day, gettime(DT_DAYOFWEEK);
+		if (.@ss == 1 && .@sst == 0 && #daily_login_day != .@day){
+			dispbottom "You are now eligible to claim todays daily login rewards.";
+		}else if (.@ss == 1 && .@sst == 1 && #daily_login_day != .@day){
+			dispbottom "You already claimed todays daily login rewards see you on the next day.";
+		}else if (.@time_check <= .online_time && .@time_check >= 1 && .@ss == 0 && .@sst == 0 && #daily_login_day == .@day){
 			set .@k,.@time_check;
 						set .@d,.@k % 2592000 / 86400;
 						set .@h,.@k % 86400 / 3600;
@@ -23,10 +28,6 @@ OnDoDailyCheckTime:
 			set .@s$, .@s+" second"+((.@s <= 1)?"":"s");
 			set .@time$,""+((.@d <= 1)?"":""+.@d$+" ")+""+((.@h <= 1)?"":""+.@h$+" ")+""+((.@m <= 1)?"":""+.@m$+" ")+""+.@s$+"";
 			dispbottom "You still have "+.@time$+" before you can claim the daily login rewards.";
-		}else if (.@ss == 1 && .@sst == 0){
-			dispbottom "You are now eligible to claim todays daily login rewards.";
-		}else if (.@ss == 1 && .@sst == 1){
-			dispbottom "You already claimed todays daily login rewards see you on the next day.";
 		}
 	}else{
 		dispbottom "You are not allowed to use this command while chatting, vending or buying store status is still active.";
@@ -36,7 +37,7 @@ end;
 OnPCLoginEvent:
 	if (getgroupid() >= .grouplevel){end;}
 	@backup_time = 0;
-	set daily_login_day, gettime(DT_DAYOFWEEK);
+	set #daily_login_day, gettime(DT_DAYOFWEEK);
 	if (!#dailytick || #dailytick > .online_time)
 		#dailytick = gettimetick(2) + .online_time;
 	else
@@ -49,7 +50,7 @@ OnPCLoginEvent:
 		if(checkvending() != 2 && .@os == 0 && .@sst == 0){
 			@backup_time = .@time_left = #dailytick - gettimetick(2);
 			set .@day, gettime(DT_DAYOFWEEK);
-			if (.@time_left <= 0 && daily_login_day == .@day)
+			if (.@time_left <= 0 && #daily_login_day == .@day)
 			{
 				#dailytick = gettimetick(2) + .online_time;
 				query_sql "SELECT `account_id` FROM `daily_login` WHERE `account_id` = '"+getcharid(3)+"'", .@account;
@@ -63,7 +64,7 @@ OnPCLoginEvent:
 					#dailytick = gettimetick(2) + .online_time;
 				else
 					#dailytick += gettimetick(2);	
-			}else if(daily_login_day != .@day){
+			}else if(#daily_login_day != .@day){
 				if (!#dailytick || #dailytick > .online_time)
 					#dailytick = gettimetick(2) + .online_time;
 				else
