@@ -1,4 +1,4 @@
-payon,116,116,4	trader	Universal	4_F_KAFRA5,{
+-	trader	Universal	FAKE_NPC,{
 
 OnInit:
 	tradertype("NST_CASH");

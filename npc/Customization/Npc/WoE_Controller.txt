@@ -19,7 +19,7 @@
 
 // Information NPC
 //============================================================
-payon,95,146,4	script	WOE Information	2_BOARD1,{
+prontera,163,109,4	script	WOE Information	2_BOARD1,{
 	doevent "WOE_CONTROL::OnMenu";
 	end;
 OnAgitStart:

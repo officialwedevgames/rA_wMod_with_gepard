@@ -203,8 +203,6 @@ IG_Taming,10018,1	// Monkey Circlet
 IG_Taming,10019,1	// Red Scarf
 IG_Taming,10020,1	// Grave Keeper's Sword
 IG_Taming,12373,1	// Boy's Pure Heart
-IG_Taming,12374,1	// Ice Fireworks
-IG_Taming,12395,1	// Tantan Noodle
 // Bundle Of Magic Scroll
 IG_Scroll,686,1	// Level 3 Earth Spike
 IG_Scroll,687,1	// Level 5 Earth Spike
@@ -250,51 +248,29 @@ IG_Mask,5087,10	// Poker Face
 IG_Mask,5088,10	// Surprised Mask
 IG_Mask,5089,10	// Annoyed Mask
 IG_Mask,5090,10	// Goblin Leader Mask
-IG_Mask,5121,1	// Zherlthsh Mask
-IG_Mask,5176,2	// Hahoe Mask
 // Accessory Box
-IG_Accesory,2601,10	// Ring
-IG_Accesory,2602,11	// Earring
-IG_Accesory,2603,12	// Necklace
-IG_Accesory,2604,12	// Glove
-IG_Accesory,2605,12	// Brooch
-IG_Accesory,2607,12	// Clip
-IG_Accesory,2608,14	// Rosary
-IG_Accesory,2609,14	// Skull Ring
-IG_Accesory,2610,14	// Gold Ring
-IG_Accesory,2611,14	// Silver Ring
-IG_Accesory,2612,14	// Flower Ring
-IG_Accesory,2613,11	// Diamond Ring
-IG_Accesory,2615,1	// Safety Ring
-IG_Accesory,2616,1	// Critical Ring
-IG_Accesory,2617,10	// Celebrant's Mitten
-IG_Accesory,2618,11	// Matyr's Leash
-IG_Accesory,2619,10	// Bow Thimble
-IG_Accesory,2621,1	// Ring
-IG_Accesory,2622,1	// Earring
-IG_Accesory,2623,10	// Necklace
-IG_Accesory,2624,1	// Glove
-IG_Accesory,2625,1	// Brooch
-IG_Accesory,2626,1	// Rosary
-IG_Accesory,2627,10	// Belt
-IG_Accesory,2628,14	// Novice Armlet
-IG_Accesory,2654,1	// Shinobi Sash
-IG_Accesory,2656,1	// Armor Charm
-IG_Accesory,2658,10	// Nile Rose
-IG_Accesory,2659,2	// Vesper Core 01
-IG_Accesory,2660,2	// Vesper Core 02
-IG_Accesory,2661,2	// Vesper Core 03
-IG_Accesory,2662,2	// Vesper Core 04
-IG_Accesory,2671,1	// Bow Thimble
-IG_Accesory,2677,1	// Spiritual Ring
-IG_Accesory,2680,9	// Ring of Minor Spirits
-IG_Accesory,2700,2	// Red Silk of Seal
-IG_Accesory,2701,1	// Glove of Orleans
-IG_Accesory,2703,1	// Expert Ring
-IG_Accesory,2716,1	// Librarian Glove
-IG_Accesory,2717,1	// Pocket Watch
-IG_Accesory,2718,1	// Lunatic Brooch
-IG_Accesory,2719,1	// Iron Wrist
+IG_Accesory,2601,100	// Ring
+IG_Accesory,2602,100	// Earring
+IG_Accesory,2603,100	// Necklace
+IG_Accesory,2604,100	// Glove
+IG_Accesory,2605,100	// Brooch
+IG_Accesory,2607,10		// Clip
+IG_Accesory,2608,100	// Rosary
+IG_Accesory,2609,100	// Skull Ring
+IG_Accesory,2610,100	// Gold Ring
+IG_Accesory,2611,100	// Silver Ring
+IG_Accesory,2612,100	// Flower Ring
+IG_Accesory,2613,100	// Diamond Ring
+IG_Accesory,2615,5		// Safety Ring
+IG_Accesory,2618,100	// Matyr's Leash
+IG_Accesory,2619,5		// Bow Thimble
+IG_Accesory,2621,5		// Ring
+IG_Accesory,2622,5		// Earring
+IG_Accesory,2623,5		// Necklace
+IG_Accesory,2624,5		// Glove
+IG_Accesory,2625,5		// Brooch
+IG_Accesory,2626,5		// Rosary
+IG_Accesory,2627,100	// Belt
 // jewels
 IG_Jewel,715,100	// Yellow_Gemstone
 IG_Jewel,716,100	// Red_Gemstone

@@ -1527,7 +1527,7 @@ REPLACE INTO `item_db_re` VALUES (2286,'Elven_Ears','Elven Ears',4,20,NULL,100,N
 REPLACE INTO `item_db_re` VALUES (2287,'Pirate_Bandana','Pirate Bandana',4,20,NULL,100,NULL,4,NULL,0,0xFFFFFFFE,63,2,256,NULL,'0',1,74,'bonus bStr,1;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (2288,'Mr_Scream','Mr. Scream',4,20,NULL,100,NULL,1,NULL,0,0xFFFFFFFE,63,2,513,NULL,'0',0,75,NULL,NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (2289,'Poo_Poo_Hat','Poo Poo Hat',4,20,NULL,700,NULL,0,NULL,0,0xFFFFFFFF,63,2,256,NULL,'0',0,76,'bonus2 bSubRace,RC_DemiHuman,10; bonus2 bSubRace,RC_Player,10;',NULL,NULL);
-REPLACE INTO `item_db_re` VALUES (2290,'Funeral_Costume','Funeral Hat',4,3000,NULL,100,NULL,1,NULL,0,0xFFFFFFFF,63,2,256,NULL,'0',0,77,NULL,NULL,NULL);
+REPLACE INTO `item_db_re` VALUES (2290,'FuneraCostume','Funeral Hat',4,3000,NULL,100,NULL,1,NULL,0,0xFFFFFFFF,63,2,256,NULL,'0',0,77,NULL,NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (2291,'Masquerade','Masquerade',4,20,NULL,100,NULL,0,NULL,0,0xFFFFFFFE,63,2,512,NULL,'0',0,78,'bonus2 bAddRace,RC_DemiHuman,3; bonus2 bAddRace,RC_Player,3;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (2292,'Welding_Mask','Welding Mask',4,20,NULL,300,NULL,2,NULL,0,0x00040420,63,2,513,NULL,'50',0,79,'bonus2 bSubEle,Ele_Fire,10;',NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (2293,'Pretend_Murdered','Pretend Murdered',4,20,NULL,100,NULL,1,NULL,0,0xFFFFFFFF,63,2,256,NULL,'0',0,80,NULL,NULL,NULL);
@@ -10560,7 +10560,7 @@ REPLACE INTO `item_db_re` VALUES (20110,'C_Coiledup_Snake','Costume Coiledup Sna
 REPLACE INTO `item_db_re` VALUES (20111,'C_Coiledup_Snake_Hat2','Costume Coiledup Snake Hat',4,0,NULL,0,NULL,NULL,NULL,0,0xFFFFFFFF,63,2,1024,NULL,'1',1,1259,NULL,NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (20112,'C_Aqua_Ten_Gallon_Hat','Costume Aqua Ten Gallon Hat',4,0,NULL,0,NULL,NULL,NULL,0,0xFFFFFFFF,63,2,1024,NULL,'1',1,1256,NULL,NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (20113,'C_Star_Reading_Hat','Costume Star Reading Hat',4,0,NULL,0,NULL,NULL,NULL,0,0xFFFFFFFF,63,2,1024,NULL,'1',1,1253,NULL,NULL,NULL);
-REPLACE INTO `item_db_re` VALUES (20114,'C_Funeral_Costume','Costume Funeral Hat',4,0,NULL,0,NULL,NULL,NULL,0,0xFFFFFFFF,63,2,1024,NULL,'1',1,77,NULL,NULL,NULL);
+REPLACE INTO `item_db_re` VALUES (20114,'C_FuneraCostume','Costume Funeral Hat',4,0,NULL,0,NULL,NULL,NULL,0,0xFFFFFFFF,63,2,1024,NULL,'1',1,77,NULL,NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (20115,'C_Under_Rim_Glasses','Under Rim Glasses',4,0,NULL,0,NULL,NULL,NULL,0,0xFFFFFFFF,63,2,2048,NULL,'1',1,1255,NULL,NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (20116,'C_Mermaid_Headphone','Mermaid Headphone',4,0,NULL,0,NULL,NULL,NULL,0,0xFFFFFFFF,63,2,2048,NULL,'1',1,1254,NULL,NULL,NULL);
 REPLACE INTO `item_db_re` VALUES (20117,'C_Raspberry_Mousse_Hat','Raspberry Mousse Hat',4,0,NULL,0,NULL,NULL,NULL,0,0xFFFFFFFF,63,2,1024,NULL,'1',1,1257,NULL,NULL,NULL);

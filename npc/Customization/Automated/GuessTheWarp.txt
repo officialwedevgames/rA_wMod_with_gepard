@@ -7,7 +7,7 @@ OnTouch:
 	if(.warp$ == strnpcinfo(2)){
 		warp "poring_c02",121,221;
 	}else{
-		warp "payon",70,100;
+		warp "prontera",116,73;
 	}
 end;
 

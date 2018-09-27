@@ -26,7 +26,7 @@ end;
 
 OnCheckUser:
 	if (!getmapusers("poring_w01") && $pcactive == 1) {
-		mapwarp "poring_w01","payon",70,100;
+		mapwarp "poring_w01","prontera",116,73;
 		killmonster "poring_w01","All";
 		announce "Poring Catcher : We don't have any winner for Poring Catcher.",0;
 		set $pcactive,0;
@@ -146,7 +146,7 @@ OnMobKillWin:
 	.@amount = rand(50,100);
 	callfunc "points","#LOYALPOINTS",.@amount,"Poring Catcher",getcharid(0),getcharid(3);           
 	warp @oldloc$,@oldx,@oldy;	
-	mapwarp "poring_w01","payon",70,100;
+	mapwarp "poring_w01","prontera",116,73;
 	killmonster "poring_w01","All";
 	announce "Poring Catcher : Congratulations. "+strcharinfo(0)+" killed the real poring.",0;
 end;

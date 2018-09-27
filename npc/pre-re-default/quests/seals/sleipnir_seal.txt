@@ -261,7 +261,7 @@ que_god01,98,98,4	script	Manager#G	69,{
 					else if (.@god_treasure1 < 490) getitem 2299,1; //Viking_Helm
 					else if (.@god_treasure1 < 560) getitem 2287,1; //Pirate_Bandana
 					else if (.@god_treasure1 < 630) getitem 2289,1; //Poo_Poo_Hat
-					else if (.@god_treasure1 < 700) getitem 2290,1; //Funeral_Costume
+					else if (.@god_treasure1 < 700) getitem 2290,1; //FuneraCostume
 					else if (.@god_treasure1 < 770) getitem 2291,1; //Masquerade
 					else if (.@god_treasure1 < 840) getitem 2294,1; //Star_Dust
 					else if (.@god_treasure1 < 900) getitem 2295,1; //Blinker

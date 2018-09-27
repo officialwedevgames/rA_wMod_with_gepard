@@ -1,4 +1,4 @@
-payon,97,146,4	script	Guild Manager	4_F_KAFRA7,{
+prontera,163,106,4	script	Guild Manager	4_F_KAFRA7,{
 	mes "[ Guild Manager ]";
 	mes "On this board you can check the candidate guilds for the server ^FF0000Agit Lord^000000.";
 	mes " ";

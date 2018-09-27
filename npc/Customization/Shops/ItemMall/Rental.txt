@@ -1,4 +1,4 @@
-payon,114,116,4	trader	Rental	4_F_KAFRA4,{
+-	trader	Rental	FAKE_NPC,{
 
 OnInit:
 	tradertype("NST_CASH");

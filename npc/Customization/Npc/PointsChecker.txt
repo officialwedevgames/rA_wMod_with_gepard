@@ -1,4 +1,4 @@
-payon,107,116,4	script	Points Checker	2_BULLETIN_BOARD,{
+-	script	Points Checker	FAKE_NPC,{
 	mes "[ Points Checker ]";
 	mes "* Rok Points: ^ff0000"+#ROKPOINTS+"^000000";
 	mes "* Loyal Points: ^ff0000"+#LOYALPOINTS+"^000000";

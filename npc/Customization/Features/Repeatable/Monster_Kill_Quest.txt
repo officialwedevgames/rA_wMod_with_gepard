@@ -1,4 +1,4 @@
-payon,83,127,5	script	Midgard Officer	4W_M_02,{
+prontera,142,125,4	script	Midgard Officer	4W_M_02,{
 	
 	function Comma;
 

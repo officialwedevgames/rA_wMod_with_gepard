@@ -1,4 +1,4 @@
-payon,78,146,5	trader	Liza	4_F_JOB_BLACKSMITH,{
+prontera,123,82,3	trader	Liza	4_F_JOB_BLACKSMITH,{
 OnInit:
 	tradertype("NST_CUSTOM");
 	sellitem "Letter_Challenge_Box",75;

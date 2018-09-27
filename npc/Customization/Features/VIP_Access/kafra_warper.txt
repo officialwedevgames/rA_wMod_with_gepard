@@ -395,4 +395,4 @@ L_warpmenu:
 }
 
 prontera,146,94,3	duplicate(Kafra Warper#1-1)	Kafra Warper#pront	4_F_KAFRA7
-payon,75,120,5	duplicate(Kafra Warper#1-1)	Kafra Warper#pay	4_F_KAFRA7
+//payon,75,120,5	duplicate(Kafra Warper#1-1)	Kafra Warper#pay	4_F_KAFRA7

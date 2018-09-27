@@ -16,7 +16,7 @@
 
 // Waiting Room NPCs
 //============================================================
-payon,80,146,5	script	Battle Arena::BA01_MAIN	4_F_JOB_KNIGHT,{
+prontera,123,84,3	script	Battle Arena::BA01_MAIN	4_F_JOB_KNIGHT,{
 	end;
 	
 OnInit:
@@ -151,7 +151,7 @@ OnJoin:
 		donpcevent "haider_respawn_warp::OnBGStart";
 		donpcevent "avaitor_respawn_warp::OnBGStart";
 		donpcevent "BA01_MAIN::OnCheckMap";		
-		announce "Battle Arena has started. Proceed to payon(80,146) to join the match.",bc_all,"0xFFA500";
+		announce "Battle Arena has started. Proceed to payon(123,84) to join the match.",bc_all,"0xFFA500";
 		initnpctimer;
 	}
 	end;
@@ -426,7 +426,7 @@ OnClear:
 	set $@BA_TEAM01_ID1, 0;
 	bg_destroy $@BA_TEAM01_ID2; 
 	set $@BA_TEAM01_ID2, 0;
-	mapwarp .map$,"payon",70,100;
+	mapwarp .map$,"prontera",116,73;
 	//maprespawnguildid .map$,0,3; // Just in case someone else
 	bg_updatescore .map$,0,0;
 	donpcevent "haider_respawn_warp::OnBGStop";

@@ -116,7 +116,7 @@ OnDone:
 	set $lms_status,0;
 	announce "[Event] We don't have any winner on our Last Man Standing event. See you next time..",16;
 	sleep 5000;
-	mapwarp $lms_map$,"payon",70,100,0;
+	mapwarp $lms_map$,"prontera",116,73,0;
 end;	
 
 
@@ -157,7 +157,7 @@ OnDoCheck:
 				set $lms_status,0;
 				announce "[Event] We don't have any winner on our Last Man Standing event. See you next time..",16;
 				sleep 5000;
-				mapwarp $lms_map$,"payon",70,100,0;
+				mapwarp $lms_map$,"prontera",116,73,0;
 			}else if(getmapusers($lms_map$) == 2){
 					sleep2 3000;
 					mapannounce $lms_map$,"[Event] Last 2 Brave warriors are still alive!",16;

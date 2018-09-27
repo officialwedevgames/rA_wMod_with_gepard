@@ -1,5 +1,5 @@
 
-payon,76,117,4	script	Battle Royale Manager::Battle_Royale	4_M_JP_RUN,{
+prontera,147,174,4	script	Battle Royale Manager::Battle_Royale	4_M_JP_RUN,{
 	mes "[ Battle Royale Manager ]";
 	mes "Welcome "+strcharinfo(0);
 	mes "^0000ffBattle Royale^000000 is now active and open for participants. Check the game mode and join now.";
@@ -844,7 +844,7 @@ poring_w02,160,176,4	script	BattleRoyaleWarp	WARPNPC,3,3,{
 	end;
 	
 	OnTouch:
-		savepoint "payon",70,100;	
+		savepoint "prontera",116,73;	
 		warp "SavePoint",0,0;
 	end;
 }

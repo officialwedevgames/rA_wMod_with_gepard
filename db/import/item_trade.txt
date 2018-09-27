@@ -20,6 +20,7 @@
 //	Balmung cannot be dropped, traded, or placed in Guild Storage (1+2+64).
 //	Only groups of group-level 50 and up can override this setting.
 
+19990,453,100	// C_Snow_Rabbit_Knit_Hat
 31001,453,100	// Costume_1
 31002,453,100	// Costume_2
 31003,453,100	// Costume_3
@@ -65,6 +66,7 @@
 31409,453,100	// Costume_409
 31411,453,100	// Costume_411
 31483,479,100	// Costume_483
+31596,449,100	// Costume_596
 31654,453,100	// Costume_654
 31776,325,100	// Costume_776
 31863,511,100	// BG_Ranked_DH_Bronze
@@ -80,10 +82,10 @@
 32012,479,99	// H_Pumpkin
 32013,493,100	// Fragment_Box
 32014,461,100	// Letter_Challenge_Box
-32022,511,50	// L_Costume_A
-32023,511,50	// L_Costume_B
-32024,511,50	// L_Costume_C
-32025,511,50	// L_Costume_S
+32022,511,50	// Costume_A
+32023,511,50	// Costume_B
+32024,511,50	// Costume_C
+32025,511,50	// Costume_S
 32026,511,99	// Guild_Package_Box
 32027,511,99	// BG_Ranked_Reward1
 32028,511,99	// BG_Ranked_Reward2

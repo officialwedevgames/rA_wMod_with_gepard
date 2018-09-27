@@ -1,4 +1,4 @@
-payon,84,138,4	script	Andere	8W_SOLDIER,{
+-	script	Andere	FAKE_NPC,{
 	mes "[ PvP Master ]";
 	mes "I'm glad to serve you and I will open the PVP Fight Squre for you! Which PvP Arena do you want to enter?";
 	next;

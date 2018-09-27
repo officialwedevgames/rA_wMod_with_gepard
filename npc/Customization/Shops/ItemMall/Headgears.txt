@@ -1,17 +1,12 @@
-payon,110,116,4	trader	Headgears	4_F_KAFRA2,{
+-	trader	Headgears	FAKE_NPC,{
 
 OnInit:
 	tradertype("NST_CASH");
-	sellitem "Angel_Spirit",2000;
-	sellitem "Holy_Marching_Hat_J",2000;
-	sellitem "Evil_Marcher_Hat",2000;
-	sellitem "Evil's_Bone_Hat",7500;
-	sellitem "Friend_Recruiter_Hat",700;
-	sellitem "Bf_Recruiter_Hat",700;
-	sellitem "Party_Recruiter_Hat",700;
-	sellitem "Guildsman_Recruiter",700;
-	sellitem "Gf_Recruiter_Hat",700;
+	sellitem "C_Snow_Rabbit_Knit_Hat",2500;
+	sellitem "Cyclops_Visor",1000;
 	sellitem "Alice_Doll",7500;
+	sellitem "Angel_Spirit",2000;
+	sellitem "Bf_Recruiter_Hat",700;
 	sellitem "Black_Bunny_Band",2000;
 	sellitem "Blush_Of_Groom",1500;
 	sellitem "Bread_Bag2",2000;
@@ -19,16 +14,23 @@ OnInit:
 	sellitem "Deviling_Hat",3000;
 	sellitem "Dress_Hat",3000;
 	sellitem "Drooping_White_Kitty",2000;
+	sellitem "Evil's_Bone_Hat",7500;
+	sellitem "Evil_Marcher_Hat",2000;
+	sellitem "Friend_Recruiter_Hat",700;
 	sellitem "Gang_Scarf",1000;
 	sellitem "Gemini_Crown",2500;
 	sellitem "Gemini_Diadem",2500;
+	sellitem "Gf_Recruiter_Hat",700;
+	sellitem "Guildsman_Recruiter",700;
 	sellitem "Headset_OST",2000;
 	sellitem "Helm_Of_Darkness",2500;
+	sellitem "Holy_Marching_Hat_J",2000;
 	sellitem "J_Captain_Hat",3000;
 	sellitem "Large_Hibiscus",3000;
 	sellitem "Lovecap_China",7500;
 	sellitem "Marcher_Hat",2000;
 	sellitem "Moonlight_Flower_Hat",2000;
+	sellitem "Party_Recruiter_Hat",700;
 	sellitem "Pecopeco_Hairband",4000;
 	sellitem "Pecopeco_Wing_Ears",1500;
 	sellitem "Rabbit_Earplug",2500;

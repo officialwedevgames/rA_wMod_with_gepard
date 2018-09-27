@@ -80,10 +80,10 @@
 32012,479,99	// H_Pumpkin
 32013,493,100	// Fragment_Box
 32014,461,100	// Letter_Challenge_Box
-32022,511,50	// L_Costume_A
-32023,511,50	// L_Costume_B
-32024,511,50	// L_Costume_C
-32025,511,50	// L_Costume_S
+32022,511,50	// Costume_A
+32023,511,50	// Costume_B
+32024,511,50	// Costume_C
+32025,511,50	// Costume_S
 32026,511,99	// Guild_Package_Box
 32027,511,99	// BG_Ranked_Reward1
 32028,511,99	// BG_Ranked_Reward2

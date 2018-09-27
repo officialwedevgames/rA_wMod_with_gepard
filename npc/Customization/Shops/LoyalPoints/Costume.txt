@@ -1,5 +1,5 @@
 
-function	script	F_LoyalCostume	{
+function	script	F_CostumeBox	{
 
 			for(set .@i,0; .@i < 1; set .@i,.@i + 1){
 				.@chance = rand(1,10000);

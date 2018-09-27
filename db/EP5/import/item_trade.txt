@@ -71,10 +71,10 @@
 32004,471,99	// Dice_Event_Ticket
 32006,511,99	// Zeny_Envelope
 32012,479,99	// H_Pumpkin
-32022,511,50	// L_Costume_A
-32023,511,50	// L_Costume_B
-32024,511,50	// L_Costume_C
-32025,511,50	// L_Costume_S
+32022,511,50	// Costume_A
+32023,511,50	// Costume_B
+32024,511,50	// Costume_C
+32025,511,50	// Costume_S
 32026,511,99	// Guild_Package_Box
 32027,511,99	// BG_Ranked_Reward1
 32028,511,99	// BG_Ranked_Reward2

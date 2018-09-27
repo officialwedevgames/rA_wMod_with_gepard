@@ -1,5 +1,5 @@
 
-payon,112,116,4	trader	Convenient	4_F_KAFRA3,{
+-	trader	Convenient	FAKE_NPC,{
 OnInit:
 	tradertype("NST_CASH");
 	sellitem "Dark_Magician_Scroll",300;
@@ -33,10 +33,10 @@ OnInit:
 	sellitem "Dex_Dish10_",200;
 	sellitem "Luk_Dish10_",200;
 	sellitem "Vit_Dish10_",200;
-	sellitem "L_Costume_C",100;
-	sellitem "L_Costume_B",250;
-	sellitem "L_Costume_A",350;
-	sellitem "L_Costume_S",500;
+	sellitem "Costume_C",100;
+	sellitem "Costume_B",250;
+	sellitem "Costume_A",350;
+	sellitem "Costume_S",500;
 	end;
 }
 

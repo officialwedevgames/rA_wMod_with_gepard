@@ -1490,7 +1490,7 @@
 2287,Pirate_Bandana,Pirate Bandana,4,20,,100,,4,,0,0xFFFFFFFE,63,2,256,,0,1,74,{ bonus bStr,1; },{},{}
 2288,Mr_Scream,Mr. Scream,4,20,,100,,1,,0,0xFFFFFFFE,63,2,513,,0,0,75,{},{},{}
 2289,Poo_Poo_Hat,Poo Poo Hat,4,20,,700,,0,,0,0xFFFFFFFF,63,2,256,,0,0,76,{ bonus2 bSubRace,RC_DemiHuman,10; bonus2 bSubRace,RC_Player,10; },{},{}
-2290,Funeral_Costume,Funeral Hat,4,3000,,100,,1,,0,0xFFFFFFFF,63,2,256,,0,0,77,{},{},{}
+2290,FuneraCostume,Funeral Hat,4,3000,,100,,1,,0,0xFFFFFFFF,63,2,256,,0,0,77,{},{},{}
 2291,Masquerade,Masquerade,4,20,,100,,0,,0,0xFFFFFFFE,63,2,512,,0,0,78,{ bonus2 bAddRace,RC_DemiHuman,3; bonus2 bAddRace,RC_Player,3; },{},{}
 2292,Welding_Mask,Welding Mask,4,20,,300,,2,,0,0x00040420,63,2,513,,50,0,79,{ bonus2 bSubEle,Ele_Fire,10; },{},{}
 2293,Pretend_Murdered,Pretend Murdered,4,20,,100,,1,,0,0xFFFFFFFF,63,2,256,,0,0,80,{},{},{}
@@ -10466,7 +10466,7 @@
 20111,C_Coiledup_Snake_Hat2,Costume Coiledup Snake Hat,4,0,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,1259,{},{},{}
 20112,C_Aqua_Ten_Gallon_Hat,Costume Aqua Ten Gallon Hat,4,0,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,1256,{},{},{}
 20113,C_Star_Reading_Hat,Costume Star Reading Hat,4,0,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,1253,{},{},{}
-20114,C_Funeral_Costume,Costume Funeral Hat,4,0,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,77,{},{},{}
+20114,C_FuneraCostume,Costume Funeral Hat,4,0,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,77,{},{},{}
 20115,C_Under_Rim_Glasses,Under Rim Glasses,4,0,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,1,1255,{},{},{}
 20116,C_Mermaid_Headphone,Mermaid Headphone,4,0,,0,,,,0,0xFFFFFFFF,63,2,2048,,1,1,1254,{},{},{}
 20117,C_Raspberry_Mousse_Hat,Raspberry Mousse Hat,4,0,,0,,,,0,0xFFFFFFFF,63,2,1024,,1,1,1257,{},{},{}

@@ -113,5 +113,4 @@ function	script	battle_arena_queue	{
 	return;
 }
 
-payon,97,132,4	duplicate(BattleArena)	Arena Manager#pront	4_M_MANAGER
 prontera,129,94,4	duplicate(BattleArena)	Arena Manager#pay	4_M_MANAGER

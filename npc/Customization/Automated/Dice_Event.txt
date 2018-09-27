@@ -148,30 +148,30 @@ L_Start:
 	}
 
 L_Lose1:
-	areawarp "quiz_01",183,81,191,59,"payon",70,100;
-	areawarp "quiz_01",195,81,203,59,"payon",70,100;
-	areawarp "quiz_01",207,81,215,59,"payon",70,100;
+	areawarp "quiz_01",183,81,191,59,"prontera",116,73;
+	areawarp "quiz_01",195,81,203,59,"prontera",116,73;
+	areawarp "quiz_01",207,81,215,59,"prontera",116,73;
 	if(getmapusers("quiz_01") == 1) {goto L_Champ;}else{goto L_Start;}
 	end;
 
 L_Lose2:
-	areawarp "quiz_01",183,81,191,59,"payon",70,100;
-	areawarp "quiz_01",195,81,203,59,"payon",70,100;
-	areawarp "quiz_01",219,81,227,59,"payon",70,100;
+	areawarp "quiz_01",183,81,191,59,"prontera",116,73;
+	areawarp "quiz_01",195,81,203,59,"prontera",116,73;
+	areawarp "quiz_01",219,81,227,59,"prontera",116,73;
 	if(getmapusers("quiz_01") == 1) {goto L_Champ;}else{goto L_Start;}
 	end;
 	
 L_Lose3:
-	areawarp "quiz_01",183,81,191,59,"payon",70,100;
-	areawarp "quiz_01",207,81,215,59,"payon",70,100;
-	areawarp "quiz_01",219,81,227,59,"payon",70,100;
+	areawarp "quiz_01",183,81,191,59,"prontera",116,73;
+	areawarp "quiz_01",207,81,215,59,"prontera",116,73;
+	areawarp "quiz_01",219,81,227,59,"prontera",116,73;
 	if(getmapusers("quiz_01") == 1) {goto L_Champ;}else{goto L_Start;}
 	end;
 	
 L_Lose4:
-	areawarp "quiz_01",195,81,203,59,"payon",70,100;
-	areawarp "quiz_01",207,81,215,59,"payon",70,100;
-	areawarp "quiz_01",219,81,227,59,"payon",70,100;
+	areawarp "quiz_01",195,81,203,59,"prontera",116,73;
+	areawarp "quiz_01",207,81,215,59,"prontera",116,73;
+	areawarp "quiz_01",219,81,227,59,"prontera",116,73;
 	if(getmapusers("quiz_01") == 1) {goto L_Champ;}else{goto L_Start;}
 	end;
 
@@ -183,11 +183,11 @@ L_Lose4:
 -	script	DiceWarp#1	FAKE_NPC,{
 
 OnEnable:
-	areawarp "quiz_01",182,94,228,88,"payon",70,100;
-	areawarp "quiz_01",185,87,188,82,"payon",70,100;
-	areawarp "quiz_01",197,87,200,82,"payon",70,100;
-	areawarp "quiz_01",209,87,212,82,"payon",70,100;
-	areawarp "quiz_01",221,87,224,82,"payon",70,100;
+	areawarp "quiz_01",182,94,228,88,"prontera",116,73;
+	areawarp "quiz_01",185,87,188,82,"prontera",116,73;
+	areawarp "quiz_01",197,87,200,82,"prontera",116,73;
+	areawarp "quiz_01",209,87,212,82,"prontera",116,73;
+	areawarp "quiz_01",221,87,224,82,"prontera",116,73;
 	end;
 }
 

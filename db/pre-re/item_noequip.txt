@@ -18,7 +18,8 @@
 // 512  - restricted in zone 5
 // 1024 - restricted in zone 6
 // 2048 - restricted in zone 7
-// 4096 - restricted in zone 8
+// 8192 - restricted in zone 8
+// 8192 - restricted in zone 9
 //
 // Passing negative value as flag will unset the flag instead.
 //
@@ -81,3 +82,72 @@
 // Zone 7 - Towns
 //----------------------------------------------------------------------------
 14529,2048	//Greed_Scroll
+
+//----------------------------------------------------------------------------
+// Zone 8 - No Potion
+//----------------------------------------------------------------------------
+
+//- Potions
+32371,4096	//Classic_White_Potion
+607,4096	//Yggdrasilberry
+608,4096	//Seed_Of_Yggdrasil
+504,4096	//White_Potion
+505,4096	//Blue_Potion
+526,4096	//Royal_Jelly
+11503,4096	//Siege_White_Potion
+11501,4096	//Light_White_Pot
+
+//----------------------------------------------------------------------------
+// Zone 9 - Battle Arena
+//----------------------------------------------------------------------------
+12218,8192	//Assumptio_5_Scroll
+14590,8192	//Pty_Assumptio_Scroll
+
+//- Potions
+32371,8192	//Classic_White_Potion
+607,8192	//Yggdrasilberry
+608,8192	//Seed_Of_Yggdrasil
+504,8192	//White_Potion
+505,8192	//Blue_Potion
+526,8192	//Royal_Jelly
+11503,8192	//Siege_White_Potion
+11501,8192	//Light_White_Pot
+
+//- Cards
+4013,8192	//Andre_Egg_Card
+4035,8192	//Hydra_Card
+4044,8192	//Smokie_Card
+4047,8192	//Ghostring_Card
+4058,8192	//Thara_Frog_Card
+4077,8192	//Phen_Card
+4088,8192	//Frilldora_Card
+4092,8192	//Skel_Worker_Card
+4097,8192	//Matyr_Card
+4100,8192	//Sohee_Card
+4107,8192	//Verit_Card 
+4133,8192	//Raydric_Card
+4160,8192	//Antique_Firelock_Card
+4174,8192	//Deviling_Card
+4302,8192	//Tao_Gunka_Card 
+4303,8192	//Whisper_Boss_Card
+4327,8192	//Blood_Butterfly_Card
+
+
+//----------------------------------------------------------------------------
+// Zone 10 - Battle Royale
+//----------------------------------------------------------------------------
+
+12218,16384	//Assumptio_5_Scroll
+14590,16384	//Pty_Assumptio_Scroll
+
+12211,16384	//Kafra_Card
+32376,16384	//Classic_Kafra_Card
+
+//- Cards
+4044,16384	//Smokie_Card
+4047,16384	//Ghostring_Card
+4077,16384	//Phen_Card
+4088,16384	//Frilldora_Card
+4174,16384	//Deviling_Card
+4302,16384	//Tao_Gunka_Card 
+4327,16384	//Blood_Butterfly_Card

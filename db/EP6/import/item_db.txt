@@ -247,10 +247,10 @@
 32013,Fragment_Box,Fragment Box,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_ItemPackage",32013; },{},{}
 32014,Letter_Challenge_Box,Letter Challenge Box,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_ItemPackage",32014; },{},{}
 32021,GM_Ticket_Converter,GM' Ticket Converter,2,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "GM_Ticket_Converter"; },{},{}
-32022,L_Costume_A,Loyal Costume Box A,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_LoyalCostume",32022; },{},{}
-32023,L_Costume_B,Loyal Costume Box B,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_LoyalCostume",32023; },{},{}
-32024,L_Costume_C,Loyal Costume Box C,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_LoyalCostume",32024; },{},{}
-32025,L_Costume_S,Loyal Costume Box S,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_LoyalCostume",32025; },{},{}
+32022,Costume_A,Costume Box A,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_CostumeBox",32022; },{},{}
+32023,Costume_B,Costume Box B,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_CostumeBox",32023; },{},{}
+32024,Costume_C,Costume Box C,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_CostumeBox",32024; },{},{}
+32025,Costume_S,Costume Box S,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "F_CostumeBox",32025; },{},{}
 32026,Guild_Package_Box,Guild Package Box,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "Guild_Package"; },{},{}
 32027,BG_Ranked_Reward1,Top 1 Ranked Reward Box,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "Ranked_Rewards",1; },{},{}
 32028,BG_Ranked_Reward2,Top 2 Ranked Reward Box,18,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "Ranked_Rewards",2; },{},{}

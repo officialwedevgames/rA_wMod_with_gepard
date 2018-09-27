@@ -47,19 +47,19 @@
  89,0x86,    ,  4, 1, 450,enemy, 0x018	//WZ_STORMGUST
  91,0x86,    ,  2, 0,1000,enemy, 0x010	//WZ_HEAVENDRIVE
  92,0x8e,    ,  2, 0,  -1,enemy, 0x8010	//WZ_QUAGMIRE
-115,0x90,    ,  0, 1,1000,enemy, 0x8006	//HT_SKIDTRAP
-116,0x93,    ,  0, 1,1000,enemy, 0x8006	//HT_LANDMINE
-117,0x91,    ,  0, 1,1000,enemy, 0x9006	//HT_ANKLESNARE
-118,0x94,    ,  0, 1,1000,enemy, 0x8006	//HT_SHOCKWAVE
-119,0x95,    ,  0, 1,1000,enemy, 0x8006	//HT_SANDMAN
-120,0x96,    ,  0, 1,1000,enemy, 0x8006	//HT_FLASHER
-121,0x97,    ,  0, 1,1000,enemy, 0x8006	//HT_FREEZINGTRAP
+115,0x90,    ,  0, 1,1000,enemy, 0x28006	//HT_SKIDTRAP
+116,0x93,    ,  0, 1,1000,enemy, 0x28006	//HT_LANDMINE
+117,0x91,    ,  0, 1,1000,enemy, 0x29006	//HT_ANKLESNARE
+118,0x94,    ,  0, 1,1000,enemy, 0x28006	//HT_SHOCKWAVE
+119,0x95,    ,  0, 1,1000,enemy, 0x28006	//HT_SANDMAN
+120,0x96,    ,  0, 1,1000,enemy, 0x28006	//HT_FLASHER
+121,0x97,    ,  0, 1,1000,enemy, 0x28006	//HT_FREEZINGTRAP
 122,0x8f,    ,  0, 1,1000,enemy, 0x8006	//HT_BLASTMINE
 123,0x98,    ,  0, 1,1000,enemy, 0x8006	//HT_CLAYMORETRAP
-125,0x99,    ,  0, 1,1000,all,   0x8040	//HT_TALKIEBOX
+125,0x99,    ,  0, 1,1000,all,   0x28040	//HT_TALKIEBOX
 140,0x92,    , -1, 1,1000,enemy, 0x8000	//AS_VENOMDUST
 220,0xb0,    ,  0, 0,  -1,all,   0x8002	//RG_GRAFFITI
-229,0xb1,    ,  0, 1,1000,enemy, 0x006	//AM_DEMONSTRATION
+229,0xb1,    ,  0, 1, 500,enemy, 0x006	//AM_DEMONSTRATION
 254,0x86,    , -1, 0, 300,enemy, 0x010	//CR_GRANDCROSS
 285,0x9a,    ,  3, 0,  -1,all,   0x8010	//SA_VOLCANO
 286,0x9b,    ,  3, 0,  -1,all,   0x8010	//SA_DELUGE
@@ -67,13 +67,13 @@
 288,0x9d,    ,  3:3:4:4:5,0, -1,all,   0x8010	//SA_LANDPROTECTOR
 306,0x9e,    ,  4, 0,6000,enemy,   0x200	//BD_LULLABY
 307,0x9f,    ,  4, 0,  -1,enemy, 0x220	//BD_RICHMANKIM
-308,0xa0,    ,  4, 0,  -1,enemy, 0x200	//BD_ETERNALCHAOS
+308,0xa0,    ,  4, 0,  -1,enemy, 0x8200	//BD_ETERNALCHAOS
 309,0xa1,    ,  4, 0,  -1,party, 0x200	//BD_DRUMBATTLEFIELD
 310,0xa2,    ,  4, 0,  -1,party, 0x200	//BD_RINGNIBELUNGEN
-311,0xa3,    ,  4, 0,  -1,all,   0x200	//BD_ROKISWEIL
+311,0xa3,    ,  4, 0,  -1,all,   0x8200	//BD_ROKISWEIL
 312,0xa4,    ,  4, 0,  -1,party, 0x240	//BD_INTOABYSS
 313,0xa5,    ,  4, 0,  -1,party, 0x200	//BD_SIEGFRIED
-317,0xa6,    ,  3, 0,3000,enemy, 0x400	//BA_DISSONANCE
+317,0xa6,    ,  3, 0,3000,enemy, 0x8400	//BA_DISSONANCE
 319,0xa7,    ,  3, 0,  -1,all,   0x440	//BA_WHISTLE
 320,0xa8,    ,  3, 0,  -1,all,   0x440	//BA_ASSASSINCROSS
 321,0xa9,    ,  3, 0,  -1,all,   0x440	//BA_POEMBRAGI
@@ -95,16 +95,17 @@
 428,0x86,    ,  0, 1, 100,enemy, 0x000	//SG_SUN_WARM
 429,0x86,    ,  0, 1, 100,enemy, 0x000	//SG_MOON_WARM
 430,0x86,    ,  0, 1, 100,enemy, 0x000	//SG_STAR_WARM
-484,0xb8,    ,  2, 0,1000,enemy, 0x8818	//HW_GRAVITATION
+484,0xb8,    ,  2, 0, 500,enemy, 0x8818	//HW_GRAVITATION
 488,0xb9,    ,  3, 0,  -1,all,   0x200	//CG_HERMODE
 516,0x86,    ,  3, 0, 100,enemy, 0x000	//GS_DESPERADO
 521,0xbe,    ,  0, 1,1000,enemy, 0x000	//GS_GROUNDDRIFT
+525,0x86,    ,  0, 2,1000,enemy, 0x018	//NJ_HUUMA
 527,0xbc,    , -1, 0,2000,enemy, 0x018	//NJ_TATAMIGAESHI
 535,0xbd,    , -1, 0, 100,enemy, 0x8010	//NJ_KAENSIN
 536,0x86,    ,  2, 0,1000,enemy, 0x010	//NJ_BAKUENRYU
 538,0xbb,    ,  1:1:1:2:2:2:3:3:3:4,0,-1,all,0x8010	//NJ_SUITON
 539,0x86,    ,  3, 0,1000,enemy, 0x010	//NJ_HYOUSYOURAKU
-541,0x86,    ,  2:2:3:3:4, 0,1000,enemy, 0x010	//NJ_RAIGEKISAI
+541,0x86,    ,  1:1:2:2:3, 0,1000,enemy, 0x010	//NJ_RAIGEKISAI
 670,0xc7,    ,  1, 5:5:5:5:5:5:5:5:5:13,1000,all,0x008	//NPC_EVILLAND
 
 706,0xfd,     ,  2, 0,1000,enemy, 0x018	//NPC_VENOMFOG
@@ -116,7 +117,7 @@
 2213,0x86,    ,  0, 9,1000,enemy, 0x018	//WL_COMET
 2216,0xcb,    , -1, 2,2000,enemy, 0x018	//WL_EARTHSTRAIN
 
-2238,0xd8,    ,  0, 1,1000,enemy, 0x9006	//RA_ELECTRICSHOCKER
+2238,0xd8,    ,  0, 1,1000,enemy, 0x8006	//RA_ELECTRICSHOCKER
 2239,0xd9,    ,  0, 1,1000,enemy, 0x8006	//RA_CLUSTERBOMB
 2249,0xd2,    ,  0, 1,1000,enemy, 0x8022	//RA_MAGENTATRAP
 2250,0xd3,    ,  0, 1,1000,enemy, 0x8022	//RA_COBALTTRAP
@@ -146,7 +147,7 @@
 2446,0x86,    ,  0, 3:3:3:4:4,1000,enemy, 0x018	//SO_EARTHGRAVE
 2447,0x86,    ,  0, 3:3:3:4:4,1000,enemy, 0x018	//SO_DIAMONDDUST
 2449,0xdf,    ,  0, 3:3:4:4:5,500,enemy,  0x018	//SO_PSYCHIC_WAVE
-2450,0xe0,    ,  0, 3, 500,enemy, 0x8010	//SO_CLOUD_KILL
+2450,0xe0,    ,  3, 0,  -1,enemy, 0xA010	//SO_CLOUD_KILL
 2452,0xe4,    ,  3, 0,  -1,all,   0xA010	//SO_WARMER
 2453,0xeb,    ,  0, 1:1:2:2:3,500,enemy,0x8010	//SO_VACUUM_EXTREME
 2465,0xf1,    ,  1, 0,  -1,all,   0x2010	//SO_FIRE_INSIGNIA
@@ -168,12 +169,16 @@
 3006,0x86,    ,  0, 1,1000,enemy, 0x018	//KO_BAKURETSU
 3008,0x86,    ,  0, 1:1:1:1:1:1:1:1:1:2,1000,enemy, 0x018 //KO_MUCHANAGE
 3009,0x86,    ,  0, 3,1000,enemy, 0x018 //KO_HUUMARANKA
-3010,0xfc,    ,  0, 1,5000,enemy, 0x018 //KO_MAKIBISHI
+3010,0xfc,    ,  0, 0,5000,enemy, 0x018 //KO_MAKIBISHI
 3020,0xf8,    ,  0, 2, 500,all, 0x018   //KO_ZENKAI
 
 5006,0x101,   ,  0, 3, 500,enemy, 0x018	//NC_MAGMA_ERUPTION
 5010,0x91,    ,  0, 1,1000,all,   0x002	//SC_ESCAPE
 5013,0x102,   ,  3, 0,  -1,all,   0x2002	//LG_KINGS_GRACE
+
+5027,0x106,   ,  1:1:2:2:3, 0,  -1,enemy, 0x2010 // SU_CN_POWDERING
+5028,0x86,    ,  0, 3, 500,enemy, 0x10 // SU_CN_METEOR
+5048,0x107,   ,  2:2:3:3:4, 0, -1, enemy, 0x2010 // SU_NYANGGRASS
 
 8020,0xf5,    ,  3, 0,2300:2100:1900:1700:1500,enemy,   0x018	//MH_POISON_MIST
 8033,0x7e,    ,  0, 0,  -1,all,   0x003	//MH_STEINWAND
@@ -181,10 +186,10 @@
 8041,0xf6,    ,  1:1:2:2:3, 0,2000,enemy,   0x01A	//MH_LAVA_SLIDE
 8043,0xf7,    ,  1, 0,-1,all,   0x2018	//MH_VOLCANIC_ASH
 
-8209,0x90,    ,  0, 1,1000,enemy, 0x006	//MA_SKIDTRAP
-8210,0x93,    ,  0, 0,1000,enemy, 0x006	//MA_LANDMINE
-8211,0x95,    ,  0, 1,1000,enemy, 0x006	//MA_SANDMAN
-8212,0x97,    ,  0, 1,1000,enemy, 0x006	//MA_FREEZINGTRAP
+8209,0x90,    ,  0, 1,1000,enemy, 0x8006	//MA_SKIDTRAP
+8210,0x93,    ,  0, 0,1000,enemy, 0x8006	//MA_LANDMINE
+8211,0x95,    ,  0, 1,1000,enemy, 0x8006	//MA_SANDMAN
+8212,0x97,    ,  0, 1,1000,enemy, 0x8006	//MA_FREEZINGTRAP
 
 8403,0xed,    , -1, 1,1000,enemy, 0x018	//EL_FIRE_MANTLE
 8406,0xee,    ,  1, 0,  -1,friend,0x2018	//EL_WATER_BARRIER
