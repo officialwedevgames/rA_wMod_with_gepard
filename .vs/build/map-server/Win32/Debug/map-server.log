@@ -9,7 +9,6 @@
   chrif.cpp
   clan.cpp
   clif.cpp
-  date.cpp
   duel.cpp
   elemental.cpp
   guild.cpp
@@ -18,17 +17,15 @@
   intif.cpp
   itemdb.cpp
   log.cpp
+  mail.cpp
   Generating Code...
   Compiling...
-  mail.cpp
   map.cpp
-  mapreg.cpp
   mercenary.cpp
   mob.cpp
   npc.cpp
   npc_chat.cpp
   party.cpp
-  path.cpp
   pc.cpp
   pc_groups.cpp
   pet.cpp
@@ -40,9 +37,6 @@
   storage.cpp
   trade.cpp
   unit.cpp
-  Generating Code...
-  Compiling...
   vending.cpp
   Generating Code...
-  LINK : D:\Ragnarok_Emulators\rA_wMod_with_gepard\map-server.exe not found or not built by the last incremental link; performing full link
   map-server.vcxproj -> D:\Ragnarok_Emulators\rA_wMod_with_gepard\map-server.exe
