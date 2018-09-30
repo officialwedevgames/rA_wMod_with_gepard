@@ -20,6 +20,7 @@
 //	Balmung cannot be dropped, traded, or placed in Guild Storage (1+2+64).
 //	Only groups of group-level 50 and up can override this setting.
 
+19777,453,100	// C_Shiny_Small_Star
 19990,453,100	// C_Snow_Rabbit_Knit_Hat
 31001,453,100	// Costume_1
 31002,453,100	// Costume_2

@@ -14,8 +14,6 @@ OnInit:
 	sellitem "Blue_Gemstone_Box_10",3;
 	sellitem "Red_Gemstone_Box_10",5;
 	sellitem "Yellow_Gemstone_Box_10",7;
-	sellitem "Clothing_Dye_Coupon",250;
-	sellitem "Clothing_Dye_Coupon_II",150;
 	sellitem "Blessing_10_Scroll_Box",50;
 	sellitem "Inc_Agi_10_Scroll_Box",50;
 	sellitem "Battle_Manual_Box2",350;
@@ -23,20 +21,21 @@ OnInit:
 	sellitem "Kafra_Card_Box",125;
 	sellitem "Job_Manual_Box",350;
 	sellitem "Insurance_Package",250;
+	sellitem "Convex_Mirror_Box",500;
 	sellitem "F_Regeneration_Box10",150;
-	sellitem "Premium_Reset_Stone",500;
-	sellitem "Neuralizer_Box",2500;
-	sellitem "Max_Weight_Up_Box",5000;
 	sellitem "Str_Dish10_",200;
 	sellitem "Agi_Dish10_",200;
 	sellitem "Int_Dish10_",200;
 	sellitem "Dex_Dish10_",200;
 	sellitem "Luk_Dish10_",200;
 	sellitem "Vit_Dish10_",200;
-	sellitem "Costume_C",100;
-	sellitem "Costume_B",250;
-	sellitem "Costume_A",350;
-	sellitem "Costume_S",500;
+	sellitem "Spark_Candy_Box10",500;
+	sellitem "Infinity_Treasure_Chest",300;
+	sellitem "Clothing_Dye_Coupon",250;
+	//sellitem "Clothing_Dye_Coupon_II",150;
+	sellitem "Premium_Reset_Stone",500;
+	sellitem "Neuralizer_Box",2500;
+	sellitem "Max_Weight_Up_Box",5000;
 	end;
 }
 

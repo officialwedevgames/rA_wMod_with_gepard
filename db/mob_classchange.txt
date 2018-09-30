@@ -22,10 +22,7 @@ MOBG_ClassChange,1251,Stormy Knight,1000000
 MOBG_ClassChange,1252,Garm,1000000
 MOBG_ClassChange,1272,Dark Lord,1000000
 MOBG_ClassChange,1312,Turtle General,1000000
-MOBG_ClassChange,1373,Lord of the Dead,1000000
 MOBG_ClassChange,1388,Arc Angeling,1000000
 MOBG_ClassChange,1389,Dracula,1000000
-MOBG_ClassChange,1418,Evil Snake Lord,1000000
-MOBG_ClassChange,1492,Samurai Specter,1000000
 MOBG_ClassChange,1511,Amon Ra,1000000
 MOBG_ClassChange,1583,Tao Gunka,1000000

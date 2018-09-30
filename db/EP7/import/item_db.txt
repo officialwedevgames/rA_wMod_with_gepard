@@ -68,6 +68,7 @@
 8965,Blue_Skull,Blue Skull,3,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 8966,Red_Skull,Red Skull,3,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 8967,Green_Skull,Green Skull,3,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+19777,C_Shiny_Small_Star,Costume: Shiny Small Star,4,20,,0,,,,,0xFFFFFFFF,63,2,1024,,,0,1005,{},{},{}
 19990,C_Snow_Rabbit_Knit_Hat,Costume: Rabbit Knit Hat,4,20,,0,,,,,0xFFFFFFFF,63,2,7168,,,0,1157,{ bonus2 bResEff,Eff_Freeze,2500; },{},{}
 31001,Costume_1,Costume: Dark Knight Mask,4,20,,0,,,,,0xFFFFFFFF,63,2,7168,,,0,479,{},{},{}
 31002,Costume_2,Costume: Rune Circlet,4,20,,0,,,,,0xFFFFFFFF,63,2,1024,,,0,623,{},{},{}

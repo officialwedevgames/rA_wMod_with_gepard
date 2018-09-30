@@ -1,42 +1,5 @@
 ﻿  achievement.cpp
-  atcommand.cpp
-  battle.cpp
-  battleground.cpp
-  buyingstore.cpp
-  cashshop.cpp
-  channel.cpp
-  chat.cpp
-  chrif.cpp
-  clan.cpp
   clif.cpp
   duel.cpp
-  elemental.cpp
-  guild.cpp
-  homunculus.cpp
-  instance.cpp
-  intif.cpp
-  itemdb.cpp
-  log.cpp
-  mail.cpp
-  Generating Code...
-  Compiling...
-  map.cpp
-  mercenary.cpp
-  mob.cpp
-  npc.cpp
-  npc_chat.cpp
-  party.cpp
-  pc.cpp
-  pc_groups.cpp
-  pet.cpp
-  quest.cpp
-  script.cpp
-  searchstore.cpp
-  skill.cpp
-  status.cpp
-  storage.cpp
-  trade.cpp
-  unit.cpp
-  vending.cpp
   Generating Code...
   map-server.vcxproj -> D:\Ragnarok_Emulators\rA_wMod_with_gepard\map-server.exe

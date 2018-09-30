@@ -12,7 +12,7 @@ setarray .News$[0],	// Random Message to be Announced
 			"[ Tip of the Day ] If you become a Player of the Week, you will receive 250 Rok Points and 350 Loyal Points every Monday. Checkout the full rankings at https://www.wedevgames.net/classic/rankings?action=Player.",
 			"[ Tip of the Day ] Are you looking for a database where you can get monster information on this server? Visit http://wedevgames.net/rodb for more details.",
 			"[ Quest ] Don't know where to start? How about using your Beginner Quest Book in your inventory, then get an experience and rewards.",
-			"[ Quest ] Midgard Officer at payon(85,130) is giving you an opportunity to LEVEL UP!",
+			"[ Quest ] Midgard Officer at prontera(142,125) is giving you an opportunity to LEVEL UP!",
 			"[ Quest ] Look for Thaddeus in prontera(144,125) and earn upto 100 loyal points each character everyday.";			
 	 		
 

@@ -19,7 +19,8 @@ OnInit:
 	sellitem "Vit_Dish10_M",100,0,1;
 	sellitem "Color_Style_Coupon",100,0,1;
 	sellitem "Newbie_Sign",750,1440,0;
-	sellitem "Infinity_Treasure_Chest",500,0,1;
+	sellitem "Infinity_Treasure_Chest",600,0,1;
+	sellitem "Clothing_Dye_Coupon",3000,0,1;
 	end;
 
 /* allows currency to be item 501 and 502 */

@@ -18,6 +18,9 @@
 //============================================================ 
 
 prontera,102,97,5	script	Costume Collector	1_M_MERCHANT,{
+	mes "[ Costume Collector ]";
+	mes "I am collecting costume items and trade it for ^FF0000Loyal Points^000000.";
+	close2;
 	callshop "Costume_Sell_Shop",2;
 	npcshopattach "Costume_Sell_Shop";
 	function Comma;

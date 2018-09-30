@@ -77,7 +77,8 @@ switch(select("Tell me More!:Lets reset now.:[ ^FF0000EVENT^000000 ] ONCE A MONT
 			mes .NpcName$;
 			mes "As a master, I've been ordered to give you a free reset. Where do I start?";
 			next;
-				switch(select("Stats:Skills")) { 
+				//switch(select("Stats:Skills")) { 
+				switch(select("Stats")) {
 				case 1: 
 					mes "[ Ability Master ]";
 					mes "Good Choice..";

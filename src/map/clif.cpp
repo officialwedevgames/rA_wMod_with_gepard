@@ -2017,8 +2017,11 @@ void clif_buylist(struct map_session_data *sd, struct npc_data *nd)
 void clif_selllist(struct map_session_data *sd, struct npc_data *nd)
 {
 	int fd,i,c=0,val;
+	//struct npc_data *nd;
 	bool overcharge = true; // Judasu Shop
 	nullpo_retv(sd);
+	if (!sd->npc_shopid || (nd = map_id2nd(sd->npc_shopid)) == NULL)
+		return;
 	nullpo_retv(nd); // Judasu Shop
 
 	fd=sd->fd;
@@ -2032,7 +2035,7 @@ void clif_selllist(struct map_session_data *sd, struct npc_data *nd)
 	{
 		if( sd->inventory.u.items_inventory[i].nameid > 0 && sd->inventory_data[i] )
 		{
-			if( !pc_can_sell_item(sd, &sd->inventory.u.items_inventory[i]))
+			if( !pc_can_sell_item(sd, &sd->inventory.u.items_inventory[i], nd->subtype))
 				continue;
 
 			val=sd->inventory_data[i]->value_sell;

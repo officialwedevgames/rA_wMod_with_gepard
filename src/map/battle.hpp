@@ -668,6 +668,7 @@ struct Battle_Config
 	int partner_storage_increase;
 	int feature_attendance;
 	int feature_privateairship;
+	int rental_transaction;
 
 #include "../custom/battle_config_struct.inc"
 };

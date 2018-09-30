@@ -6759,7 +6759,7 @@
 13855,WOB_Box_Local5,Blue Butterfly Wing 5 Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 14585,5; },{},{}
 13856,WOB_Box_Local10,Blue Butterfly Wing Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 14585,10; },{},{}
 13857,Spark_Candy_Box5,Candy 5 Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 14586,5; },{},{}
-13858,Spark_Candy_Box10,Candy 10 Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 14586,10; },{},{}
+13858,Spark_Candy_Box10,Sparkling Candy Box(10),18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 14586,10; },{},{}
 13859,Directive_A_Envelope,Directive Envelope A,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 2734,1; },{},{}
 13860,Directive_B_Envelope,Directive Envelope B,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 2735,1; },{},{}
 13861,Mini_Battle_Manual_Box,Small Field Manual Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 12208,4; },{},{}

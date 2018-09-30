@@ -1,4 +1,4 @@
-prontera,112,100,5	script	Crafter	4_F_JOB_BLACKSMITH,{
+prontera,112,100,5	script	Crafter	1_M_SMITH,{
 	mes "[ Crafter ]";
 	mes "What items do you want to craft?";
 	next;
