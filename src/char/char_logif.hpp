@@ -33,6 +33,7 @@ int chlogif_parse_keepalive(int fd, struct char_session_data* sd);
 void chlogif_parse_change_sex_sub(int sex, int acc, int char_id, int class_, int guild_id);
 int chlogif_parse_ackchangesex(int fd, struct char_session_data* sd);
 int chlogif_parse_ackchangecharsex(int char_id, int sex);
+void chlogif_parse_ask_name_ack(int fd, int acc, const char* name, int type, int result);
 int chlogif_parse_ack_global_accreg(int fd, struct char_session_data* sd);
 int chlogif_parse_accbannotification(int fd, struct char_session_data* sd);
 int chlogif_parse_askkick(int fd, struct char_session_data* sd);

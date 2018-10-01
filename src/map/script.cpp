@@ -70,6 +70,9 @@ struct eri *stack_ers;
 
 static bool script_rid2sd_( struct script_state *st, struct map_session_data** sd, const char *func );
 
+// Judas Reward v2
+const char *reward_lists[] = { "\"E\"", "\"C\"", "\"D\"", "\"H\"", "\"R\"", "\"W\"", "\"M\"", "\"V\"", "\"O\"", "\"N\"", "\"L\"", "\"B\"", "\"U\"", "\"P\"" };
+
 /**
  * Get `sd` from a account id in `loc` param instead of attached rid
  * @param st Script
@@ -4769,6 +4772,31 @@ BUILDIN_FUNC(mes)
 	}
 
 	st->mes_active = 1; // Invoking character has a NPC dialog box open.
+	return SCRIPT_CMD_SUCCESS;
+}
+
+// Judas Unique
+/*==========================================
+* Item Destroy
+*------------------------------------------*/
+BUILDIN_FUNC(uniqueitem_remove4all)
+{
+	int nameid = script_getnum(st, 2);
+	int uniqueFlag = script_getnum(st, 3);
+
+	pc_uniqueitem_remove4all(nameid);
+
+	return SCRIPT_CMD_SUCCESS;
+}
+
+/*==========================================
+* Item Destroy
+*------------------------------------------*/
+BUILDIN_FUNC(itemdestroy)
+{
+	int nameid = script_getnum(st, 2);
+	pc_item_remove4all(nameid, true);
+
 	return SCRIPT_CMD_SUCCESS;
 }
 
@@ -14272,6 +14300,150 @@ BUILDIN_FUNC(petskillsupport)
 	else
 		pd->s_skill->timer = add_timer(gettick()+pd->s_skill->delay*1000,pet_skill_support_timer,sd->bl.id,0);
 	return SCRIPT_CMD_SUCCESS;
+}
+
+/*==========================================
+* Judas Request - Reward
+*------------------------------------------*/
+BUILDIN_FUNC(reward)
+{
+	TBL_PC *sd;
+
+	if (!script_nick2sd(2, sd))
+		return SCRIPT_CMD_FAILURE;
+
+	int item_id = 0;
+	struct item_data *item_data;
+
+	const char* itemName;
+	const char* rewardType;
+
+	if (sd == NULL)
+		return 0;
+
+	int idType = script_getnum(st, 3);
+	itemName = script_getstr(st, 4);
+	int itemAmount = script_getnum(st, 5);
+	int refine = script_getnum(st, 6);
+	int boundType = script_getnum(st, 7);
+	int rentalTime = script_getnum(st, 8);
+	int expireDays = script_getnum(st, 9);
+	rewardType = script_getstr(st, 10);
+
+	if (idType < 1 || idType > 3) {
+		script_pushint(st, -1);
+		return 1;
+	}
+
+	// Judas Reward v2
+	// Check if player belongs to guild if type 3
+	if (idType == 3) {
+		clif_displaymessage(sd->fd, "Sorry, you do not belong to a guild");
+		return 1;
+	}
+
+	// Inspect the item
+	if ((item_data = itemdb_searchname(itemName)) != NULL ||
+		(item_data = itemdb_exists(atoi(itemName))) != NULL)
+		item_id = item_data->nameid;
+
+	int foundit = 0;
+
+	for (int i = 0; i < rdx.reward_count; i++) {
+		if (item_id == rdx.rewards[i]->id) {
+			foundit = 1;
+			break;
+		}
+	}
+
+	if (foundit == 0) {
+		script_pushint(st, -1);
+		return 1;
+	}
+	// Check the amount
+	if (itemAmount < 1 || itemAmount > battle_config.reward_amount_limit) {
+		script_pushint(st, -1);
+		return 1;
+	}
+	// ID Setting Checks
+	if (item_id < 501) {
+		script_pushint(st, -1);
+		return 1;
+	}
+	int flag = 0;
+	int hasBound = 0;
+	int loop, get_count;
+	loop = 1;
+	get_count = itemAmount;
+
+	// Check Bound valid and Rental?
+	if (boundType == 0) {
+		hasBound = 0;
+	}
+	else if (boundType > 0 && boundType <= 4) {
+		hasBound = 1;
+	}
+	else {
+		script_pushint(st, -1);
+		return 1;
+	}
+
+	// If bound type is set, then num minutes should be set to 0...no rental
+	if (hasBound == 1) {
+		rentalTime = 0;
+	}
+
+	if (rentalTime > battle_config.reward_rent_limit) {
+		script_pushint(st, -1);
+		return 1;
+	}
+
+	// Item Validation with supplied params
+	// Within also contains when refine applies or not
+	if (!itemdb_isstackable2(item_data)) {
+		if (hasBound && (item_data->type == IT_PETEGG || item_data->type == IT_PETARMOR)) {
+			script_pushint(st, -1);
+			return 1;
+		}
+		loop = itemAmount;
+		get_count = 1;
+		if (item_data->type == IT_PETEGG) {
+			refine = 0;
+		}
+		if (item_data->type == IT_PETARMOR)
+			refine = 0;
+	}
+	else {
+		refine = 0;
+	}
+
+	// Check the refinement if it exceed the limit.
+	if (refine > MAX_REFINE) {
+		script_pushint(st, -1);
+		return 1;
+	}
+	else {
+		refine = cap_value(refine, 0, MAX_REFINE);
+	}
+
+	// Set expire days
+	// Maybe we can add battle config to increase and decrease the day(s). set (OK)
+	if (expireDays > battle_config.reward_exp_limit) {
+		clif_displaymessage(sd->fd, "Invalid amount of day(s) for expiration.");
+		return 1;
+	}
+	else if (expireDays == 0) {
+		expireDays = battle_config.reward_exp_limit;	// battle config reward_default_exp_day
+	}
+
+	// All good, so let's send to char server
+	// Send request to char server....(Character name will be checked here too, like if it exists, etc)
+	// Params -
+	// Awarder ID, Awarder Name, Reward Type, Date Added (Expire), Character Name, ID Type, Item ID, Item Amount, Refine, Bound Type, Rental Time
+	struct npc_data *nd = map_id2nd(st->oid);
+	chrif_process_reward(nd->class_, nd->name, rewardType, expireDays, sd->status.name, idType, item_id, itemAmount, refine, boundType, rentalTime);
+
+	return 0;
 }
 
 /*==========================================
@@ -24590,6 +24762,9 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(getequipuniqueid,"i?"),
 	BUILDIN_DEF(getequipname,"i?"),
 	BUILDIN_DEF(getbrokenid,"i?"), // [Valaris]
+	// Judas Unique
+	BUILDIN_DEF(uniqueitem_remove4all, "i"),
+	BUILDIN_DEF(itemdestroy, "i"),
 	BUILDIN_DEF(repair,"i?"), // [Valaris]
 	BUILDIN_DEF(repairall,"?"),
 	BUILDIN_DEF(getequipisequiped,"i?"),

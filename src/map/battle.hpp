@@ -670,6 +670,12 @@ struct Battle_Config
 	int feature_privateairship;
 	int rental_transaction;
 
+	// Judas Reward v2
+	int reward_default_exp_day;
+	int reward_exp_limit;
+	int reward_amount_limit;
+	int reward_rent_limit;
+
 #include "../custom/battle_config_struct.inc"
 };
 

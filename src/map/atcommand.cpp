@@ -54,6 +54,9 @@
 #define ATCOMMAND_LENGTH 50
 #define ACMD_FUNC(x) static int atcommand_ ## x (const int fd, struct map_session_data* sd, const char* command, const char* message)
 
+// Judas Reward v2
+const char *reward_list[] = { "E", "C", "D", "H", "R", "W", "M", "V", "O", "N", "L", "B", "U", "P" };
+
 typedef struct AtCommandInfo AtCommandInfo;
 typedef struct AliasInfo AliasInfo;
 
@@ -9738,6 +9741,42 @@ ACMD_FUNC(cart) {
 
 	return 0;
 #undef MC_CART_MDFY
+}
+
+/*==========================================
+* Item Remover
+*------------------------------------------*/
+ACMD_FUNC(itemdestroy)
+{
+	int nameid;
+	nullpo_retr(-1, sd);
+
+	if ((nameid = atoi(message)) < 500 || !itemdb_exists(nameid))
+	{
+		clif_displaymessage(fd, "Enter a Valid Item ID. Usage: @itemdestroy <itemid>");
+		return -1;
+	}
+
+	pc_item_remove4all(nameid, true);
+	clif_displaymessage(fd, "Destroying Item...");
+	return 0;
+}
+
+
+// Judas Unique
+/*==========================================
+* Item Remover
+*------------------------------------------*/
+ACMD_FUNC(uniqueitemdestroy)
+{
+	int64 nameid;
+	nullpo_retr(-1, sd);
+
+	nameid = atoll(message);
+
+	pc_uniqueitem_remove4all(nameid);
+	clif_displaymessage(fd, "Destroying Item...");
+	return 0;
 }
 
 /* Channel System [Ind] */

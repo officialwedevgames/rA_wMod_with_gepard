@@ -471,6 +471,17 @@ int chlogif_parse_ackchangesex(int fd, struct char_session_data* sd)
 	return 1;
 }
 
+void chlogif_parse_ask_name_ack(int fd, int acc, const char* name, int type, int result)
+{
+	WFIFOHEAD(fd, 34);
+	WFIFOW(fd, 0) = 0x2b0f;
+	WFIFOL(fd, 2) = acc;
+	safestrncpy(WFIFOCP(fd, 6), name, NAME_LENGTH);
+	WFIFOW(fd, 30) = type;
+	WFIFOW(fd, 32) = result;
+	WFIFOSET(fd, 34);
+}
+
 /**
  * Changes a character's sex.
  * The information is updated on database, and the character is kicked if it

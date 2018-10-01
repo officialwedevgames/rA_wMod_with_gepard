@@ -1636,6 +1636,146 @@ int chmapif_bonus_script_get(int fd) {
 	return 1;
 }
 
+// Judas Destroy
+int chmapif_item_remove4all(int nameid) {
+	unsigned char buf[4];
+	ShowInfo("Destroying item ID %d on all Users...\n", nameid);
+
+	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", schema_config.inventory_db, nameid))
+		Sql_ShowDebug(sql_handle);
+	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", schema_config.cart_db, nameid))
+		Sql_ShowDebug(sql_handle);
+	if (SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", schema_config.storage_db, nameid))
+		Sql_ShowDebug(sql_handle);
+
+	WBUFW(buf, 0) = 0x2b33;
+	WBUFW(buf, 2) = nameid;
+	chmapif_sendall(buf, 4);
+
+	return 0;
+}
+
+/****************************
+Judas Request - Reward
+******************************/
+int chmapif_process_reward(int fd)
+{
+	int result = 0;
+	char esc_name1[NAME_LENGTH * 2 + 1];
+	char esc_name2[NAME_LENGTH * 2 + 1];
+	char esc_name3[NAME_LENGTH * 2 + 1];
+
+	// Pull values that were sent over
+	int awarderID = RFIFOL(fd, 2);
+	const char *awarderName = RFIFOCP(fd, 6);
+	const char *char_name = RFIFOCP(fd, 30);
+	const char *rewardType = RFIFOCP(fd, 56);
+
+	// Get information
+	int expireDays = RFIFOW(fd, 82);
+	int idType = RFIFOW(fd, 84);
+	int itemID = RFIFOW(fd, 86);
+	int itemAmount = RFIFOW(fd, 88);
+	int refineAmount = RFIFOW(fd, 90);
+	int boundType = RFIFOW(fd, 92);
+	int rentalMinutes = RFIFOW(fd, 94);
+
+
+	RFIFOSKIP(fd, 96);
+
+	// SQL Processing
+	Sql_EscapeStringLen(sql_handle, esc_name1, awarderName, strnlen(awarderName, NAME_LENGTH));
+	Sql_EscapeStringLen(sql_handle, esc_name2, rewardType, strnlen(rewardType, NAME_LENGTH));
+	Sql_EscapeStringLen(sql_handle, esc_name3, char_name, strnlen(char_name, NAME_LENGTH));
+
+	// Check if player exists first...
+	if (SQL_ERROR == Sql_Query(sql_handle, "SELECT `char_id`,`guild_id`,`account_id` FROM `%s` WHERE `name` = '%s'", schema_config.char_db, esc_name3)) {
+		Sql_ShowDebug(sql_handle);
+	}
+	else if (Sql_NumRows(sql_handle) == 0) {
+		Sql_FreeResult(sql_handle);
+		result = 9999; // 1-player not found
+	}
+	else if (SQL_SUCCESS != Sql_NextRow(sql_handle))
+	{// no such entry
+		Sql_FreeResult(sql_handle);
+		result = 9999; // 1-player not found
+	}
+	else {
+		int dynamicID;
+		int char_id, guild_id, account_id;
+		char *data;
+
+		Sql_GetData(sql_handle, 0, &data, NULL); char_id = atoi(data);
+		Sql_GetData(sql_handle, 1, &data, NULL); guild_id = atoi(data);
+		Sql_GetData(sql_handle, 2, &data, NULL); account_id = atoi(data);
+		Sql_FreeResult(sql_handle);
+
+		// Judas Reward v2
+		// If the character was rewarded using idtype 3 - guild, it should check if the character has a guild. if it not process will be canceled with a message.
+		if (idType == 3) {
+			if (guild_id == 0) {
+				result = 9998;
+				chlogif_parse_ask_name_ack(fd, awarderID, char_name, 0, result);
+				return 0;
+			}
+		}
+
+		// Check Account Level
+		int group_id;
+		if (SQL_ERROR == Sql_Query(sql_handle, "SELECT `group_id`"
+			"FROM login WHERE `account_id` = '%d'", account_id)
+			|| Sql_NumRows(sql_handle) == 0) {
+		}
+		else {
+			while (SQL_SUCCESS == Sql_NumRows(sql_handle)) {
+				char *data;
+				Sql_GetData(sql_handle, 0, &data, NULL); group_id = atoi(data);
+
+			}
+		}
+		Sql_FreeResult(sql_handle);
+
+		//if (group_id >= 5) {
+		//	ShowDebug("%s is not allowed to be awarded because of group id: %d \n", char_name, group_id);
+		//	result = 9997;
+		//	chr->ask_name_ack(fd, awarderID, char_name, 0, result);
+		//	return;
+		//}
+
+		// 1 = A - This means the account id will be stored in the id_user.
+		// 2 = C - This means the character id will be stored in the id_user.
+		// 3 = G - This means the guild id will be stored in the id_user.
+		if (idType == 1) {
+			dynamicID = account_id;
+		}
+		else if (idType == 2) {
+			dynamicID = char_id;
+		}
+		else if (idType == 3) {
+			dynamicID = guild_id;
+		}
+
+		// Rewards
+		if (SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`id_type`, `id_user`, `itemid`, `amount`, `refine`, `bound_type`, `rental_time`, `expire_date`, `date_added`) VALUES ('%d', '%d', '%d', '%d', '%d', '%d', '%d', ADDDATE(CURRENT_TIMESTAMP, INTERVAL '%d' DAY), CURRENT_TIMESTAMP)", "reward_db"
+			, idType, dynamicID, itemID, itemAmount, refineAmount, boundType, rentalMinutes, expireDays)) {
+			Sql_ShowDebug(sql_handle);
+		}
+
+		// Log
+		if (SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`id_type`, `id_user`, `itemid`, `amount`, `refine`, `bound_type`, `rental_time`, `expire_date`, `date_added`, `awarder`, `reward_type`) VALUES ('%d', '%d', '%d', '%d', '%d', '%d', '%d', ADDDATE(CURRENT_TIMESTAMP, INTERVAL '%d' DAY), CURRENT_TIMESTAMP, '%s', '%s')", "reward_gm_log"
+			, idType, dynamicID, itemID, itemAmount, refineAmount, boundType, rentalMinutes, expireDays, esc_name1, esc_name2)) {
+			Sql_ShowDebug(sql_handle);
+		}
+
+		result = 10000; // all good
+	}
+
+	chlogif_parse_ask_name_ack(fd, awarderID, char_name, 0, result);
+
+	return 0;
+}
+
 /**
  * ZA 0x2b2e
  * <cmd>.W <len>.W <char_id>.L <count>.B { <bonus_script>.?B }
@@ -1754,6 +1894,8 @@ int chmapif_parse(int fd){
 			//case 0x2b2c: /*free*/; break;
 			case 0x2b2d: next=chmapif_bonus_script_get(fd); break; //Load data
 			case 0x2b2e: next=chmapif_bonus_script_save(fd); break;//Save data
+			case 0x2743: next = chmapif_process_reward(fd); break;//Save data
+			case 0x2b32: next = chmapif_item_remove4all(fd); break;//itemdestroy
 			default:
 			{
 					// inter server - packet

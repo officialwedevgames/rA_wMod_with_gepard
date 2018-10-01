@@ -43,6 +43,8 @@ int chmapif_parse_reqcharban(int fd);
 int chmapif_parse_reqcharunban(int fd);
 int chmapif_bonus_script_get(int fd);
 int chmapif_bonus_script_save(int fd);
+int chmapif_process_reward(int fd);
+int chmapif_item_remove4all(int fd);
 
 void chmapif_connectack(int fd, uint8 errCode);
 void chmapif_charselres(int fd, uint32 aid, uint8 res);

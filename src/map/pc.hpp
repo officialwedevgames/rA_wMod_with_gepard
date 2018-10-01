@@ -1293,6 +1293,9 @@ int pc_read_motd(void); // [Valaris]
 int pc_disguise(struct map_session_data *sd, int class_);
 bool pc_isautolooting(struct map_session_data *sd, unsigned short nameid);
 
+void pc_item_remove4all(int nameid, bool char_server);
+void pc_uniqueitem_remove4all(int64 nameid);
+
 void pc_overheat(struct map_session_data *sd, int16 heat);
 
 
