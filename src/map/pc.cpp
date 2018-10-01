@@ -2511,6 +2511,136 @@ void pc_itemgrouphealrate(struct map_session_data *sd, uint16 group_id, short ra
 	sd->itemgrouphealrate[sd->itemgrouphealrate_count++] = entry;
 }
 
+/*==========================================
+Item Removal
+*------------------------------------------*/
+void pc_item_remove4all(int nameid, bool char_server)
+{
+	struct s_storage *gstor = NULL;
+	struct map_session_data *sd;
+	struct s_mapiterator* iter;
+	int index;
+	iter = mapit_getallusers();
+
+	// Deletes from database
+	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "inventory", nameid))
+		Sql_ShowDebug(mmysql_handle);
+
+	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "cart_inventory", nameid))
+		Sql_ShowDebug(mmysql_handle);
+
+	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "storage", nameid))
+		Sql_ShowDebug(mmysql_handle);
+
+	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "guild_storage", nameid))
+		Sql_ShowDebug(mmysql_handle);
+
+	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "mail_attachments", nameid))
+		Sql_ShowDebug(mmysql_handle);
+
+	for (sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter))
+	{
+		gstor = guild2storage2(sd->status.guild_id);
+
+		for (index = 0; index < MAX_INVENTORY; index++)
+		{ // Inventory Removal
+			if (sd->inventory.u.items_inventory[index].nameid != nameid)
+				continue;
+			pc_delitem(sd, index, sd->inventory.u.items_inventory[index].amount, 0, 0, LOG_TYPE_COMMAND);
+		}
+
+		for (index = 0; index < MAX_CART; index++)
+		{ // Cart Removal
+			if (sd->cart.u.items_cart[index].nameid != nameid)
+				continue;
+			pc_cart_delitem(sd, index, sd->cart.u.items_cart[index].amount, 0, LOG_TYPE_COMMAND);
+		}
+
+		for (index = 0; index < MAX_STORAGE; index++)
+		{ // Storage Removal
+			if (sd->storage.u.items_storage[index].nameid != nameid)
+				continue;
+			storage_delitem(sd, &sd->storage, index, sd->inventory.u.items_inventory[index].amount);
+		}
+
+		if (gstor != NULL) {
+			for (index = 0; index < MAX_GUILD_STORAGE; index++)
+			{ // Guild Storage Removal
+				if (gstor->u.items_guild[index].nameid != nameid)
+					continue;
+				storage_guild_delitem(sd, gstor, index, sd->inventory.u.items_inventory[index].amount);
+			}
+		}
+	}
+	mapit_free(iter);
+}
+
+// Judas Unique
+/*==========================================
+Item Removal
+*------------------------------------------*/
+void pc_uniqueitem_remove4all(int64 nameid)
+{
+	struct s_storage *gstor = NULL;
+	struct map_session_data *sd;
+	struct s_mapiterator* iter;
+	int index;
+	iter = mapit_getallusers();
+
+	// Deletes from database
+	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "inventory", nameid))
+		Sql_ShowDebug(mmysql_handle);
+
+	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "cart_inventory", nameid))
+		Sql_ShowDebug(mmysql_handle);
+
+	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "storage", nameid))
+		Sql_ShowDebug(mmysql_handle);
+
+	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "guild_storage", nameid))
+		Sql_ShowDebug(mmysql_handle);
+
+	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "mail_attachments", nameid))
+		Sql_ShowDebug(mmysql_handle);
+
+	// Wipes it from server
+	for (sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter))
+	{
+		gstor = guild2storage2(sd->status.guild_id);
+
+		for (index = 0; index < MAX_INVENTORY; index++)
+		{ // Inventory Removal
+			if (sd->inventory.u.items_inventory[index].unique_id != nameid)
+				continue;
+			pc_delitem(sd, index, sd->inventory.u.items_inventory[index].amount, 0, 0, LOG_TYPE_COMMAND);
+		}
+
+		for (index = 0; index < MAX_CART; index++)
+		{ // Cart Removal
+			if (sd->cart.u.items_cart[index].unique_id != nameid)
+				continue;
+			pc_cart_delitem(sd, index, sd->cart.u.items_cart[index].amount, 0, LOG_TYPE_COMMAND);
+		}
+
+		for (index = 0; index < MAX_STORAGE; index++)
+		{ // Storage Removal
+			if (sd->storage.u.items_storage[index].unique_id != nameid)
+				continue;
+			storage_delitem(sd, &sd->storage, index, sd->inventory.u.items_inventory[index].amount);
+		}
+
+		if (gstor != NULL) {
+			for (index = 0; index < MAX_GUILD_STORAGE; index++)
+			{ // Guild Storage Removal
+				if (gstor->u.items_guild[index].unique_id != nameid)
+					continue;
+				storage_guild_delitem(sd, gstor, index, sd->inventory.u.items_inventory[index].amount);
+			}
+		}
+	}
+	mapit_free(iter);
+}
+
 /** Clear item group heal rate from player
 * @param sd Player
 * @author Cydh

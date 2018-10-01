@@ -792,6 +792,14 @@ struct s_roulette_db {
 };
 extern struct s_roulette_db rd;
 
+// Judas Request
+struct item_reward {
+	unsigned short id;
+	struct item_reward **rewards;
+	unsigned short reward_count;
+};
+extern struct item_reward rdx;
+
 ///Main item data struct
 struct item_data
 {

@@ -40,7 +40,7 @@ static struct eri *auth_db_ers; //For reutilizing player login structures.
 static DBMap* auth_db; // int id -> struct auth_node*
 static bool char_init_done = false; //server already initialized? Used for InterInitOnce and vending loadings
 
-static const int packet_len_table[0x3d] = { // U - used, F - free
+static const int packet_len_table[0x50] = { // U - used, F - free
 	60, 3,-1,-1,10,-1, 6,-1,	// 2af8-2aff: U->2af8, U->2af9, U->2afa, U->2afb, U->2afc, U->2afd, U->2afe, U->2aff
 	 6,-1,18, 7,-1,39,30, 10,	// 2b00-2b07: U->2b00, U->2b01, U->2b02, U->2b03, U->2b04, U->2b05, U->2b06, U->2b07
 	 6,30, 10, -1,86, 7,44,34,	// 2b08-2b0f: U->2b08, U->2b09, U->2b0a, U->2b0b, U->2b0c, U->2b0d, U->2b0e, U->2b0f
@@ -48,6 +48,7 @@ static const int packet_len_table[0x3d] = { // U - used, F - free
 	 2,10, 2,-1,-1,-1, 2, 7,	// 2b18-2b1f: U->2b18, U->2b19, U->2b1a, U->2b1b, U->2b1c, U->2b1d, U->2b1e, U->2b1f
 	-1,10, 8, 2, 2,14,19,19,	// 2b20-2b27: U->2b20, U->2b21, U->2b22, U->2b23, U->2b24, U->2b25, U->2b26, U->2b27
 	-1, 0, 6,15, 0, 6,-1,-1,	// 2b28-2b2f: U->2b28, F->2b29, U->2b2a, U->2b2b, F->2b2c, U->2b2d, U->2b2e, U->2b2f
+	4, 4, 4, 4, -1, 6, 0, 0,	// 2b30-2b37: U->2b30, U->2b31, U->2b32, U->2b33, U->2b34, F->2b35, F->2b36, F->2b37
  };
 
 //Used Packets:
@@ -280,6 +281,24 @@ void chrif_setport(uint16 port) {
 // says whether the char-server is connected or not
 int chrif_isconnected(void) {
 	return (char_fd > 0 && session[char_fd] != NULL && chrif_state == 2);
+}
+
+int chrif_item_remove4all(int nameid)
+{
+	chrif_check(-1);
+
+	WFIFOHEAD(char_fd, 4);
+	WFIFOW(char_fd, 0) = 0x2b32;
+	WFIFOW(char_fd, 2) = nameid;
+	WFIFOSET(char_fd, 4);
+
+	return 0;
+}
+
+int chrif_item_remove4all_ack(int nameid)
+{
+	pc_item_remove4all(nameid, false);
+	return 0;
 }
 
 /**
@@ -895,6 +914,32 @@ int chrif_req_login_operation(int aid, const char* character_name, enum chrif_re
 	return 0;
 }
 
+/*==========================================
+* Judas Request - Reward
+*------------------------------------------*/
+bool chrif_process_reward(int awarderID, const char* awarderName, const char* rewardType, int expireDays, const char* char_name, int idType, int itemID, int itemAmount, int refineAmount, int boundType, int rentalMinutes)
+{
+	WFIFOHEAD(char_fd, 50);
+	WFIFOW(char_fd, 0) = 0x2743;
+	WFIFOL(char_fd, 2) = awarderID;
+	safestrncpy(WFIFOCP(char_fd, 6), awarderName, NAME_LENGTH);
+	safestrncpy(WFIFOCP(char_fd, 30), char_name, NAME_LENGTH);
+	safestrncpy(WFIFOCP(char_fd, 56), rewardType, NAME_LENGTH);
+
+	// Set information
+	WFIFOL(char_fd, 82) = expireDays;
+	WFIFOL(char_fd, 84) = idType;
+	WFIFOL(char_fd, 86) = itemID;
+	WFIFOL(char_fd, 88) = itemAmount;
+	WFIFOL(char_fd, 90) = refineAmount;
+	WFIFOL(char_fd, 92) = boundType;
+	WFIFOL(char_fd, 94) = rentalMinutes;
+
+	WFIFOSET(char_fd, 96);
+
+	return true;
+}
+
 /**
  * S 2b0e <accid>.l <name>.24B <operation_type>.w <timediff>L <val1>L <val2>L
  * Send a sex change (for account or character) request to the login server (via char server).
@@ -940,6 +985,29 @@ static void chrif_ack_login_req(int aid, const char* player_name, uint16 type, u
 	char output[256];
 
 	sd = map_id2sd(aid);
+
+	// Judas Request - Reward
+	if (answer > 9000) {
+		if (answer == 9999) {
+			sprintf(output, msg_txt(sd, 425), NAME_LENGTH, player_name);
+		}
+		// Judas Reward v2
+		else if (answer == 9998) {
+			sprintf(output, "The player '%.*s' does not belong to a guild", NAME_LENGTH, player_name);
+		}
+		else if (answer == 9997) {
+			sprintf(output, "The player '%.*s' cannot be rewarded", NAME_LENGTH, player_name);
+		}
+		else {
+			sprintf(output, "The player '%.*s' has been rewarded", NAME_LENGTH, player_name);
+		}
+
+		if (sd != NULL) {
+			clif_displaymessage(sd->fd, output);
+		}
+
+		return;
+	}
 
 	if( aid < 0 || sd == NULL ) {
 		ShowError("chrif_ack_login_req failed - player not online.\n");
@@ -1851,6 +1919,7 @@ int chrif_parse(int fd) {
 			case 0x2b27: chrif_authfail(fd); break;
 			case 0x2b2b: chrif_parse_ack_vipActive(fd); break;
 			case 0x2b2f: chrif_bsdata_received(fd); break;
+			case 0x2b33: chrif_item_remove4all_ack(RFIFOW(fd, 2)); break;
 			default:
 				ShowError("chrif_parse : unknown packet (session #%d): 0x%x. Disconnecting.\n", fd, cmd);
 				set_eof(fd);
