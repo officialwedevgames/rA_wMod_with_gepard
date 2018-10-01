@@ -11,11 +11,11 @@ OnInterIfInit:
 OnInit:
 	
 	//- Default EXP and DROP Setting.
-	set .exp_default, 10;
-	set .drop_default, 5;
+	set .exp_default, 30;
+	set .drop_default, 10;
 	
 	//- New EXP and DROP Setting.
-	set .exp_mod, 15;
+	set .exp_mod, 20;
 	set .drop_mod, 7;
 	
 	//- Additional: JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
