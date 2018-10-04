@@ -21,7 +21,7 @@ do{
 	if( .@option == 1 ){
 		if( Zeny < .zeny_cost ){
 			mes "[ ^ff0000Card Recycler^000000 ]";
-			mes "You need ^FF0000"+.zeny_cost+" zeny^000000 per merge.";
+			mes "You need ^FF0000"+.zeny_cost+" Zeny^000000 per merge.";
 			close;
 		}
 		if( npcshopattach( .shop_npc_name$ ) ){
@@ -85,34 +85,32 @@ OnSellItem:
 					if( (getarraysize(.@itemid) - .@i) == 20 ){
 						mes "^777777-- stopping --^000000";
 						.@slow += 200;
-					}
+					} 
 					set .@cutin$, .@itemid[.@i];
 					cutin .@cutin$,3;
-					sleep2 ( .@i + .@slow + 30 );
+					sleep2 ( .@i + .@slow + 40 );
 				}
 
 				for(set .@i,0; .@i < 1; set .@i,.@i + 1){
 					.@chance = rand(1,10000);
 					query_sql("SELECT `chance_rate` FROM `card_merge_db` WHERE `enable` = 1 AND `chance_rate` >= '"+.@chance+"' ORDER BY `chance_rate` ASC LIMIT 1", .@rate);
-
+					
 					if(.@rate){
 						query_sql("SELECT `itemid` FROM `card_merge_db` WHERE `enable` = 1 AND `chance_rate` = '"+.@rate+"'", .@itemid);
 
 						if(getarraysize(.@itemid) > 1){  
 						 
 							set .@rand, rand(1, getarraysize(.@itemid));
-							set .@itemid, .@itemid[.@rand];
+							set itemid, .@itemid[.@rand];
 							
-							query_sql("SELECT `announce` FROM `card_merge_db` WHERE `itemid` = '"+.@itemid+"'",.@announce);
+							query_sql("SELECT `announce` FROM `card_merge_db` WHERE `itemid` = '"+itemid+"'",.@announce);
 							set .@ann, .@announce;
 							
-							set itemid, .@itemid;
-
 							if(.@ann){ 
 								announce "Citizens of Midgard,Lady Luck shines upon ["+strcharinfo(0)+"]!! [Card Recycler] has awarded the player with ["+getitemname(itemid)+"]",0;
 							}
 							
-						}else{
+						}else if(getarraysize(.@itemid) == 1){
 							query_sql("SELECT `announce` FROM `card_merge_db` WHERE `itemid` = '"+.@itemid+"'",.@announce);
 							set .@ann, .@announce;
 	
@@ -122,11 +120,12 @@ OnSellItem:
 								announce "Citizens of Midgard,Lady Luck shines upon ["+strcharinfo(0)+"]!! [Card Recycler] has awarded the player with ["+getitemname(itemid)+"]",0;
 							}
 							
+						}else{
+							set .@i, 0;
 						}
-						
 						break;
 					}else{
-						set .@i, .@i - 1;
+						set .@i, 0;
 					}
 					deletearray .@rate;
 					deletearray .@itemid;
@@ -160,7 +159,7 @@ OnInit:
 	.card_count = 2;
 
 	// zeny required for this process.
-	.zeny_cost = 10000;
+	.zeny_cost = 25000;
 
 	// list of card that cant be used to exchange/get.
 	.forbidden_card$ = "|4142|";

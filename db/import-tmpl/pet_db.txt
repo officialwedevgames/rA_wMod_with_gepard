@@ -58,4 +58,3 @@
 //petskillattack2) and petskillsupport (or petheal) at the same time,
 //but only one of each.
 
-2202,Q_MONKEY,Monkey,32210,32211,0,0,0,0,0,0,0,0,5000,0,1,0,350,400,800,{},{},{},{},{}

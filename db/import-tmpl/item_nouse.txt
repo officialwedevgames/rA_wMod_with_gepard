@@ -11,12 +11,3 @@
 // Group ID Override:
 //	Group ID necessary to override this setting.
 
-32071,1,100	// Mining_Rare
-32072,1,100	// Mining_Epic
-32073,1,100	// Mining_Legendary
-32074,1,100	// Fishing_Rare
-32075,1,100	// Fishing_Epic
-32076,1,100	// Fishing_Legendary
-32077,1,100	// Gathering_Rare
-32078,1,100	// Gathering_Epic
-32079,1,100	// Gathering_Legendary

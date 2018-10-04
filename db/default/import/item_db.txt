@@ -68,6 +68,7 @@
 8965,Blue_Skull,Blue Skull,3,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 8966,Red_Skull,Red Skull,3,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 8967,Green_Skull,Green Skull,3,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+19777,C_Shiny_Small_Star,Costume: Shiny Small Star,4,20,,0,,,,,0xFFFFFFFF,63,2,1024,,,0,1005,{},{},{}
 19990,C_Snow_Rabbit_Knit_Hat,Costume: Rabbit Knit Hat,4,20,,0,,,,,0xFFFFFFFF,63,2,7168,,,0,1157,{ bonus2 bResEff,Eff_Freeze,2500; },{},{}
 31001,Costume_1,Costume: Dark Knight Mask,4,20,,0,,,,,0xFFFFFFFF,63,2,7168,,,0,479,{},{},{}
 31002,Costume_2,Costume: Rune Circlet,4,20,,0,,,,,0xFFFFFFFF,63,2,1024,,,0,623,{},{},{}
@@ -297,7 +298,7 @@
 32105,Baseball_Cap_Yellow,Yellow Cap,4,20,,0,,,,,0xFFFFFFFF,63,2,1024,,,0,2104,{},{},{}
 32106,Dimensional_Key1,Dimensional Key (Bound),3,20,,200,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 32107,Dimensional_Key2,Dimensional Key,3,20,,200,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
-32108,Newbie_Sign,Newbie Sign Hat,4,,,0,,,,,0xFFFFFFFF,63,2,256,,,0,2107,{ bonus bMaxHP,10 * BaseLevel; bonus2 bExpAddRace,RC_Formless,10; bonus2 bExpAddRace,RC_Undead,10; bonus2 bExpAddRace,RC_Brute,10; bonus2 bExpAddRace,RC_Plant,10; bonus2 bExpAddRace,RC_Insect,10; bonus2 bExpAddRace,RC_Fish,10; bonus2 bExpAddRace,RC_Demon,10; bonus2 bExpAddRace,RC_DemiHuman,10; bonus2 bExpAddRace,RC_Angel,10; bonus2 bExpAddRace,RC_Dragon,10; },{},{}
+32108,Newbie_Sign,Newbie Sign Hat,4,,,200,,10,,,0xFFFFFFFF,63,2,256,,,0,2107,{ bonus bMaxHP,200 * (BaseLevel/9); bonus2 bExpAddRace,RC_Formless,25; bonus2 bExpAddRace,RC_Undead,25; bonus2 bExpAddRace,RC_Brute,25; bonus2 bExpAddRace,RC_Plant,25; bonus2 bExpAddRace,RC_Insect,25; bonus2 bExpAddRace,RC_Fish,25; bonus2 bExpAddRace,RC_Demon,25; bonus2 bExpAddRace,RC_DemiHuman,25; bonus2 bExpAddRace,RC_Angel,25; bonus2 bExpAddRace,RC_Dragon,25; },{},{}
 32109,Beta_Sign,Beta Sign Hat,4,,,0,,,,,0xFFFFFFFF,63,2,256,,,0,2108,{ bonus bAllStats,1; bonus bMaxHP,10 * BaseLevel; bonus2 bExpAddRace,RC_Formless,10; bonus2 bExpAddRace,RC_Undead,10; bonus2 bExpAddRace,RC_Brute,10; bonus2 bExpAddRace,RC_Plant,10; bonus2 bExpAddRace,RC_Insect,10; bonus2 bExpAddRace,RC_Fish,10; bonus2 bExpAddRace,RC_Demon,10; bonus2 bExpAddRace,RC_DemiHuman,10; bonus2 bExpAddRace,RC_Angel,10; bonus2 bExpAddRace,RC_Dragon,10; },{},{}
 32201,Rooster_Coupon,Rooster Coupon,3,,,100,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 32202,Ice_Heart_Event,Event Glacial Heart,3,606,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
@@ -366,6 +367,8 @@
 32377,reset_coupon,Reset Coupon,18,,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "Reset_Coupon"; },{},{}
 32378,c_potion_white_box,Classic White Potion Box,11,20,,150,,,,,0xFFFFFFFF,7,2,,,50,,,{ callfunc "Classic_Box",2; },{},{}
 32379,c_potion_blue_box,Classic Blue Potion Box,11,20,,150,,,,,0xFFFFFFFF,7,2,,,50,,,{ callfunc "Classic_Box",3; },{},{}
+32380,Daily_White_Potion,Daily White Potion,2,20,10,0,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(250,400),0; specialeffect2 207; },{},{}
+32381,Daily_Blue_Potion,Daily Blue Potion,2,20,10,0,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal 0,rand(50,100); specialeffect2 208; },{},{}
 32401,3DG_Fragment,3D Glasses Fragment,3,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 32402,FLC_Fragment,Four Leaf Clover Fragment,3,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
 32403,Academy_Completion_Fragment,Academy Completion Fragment,3,,,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}

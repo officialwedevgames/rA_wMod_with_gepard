@@ -8,6 +8,8 @@ setarray .News$[0],	// Random Message to be Announced
 			//"[ Event ] Weekly TAG A FRIEND is available from August 24,2018 to August 31,2018. Make an entry every week and get a chance to win 50 wallet. Visit our page facebook.com/OfficialWeDevGames for more details.",
 			//"[ Promo ] PREMIUM + ITEMS is now available until September 1 ~ 15,2018 only. Visit http://wedevgames.net/premium for more details.",
 			//"[ Promo ] PREMIUM ACCESS in 20% DISCOUNT! September 16 - 30,2018 only. Visit http://wedevgames.net/premium for more details.",
+			"[ Promo ] PREMIUM SPECIAL OFFERS are now available from October 3 - 13,2018 only. Visit http://wedevgames.net/premium for more details.",
+			"[ Promo ] TOPUP now in PayPal and get 10% more wallet once it was approved. Available only from October 3 - 13,2018 only",
 			"[ Tip of the Day ] Refer a friend and get a reward wallet. Visit http://wedevgames.net/myaccount/referral for more details.",
 			"[ Tip of the Day ] If you become a Player of the Week, you will receive 250 Rok Points and 350 Loyal Points every Monday. Checkout the full rankings at https://www.wedevgames.net/classic/rankings?action=Player.",
 			"[ Tip of the Day ] Are you looking for a database where you can get monster information on this server? Visit http://wedevgames.net/rodb for more details.",

@@ -1,21 +1,12 @@
 ﻿  char.cpp
   char_clif.cpp
-  char_cnslif.cpp
   char_logif.cpp
   char_mapif.cpp
-  inter.cpp
-  int_achievement.cpp
   int_auction.cpp
   int_clan.cpp
-  int_elemental.cpp
   int_guild.cpp
-  int_homun.cpp
   int_mail.cpp
-  int_mercenary.cpp
   int_party.cpp
-  int_pet.cpp
-  int_quest.cpp
-  int_storage.cpp
+  inter.cpp
   Generating Code...
-  LINK : D:\Ragnarok_Emulators\rA_wMod_with_gepard\char-server.exe not found or not built by the last incremental link; performing full link
   char-server.vcxproj -> D:\Ragnarok_Emulators\rA_wMod_with_gepard\char-server.exe

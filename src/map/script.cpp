@@ -24004,8 +24004,8 @@ BUILDIN_FUNC(sellitem) {
 	int i = 0, id;
 	int value = 0;
 	int qty = 0;
-	int rental = 0; // Judas Bound/Rental
-	int bound = 0; // Judas Bound/Rental
+	int rental; // Judas Bound/Rental
+	int bound; // Judas Bound/Rental
 	
 	// Resolve Item
 	struct script_data *someItem = script_getdata(st, 2);
@@ -24069,7 +24069,7 @@ BUILDIN_FUNC(sellitem) {
 		if (rental >= 1) {
 			bound = 0;
 		}
-		
+
 		if (bound > 4) {
 			ShowWarning("buildin_sellitem: Can't add %s (%s/%s), bound is out of range!\n", it->name, nd->exname, nd->path);
 			return false;
@@ -24089,7 +24089,7 @@ BUILDIN_FUNC(sellitem) {
 		nd->u.scr.shop->item[i].value  = value;
 		nd->u.scr.shop->item[i].qty    = qty;
 		nd->u.scr.shop->item[i].rental = rental;
-		nd->u.scr.shop->item[i].bound = bound;
+		nd->u.scr.shop->item[i].bound  = bound;
 	}
 
 	return SCRIPT_CMD_SUCCESS;

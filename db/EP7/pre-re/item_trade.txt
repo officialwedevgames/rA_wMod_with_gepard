@@ -33,6 +33,7 @@
 2561,461,100	// Upg_Hood
 2562,461,100	// Upg_Muffler
 2563,461,100	// Upg_Manteau
+2573,461,100	// Archangel_Wing
 2634,507,100	// Bridegroom_Ring
 2635,507,100	// Bride_Ring
 

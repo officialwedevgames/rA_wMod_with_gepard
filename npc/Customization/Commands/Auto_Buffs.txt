@@ -3,8 +3,9 @@
 OnInit:
 	.lvreq = 50;
 	.viplvreq = 80;
-	bindatcmd "ab", "Hourly Rewards::OnAtcommand", 0, 100;
+	bindatcmd "ab", "Auto_Buffs::OnAtcommand", 0, 100;
 end;
+
 
 OnAtcommand:
 	if ( compare( .@atcmd_parameters$, "on" ) && BaseLevel <= .lvreq ) {

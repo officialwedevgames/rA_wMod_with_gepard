@@ -3,8 +3,7 @@
 OnInit:
 	tradertype("NST_CASH");
 	sellitem "Dark_Magician_Scroll",300;
-	sellitem "Dark_Sword_Scroll",150; //Sale 50%
-	//sellitem "Dark_Sword_Scroll",300;
+	sellitem "Dark_Sword_Scroll",300;
 	sellitem "Copper_Coin",50;
 	sellitem "Sg_Blue_Potion_Box",50;
 	sellitem "Basic_Siege_Supply_Box",10;

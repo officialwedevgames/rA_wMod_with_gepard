@@ -13,3 +13,4 @@
 //
 // SpriteID is a job class value.
 // Weapon and Shield uses Item ID, while Head uses View ID.
+

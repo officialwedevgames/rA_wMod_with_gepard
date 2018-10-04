@@ -1,10 +1,1 @@
-﻿  account.cpp
-  ipban.cpp
-  login.cpp
-  loginchrif.cpp
-  loginclif.cpp
-  logincnslif.cpp
-  loginlog.cpp
-  Generating Code...
-  LINK : D:\Ragnarok_Emulators\rA_wMod_with_gepard\login-server.exe not found or not built by the last incremental link; performing full link
-  login-server.vcxproj -> D:\Ragnarok_Emulators\rA_wMod_with_gepard\login-server.exe
+﻿  login-server.vcxproj -> D:\Ragnarok_Emulators\rA_wMod_with_gepard\login-server.exe
