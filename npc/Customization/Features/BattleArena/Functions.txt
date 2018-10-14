@@ -17,23 +17,6 @@ function	script	f_arena_start	{
 
 
 function	script	f_arena_start	{
-		//- Attach Player 1
-		attachrid(getarg(2));
-		set @oldhp, HP;
-		set @oldsp, SP;
-		set @hp, 200000 - MaxHp;
-		bonus_script "{ bonus bHitRate, 100; bonus bMaxHP, @hp;  }",120;
-		percentheal 100,100;
-		detachrid;
-		
-		//- Attach Player 2
-		attachrid(getarg(3));
-		set @oldhp, HP;
-		set @oldsp, SP;
-		set @hp, 200000 - MaxHp;
-		bonus_script "{ bonus bHitRate, 100; bonus bMaxHP, @hp; }",120;
-		percentheal 100,100;
-		detachrid;
 	
 		sleep 5000;
 		mapannounce  getarg(1), "Match will start in 5...",0;
@@ -53,12 +36,22 @@ function	script	f_arena_start	{
 		attachrid(getarg(2));
 		setoption OPTION_HIDE, 0;
 		sc_end SC_Freeze;
+		set @oldhp, HP;
+		set @oldsp, SP;
+		set @hp, 200000 - MaxHp;
+		bonus_script "{ bonus bHitRate, 100; bonus bMaxHP, @hp;  }",300;
+		percentheal 100,100;
 		detachrid;
 		
 		//- Attach Player 2
 		attachrid(getarg(3));
 		setoption OPTION_HIDE, 0;
 		sc_end SC_Freeze;
+		set @oldhp, HP;
+		set @oldsp, SP;
+		set @hp, 200000 - MaxHp;
+		bonus_script "{ bonus bHitRate, 100; bonus bMaxHP, @hp;  }",300;
+		percentheal 100,100;
 		detachrid;
 
 		initnpctimer ""+getarg(0);

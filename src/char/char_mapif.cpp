@@ -1637,7 +1637,7 @@ int chmapif_bonus_script_get(int fd) {
 }
 
 // Judas Destroy
-int chmapif_item_remove4all(int nameid) {
+int chmapif_itemdestroy(int nameid) {
 	unsigned char buf[4];
 	ShowInfo("Destroying item ID %d on all Users...\n", nameid);
 
@@ -1895,7 +1895,7 @@ int chmapif_parse(int fd){
 			case 0x2b2d: next=chmapif_bonus_script_get(fd); break; //Load data
 			case 0x2b2e: next=chmapif_bonus_script_save(fd); break;//Save data
 			case 0x2743: next = chmapif_process_reward(fd); break;//Save data
-			case 0x2b32: next = chmapif_item_remove4all(fd); break;//itemdestroy
+			case 0x2b32: next = chmapif_itemdestroy(fd); break;//itemdestroy
 			default:
 			{
 					// inter server - packet

@@ -47,4 +47,3 @@ MOBG_Bloody_Dead_Branch,1832,Ifrit,500000
 MOBG_Bloody_Dead_Branch,1871,Falling Bishop,500000
 MOBG_Bloody_Dead_Branch,1873,Beelzebub,500000
 MOBG_Bloody_Dead_Branch,1885,Gopinich,500000
-MOBG_Bloody_Dead_Branch,2022,Nidhoggur's Shadow,500000

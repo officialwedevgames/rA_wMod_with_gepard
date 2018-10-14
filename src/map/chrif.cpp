@@ -283,7 +283,7 @@ int chrif_isconnected(void) {
 	return (char_fd > 0 && session[char_fd] != NULL && chrif_state == 2);
 }
 
-int chrif_item_remove4all(int nameid)
+int chrif_itemdestroy(int nameid)
 {
 	chrif_check(-1);
 
@@ -295,9 +295,9 @@ int chrif_item_remove4all(int nameid)
 	return 0;
 }
 
-int chrif_item_remove4all_ack(int nameid)
+int chrif_itemdestroy_ack(int nameid)
 {
-	pc_item_remove4all(nameid, false);
+	pc_itemdestroy(nameid, false);
 	return 0;
 }
 
@@ -1919,7 +1919,7 @@ int chrif_parse(int fd) {
 			case 0x2b27: chrif_authfail(fd); break;
 			case 0x2b2b: chrif_parse_ack_vipActive(fd); break;
 			case 0x2b2f: chrif_bsdata_received(fd); break;
-			case 0x2b33: chrif_item_remove4all_ack(RFIFOW(fd, 2)); break;
+			case 0x2b33: chrif_itemdestroy_ack(RFIFOW(fd, 2)); break;
 			default:
 				ShowError("chrif_parse : unknown packet (session #%d): 0x%x. Disconnecting.\n", fd, cmd);
 				set_eof(fd);

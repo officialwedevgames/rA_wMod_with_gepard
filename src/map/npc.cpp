@@ -3648,7 +3648,7 @@ int npc_duplicate4instance(struct npc_data *snd, int16 m) {
 			clif_spawn(&wnd->bl);
 		strdb_put(npcname_db, wnd->exname, wnd);
 	} else {
-		static char w1[50], w2[50], w3[50], w4[50];
+		static char w1[128], w2[128], w3[128], w4[128];
 		const char* stat_buf = "- call from instancing subsystem -\n";
 
 		snprintf(w1, sizeof(w1), "%s,%d,%d,%d", mapdata->name, snd->bl.x, snd->bl.y, snd->ud.dir);
@@ -4841,6 +4841,7 @@ int npc_reload(void) {
 	//Execute the OnInit event for freshly loaded npcs. [Skotlex]
 	npc_event_runall(script_config.init_event_name);
 
+	map_data_copyall();
 	do_reload_instance();
 
 	// Execute rest of the startup events if connected to char-server. [Lance]

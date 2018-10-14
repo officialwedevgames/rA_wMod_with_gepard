@@ -1,9 +1,9 @@
 function	script	F_ItemPackage	{
-			
+			@chance = 0;
 			for(set .@i,0; .@i < 1; set .@i,.@i + 1){
-				.@chance = rand(1,10000);
+				@chance = rand(1,10000);
 
-				query_sql("SELECT `reward_chance` FROM `item_package_db` WHERE `reward_box_itemid` = "+getarg(0)+" AND `reward_chance` >= '"+.@chance+"' ORDER BY `reward_chance` ASC LIMIT 1", .@rate);
+				query_sql("SELECT `reward_chance` FROM `item_package_db` WHERE `reward_box_itemid` = "+getarg(0)+" AND `reward_chance` >= '"+@chance+"' ORDER BY `reward_chance` ASC LIMIT 1", .@rate);
 
 				if(.@rate){
 					query_sql("SELECT `reward_box_itemid`, `reward_itemid`, `reward_amount`, `reward_announce` FROM `item_package_db` WHERE `reward_box_itemid` = "+getarg(0)+" AND `reward_chance` = '"+.@rate+"'",.@costumebox, .@itemid, .@amount, .@announce);
@@ -27,6 +27,10 @@ function	script	F_ItemPackage	{
 					set .@i, .@i - 1;
 				}
 			}
-
+			deletearray .@rate;
+			deletearray .@costumebox;
+			deletearray .@itemid;
+			deletearray .@amount;
+			deletearray .@announce;
 
 }

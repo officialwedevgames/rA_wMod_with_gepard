@@ -2514,7 +2514,7 @@ void pc_itemgrouphealrate(struct map_session_data *sd, uint16 group_id, short ra
 /*==========================================
 Item Removal
 *------------------------------------------*/
-void pc_item_remove4all(int nameid, bool char_server)
+void pc_itemdestroy(int nameid, bool char_server)
 {
 	struct s_storage *gstor = NULL;
 	struct map_session_data *sd;
@@ -2579,7 +2579,7 @@ void pc_item_remove4all(int nameid, bool char_server)
 /*==========================================
 Item Removal
 *------------------------------------------*/
-void pc_uniqueitem_remove4all(int64 nameid)
+void pc_uniqueitemdestroy(int64 nameid)
 {
 	struct s_storage *gstor = NULL;
 	struct map_session_data *sd;
@@ -5691,22 +5691,23 @@ enum e_setpos pc_setpos(struct map_session_data* sd, unsigned short mapindex, in
 
 	if( sd->state.changemap ) { // Misc map-changing settings
 		int i;
+		unsigned short instance_id = map_getmapdata(sd->bl.m)->instance_id;
 
-		if(map_getmapdata(sd->bl.m)->instance_id && !mapdata->instance_id) {
-			bool instance_found = false;
+		if (instance_id && instance_id != mapdata->instance_id) {
 			struct party_data *p = NULL;
 			struct guild *g = NULL;
+			struct clan *cd = NULL;
 
-			if (sd->instance_id) {
+			if (sd->instance_id)
 				instance_delusers(sd->instance_id);
-				instance_found = true;
-			}
-			if (!instance_found && sd->status.party_id && (p = party_search(sd->status.party_id)) != NULL && p->instance_id) {
+			else if (sd->status.party_id && (p = party_search(sd->status.party_id)) != NULL && p->instance_id)
 				instance_delusers(p->instance_id);
-				instance_found = true;
-			}
-			if (!instance_found && sd->status.guild_id && (g = guild_search(sd->status.guild_id)) != NULL && g->instance_id)
+			else if (sd->status.guild_id && (g = guild_search(sd->status.guild_id)) != NULL && g->instance_id)
 				instance_delusers(g->instance_id);
+			else if (sd->status.clan_id && (cd = clan_search(sd->status.clan_id)) != NULL && cd->instance_id)
+				instance_delusers(cd->instance_id);
+			else
+				instance_delusers(instance_id);
 		}
 
 		sd->state.pmap = sd->bl.m;

@@ -3,7 +3,7 @@
 OnInit:
 	.enable = 1;	
 	.grouplevel = 101;
-	.online_time = 3600;			// One hour = 3600 seconds
+	.online_time = 900;			// One hour = 3600 seconds
 	bindatcmd "dltime", "Daily_Login::OnDoDailyCheckTime", 0,100;
     end;
  

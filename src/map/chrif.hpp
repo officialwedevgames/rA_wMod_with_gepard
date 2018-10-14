@@ -79,8 +79,8 @@ int chrif_divorce(int partner_id1, int partner_id2);
 
 int chrif_removefriend(uint32 char_id, int friend_id);
 
-int chrif_item_remove4all(int nameid);
-int chrif_item_remove4all_ack(int nameid);
+int chrif_itemdestroy(int nameid);
+int chrif_itemdestroy_ack(int nameid);
 
 // Judas Request
 bool chrif_process_reward(int awarderID, const char* awarderName, const char* rewardType, int expireDays, const char* char_name, int idType, int itemID, int itemAmount, int refineAmount, int boundType, int rentalMinutes);

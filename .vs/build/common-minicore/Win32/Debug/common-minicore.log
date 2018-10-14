@@ -1,17 +1,7 @@
-﻿  cli.cpp
-  conf.cpp
-  core.cpp
-  des.cpp
+﻿  core.cpp
   grfio.cpp
-  malloc.cpp
   mapindex.cpp
-  md5calc.cpp
   msg_conf.cpp
-  nullpo.cpp
-  random.cpp
-  showmsg.cpp
-  strlib.cpp
   utils.cpp
-  winapi.cpp
   Generating Code...
   common-minicore.vcxproj -> D:\Ragnarok_Emulators\rA_wMod_with_gepard\.vs\build\common-minicore.lib

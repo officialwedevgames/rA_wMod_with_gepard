@@ -39,38 +39,35 @@ OnInit:
  
 OnPCLoginEvent:
 	if (getgroupid() >= .grouplevel){end;}
-
-	@backup_time = 0;
-	
-	if (!#onlinetick || #onlinetick > .online_time)
-		#onlinetick = gettimetick(2) + .online_time;
-	else
-		#onlinetick += gettimetick(2);	
-
-	while(.enable)
-	{
-		@check_at = checkvending();	
+	if(checkvending() != 2){
+		@backup_time = 0;
 		
-		sleep2 1000;
-		if(@check_at != 2){
-			@backup_time = .@time_left = #onlinetick - gettimetick(2);
-
-			if (.@time_left <= 0)
-			{
-				#onlinetick = gettimetick(2) + .online_time;
-				callfunc "online_time",getcharid(0),getcharid(3),1,100;
-			}
-		}
-
+		if (!#onlinetick || #onlinetick > .online_time)
+			#onlinetick = gettimetick(2) + .online_time;
+		else
+			#onlinetick += gettimetick(2);	
+		goto OnProcessTime;
 	}
-    end;
+end;
+	
+OnProcessTime:
+	if(checkvending() != 2){
+		@backup_time = .@time_left = #onlinetick - gettimetick(2);
+
+		if (.@time_left <= 0)
+		{
+			#onlinetick = gettimetick(2) + .online_time;
+			callfunc "online_time",getcharid(0),getcharid(3),1,100;
+		}
+	}
+	sleep2 1000;
+	goto OnProcessTime;
+end;
  
 OnPCLogoutEvent:
 	if (getgroupid() >= .grouplevel){end;};	
-	if(checkvending() != 2){
-		// BackUP online time
-		if (@backup_time)
-			#onlinetick = @backup_time;
-		end;
-	}
+	// BackUP online time
+	if (@backup_time && checkvending() != 2)
+		#onlinetick = @backup_time;
+	end;
 }

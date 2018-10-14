@@ -1,25 +1,9 @@
-﻿  cli.cpp
-  conf.cpp
-  core.cpp
+﻿  core.cpp
   db.cpp
-  des.cpp
-  ers.cpp
   grfio.cpp
-  malloc.cpp
   mapindex.cpp
-  md5calc.cpp
   msg_conf.cpp
-  nullpo.cpp
-  random.cpp
-  showmsg.cpp
   socket.cpp
-  sql.cpp
-  strlib.cpp
-  timer.cpp
   utils.cpp
-  winapi.cpp
-  Generating Code...
-  Compiling...
-  utilities.cpp
   Generating Code...
   common.vcxproj -> D:\Ragnarok_Emulators\rA_wMod_with_gepard\.vs\build\common.lib

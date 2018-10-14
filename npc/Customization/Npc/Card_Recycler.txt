@@ -79,66 +79,63 @@ OnSellItem:
 					delitem @sold_nameid[.@i],1;
 				mes "[ ^ff0000Card Recycler^000000 ]";
 				mes "Rolling a new card.....";
+
 				.@slow = 0;
+				set @cutin$, "";
+				set @cc$, "";
 				query_sql "SELECT `itemid` FROM `card_merge_db` WHERE `enable` = 1 ORDER BY RAND() LIMIT 50",.@itemid;
 				for( .@i = 0; .@i < getarraysize(.@itemid); .@i++ ){
 					if( (getarraysize(.@itemid) - .@i) == 20 ){
 						mes "^777777-- stopping --^000000";
 						.@slow += 200;
 					} 
-					set .@cutin$, .@itemid[.@i];
-					cutin .@cutin$,3;
+					set @cc$, ""+.@itemid[.@i];
+					cutin @cc$,3;
 					sleep2 ( .@i + .@slow + 40 );
 				}
 
 				for(set .@i,0; .@i < 1; set .@i,.@i + 1){
-					.@chance = rand(1,10000);
+					set .@chance, rand(1,10000);
+
 					query_sql("SELECT `chance_rate` FROM `card_merge_db` WHERE `enable` = 1 AND `chance_rate` >= '"+.@chance+"' ORDER BY `chance_rate` ASC LIMIT 1", .@rate);
 					
-					if(.@rate){
+					if(.@rate >= 1){
 						query_sql("SELECT `itemid` FROM `card_merge_db` WHERE `enable` = 1 AND `chance_rate` = '"+.@rate+"'", .@itemid);
+						set .@size, getarraysize(.@itemid);
+						if(.@size > 1){  
 
-						if(getarraysize(.@itemid) > 1){  
-						 
 							set .@rand, rand(1, getarraysize(.@itemid));
-							set itemid, .@itemid[.@rand];
 							
-							query_sql("SELECT `announce` FROM `card_merge_db` WHERE `itemid` = '"+itemid+"'",.@announce);
+							query_sql("SELECT `itemid`, `announce` FROM `card_merge_db` WHERE `itemid` = '"+.@itemid[.@rand]+"'", @itemid, .@announce);
 							set .@ann, .@announce;
 							
 							if(.@ann){ 
-								announce "Citizens of Midgard,Lady Luck shines upon ["+strcharinfo(0)+"]!! [Card Recycler] has awarded the player with ["+getitemname(itemid)+"]",0;
+								announce "Citizens of Midgard,Lady Luck shines upon ["+strcharinfo(0)+"]!! [Card Recycler] has awarded the player with ["+getitemname(@itemid)+"]",0;
 							}
+							break;
+						}else if(.@size == 1){
 							
-						}else if(getarraysize(.@itemid) == 1){
-							query_sql("SELECT `announce` FROM `card_merge_db` WHERE `itemid` = '"+.@itemid+"'",.@announce);
+							query_sql("SELECT `itemid`, `announce` FROM `card_merge_db` WHERE `itemid` = '"+.@itemid+"'", @itemid, .@announce);
 							set .@ann, .@announce;
-	
-							set itemid, .@itemid;
 							
 							if(.@ann){
-								announce "Citizens of Midgard,Lady Luck shines upon ["+strcharinfo(0)+"]!! [Card Recycler] has awarded the player with ["+getitemname(itemid)+"]",0;
+								announce "Citizens of Midgard,Lady Luck shines upon ["+strcharinfo(0)+"]!! [Card Recycler] has awarded the player with ["+getitemname(@itemid)+"]",0;
 							}
-							
-						}else{
-							set .@i, 0;
+							break;
 						}
-						break;
-					}else{
-						set .@i, 0;
 					}
+					set .@i, .@i - 1;
 					deletearray .@rate;
 					deletearray .@itemid;
 					deletearray .@announce;
 				}
-
-				set .@cutin$, itemid;
-				cutin .@cutin$,3;
+				set @cutin$, ""+@itemid;
+				cutin @cutin$,3;
 				mes " ";
 				mes "You just received a new card: ";
-				mes " ~ ^0055FF"+getitemname( itemid )+"^000000";
-				getitem itemid,1;
-				set itemid, 0;
+				mes " ~ ^0055FF"+getitemname( @itemid )+"^000000";
+				getitem @itemid,1;
+				set @itemid, 0;
 				close2;
 				cutin "",255;
 				end;

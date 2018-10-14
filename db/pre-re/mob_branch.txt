@@ -446,24 +446,3 @@ MOBG_Branch_Of_Dead_Tree,1976,Cobalt Mineral,71428
 MOBG_Branch_Of_Dead_Tree,1977,Heavy Metaling,71428
 MOBG_Branch_Of_Dead_Tree,1978,Hell Vesper,71428
 MOBG_Branch_Of_Dead_Tree,1979,Zakudam,71428
-MOBG_Branch_Of_Dead_Tree,1986,Tatacho,71428
-MOBG_Branch_Of_Dead_Tree,1987,Centipede,71428
-MOBG_Branch_Of_Dead_Tree,1988,Nepenthes,71428
-MOBG_Branch_Of_Dead_Tree,1989,Hillthrion,71428
-MOBG_Branch_Of_Dead_Tree,1990,Hardrock Mammoth,71428
-MOBG_Branch_Of_Dead_Tree,1991,Tendrillion,71428
-MOBG_Branch_Of_Dead_Tree,1992,Cornus,71428
-MOBG_Branch_Of_Dead_Tree,1993,Naga,71428
-MOBG_Branch_Of_Dead_Tree,1994,Luciola Vespa,71428
-MOBG_Branch_Of_Dead_Tree,1995,Pinguicula,71428
-MOBG_Branch_Of_Dead_Tree,1999,Centipede Larva,71428
-MOBG_Branch_Of_Dead_Tree,2013,Draco,71428
-MOBG_Branch_Of_Dead_Tree,2015,Dark Pinguicula,71428
-MOBG_Branch_Of_Dead_Tree,2016,Aqua Elemental,71428
-MOBG_Branch_Of_Dead_Tree,2017,Rata,71428
-MOBG_Branch_Of_Dead_Tree,2018,Duneyrr,71428
-MOBG_Branch_Of_Dead_Tree,2019,Ancient Tree,71428
-MOBG_Branch_Of_Dead_Tree,2020,Rhyncho,71428
-MOBG_Branch_Of_Dead_Tree,2021,Phylla,71428
-MOBG_Branch_Of_Dead_Tree,2023,Dark Shadow,71428
-MOBG_Branch_Of_Dead_Tree,2024,Bradium Golem,71428
