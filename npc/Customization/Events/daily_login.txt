@@ -2,9 +2,9 @@
 
 OnPCLoginEvent:
 OnReward:	
-	query_sql "SELECT `account_id` FROM `daily_login` WHERE `account_id` = '"+getcharid(3)+"' AND `status` = '0'", .@data;
+	query_sql "SELECT `account_id` FROM `cpanel_daily_login` WHERE `account_id` = '"+getcharid(3)+"' AND `status` = '0'", .@data;
     if(.@data){
-        query_sql("UPDATE `daily_login` SET `status` = '1' WHERE `account_id` = '"+.@data+"' AND `status` = '0'"); 
+        query_sql("UPDATE `cpanel_daily_login` SET `status` = '1' WHERE `account_id` = '"+.@data+"' AND `status` = '0'"); 
 		.@charid = getcharid(0);
 		.@sender$ = "[Admin]";
 		.@title$ = "Daily Login";

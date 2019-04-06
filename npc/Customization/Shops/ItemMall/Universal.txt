@@ -1,7 +1,8 @@
--	trader	Universal	FAKE_NPC,{
+-	trader	itemmall_Universal	FAKE_NPC,{
 
 OnInit:
 	tradertype("NST_CASH");
+	//sellitem "Archangel_Wing",10000;
 	sellitem "Novice_Figure",600;
 	sellitem "Swordman_Figure",600;
 	sellitem "Acolyte_Figure",600;
@@ -12,4 +13,4 @@ OnInit:
 	end;
 }
 
-prontera,98,80,4	duplicate(Universal)	Universal#pront	4_F_KAFRA5
+//prontera,98,80,4	duplicate(Universal)	Universal#pront	4_F_KAFRA5

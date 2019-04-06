@@ -1,0 +1,171 @@
+prontera,0,0,0,0	monster	Wandering Lude	2204,50,600000,0,0
+prontera,0,0,0,0	monster	Hallow Jakk	2203,7,7200000,0,0
+
+
+prontera,109,96,4	script	Crate	4_TREASURE_BOX,{
+	mes "[ Halloween Crate ]";
+	mes "A crate that contains a precious item.";
+	next;
+	if(select("Open") == 1){
+		mes "[ Halloween Crate ]";
+		mes "Choose a key to use.";
+		next;
+		switch(select("Use ^ff0000"+getitemname("Dimensional_Key1")+"^000000"+((countitem("Dimensional_Key2"))?":Use ^ff0000"+getitemname("Dimensional_Key2")+"^000000":"")+"")){
+			case 1:
+				if(#h_event > gettimetick(2)) {
+						set .@k, #h_event - gettimetick(2);
+						set .@m,.@k % 3600 / 60;
+						set .@s,.@k % 60;
+						set .@m$, .@m+" minute"+((.@m <= 1)?"":"s");
+						set .@s$, .@s+" second"+((.@s <= 1)?"":"s");
+						set .@time$,""+((.@m >= 1)?""+.@m$+" ":"")+""+.@s$+"";
+						mes "[ Halloween Crate ]";
+						mes "You have to wait for the cooldown: ^ff0000"+.@time$+"^000000";
+						close;
+				}
+				if(!countitem("Dimensional_Key1")){
+					mes "[ Halloween Crate ]";
+					mes "Can't find ^ff0000"+getitemname("Dimensional_Key1")+"^000000.";
+					close;
+				}
+				set .@time,3600;
+				set .@itemrand,rand(1,5);
+				delitem "Dimensional_Key1",1;
+				goto OnProcess;
+				end;
+			case 2:
+				if(#h_event > gettimetick(2)) {
+						set .@k, #h_event - gettimetick(2);
+						set .@m,.@k % 3600 / 60;
+						set .@s,.@k % 60;
+						set .@m$, .@m+" minute"+((.@m <= 1)?"":"s");
+						set .@s$, .@s+" second"+((.@s <= 1)?"":"s");
+						set .@time$,""+((.@m >= 1)?""+.@m$+" ":"")+""+.@s$+"";
+						mes "[ Halloween Crate ]";
+						mes "You have to wait for the cooldown: ^ff0000"+.@time$+"^000000";
+						close;
+				}
+				if(!countitem("Dimensional_Key2")){
+					mes "[ Halloween Crate ]";
+					mes "Can't find ^ff0000"+getitemname("Dimensional_Key2")+"^000000.";
+					close;
+				}
+				set .@time,1800;
+				set .@itemrand,rand(5,10);
+				delitem "Dimensional_Key2",1;
+				goto OnProcess;
+				end;
+		}
+	}
+
+OnProcess:
+	mes "[ Halloween Crate ]";
+	mes "You found something...";
+	getitem "H_Pumpkin",.@itemrand;
+	if(.enable_event){
+		set #h_event, gettimetick(2) + (.@time / 2);
+	}else{
+		set #h_event, gettimetick(2) + .@time;
+	}
+
+close;
+
+OnInit:
+	.enable_event = 0;
+end;
+}
+
+
+prontera,104,95,4	script	Coffin	4_NFCOFFIN,{
+	callshop "Halloween_Shop",1;
+	npcshopattach "Halloween_Shop";
+	end;
+	
+OnBuyItem:
+	for (.@i = 0; .@i < getarraysize(@bought_nameid); ++.@i) {
+		if(getarraysize(@bought_nameid) > 1){
+			mes "[ Coffin ]";
+			mes "You are not allowed to buy 2 items or more at the same time.";
+			close;
+		}
+		
+	}
+	for(set .@l,0; .@l < getarraysize(.item_list$); set .@l,.@l + 1){	
+	
+		explode(.@x$,.item_list$[.@l],"|");
+	
+		for(set .@k,0; .@k < getarraysize(.@x$); set .@k,.@k + 1){
+			set .@it[.@k], atoi(.@x$[.@k]);
+		}
+		if(@bought_nameid == .@it[0]){
+			mes "[ Coffin ]";
+			mes "Reward: ^0000ff"+getitemname(@bought_nameid)+"^000000";
+			mes "Requirements:";
+			for(set .@h,1; .@h < getarraysize(.@it); set .@h,.@h + 2){
+				if(countitem(.@it[.@h]) >= .@it[.@h+1]){
+					.@color$ = "^027002";
+				}else{
+					.@color$ = "^ff0000";
+				}
+				mes "> ^ff0000"+getitemname(.@it[.@h])+"^000000 ("+getd(".@color$")+""+countitem(.@it[.@h])+"/"+.@it[.@h+1]+"^000000)";
+			}
+			next;
+			if(select("> Purchase ^ff0000"+getitemname(@bought_nameid)+"^000000") == 1){
+				for(set .@j,1; .@j < getarraysize(.@it); set .@j,.@j + 2){
+					if(countitem(.@it[.@j]) < .@it[.@j+1]){
+						mes "[ Coffin ]";
+						mes "Required items are not enough.";
+						deletearray @bought_quantity, getarraysize(@bought_quantity);
+						deletearray @bought_nameid, getarraysize(@bought_nameid);
+						close;
+					}
+				}
+				mes "[ Coffin ]";
+				mes "Congratulation! You received "+getitemname(@bought_nameid)+".";
+				for(set .@m,1; .@m < getarraysize(.@it); set .@m,.@m + 2){
+					delitem .@it[.@m],.@it[.@m+1];
+				}
+				if(@bought_nameid == 20130){
+					getitem @bought_nameid,1;
+				}else{
+					rentitem @bought_nameid,1,1440;
+				}
+				
+				deletearray @bought_quantity, getarraysize(@bought_quantity);
+				deletearray @bought_nameid, getarraysize(@bought_nameid);
+				close;
+			}
+			break;
+		}
+	}
+	
+OnInit:
+	setarray .item_list$[0],
+						"20130|32012|999",
+						"31031|7609|10|6298|10",
+						"31032|7609|10|6298|10",
+						"31033|7609|10|6298|10",
+						"31034|7609|10|6298|10",
+						"31035|7609|10|6298|10",
+						"31036|7609|10|6298|10",
+						"31037|7609|10|6298|10";
+						
+	//- Add item in the shop.
+	for(set .@l,0; .@l < getarraysize(.item_list$); set .@l,.@l + 1){	
+	
+		explode(.@x$,.item_list$[.@l],"|");
+	
+		for(set .@k,0; .@k < getarraysize(.@x$); set .@k,.@k + 1){
+			set .@it[.@k], atoi(.@x$[.@k]);
+		}
+		npcshopadditem "Halloween_Shop",.@it[0], 0;
+	}
+	
+	//- Remove the dummy item.
+	npcshopdelitem "Halloween_Shop",501,50;
+	end;
+}
+
+// Dummy shop to insert items into:
+-	shop	Halloween_Shop	FAKE_NPC,501:50
+

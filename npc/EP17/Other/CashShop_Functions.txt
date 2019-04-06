@@ -164,14 +164,13 @@ function	script	F_CashCity	{
 			case 4: warp "louyang",217,95; end;
 		}
 	case 5: // Blue - Islands (Renewal)
-		switch(select("Amatsu:Kunlun:Ayotaya:Louyang:Moscovia:Dewata:Brasilis")) {
+		switch(select("Amatsu:Kunlun:Ayotaya:Louyang:Dewata:Brasilis")) {
 			case 1: warp "amatsu",110,140; end;
 			case 2: warp "gonryun",160,115; end;
 			case 3: warp "ayothaya",220,170; end;
 			case 4: warp "louyang",217,95; end;
-			case 5: warp "moscovia",224,195; end;
-			case 6: warp "dewata",200,107; end;
-			case 7: warp "brasilis",196,181; end;
+			case 5: warp "dewata",200,107; end;
+			case 6: warp "brasilis",196,181; end;
 		}
 	}
 	return;

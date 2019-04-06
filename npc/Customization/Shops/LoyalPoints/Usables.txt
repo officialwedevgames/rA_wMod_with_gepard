@@ -1,26 +1,17 @@
--	trader	Loyal Convenient	FAKE_NPC,{
+-	trader	Loyal Shop	FAKE_NPC,{
 OnInit:
+	waitingroom "Loyal Shop",0;
+	
 	tradertype("NST_CUSTOM");
-	sellitem "Cargo_Free_Ticket",1,0,1;
-	sellitem "Warp_Free_Ticket",1,0,1;
-	sellitem "Blessing_10_Scroll",2,0,1;
-	sellitem "Inc_Agi_10_Scroll",2,0,1;
-	sellitem "Classic_Kafra_Card",5,0,1;
-	sellitem "c_potion_white_box",25,0,1;
-	sellitem "c_potion_blue_box",25,0,1;
-	sellitem "c_potion_bundle",35,0,1;
-	sellitem "Battle_Manual",40,0,1;
-	sellitem "Bubble_Gum",40,0,1;
-	sellitem "Str_Dish10_M",100,0,1;
-	sellitem "Agi_Dish10_M",100,0,1;
-	sellitem "Int_Dish10_M",100,0,1;
-	sellitem "Dex_Dish10_M",100,0,1;
-	sellitem "Luk_Dish10_M",100,0,1;
-	sellitem "Vit_Dish10_M",100,0,1;
+	sellitem "Blue_Gemstone_Box_10",5,0,1;
+	sellitem "Red_Gemstone_Box_10",10,0,1;
+	sellitem "Yellow_Gemstone_Box_10",15,0,1;
+	sellitem "Classic_Kafra_Card",10,0,1;
+	sellitem "c_potion_white_box",35,0,1;
+	sellitem "c_potion_blue_box",35,0,1;
 	sellitem "Color_Style_Coupon",100,0,1;
 	sellitem "Newbie_Sign",400,180,0;
-	sellitem "Infinity_Treasure_Chest",600,0,1;
-	sellitem "Clothing_Dye_Coupon",1500,0,1;
+	sellitem "Infinity_Treasure_Chest",750,0,1;
 	end;
 
 /* allows currency to be item 501 and 502 */
@@ -36,4 +27,4 @@ OnPayFunds:
 	end;
 }
 
-prontera,105,83,5	duplicate(Loyal Convenient)	Loyal Convenient#pront	1_F_04
+prontera,105,83,5	duplicate(Loyal Shop)	Prontera Merchant#pront	1_M_SIGNMCNT

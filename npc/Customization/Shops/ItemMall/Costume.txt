@@ -1,19 +1,6 @@
-payon,97,131,3	script	Rare Trader	1_M_PAY_ELDER,{
-	mes "[ Rare Trader ]";
-	mes "What are you looking for?";
-	mes " ";
-	mes "^ff0000Note: The shop currency is^000000 ^0000FFRok Points^000000 ^FF0000and the items are trade-able or depends on the item description.^000000";
-	next;
-	switch(select("> ^0000FFCostume^000000")){
-		case 1:
-			mes "[ Rare Trader ]";
-			mes "Here you go..";
-			close2;
-			callshop "Cash_Costume",4;
-			end;
-	}
-}
--	trader	Cash_Costume	FAKE_NPC,{
+
+
+-	trader	Itemmall_Costume	FAKE_NPC,{
 OnInit:
 	tradertype("NST_CASH");
 	sellitem "Costume_2",3500;

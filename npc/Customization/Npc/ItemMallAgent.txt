@@ -1,0 +1,99 @@
+-	script	ItemMall	FAKE_NPC,{
+
+	set .@i_active, 1;
+	query_sql("SELECT `email`  FROM `login` WHERE `account_id` = '"+getcharid(3)+"'",.@email$);
+	query_sql("SELECT `account_id`  FROM `no_dual_npc` WHERE `email` = '"+.@email$+"'",.@acc);
+	if(.@acc){
+		mes "[ System ]";
+		mes "We are not allowing those accounts with same email to access the npc at the same time.";
+		close;
+	}else{
+		query_sql "INSERT INTO `no_dual_npc`(`account_id`,`email`, `npcname`) VALUES ('"+getcharid(3)+"','"+.@email$+"','"+strnpcinfo(0)+"')";
+	}
+	
+	mes .n$;
+	mes "I always provide online item deliveries.";
+	next;
+	switch(select("Check Storage")) {
+		case 1:	
+			query_sql("SELECT `id`, `itemid`, `amount`, `bound_type`  FROM `cpanel_itemmall` WHERE `email` = '"+.@email$+"' AND `redeemed_status` = '0'",.@id, .@itemid, .@amount, .@bound_type);
+			break;
+			
+	}
+	
+	mes .n$;
+
+
+	if(getarraysize(.@amount) == 0){
+		mes "^FF0000** ***^000000 NO AVAILABLE ITEMS ^FF0000*** **^000000";
+		close;
+	}
+	mes "Select an item.";
+	next;
+	.@size = getarraysize( .@itemid );
+	for( .@i = 0; .@i < .@size; .@i++ ){
+		set .@menu$,.@menu$ +" "+((.@bound_type[.@i] == 2)?"[^0000ffGuild^000000] ":"")+""+((.@refine[.@i] >= 1)?""+"+"+.@refine[.@i]+"":"")+""+getitemname( .@itemid[.@i] )+" "+((getitemslots(.@itemid[.@i]))?"["+getitemslots(.@itemid[.@i])+"]":"")+" x " + .@amount[.@i] + ":";
+	}
+	.@i = select( .@menu$ ) - 1;
+	
+	query_sql("SELECT `id`  FROM `cpanel_itemmall` WHERE `email` = '"+.@email$+"' AND `redeemed_status` = '1' AND `id` = '"+.@id[.@i]+"'",.@st);
+
+	
+	if(.@bound_type[.@i] == 2 && !getcharid(2)){
+		mes .n$;
+		mes "You are not allowed to claim this reward since your are not in a guild.";
+		close;
+	}else if( checkweight(.@itemid[.@i],.@amount[.@i]) == 0 ){
+		mes .n$;
+		mes "You can't carry the stuff you want to claim.";
+		mes "Try to store an items to your Kafra Storage.";
+		close;
+	}else if(getarraysize(.@st)){
+		mes .n$;
+		mes "The item is no longer available.";
+		close;
+	}
+	
+
+		if(.@rental_time[.@i] < 1 && .@bound_type[.@i] >= 1){
+		
+			getitembound2 .@itemid[.@i],.@amount[.@i],1,.@refine[.@i],0,0,0,0,0,.@bound_type[.@i];
+		
+		}
+		else if(.@bound_type[.@i] < 1 && .@rental_time[.@i] >= 1){
+		
+			rentitem2 .@itemid[.@i],.@amount[.@i],.@rental_time[.@i],.@refine[.@i],0,0,0,0; 
+	
+		}
+		else{
+		
+			getitem2 .@itemid[.@i],.@amount[.@i],1,.@refine[.@i],0,0,0,0,0;
+		
+		}
+		
+		query_sql "UPDATE `cpanel_itemmall` SET `date_redeemed` = CURRENT_TIMESTAMP, `redeemed_status` = '1', `redeemed_by` = '"+strcharinfo(0)+"' WHERE `email` = '"+.@email$+"' AND `id` = '"+.@id[.@i]+"'";
+		
+		mes .n$;
+		mes "Here's your "+((.@refine[.@i] >= 1)?""+"+"+.@refine[.@i]+"":"")+" "+getitemname(.@itemid[.@i])+" x "+.@amount[.@i]+".";
+		close2;
+		query_sql("SELECT `email`  FROM `login` WHERE `account_id` = '"+getcharid(3)+"'",.@email$);
+		query_sql("DELETE FROM `no_dual_npc` WHERE `email` = '"+.@email$+"'");
+		end;
+OnInit:
+	.n$ = "[ ^0000FFKafra Agent^000000 ]";
+end;
+
+OnPCStatCalcEvent:
+OnPCLogoutEvent:
+	if(strnpcinfo(3) != "ItemMall"){
+		query_sql("DELETE FROM `no_dual_npc` WHERE `account_id` = '"+getcharid(3)+"'");
+	}
+end;
+
+}
+
+
+		
+
+prontera,99,80,4	duplicate(ItemMall)	Kafra Agent#prt	4_F_NFDEADKAFRA
+

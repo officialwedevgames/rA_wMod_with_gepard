@@ -23,7 +23,9 @@ mes .NpcName$;
 mes "For instance you would require.";
 mes "^009900"+getitemname(.stoneid)+" x "+.@stonesreq+"^000000 to reset all your stats to 1 and get all your status points back.";
 next;
-switch(select("Tell me More!:Lets reset now.:[ ^FF0000EVENT^000000 ] ONCE A MONTH:"+((.event == 0)?"":"[ ^FF0000EVENT^000000 ] ULIMITED RESET.:")+"Later.")) {
+set .@d$, gettimestr("%Y-%m-%d %H:%M:%S", 21);
+query_sql("SELECT `id` FROM `reset_date` WHERE `date` > '"+.@d$+"' LIMIT 1", .@available);
+switch(select("Tell me More!:Lets reset now.:"+((!.@available)?"":"[ ^FF0000EVENT^000000 ] ULIMITED RESET.:")+"Later.")) {
 	case 1:
 		mes .NpcName$;
 		for(set .@i,0; .@i<getarraysize(.minrange); set .@i,.@i+1) {
@@ -46,6 +48,7 @@ switch(select("Tell me More!:Lets reset now.:[ ^FF0000EVENT^000000 ] ONCE A MONT
 			mes "You do not have enough ^009900"+getitemname(.stoneid)+"s^000000";
 			close;
 		}
+	/*
 	case 3:
 		mes .NpcName$;	
 		if(#FreeReset > gettimetick(2)) {
@@ -67,18 +70,16 @@ switch(select("Tell me More!:Lets reset now.:[ ^FF0000EVENT^000000 ] ONCE A MONT
 		mes "You can only avail the free reset once 2 month... Thank you.";
 		resetstatus;
 		}
-
 	close;
-	
+	*/
 	case 4:
-		.@date$ = gettimestr("%Y-%m-%d %H", 21);
-		if(.@date$ >= .schedule$){goto OnDueDate; }
+		if(!.@available){ goto OnDueDate; end;}
 		
 			mes .NpcName$;
 			mes "As a master, I've been ordered to give you a free reset. Where do I start?";
 			next;
-				//switch(select("Stats:Skills")) { 
-				switch(select("Stats")) {
+				switch(select("Stats:Skills")) { 
+				//switch(select("Stats")) {
 				case 1: 
 					mes "[ Ability Master ]";
 					mes "Good Choice..";
@@ -162,10 +163,12 @@ OnDoResetDate:
 			message strcharinfo(0),"Invalid Hour Number.";
 			message strcharinfo(0),"Hour: 01 ~ 24";
 		}else{
-			set .event,1;
 			dispbottom "Unlimited Skills and Stats Reset is now enabled.";
 		}
-		set .schedule$, gettime(DT_DAYOFYEAR)+"-"+.@sched_to$[0]+"-"+ .@sched_to$[1]+" "+.@sched_to$[2];
+		set .schedule$, gettime(DT_YEAR)+"-"+.@sched_to$[0]+"-"+ .@sched_to$[1]+" "+.@sched_to$[2]+":00:00";
+		query_sql("TRUNCATE `reset_date`");
+		query_sql("INSERT INTO `reset_date` (`id`, `date`) VALUES ('1', '"+.schedule$+"')");
+
 	}else{
 		message strcharinfo(0),"@npcreset <on/off> <Month-Day-Hour>";
 		message strcharinfo(0),"@npcreset failed.";

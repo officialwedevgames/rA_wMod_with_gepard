@@ -1,0 +1,81 @@
+
+
+-	script	disable_npc_novice	-1,{
+	OnInit:
+	OnInterIfInit:
+		atcommand "@unloadnpcfile npc/EP15/Jobs/novice/novice.txt";
+	end;
+}
+
+new_1-1,148,112,0	script	n_warper	WARPNPC,3,3,{
+
+OnTouch:
+	if(!training_reward){
+		@rand = rand(getarraysize(.itemlist));
+		getitembound .itemlist[@rand],1,4;
+		getitembound 12208,5,4;
+		getitembound 12210,5,4;
+		getitem 32375,5;
+		getitem 12215,15;
+		getitem 12216,15;
+		getitem 7059,20;
+		getitem 7060,20;
+	}
+	set training_reward,1;
+	savepoint "prt_fild08",20,239;
+	warp "prt_fild08",20,239;
+end;
+
+OnInit:
+	setarray .itemlist, 
+				19533,		//- Costume Spore Hat
+				19539,		//- Costume Reginleif Hairband
+				19545,		//- Costume Boy's Cap
+				19549,		//- Costume Magestic Goat
+				19579;		//- Costume Red Wind Hat
+end;
+
+}
+
+
+prt_fild08,20,245,4	script	Alexandrine	4_M_04,{	
+	mes "[ Alexandrine ]";
+	mes "Hello Adventurer, How can I help you?";
+	next;
+	switch(select(((#quest_1_completed)?"":"Tell me more about jellopy's and feather's")+":Warp me to the main town.")){
+		case 1:
+			mes "[ Alexandrine ]";
+			if(countitem("Jellopy") < 300 || countitem("Feather") < 300){
+				mes "Welcome Adventurer! Bring me 300 jellopy's and 300 feather's but don't worry there is a reward.";
+				close;
+			}
+			if(#quest_1_completed){
+				mes "You already completed this quest.";
+			}else if(countitem("Jellopy") < 300 || countitem("Feather") < 300){
+				mes "Well, you don't have enough items that I needed.";
+			}else{
+				delitem "Jellopy",300;
+				delitem "Feather",300;
+				rentitem "Newbie_Sign",1,1440;
+				set #quest_1_completed,1;
+				mes "Congratulations! You just received ^ff0000"+getitemname("Newbie_Sign")+"^000000 that may help you in your journey!";
+			}
+			close;
+		
+		case 2:
+			mes "[ Alexandrine ]";	
+			mes "See you again adventurer, Good Luck!";
+			close2;
+			warp "prontera",116,73;
+			end;
+	}
+	close;
+	
+	
+	OnInit:
+
+		questinfo 2, QTYPE_QUEST, 0;
+
+	end;
+	
+}

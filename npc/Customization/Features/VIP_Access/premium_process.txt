@@ -1,11 +1,16 @@
+
+function	script	Premium_Voucher	{
+	query_sql "INSERT INTO `premium_db`(`account_id`, `days`) VALUES ('"+getcharid(3)+"', '"+getarg(0)+"')";
+}
+
 -	script	Premium_Process	FAKE_NPC,{
 
 OnPCLoginEvent:
 OnReward:	
 	query_sql "SELECT SUM(`days`) FROM `premium_db` WHERE `account_id` = '"+getcharid(3)+"' AND `status` = '0'", .@data;
-    query_sql "SELECT `id`, `rewards`  FROM `premium_db` WHERE `account_id` = '"+getcharid(3)+"' AND `status` = '0'", .@id, .@rewards$;
 	if(.@data){
-		if(.@rewards$ != "NULL"){
+		query_sql "SELECT `id`, `rewards`  FROM `premium_db` WHERE `account_id` = '"+getcharid(3)+"' AND `status` = '0'", .@id, .@rewards$;
+		if(.@rewards$ != ""){
 			for(set .@i,0; .@i < getarraysize(.@id); set .@i,.@i+1){
 				
 				explode(.@list$, .@rewards$[.@i],",");

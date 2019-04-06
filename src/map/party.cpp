@@ -1264,17 +1264,23 @@ int party_sub_count_banding(struct block_list *bl, va_list ap)
 {
 	struct map_session_data *sd = (TBL_PC *)bl;
 	int type = va_arg(ap, int); // 0 = Banding Count, 1 = HP Check
- 	if (sd->state.autotrade)
+
+	if (sd->state.autotrade)
 		return 0;
- 	if (battle_config.idle_no_share && pc_isidle(sd))
+
+	if (battle_config.idle_no_share && pc_isidle(sd))
 		return 0;
- 	if ((sd->class_&MAPID_THIRDMASK) != MAPID_ROYAL_GUARD)
+
+	if ((sd->class_&MAPID_THIRDMASK) != MAPID_ROYAL_GUARD)
 		return 0;
- 	if (!sd->sc.data[SC_BANDING])
+
+	if (!sd->sc.data[SC_BANDING])
 		return 0;
- 	if (type == 1)
+
+	if (type == 1)
 		return status_get_hp(bl);
- 	return 1;
+
+	return 1;
 }
 
 /// Executes 'func' for each party member on the same map and in range (0:whole map)

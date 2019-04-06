@@ -1109,44 +1109,32 @@ static void itemdb_read_combos(const char* basedir, bool silent) {
 void itemdb_read_rewards(void)
 {
 	//Sleep(5000); // Debugging
-
-	uint32 lines = 0, count = 0;
+ 	uint32 lines = 0, count = 0;
 	char line[1024];
 	char filepath[256];
 	FILE* fp;
-
-	snprintf(filepath, 256, "%s/%s", "db", "reward_item_db.txt");
-
-	if ((fp = fopen(filepath, "r")) == NULL) {
+ 	snprintf(filepath, 256, "%s/%s", "db", "reward_item_db.txt");
+ 	if ((fp = fopen(filepath, "r")) == NULL) {
 		ShowError("reward_item_db: File not found \"%s\".\n", filepath);
 		return;
 	}
-
-	// process rows one by one
+ 	// process rows one by one
 	while (fgets(line, sizeof(line), fp)) {
 		char *str[2], *p;
-
-		lines++;
-
-		// Judas Reward v2
+ 		lines++;
+ 		// Judas Reward v2
 		if (line[0] == '/' && line[1] == '/' || line[0] == '\n')
 			continue;
-
-		memset(str, 0, sizeof(str));
-
-		p = line;
-
-		// Pull the ID by extracting through delimeter tab
+ 		memset(str, 0, sizeof(str));
+ 		p = line;
+ 		// Pull the ID by extracting through delimeter tab
 		p = strtok(p, "	");
-
-		if (*p == '\0')
+ 		if (*p == '\0')
 			continue;// empty line
-
-					 ////////////////////////////////////
+ 					 ////////////////////////////////////
 		int v = 0, retcount = 0;
 		struct item_reward* reward = NULL;
-
-		RECREATE(rdx.rewards, struct item_reward*, ++rdx.reward_count);
+ 		RECREATE(rdx.rewards, struct item_reward*, ++rdx.reward_count);
 		CREATE(reward, struct item_reward, 1);
 		reward->id = atoi(p);
 		rdx.rewards[count] = reward;
@@ -1155,8 +1143,7 @@ void itemdb_read_rewards(void)
 	}
 	fclose(fp);
 	ShowStatus("Done reading '" CL_WHITE "%lu" CL_RESET "' entries in '" CL_WHITE "%s" CL_RESET "'.\n", count, "db/reward_item_db.txt");
-
-	return;
+ 	return;
 }
 
 /**

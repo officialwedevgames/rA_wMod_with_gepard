@@ -87,7 +87,6 @@ extern int attr_fix_table[MAX_ELE_LEVEL][ELE_MAX][ELE_MAX];
 // Damage Calculation
 
 struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct block_list *target,uint16 skill_id,uint16 skill_lv,int flag);
-struct Damage battle_calc_attack_plant(struct Damage wd, struct block_list *src,struct block_list *target, uint16 skill_id, uint16 skill_lv);
 
 int64 battle_calc_return_damage(struct block_list *bl, struct block_list *src, int64 *, int flag, uint16 skill_id, bool status_reflect);
 
@@ -669,13 +668,17 @@ struct Battle_Config
 	int feature_attendance;
 	int feature_privateairship;
 	int rental_transaction;
-
-	// Judas Reward v2
+	
 	int reward_default_exp_day;
 	int reward_exp_limit;
 	int reward_amount_limit;
 	int reward_rent_limit;
 
+	// [Reserved Chars ID]
+	int bg_reserved_char_id;
+	int woe_reserved_char_id;
+	int bg_can_trade;
+	
 #include "../custom/battle_config_struct.inc"
 };
 

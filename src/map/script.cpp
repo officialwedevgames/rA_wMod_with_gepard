@@ -1118,9 +1118,15 @@ const char* parse_variable(const char* p) {
 	const char *p2 = NULL;
 	const char *var = p;
 
-	if ((p[0] == '+' && p[1] == '+' && (type = C_ADD_PRE)) // pre ++
-	 || (p[0] == '-' && p[1] == '-' && (type = C_SUB_PRE))) // pre --
+	if( p[0] == '+' && p[1] == '+' ){
+		type = C_ADD_PRE; // pre ++
+	}else if( p[0] == '-' && p[1] == '-' ){
+		type = C_SUB_PRE; // pre --
+	}
+
+	if( type != C_NOP ){
 		var = p = skip_space(&p[2]);
+	}
 
 	// skip the variable where applicable
 	p = skip_word(p);
@@ -1142,24 +1148,39 @@ const char* parse_variable(const char* p) {
 		}
 	}
 
-	if( type == C_NOP &&
-	!( ( p[0] == '=' && p[1] != '=' && (type = C_EQ) ) // =
-	|| ( p[0] == '+' && p[1] == '=' && (type = C_ADD) ) // +=
-	|| ( p[0] == '-' && p[1] == '=' && (type = C_SUB) ) // -=
-	|| ( p[0] == '^' && p[1] == '=' && (type = C_XOR) ) // ^=
-	|| ( p[0] == '|' && p[1] == '=' && (type = C_OR ) ) // |=
-	|| ( p[0] == '&' && p[1] == '=' && (type = C_AND) ) // &=
-	|| ( p[0] == '*' && p[1] == '=' && (type = C_MUL) ) // *=
-	|| ( p[0] == '/' && p[1] == '=' && (type = C_DIV) ) // /=
-	|| ( p[0] == '%' && p[1] == '=' && (type = C_MOD) ) // %=
-	|| ( p[0] == '~' && p[1] == '=' && (type = C_NOT) ) // ~=
-	|| ( p[0] == '+' && p[1] == '+' && (type = C_ADD_POST) ) // post ++
-	|| ( p[0] == '-' && p[1] == '-' && (type = C_SUB_POST) ) // post --
-	|| ( p[0] == '<' && p[1] == '<' && p[2] == '=' && (type = C_L_SHIFT) ) // <<=
-	|| ( p[0] == '>' && p[1] == '>' && p[2] == '=' && (type = C_R_SHIFT) ) // >>=
-	) )
-	{// failed to find a matching operator combination so invalid
-		return NULL;
+	if( type == C_NOP ){
+		if( p[0] == '=' && p[1] != '=' ){
+			type = C_EQ; // =
+		}else if( p[0] == '+' && p[1] == '=' ){
+			type = C_ADD; // +=
+		}else if( p[0] == '-' && p[1] == '=' ){
+			type = C_SUB; // -=
+		}else if( p[0] == '^' && p[1] == '=' ){
+			type = C_XOR; // ^=
+		}else if( p[0] == '|' && p[1] == '=' ){
+			type = C_OR; // |=
+		}else if( p[0] == '&' && p[1] == '=' ){
+			type = C_AND; // &=
+		}else if( p[0] == '*' && p[1] == '=' ){
+			type = C_MUL; // *=
+		}else if( p[0] == '/' && p[1] == '=' ){
+			type = C_DIV; // /=
+		}else if( p[0] == '%' && p[1] == '=' ){
+			type = C_MOD; // %=
+		}else if( p[0] == '~' && p[1] == '=' ){
+			type = C_NOT; // ~=
+		}else if( p[0] == '+' && p[1] == '+' ){
+			type = C_ADD_POST; // post ++
+		}else if( p[0] == '-' && p[1] == '-' ){
+			type = C_SUB_POST; // post --
+		}else if( p[0] == '<' && p[1] == '<' && p[2] == '=' ){
+			type = C_L_SHIFT; // <<=
+		}else if( p[0] == '>' && p[1] == '>' && p[2] == '=' ){
+			type = C_R_SHIFT; // >>=
+		}else{
+			// failed to find a matching operator combination so invalid
+			return nullptr;
+		}
 	}
 
 	switch( type ) {
@@ -3093,7 +3114,7 @@ int set_reg(struct script_state* st, struct map_session_data* sd, int64 num, con
 	size_t vlen = 0;
 	if ( !script_check_RegistryVariableLength(0,name,&vlen) )
 	{
-		ShowError("set_reg: Variable name length is too long (aid: %d, cid: %d): '%s' sz=%d\n", sd?sd->status.account_id:-1, sd?sd->status.char_id:-1, name, vlen);
+		ShowError("set_reg: Variable name length is too long (aid: %d, cid: %d): '%s' sz=%" PRIuPTR "\n", sd?sd->status.account_id:-1, sd?sd->status.char_id:-1, name, vlen);
 		return 0;
 	}
 
@@ -10115,40 +10136,53 @@ BUILDIN_FUNC(guildopenstorage_log){
 	return SCRIPT_CMD_FAILURE;
 #else
 	struct map_session_data* sd;
- 	if( !script_charid2sd( 2, sd ) ){
+
+	if( !script_charid2sd( 2, sd ) ){
 		return SCRIPT_CMD_FAILURE;
 	}
- 	script_pushint( st, storage_guild_log_read( sd ) );
- 	return SCRIPT_CMD_SUCCESS;
+
+	script_pushint( st, storage_guild_log_read( sd ) );
+
+	return SCRIPT_CMD_SUCCESS;
 #endif
 }
- BUILDIN_FUNC(guild_has_permission){
+
+BUILDIN_FUNC(guild_has_permission){
 	struct map_session_data* sd;
- 	if( !script_charid2sd( 3, sd ) ){
+
+	if( !script_charid2sd( 3, sd ) ){
 		return SCRIPT_CMD_FAILURE;
 	}
- 	int permission = script_getnum(st,2);
- 	if( permission == 0 ){
+
+	int permission = script_getnum(st,2);
+
+	if( permission == 0 ){
 		ShowError( "buildin_guild_has_permission: No permission given.\n" );
 		return SCRIPT_CMD_FAILURE;
 	}
- 	if( ( permission & GUILD_PERM_ALL ) == 0 ){
+
+	if( ( permission & GUILD_PERM_ALL ) == 0 ){
 		ShowError( "buildin_guild_has_permission: Invalid permission '%d'.\n", permission );
 		return SCRIPT_CMD_FAILURE;
 	}
- 	if( !sd->guild ){
+
+	if( !sd->guild ){
 		script_pushint( st, false );
- 		return SCRIPT_CMD_SUCCESS;
+
+		return SCRIPT_CMD_SUCCESS;
 	}
- 	int position = guild_getposition(sd);
+
+	int position = guild_getposition(sd);
 	
 	if( position < 0 || ( sd->guild->position[position].mode&permission ) != permission ){
 		script_pushint( st, false );
- 		return SCRIPT_CMD_SUCCESS;
+
+		return SCRIPT_CMD_SUCCESS;
 	}
 	
 	script_pushint( st, true );
- 	return SCRIPT_CMD_SUCCESS;
+
+	return SCRIPT_CMD_SUCCESS;
 }
 
 /*==========================================
@@ -11259,7 +11293,8 @@ BUILDIN_FUNC(getunits)
 	int32 idx, id;
 	int16 m = 0, x0 = 0, y0 = 0, x1 = 0, y1 = 0;
 	struct s_mapiterator *iter = mapit_alloc(MAPIT_NORMAL, bl_type(type));
- 	if (!strcmp(command, "getmapunits"))
+
+	if (!strcmp(command, "getmapunits"))
 	{
 		str = script_getstr(st, 3);
 		if ((m = map_mapname2mapid(str)) < 0) {
@@ -11284,7 +11319,8 @@ BUILDIN_FUNC(getunits)
 		y0 = script_getnum(st, 5);
 		x1 = script_getnum(st, 6);
 		y1 = script_getnum(st, 7);
- 		if (script_hasdata(st, 8))
+
+		if (script_hasdata(st, 8))
 			data = script_getdata(st, 8);
 	}
 	else
@@ -11292,7 +11328,8 @@ BUILDIN_FUNC(getunits)
 		if (script_hasdata(st, 3))
 			data = script_getdata(st, 3);
 	}
- 	if (data)
+
+	if (data)
 	{
 		if (!data_isreference(data))
 		{
@@ -11305,7 +11342,8 @@ BUILDIN_FUNC(getunits)
 		idx = reference_getindex(data);
 		name = reference_getname(data);
 	}
- 	for (bl = (struct block_list*)mapit_first(iter); mapit_exists(iter); bl = (struct block_list*)mapit_next(iter))
+
+	for (bl = (struct block_list*)mapit_first(iter); mapit_exists(iter); bl = (struct block_list*)mapit_next(iter))
 	{
 		if (!m || (m == bl->m && !x0 && !y0 && !x1 && !y1) || (bl->m == m && (bl->x >= x0 && bl->y <= y0) && (bl->x <= x1 && bl->y >= y1)))
 		{
@@ -11314,8 +11352,10 @@ BUILDIN_FUNC(getunits)
 			size++;
 		}
 	}
- 	mapit_free(iter);
- 	script_pushint(st, size);
+
+	mapit_free(iter);
+
+	script_pushint(st, size);
 	return SCRIPT_CMD_SUCCESS;
 }
 
@@ -12569,6 +12609,20 @@ BUILDIN_FUNC(setmapflag)
 				return SCRIPT_CMD_FAILURE;
 			}
 			break;
+		case MF_SKILL_DURATION:
+			if (script_hasdata(st, 4) && script_hasdata(st, 5)) {
+				args.skill_duration.skill_id = script_getnum(st, 4);
+
+				if (!skill_get_index(args.skill_duration.skill_id)) {
+					ShowError("buildin_setmapflag: Invalid skill ID %d for skill_duration mapflag.\n", args.skill_duration.skill_id);
+					return SCRIPT_CMD_FAILURE;
+				}
+				args.skill_duration.per = script_getnum(st, 5);
+			} else {
+				ShowWarning("buildin_setmapflag: Unable to set skill_duration mapflag as flag data is missing.\n");
+				return SCRIPT_CMD_FAILURE;
+			}
+			break;
 		case MF_NOSAVE: // Assume setting "SavePoint"
 			args.nosave.map = 0;
 			args.nosave.x = -1;
@@ -13037,6 +13091,7 @@ BUILDIN_FUNC(getequipcardcnt)
 	script_pushint(st,count);
 	return SCRIPT_CMD_SUCCESS;
 }
+
 // Judas Tier
 BUILDIN_FUNC(tpoint)
 {
@@ -24931,9 +24986,9 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(gettime,"i"),
 	BUILDIN_DEF(gettimestr,"si?"),
 	BUILDIN_DEF(openstorage,""),
+	BUILDIN_DEF(guildopenstorage,""),
 	BUILDIN_DEF(guildopenstorage_log,"?"),
 	BUILDIN_DEF(guild_has_permission,"i?"),
-	BUILDIN_DEF(guildopenstorage,""),
 	BUILDIN_DEF(itemskill,"vi?"),
 	BUILDIN_DEF(produce,"i"),
 	BUILDIN_DEF(cooking,"i"),

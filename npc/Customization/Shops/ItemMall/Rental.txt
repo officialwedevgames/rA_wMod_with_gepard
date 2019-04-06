@@ -1,4 +1,4 @@
--	trader	Rental	FAKE_NPC,{
+-	trader	itemmall_Rental	FAKE_NPC,{
 
 OnInit:
 	tradertype("NST_CASH");
@@ -26,4 +26,4 @@ OnInit:
 	end;
 }
 
-prontera,102,80,4	duplicate(Rental)	Rental#pront	4_F_KAFRA4
+//prontera,102,80,4	duplicate(Rental)	Rental#pront	4_F_KAFRA4

@@ -39,7 +39,8 @@ enum e_guild_storage_log : uint16 {
 	GUILDSTORAGE_LOG_EMPTY,
 	GUILDSTORAGE_LOG_FAILED,
 };
- struct guild_log_entry{
+
+struct guild_log_entry{
 	uint32 id;
 	char name[NAME_LENGTH];
 	char time[NAME_LENGTH];

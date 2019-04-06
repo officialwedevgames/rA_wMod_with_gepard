@@ -52,6 +52,8 @@ enum e_pc_permission : uint32 {
 	PC_PERM_BYPASS_STAT_ONCLONE = 0x02000000,
 	PC_PERM_BYPASS_MAX_STAT     = 0x04000000,
 	PC_PERM_ATTENDANCE          = 0x08000000,
+	PC_PERM_DISABLE_DROP        = 0x100000,
+	PC_PERM_DISABLE_TRADE       = 0x200000,
 	PC_PERM_DISABLE_PICK_UP     = 0x800000,
 	PC_PERM_DISABLE_STORE       = 0x1000000,
 	PC_PERM_DISABLE_EXP         = 0x2000000,
@@ -102,6 +104,8 @@ static const struct s_pcg_permission_name {
 	{ "vip_cash_discount", PC_PERM_VIP_CASH_DISCOUNT },
 	{ "vip_gemstone", PC_PERM_VIP_GEMSTONE },
 	{ "trade_rental", PC_PERM_TRADE_RENTAL }, // Judas Rental
+	{ "disable_drop", PC_PERM_DISABLE_DROP },
+	{ "allow_trade", PC_PERM_DISABLE_TRADE },
 };
 
 #endif /* PC_GROUPS_HPP */

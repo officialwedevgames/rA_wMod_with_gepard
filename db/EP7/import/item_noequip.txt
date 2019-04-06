@@ -28,3 +28,48 @@
 // 519,322  // Milk can't be consumed in PVP and maps marked as 'restricted zone 2' or 'restricted zone 4' (256+64+2)
 // 519,-2   // Unset `restricted in PVP` flag from Milk. Making it usable in PVP again.
 
+
+4144,12		// Osiris Card
+4147,12		// Baphomet Card
+4142,12		// Doppelganger Card
+4132,12		// Mistress Card
+4128,12		// Golden Thiefbug Card
+4143,12		// Orc Hero Card
+4137,12		// Drake Card
+4123,12		// Eddga Card
+4146,12		// Maya Card
+4131,12		// Moonlight Flower Card
+4148,12		// Pharaoh Card
+4121,12		// Phreeoni Card
+4135,12		// Orc Lord Card
+4318,12		// Stormy Knight Card
+4324,12		// Hatii Card
+4168,12		// Dark Lord Card
+4305,12		// Turtle General Card
+4276,12		// Lord of The Dead Card
+4134,12		// Dracula
+4330,12		// Dark Snake Lord Card
+4263,12		// Incantation Samurai Card
+4236,12		// Amon Ra Card
+4302,12		// Tao Gunka Card
+4342,12		// RSX-0806 Card
+4372,12		// White Lady Card
+4357,12		// Lord Knight Card
+4359,12		// Assassin Cross Card
+4361,12		// MasterSmith Card
+4363,12		// High Priest Card
+4367,12		// Sniper Card
+4365,12		// High Wizard Card
+4352,12		// Boss Egnigem Card
+4374,12		// Vesper Card
+4376,12		// Lady Tanee Card
+4399,12		// Memory of Thanatos Card
+4386,12		// Detardeurus Card
+4403,12		// Kiel-D-01 Card
+4407,12		// Randgris Card
+4408,12		// Gloom Under Night Card
+4419,12		// Ktullanux Card
+4425,12		// Atroce Card
+4430,12		// Ifrit Card
+4441,12		// Fallen Bishop Card
+4145,12		// Berzebub Card

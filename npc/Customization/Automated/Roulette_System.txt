@@ -16,7 +16,12 @@ OnInit:
 				"7|3";
 end;
 
+OnClock0000:
+	goto OnDoReset;
+end;
+
 OnDoCommand:
+OnDoReset:
 	resetroulette;
 	
 	query_sql "UPDATE `roulette_item_db` SET `status` = '0'"; 

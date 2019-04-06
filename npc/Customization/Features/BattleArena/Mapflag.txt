@@ -1,0 +1,1 @@
+bat_b01	mapflag	bg_consume

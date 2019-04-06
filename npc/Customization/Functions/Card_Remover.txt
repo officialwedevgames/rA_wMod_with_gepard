@@ -1,0 +1,93 @@
+
+
+function	script	card_remover	{
+	set .faildestroy,10;
+	set .@reqitem,getarg(0);
+	disable_items;
+	mes "[ Card Remover ]";
+	mes "Very well. Which item shall I examine for you?";
+	close2;
+		setarray .@position$[1], "Head","Body","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
+		set .@menu$,"";
+		for( set .@i,1; .@i <= 10; set .@i,.@i+1 )
+		{
+			if( getequipisequiped(.@i) )
+			set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
+
+			set .@menu$, .@menu$ + ":";
+		}
+		set .@part,select(.@menu$);
+		if(!getequipisequiped(.@part)) {
+			dispbottom "Your not wearing anything there that I can remove cards from."; end;
+		}
+		if(getequipcardcnt(.@part) == 0) {
+			dispbottom "There are no cards compounded on this item. I can do nothing with it, I'm afraid."; end;
+		}
+		set .@cardcount,getequipcardcnt(.@part);
+
+		if (!checkweight(Knife_,(.@cardcount+1))) {
+			dispbottom "You're carrying to much stuff. Put your extra items in Kafra Storage and come again~"; end;
+		}
+		
+		// Judas Card
+		mes "[ Card Remover ]";
+		mes "Please select once card.";
+		set .@menu$,"";
+		next;
+		set .@s, getitemslots( getequipid(.@part) );
+		for ( set .@i, 0; .@i < .@s; set .@i, .@i +1 ) {
+			set .@menu$, .@menu$ +( getequipcardid( .@part, .@i )?getitemname( getequipcardid( .@part, .@i ) ):"" )+":";
+		}
+		set .@card, select(.@menu$) -1;
+		next;
+		mes "[ Card Remover ]";
+		if(getarg(1) == 1){
+			mes "We have 100% chance to successfully remove the card. Do you want to proceed?";
+		}else{
+			mes "Before I begin, I must warn you--I may fail. If I do, I may destroy the card. I do not give refunds.";
+		}
+		next;
+		switch(select("Yes proceed.")) {
+		case 1:
+		close2;
+		}
+			if(countitem(.@reqitem) < 1){
+				dispbottom "You don't have enough [ "+getitemname(.@reqitem)+" ]."; end;
+			}else{
+				delitem .@reqitem,1;
+			}
+			
+		if(getarg(1) == 1){
+			set .@failchance,100;
+		}else{
+			set .@failchance,rand(100);
+		}
+		
+		
+		if(.@failchance <= 50) {
+			if(.@failchance <= .faildestroy) {
+				// Judas Card - Card was destroy and successfully removed in the item
+				specialeffect2 155;
+				failedremovecards .@part,1,.@card,1;
+				dispbottom "[ Status: Failed ]";
+				dispbottom "**** Item: OK";
+				dispbottom "**** Card: Destroyed";
+				end;
+			}else{ 
+				// Judas Card - Fail to remove the card and item is still okay.
+				specialeffect2 155;
+				failedremovecards .@part,3,.@card,1;
+				dispbottom "[ Status: Failed ]";
+				dispbottom "**** Item: OK";
+				dispbottom "**** Card: OK";
+				end;
+			}
+		}
+		// Judas Card
+		specialeffect2 154;
+		successremovecards .@part,.@card,1;
+		dispbottom "[ Status: Success ]";
+		dispbottom "**** Item: OK";
+		dispbottom "**** Card: OK";
+		end;
+}

@@ -91,6 +91,8 @@ function checking {
 }
 
 
+/*
+//- Old Payon
 payon,149,69,4	duplicate(plant)	Wild Plant#1::p_npc1	1079
 payon,104,119,4	duplicate(plant)	Wild Plant#2::p_npc2	1080
 payon,171,110,4	duplicate(plant)	Wild Plant#3::p_npc3	1078
@@ -102,6 +104,20 @@ payon,150,136,4	duplicate(plant)	Wild Plant#7::p_npc7	1079
 payon,171,160,4	duplicate(plant)	Wild Plant#8::p_npc8	1080
 payon,158,179,4	duplicate(plant)	Wild Plant#9::p_npc9	1078
 payon,120,134,4	duplicate(plant)	Wild Plant#10::p_npc10	1079
+*/
+
+//- New Payon
+payon,251,226,4	duplicate(plant)	Wild Plant Lv. 1~10#1::p_npc1	1079
+payon,263,226,4	duplicate(plant)	Wild Plant Lv. 11~20#2::p_npc2	1080
+payon,251,232,4	duplicate(plant)	Wild Plant Lv. 21~30#3::p_npc3	1078
+payon,263,232,4	duplicate(plant)	Wild Plant Lv. 31~40#4::p_npc4	1079
+payon,251,238,4	duplicate(plant)	Wild Plant Lv. 41~50#5::p_npc5	1080
+
+payon,263,238,4	duplicate(plant)	Wild Plant Lv. 51~60#6::p_npc6	1078
+payon,251,244,4	duplicate(plant)	Wild Plant Lv. 61~70#7::p_npc7	1079
+payon,263,244,4	duplicate(plant)	Wild Plant Lv. 71~80#8::p_npc8	1080
+payon,251,250,4	duplicate(plant)	Wild Plant Lv. 81~90#9::p_npc9	1078
+payon,263,250,4	duplicate(plant)	Wild Plant Lv. 91~99#10::p_npc10	1079
 
 
 geffen,111,110,4	script	Minerals	1907,{

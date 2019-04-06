@@ -25,3 +25,17 @@
 32107  // Dimensional_Key2
 32207  // Quest_SC_Extract
 32217  // Quest_Mine1
+32401  // 3DG_Fragment
+32402  // FLC_Fragment
+32403  // Academy_Completion_Fragment
+32404  // Academy_Freshman_Fragment
+32405  // AFK_Fragment
+32406  // Afro_Wig_Fragment
+32407  // Alice_Doll_Fragment
+32408  // Amistr_Fragment
+32409  // Ancient_Elven_Ear_Fragment
+32410  // Angel_Blessing_Fragment
+32411  // Angel_Spirit_Fragment
+32412  // Angeling_Hairpin_Fragment
+32413  // Angeling_Fragment
+32414  // Anniversary_Fragment

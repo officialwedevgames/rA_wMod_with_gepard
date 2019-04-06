@@ -1,0 +1,23 @@
+prontera,101,80,4	script	Item Mall	2_F_SIGN1,{
+	mes "[ Item Mall ]";
+	mes "All items can be purchased using ^0000ffRok Points^000000.";
+	close2;
+	switch(select("> ^0000FFCostume^000000:> ^0000FFConvenient^000000:> ^0000FFUniversal^000000:> ^0000FFRental^000000:> ^0000FFHeadgear^000000")){
+		case 1:
+			
+			callshop "Itemmall_Costume",4;
+			end;
+		case 2:
+			callshop "itemmall_Convenient",4;
+			end;
+		case 3:
+			callshop "itemmall_Universal",4;
+			end;
+		case 4:
+			callshop "itemmall_Rental",4;
+			end;
+		case 5:
+			callshop "itemmall_Headgears",4;
+			end;
+	}
+}

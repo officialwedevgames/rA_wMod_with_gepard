@@ -1,23 +1,79 @@
-prontera,123,82,3	trader	Liza	4_F_JOB_BLACKSMITH,{
+
+-	trader	BA_Usables	FAKE_NPC,{
 OnInit:
 	tradertype("NST_CUSTOM");
-	sellitem "Letter_Challenge_Box",75;
-	sellitem "Fragment_Box",200;
-	sellitem "Upg_Katar",300;
-	sellitem "Upg_Two_Handed_Axe",300;
-	sellitem "Upg_Lance",300;
-	sellitem "Upg_Book",300;
-	sellitem "Upg_Staff",300;
-	sellitem "Upg_Dagger",300;
-	sellitem "Upg_Mace",300;
-	sellitem "Upg_Bow",300;
-	sellitem "Upg_Twohand_Sword",300;
-	sellitem "Upg_Adv_Suit",200;
-	sellitem "Upg_Shoes",200;
-	sellitem "Upg_Guard",200;
-	sellitem "Upg_Hood",125;
-	sellitem "Upg_Muffler",200;
-	sellitem "Upg_Clip",200;
+	sellitem "White_Slim_Potion_BG",1,0,0;
+	sellitem "White_Potion_BG",1,0,0;
+	sellitem "Blue_Potion_BG",1,0,0;
+	sellitem "Speed_Up_Potion_BG",1,0,0;
+	sellitem "Coating_Bottle_BG",1,0,0;
+	sellitem "Acid_Bottle_BG",1,0,0;
+	sellitem "Fire_Bottle_BG",1,0,0;
+	sellitem "Speed_Up_Potion_BG",1,0,0;
+	sellitem "Blue_Gemstone_BG",1,0,0;
+	sellitem "Red_Gemstone_BG",1,0,0;
+	sellitem "Yellow_Gemstone_BG",1,0,0;
+	end;
+
+/* allows currency to be item 501 and 502 */
+OnCountFunds:
+	setcurrency(countitem(7773));
+	end;
+
+/* receives @price (total cost) and @points (the secondary input field for cash windows) */
+OnPayFunds:
+	if( 7773 < @points)end;
+	delitem 7773, @price;
+	purchaseok();
+	end;
+}
+
+-	trader	BA_Equips	FAKE_NPC,{
+OnInit:
+	tradertype("NST_CUSTOM");
+	sellitem "Upg_Katar",1000,0,0;
+	sellitem "Upg_Two_Handed_Axe",1000,0,0;
+	sellitem "Upg_Lance",1000,0,0;
+	sellitem "Upg_Book",1000,0,0;
+	sellitem "Upg_Staff",1000,0,0;
+	sellitem "Upg_Dagger",1000,0,0;
+	sellitem "Upg_Mace",1000,0,0;
+	sellitem "Upg_Bow",1000,0,0;
+	sellitem "Upg_Twohand_Sword",1000,0,0;
+	sellitem "Upg_Adv_Suit",700,0,0;
+	sellitem "Upg_Shoes",700,0,0;
+	sellitem "Upg_Guard",700,0,0;
+	sellitem "Upg_Hood",450,0,0;
+	sellitem "Upg_Muffler",700,0,0;
+	sellitem "Upg_Clip",700,0,0;
+	end;
+
+/* allows currency to be item 501 and 502 */
+OnCountFunds:
+	setcurrency(countitem(7773));
+	end;
+
+/* receives @price (total cost) and @points (the secondary input field for cash windows) */
+OnPayFunds:
+	if( 7773 < @points)end;
+	delitem 7773, @price;
+	purchaseok();
+	end;
+}
+
+-	trader	BA_Exclusive	FAKE_NPC,{
+OnInit:
+	tradertype("NST_CUSTOM");
+	sellitem "Premium_Reset_Stone",75,0,1;
+	sellitem "Neuralizer_Box",500,0,1;
+	sellitem "Letter_Challenge_Box",250,0,0;
+	sellitem "Fragment_Box",700,0,0;
+	sellitem "BG_Ranked_DH_Bronze",1000,10080,0;
+	sellitem "BG_Ranked_DH_Silver",1500,10080,0;
+	sellitem "BG_Ranked_DH_Gold",2000,10080,0;
+	sellitem "BG_Normal_Bronze",1000,10080,0;
+	sellitem "BG_Normal_Silver",1500,10080,0;
+	sellitem "BG_Normal_Gold",2000,10080,0;
 	end;
 
 /* allows currency to be item 501 and 502 */

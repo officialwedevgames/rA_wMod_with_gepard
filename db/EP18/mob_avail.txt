@@ -1,0 +1,114 @@
+// Mob Availability and Alias Database
+//
+// Structure of Database:
+// MobID,SpriteID{,Equipment}
+//
+// 01. MobID        Mob ID to change.
+// 02. SpriteID     Mob ID which will be sent to the client instead of MobID.
+//                  If 0, the mob becomes unavailable for use.
+// 03. Equipment    Item ID of pet equipment (must be available for pet counterpart, or this will cause problems).
+//
+// To disguise a mob as a player:
+// MobID,SpriteID,Sex,Hair_Style,Hair_Color,Weapon,Shield,Head_Top,Head_Middle,Head_Bottom,Option,Dye_Color
+//
+// SpriteID is a job class value.
+// Weapon and Shield uses Item ID, while Head uses View ID.
+// Option for carts only works if you compiled your server for a packet version before 2012-02-01
+
+//1002,1039		// Poring - Baphomet
+//1970,1002,10013	// Displays a Poring with a backpack
+
+// Easter Event Monsters
+//1920,1047,0
+//1921,1093,0
+
+// rAthena Dev Team
+// Valaris
+//1900,4013,1,1,1,1254,0,67,12,54,16,1
+// Valaris Worshiper
+//1901,6,1,1,1,1219,2101,67,12,54,0,1
+// MC Cameri
+//1902,14,1,6,6,1101,2105,0,0,0,32,3
+// Poki#3
+//1903,4012,1,21,0,1720,0,102,184,57,16,0
+// Sentry
+//1904,1286,0
+
+// iRO Halloween Event 2008
+//3000,1015,0
+//3001,1036,0
+//3002,1298,0
+
+// iRO Halloween Event 2009
+//3014,1179,0
+//3015,1272,0
+
+// BG MvP Monster
+2100,1623
+2101,1768
+2102,1751
+2103,1252
+2104,1916
+2105,1907
+2106,1908
+2107,1288
+
+// Chinese New Year Event
+2108,1188	//Bongun - Bongun
+2109,1026	//Munak - Munak
+
+// Custom MvP Monsters
+2110,1039
+2111,1046
+2112,1059
+2113,1086
+2114,1087
+2115,1115
+2116,1150
+2117,1157
+2118,1159
+2119,1190
+2120,1251
+2121,1252
+2122,1272
+2123,1312
+2124,1373
+2125,1389
+2126,1418
+2127,1492
+2128,1511
+2129,1583
+2130,1623
+2131,1689
+2132,1646
+2133,1647
+2134,1648
+2135,1649
+2136,1651
+2137,1658
+2138,1685
+2139,1688
+2140,1708
+2141,1719
+2142,1734
+2143,1751
+2144,1768
+2145,1779
+2146,1785
+2147,1832
+2148,1871
+2149,1872
+2150,1873
+2151,1885
+2152,1917
+2153,1956
+2154,1957
+2155,1990
+2156,2022
+
+2200,1322	//Easter Bunny - Spring Rabbit
+2201,1249 // Luffy
+
+2202,1057	//Monkey - Yoyo
+2203,1130	//Hallow Jakk - Jakk
+2204,1509	//Wandering Lude - Lude

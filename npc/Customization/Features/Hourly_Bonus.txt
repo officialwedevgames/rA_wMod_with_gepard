@@ -104,7 +104,7 @@ OnStart:
 	setbattleflag("item_rate_common",100*$droprate);
 	setbattleflag("item_rate_heal",100*$droprate);
 	setbattleflag("item_rate_use",100*$droprate);
-	setbattleflag("item_rate_equip",100*$droprate);
+	setbattleflag("item_rate_equip",200*$droprate);
 	//- we don't change card drops rate, because these values won't change them anyway
 	atcommand "@reloadmobdb";
 end;
@@ -120,7 +120,7 @@ OnEnd:
 	setbattleflag("item_rate_common",100*$droprate);
 	setbattleflag("item_rate_heal",100*$droprate);
 	setbattleflag("item_rate_use",100*$droprate);
-	setbattleflag("item_rate_equip",100*$droprate);
+	setbattleflag("item_rate_equip",200*$droprate);
 	//- we don't change card drops rate, because these values won't change them anyway
 	atcommand "@reloadmobdb";
 	

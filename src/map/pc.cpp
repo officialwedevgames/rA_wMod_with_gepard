@@ -540,7 +540,6 @@ void pc_inventory_rental_add(struct map_session_data *sd, unsigned int seconds)
  * @return bool 'true' is sellable, 'false' otherwise
  */
 bool pc_can_sell_item(struct map_session_data *sd, struct item *item, enum npc_subtype shoptype) {
-
 	if (sd == NULL || item == NULL)
 		return false;
 
@@ -583,6 +582,14 @@ bool pc_can_sell_item(struct map_session_data *sd, struct item *item, enum npc_s
 	if (item->bound && !pc_can_give_bounded_items(sd))
 		return false; // Don't allow sale of bound items
 	return true;
+}
+
+/**
+ * Determines if player can drop items
+ */
+bool pc_disable_drop_items(struct map_session_data *sd)
+{
+	return pc_has_permission(sd, PC_PERM_DISABLE_DROP);
 }
 
 /**
@@ -2499,7 +2506,7 @@ void pc_itemgrouphealrate(struct map_session_data *sd, uint16 group_id, short ra
 	}
 
 	if (i >= UINT8_MAX) {
-		ShowError("pc_itemgrouphealrate_add: Reached max (%d) possible bonuses for this player %d\n", UINT8_MAX);
+		ShowError("pc_itemgrouphealrate_add: Reached max (%d) possible bonuses for this player %d\n", UINT8_MAX, sd->status.char_id);
 		return;
 	}
 
@@ -2521,49 +2528,39 @@ void pc_itemdestroy(int nameid, bool char_server)
 	struct s_mapiterator* iter;
 	int index;
 	iter = mapit_getallusers();
-
-	// Deletes from database
+ 	// Deletes from database
 	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "inventory", nameid))
 		Sql_ShowDebug(mmysql_handle);
-
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "cart_inventory", nameid))
+ 	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "cart_inventory", nameid))
 		Sql_ShowDebug(mmysql_handle);
-
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "storage", nameid))
+ 	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "storage", nameid))
 		Sql_ShowDebug(mmysql_handle);
-
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "guild_storage", nameid))
+ 	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "guild_storage", nameid))
 		Sql_ShowDebug(mmysql_handle);
-
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "mail_attachments", nameid))
+ 	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `nameid` = '%d'", "mail_attachments", nameid))
 		Sql_ShowDebug(mmysql_handle);
-
-	for (sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter))
+ 	for (sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter))
 	{
 		gstor = guild2storage2(sd->status.guild_id);
-
-		for (index = 0; index < MAX_INVENTORY; index++)
+ 		for (index = 0; index < MAX_INVENTORY; index++)
 		{ // Inventory Removal
 			if (sd->inventory.u.items_inventory[index].nameid != nameid)
 				continue;
 			pc_delitem(sd, index, sd->inventory.u.items_inventory[index].amount, 0, 0, LOG_TYPE_COMMAND);
 		}
-
-		for (index = 0; index < MAX_CART; index++)
+ 		for (index = 0; index < MAX_CART; index++)
 		{ // Cart Removal
 			if (sd->cart.u.items_cart[index].nameid != nameid)
 				continue;
 			pc_cart_delitem(sd, index, sd->cart.u.items_cart[index].amount, 0, LOG_TYPE_COMMAND);
 		}
-
-		for (index = 0; index < MAX_STORAGE; index++)
+ 		for (index = 0; index < MAX_STORAGE; index++)
 		{ // Storage Removal
 			if (sd->storage.u.items_storage[index].nameid != nameid)
 				continue;
 			storage_delitem(sd, &sd->storage, index, sd->inventory.u.items_inventory[index].amount);
 		}
-
-		if (gstor != NULL) {
+ 		if (gstor != NULL) {
 			for (index = 0; index < MAX_GUILD_STORAGE; index++)
 			{ // Guild Storage Removal
 				if (gstor->u.items_guild[index].nameid != nameid)
@@ -2574,8 +2571,7 @@ void pc_itemdestroy(int nameid, bool char_server)
 	}
 	mapit_free(iter);
 }
-
-// Judas Unique
+ // Judas Unique
 /*==========================================
 Item Removal
 *------------------------------------------*/
@@ -2586,50 +2582,40 @@ void pc_uniqueitemdestroy(int64 nameid)
 	struct s_mapiterator* iter;
 	int index;
 	iter = mapit_getallusers();
-
-	// Deletes from database
+ 	// Deletes from database
 	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "inventory", nameid))
 		Sql_ShowDebug(mmysql_handle);
-
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "cart_inventory", nameid))
+ 	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "cart_inventory", nameid))
 		Sql_ShowDebug(mmysql_handle);
-
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "storage", nameid))
+ 	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "storage", nameid))
 		Sql_ShowDebug(mmysql_handle);
-
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "guild_storage", nameid))
+ 	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "guild_storage", nameid))
 		Sql_ShowDebug(mmysql_handle);
-
-	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "mail_attachments", nameid))
+ 	if (SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `unique_id` = '%lld'", "mail_attachments", nameid))
 		Sql_ShowDebug(mmysql_handle);
-
-	// Wipes it from server
+ 	// Wipes it from server
 	for (sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter))
 	{
 		gstor = guild2storage2(sd->status.guild_id);
-
-		for (index = 0; index < MAX_INVENTORY; index++)
+ 		for (index = 0; index < MAX_INVENTORY; index++)
 		{ // Inventory Removal
 			if (sd->inventory.u.items_inventory[index].unique_id != nameid)
 				continue;
 			pc_delitem(sd, index, sd->inventory.u.items_inventory[index].amount, 0, 0, LOG_TYPE_COMMAND);
 		}
-
-		for (index = 0; index < MAX_CART; index++)
+ 		for (index = 0; index < MAX_CART; index++)
 		{ // Cart Removal
 			if (sd->cart.u.items_cart[index].unique_id != nameid)
 				continue;
 			pc_cart_delitem(sd, index, sd->cart.u.items_cart[index].amount, 0, LOG_TYPE_COMMAND);
 		}
-
-		for (index = 0; index < MAX_STORAGE; index++)
+ 		for (index = 0; index < MAX_STORAGE; index++)
 		{ // Storage Removal
 			if (sd->storage.u.items_storage[index].unique_id != nameid)
 				continue;
 			storage_delitem(sd, &sd->storage, index, sd->inventory.u.items_inventory[index].amount);
 		}
-
-		if (gstor != NULL) {
+ 		if (gstor != NULL) {
 			for (index = 0; index < MAX_GUILD_STORAGE; index++)
 			{ // Guild Storage Removal
 				if (gstor->u.items_guild[index].unique_id != nameid)
@@ -4966,6 +4952,13 @@ bool pc_dropitem(struct map_session_data *sd,int n,int amount)
 		return false;
 	}
 
+	if( !pc_disabledrop(sd,&sd->inventory.u.items_inventory[n]) )
+	{
+		clif_displaymessage (sd->fd, "Your are not authorize to drop items.");
+		return false;
+	}
+
+
 	if (!map_addflooritem(&sd->inventory.u.items_inventory[n], amount, sd->bl.m, sd->bl.x, sd->bl.y, 0, 0, 0, 2, 0))
 		return false;
 
@@ -5291,6 +5284,13 @@ int pc_useitem(struct map_session_data *sd,int n)
 			pc_delitem(sd,n,1,1,0,LOG_TYPE_CONSUME);
 		}
 		return 0;/* regardless, effect is not run */
+	}
+		
+	if( item.card[0] == CARD0_CREATE) {
+		if (MakeDWord(item.card[2], item.card[3]) == battle_config.bg_reserved_char_id && !map_getmapflag(sd->bl.m, MF_BG_CONSUME))
+			return 0;
+		if (MakeDWord(item.card[2], item.card[3]) == battle_config.woe_reserved_char_id && !map_getmapflag(sd->bl.m, MF_WOE_CONSUME))
+			return 0;
 	}
 
 	sd->itemid = item.nameid;
@@ -9327,10 +9327,29 @@ bool pc_candrop(struct map_session_data *sd, struct item *item)
 		if (!pc_can_trade_rental(sd)) {
 			return false;
 		}
-	if( !pc_can_give_items(sd) || sd->sc.cant.drop) //check if this GM level can drop items
+	if( sd->sc.cant.drop) //check if this GM level can drop items
 		return false;
+	if( item->card[0] == CARD0_CREATE) {
+		if (MakeDWord(item->card[2], item->card[3]) == battle_config.bg_reserved_char_id)
+			return false;
+		if (MakeDWord(item->card[2], item->card[3]) == battle_config.woe_reserved_char_id)
+			return false;
+	}
 	return (itemdb_isdropable(item, pc_get_group_level(sd)));
 }
+
+/*==========================================
+ * Check if player disabled from dropping an item
+ *------------------------------------------*/
+bool pc_disabledrop(struct map_session_data *sd, struct item *item)
+{
+
+	if( pc_disable_drop_items(sd) ){ //check if this GM level can drop items
+		return false;
+	}
+	return (itemdb_isdropable(item, pc_get_group_level(sd)));
+}
+
 
 /**
  * Determines whether a player can attack based on status changes
@@ -11609,7 +11628,7 @@ static bool pc_readdb_job_noenter_map(char *str[], int columns, int current) {
 	}
 
 	if (!pcdb_checkid(class_) || (idx = pc_class2idx(class_)) < 0) {
-		ShowError("pc_readdb_job_noenter_map: Invalid job %d specified.\n", str[0]);
+		ShowError("pc_readdb_job_noenter_map: Invalid job %d specified.\n", class_);
 		return false;
 	}
 
@@ -11709,12 +11728,12 @@ void pc_readdb(void) {
 		s = pc_read_statsdb(dbsubpath2,s,i > 0);
 		if (i == 0)
 #ifdef RENEWAL_ASPD
-			sv_readdb(dbsubpath1, "re/job_db1.txt",',',6+MAX_WEAPON_TYPE,6+MAX_WEAPON_TYPE,CLASS_COUNT,&pc_readdb_job1, i > 0);
+			sv_readdb(dbsubpath1, "re/job_db1.txt",',',6+MAX_WEAPON_TYPE,6+MAX_WEAPON_TYPE,CLASS_COUNT,&pc_readdb_job1, false);
 #else
-			sv_readdb(dbsubpath1, "pre-re/job_db1.txt",',',5+MAX_WEAPON_TYPE,5+MAX_WEAPON_TYPE,CLASS_COUNT,&pc_readdb_job1, i > 0);
+			sv_readdb(dbsubpath1, "pre-re/job_db1.txt",',',5+MAX_WEAPON_TYPE,5+MAX_WEAPON_TYPE,CLASS_COUNT,&pc_readdb_job1, false);
 #endif
 		else
-			sv_readdb(dbsubpath1, "job_db1.txt",',',5+MAX_WEAPON_TYPE,6+MAX_WEAPON_TYPE,CLASS_COUNT,&pc_readdb_job1, i > 0);
+			sv_readdb(dbsubpath1, "job_db1.txt",',',5+MAX_WEAPON_TYPE,6+MAX_WEAPON_TYPE,CLASS_COUNT,&pc_readdb_job1, true);
 		sv_readdb(dbsubpath1, "job_db2.txt",',',1,1+MAX_LEVEL,CLASS_COUNT,&pc_readdb_job2, i > 0);
 		sv_readdb(dbsubpath2, "job_exp.txt",',',4,1000+3,CLASS_COUNT*2,&pc_readdb_job_exp, i > 0); //support till 1000lvl
 #ifdef HP_SP_TABLES
@@ -12354,7 +12373,7 @@ TIMER_FUNC(pc_bonus_script_timer){
 		return 0;
 
 	if (!sd->bonus_script.head || entry == NULL) {
-		ShowError("pc_bonus_script_timer: Invalid entry pointer 0x%08X!\n", entry);
+		ShowError("pc_bonus_script_timer: Invalid entry pointer %p!\n", entry);
 		return 0;
 	}
 

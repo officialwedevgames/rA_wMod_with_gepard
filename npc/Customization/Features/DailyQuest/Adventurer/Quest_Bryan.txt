@@ -67,9 +67,9 @@ iz_dun00,163,172,5	script	Bryan	4_M_SCIENCE,{
 				mes "[ Bryan ]";
 				mes "In able to create this kind of medicine, you need eliminate the monsters in this dungeon and collect this items.";
 				mes " ";
-				mes "* ^ff0000"+getitemname("Quest_Extract1")+"^000000 "+(BaseLevel/.reqcount)+"";
-				mes "* ^ff0000"+getitemname("Quest_Extract2")+"^000000 "+(BaseLevel/.reqcount)+"";
-				mes "* ^ff0000"+getitemname("Quest_Extract3")+"^000000 "+(BaseLevel/.reqcount)+"";
+				mes "* ^ff0000"+getitemname("Quest_Extract1")+"^000000 ("+countitem("Quest_Extract1")+"/"+(BaseLevel/.reqcount)+")";
+				mes "* ^ff0000"+getitemname("Quest_Extract2")+"^000000 ("+countitem("Quest_Extract2")+"/"+(BaseLevel/.reqcount)+")";
+				mes "* ^ff0000"+getitemname("Quest_Extract3")+"^000000 ("+countitem("Quest_Extract3")+"/"+(BaseLevel/.reqcount)+")";
 				mes " ";
 				next;
 				mes "[ Bryan ]";

@@ -31,7 +31,7 @@
 //loading, so it is recommended you use the specific pet scripts.
 //Please see "The Pet AI commands" in 'doc/script_commands.txt'.
 
-1002,PORING,Poring,619,9001,10013,531,80,60,50,100,250,20,2000,150,1,0,350,400,800,{ petloot 10; },{ bonus bLuk,2; bonus bCritical,1; }
+1002,PORING,Poring,619,9001,10013,531,80,60,10,100,1,20,1000,150,1,0,10000,10000,800,{ petskillattack2 "SM_BASH",10,1,20,20; },{ bonus bLuk,3; bonus bCritical,5; },{},{},{}
 1113,DROPS,Drops,620,9002,10013,508,80,60,40,100,250,20,1500,150,1,0,300,400,500,{ petloot 10; },{ bonus bHit,3; bonus bAtk,3; }
 1031,POPORING,Poporing,621,9003,10013,511,80,60,30,100,250,20,1000,150,1,0,300,500,400,{ petloot 15; },{ bonus bLuk,2; bonus2 bSubEle,Ele_Poison,10; }
 1063,LUNATIC,Lunatic,622,9004,10007,534,80,60,40,100,250,20,1500,150,0,0,300,300,1000,{ petskillbonus bLuk,3,10,50; },{ bonus bCritical,2; bonus bAtk,2; }

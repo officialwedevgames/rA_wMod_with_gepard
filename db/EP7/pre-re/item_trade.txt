@@ -33,7 +33,6 @@
 2561,461,100	// Upg_Hood
 2562,461,100	// Upg_Muffler
 2563,461,100	// Upg_Manteau
-2573,461,100	// Archangel_Wing
 2634,507,100	// Bridegroom_Ring
 2635,507,100	// Bride_Ring
 
@@ -42,6 +41,8 @@
 5182,453,100	// Puppy_Hat
 5211,461,100	// Dress_Hat
 6290,453,100	// Color_Style_Coupon
+6440,461,100	// Lubricant_1
+6441,461,100	// Lubricant_2
 7040,511,100	// Megaphone
 7177,507,100	// Crumb of Sobbing Starlight
 7178,507,100	// Sobbing Starlight

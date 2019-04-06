@@ -1120,6 +1120,5 @@
 2204,Wandering Lude@AL_HEAL,attack,28,9,10000,500,5000,no,self,myhpltmaxrate,30,,,,,,18,
 2204,Wandering Lude@AL_HEAL,chase,28,9,10000,500,5000,no,friend,friendhpltmaxrate,60,,,,,,18,
 2204,Wandering Lude@AL_HEAL,chase,28,9,10000,500,5000,no,self,myhpltmaxrate,30,,,,,,18,
-2204,Wandering Lude@NPC_METAMORPHOSIS,attack,193,1,1000,0,60000,no,self,myhpltmaxrate,30,1508,,,,,19,
 2204,Wandering Lude@PR_LEXAETERNA,attack,78,1,1000,1000,5000,yes,target,always,0,,,,,,6,
 2204,Wandering Lude@PR_LEXAETERNA,chase,78,1,1000,1000,5000,yes,target,always,0,,,,,,6,

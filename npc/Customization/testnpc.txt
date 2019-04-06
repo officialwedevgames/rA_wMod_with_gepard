@@ -1,0 +1,17 @@
+-	script	server_peak	-1,{
+
+OnInit:
+	while(1){
+		set .@a, getusers(1);
+		query_sql "SELECT `count` FROM `server_peak` LIMIT 1",.@count;
+		if(!.@count){
+			query_sql "INSERT INTO `server_peak` (`count`) VALUES ('1')";
+		}else if(.@a > .@count){
+			query_sql "UPDATE `server_peak` SET `count`= '"+.@a+"'";
+		}
+		sleep 5000;
+	}
+end;
+
+
+}

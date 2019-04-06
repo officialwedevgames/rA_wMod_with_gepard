@@ -1,6 +1,7 @@
 -	script	BattleArena	-1,{
 	function checkpoints;
 	function checkingame;
+	function getcharname;
 	
 	mes "[ Arena Manager ]";
 	mes "Welcome.. "+strcharinfo(0)+" to Battle Arena. Be a top player every week and get a reward.";
@@ -9,7 +10,7 @@
 	mes "^0000ff@joinsolo^000000 ~ Participate in the Solo Arena.";
 	mes "^0000ff@leavearena^000000 ~ Leave the Arena queue.";
 	next;
-	switch(select("> My Arena Stats")) {
+	switch(select("> My Arena Stats:> Arena Rankings")) {
 
 		case 1:
 		mes "[ My Arena Status ]";
@@ -21,12 +22,23 @@
 					break;
 				}else{
 					mes "[ ^ff0000Rank^000000 ] : ^0000ff"+(.@i+1)+"^000000";
-					mes "^0000FFW^000000: "+.@win[.@i]+" | ^FF0000L^000000: "+.@loss[.@i]+" | ^006600D^000000: "+.@draw[.@i]+" | ^ff9900AP^000000: "+.@points[.@i]+"";
+					mes "[ ^0000FFWin^000000 ] : "+.@win[.@i]+"";
+					mes "[ ^FF0000Lose^000000 ] : "+.@loss[.@i]+"";
+					mes "[ ^006600Death^000000 ] : "+.@draw[.@i]+"";
+					mes "[ ^ff9900Arena Points^000000 ] : "+.@points[.@i]+"";					
 					break;
 				}
 			}
 		}
-		mes "[ ^ff0000Arena Points^000000 ] : ^0000ff"+checkpoints(getcharid(0))+"^000000";
+		close;
+		
+		case 2:
+		mes "[ Arena Rankings ]";
+		query_sql "SELECT `char_id`, `points`, `win`, `loss`, `draw` FROM `pvp_arena_char_stats` WHERE `points` != '1500' ORDER BY `points` DESC LIMIT 10", .@char_id, .@points, .@win, .@loss, .@draw;
+		for( .@i = 0; .@i < getarraysize(.@char_id); .@i++ ) {
+			mes "[ ^ff0000Rank "+(.@i+1)+"^000000 ] : ^0000ff"+getcharname(.@char_id[.@i])+"^000000";
+			mes "[ ^0000FFW^000000: "+.@win[.@i]+" | ^FF0000L^000000: "+.@loss[.@i]+" | ^006600D^000000: "+.@draw[.@i]+" | ^ff9900AP^000000: "+.@points[.@i]+" ]";
+		}
 		close;
 	}
 	end;
@@ -94,6 +106,15 @@ end;
 		return .@points;
 	}
 	
+	function getcharname {
+		query_sql "SELECT `name` FROM `char` WHERE `char_id` = '"+getarg(0)+"'", .@name$;
+		if(getarraysize(.@name$) < 1){
+			return "Unknown";
+		}else{
+			return ""+.@name$;
+		}
+	}
+	
 	function checkingame {
 		query_sql "SELECT `account_id` FROM `pvp_arena_db` WHERE `account_id` = '"+getcharid(3)+"' AND `battle_status` >= 1", .@inbattle;
 		if(.@inbattle){
@@ -113,4 +134,4 @@ function	script	battle_arena_queue	{
 	return;
 }
 
-prontera,129,94,4	duplicate(BattleArena)	Arena Manager#pay	4_M_MANAGER
+prontera,125,94,4	duplicate(BattleArena)	Arena Manager#pay	4_M_MANAGER

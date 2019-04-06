@@ -22,7 +22,8 @@ OnInit:
 	while(1){
 		set $relay_quest,gettime(DT_DAYOFWEEK)+1;
 		sleep 1000;
-	}						
+	}
+
 end;
 
 OnPCLoginEvent:

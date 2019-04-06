@@ -1,0 +1,124 @@
+-	script	map_checker	FAKE_NPC,{
+
+OnPCStatCalcEvent:
+	query_sql "SELECT `last_unique_id` FROM `login` WHERE `account_id` = '"+getcharid(3)+"'", .@unique_id;
+	query_sql "SELECT COUNT(`account_id`) FROM `map_user_limit` WHERE `last_unique_id` = '"+ .@unique_id+"' AND `map` = '"+strcharinfo(3)+"'", .@count;
+	
+	query_sql "SELECT `map` FROM `map_user_limit` WHERE `last_unique_id` = '"+ .@unique_id+"' AND `account_id` = '"+getcharid(3)+"'", .@no$;
+	
+	
+	query_sql "SELECT `account_id` FROM `map_user_limit` WHERE `account_id` = '"+getcharid(3)+"'", .@account;
+	set .@count, .@count;
+	set .@account, .@account;
+	set .@no$, .@no$;
+	
+			for (.@i = 0; .@i < getarraysize(.map_list$); set .@i, .@i + 2) {
+				if(strcharinfo(3) == .map_list$[.@i]){
+					if(!.@count){
+						if(.@account){
+							query_sql "UPDATE `map_user_limit` SET `last_unique_id` = '"+.@unique_id+"', `map` = '' WHERE `account_id` = '"+getcharid(3)+"'";
+						}else{
+							query_sql "INSERT INTO `map_user_limit`(`account_id`,`last_unique_id`, `map`) VALUES ('"+getcharid(3)+"','"+.@unique_id+"','"+strcharinfo(3)+"')";
+						}
+					}else if(.@count >= atoi(.map_list$[.@i+1]) && .@no$ != strcharinfo(3)){
+						//query_sql "DELETE FROM `map_user_limit` WHERE `account_id` = '"+getcharid(3)+"'";
+						dispbottom "You will be warped to your save point after 3 seconds. Map Limit: "+atoi(.map_list$[.@i+1])+" Account / Map";
+						sleep2 3000;
+						warp "SavePoint", 0, 0;
+					}
+					set .@noequal,0;
+					break;
+				}else{
+					set .@noequal,1;
+				}
+			}
+			
+			if(.@noequal){
+				query_sql "DELETE FROM `map_user_limit` WHERE `account_id` = '"+getcharid(3)+"'";
+			}
+
+
+	
+end;
+
+OnPCLogoutEvent:
+	query_sql "DELETE FROM `map_user_limit` WHERE `account_id` = '"+getcharid(3)+"'";
+end;
+
+
+
+OnInit:
+	setarray .map_list$, 
+	
+		//-- MvP Maps -- //
+		"moc_pryd06", "1",
+		"ra_fild02", "1",
+		"ra_fild03", "1",
+		"ra_fild04", "1",
+		"ve_fild01", "1",
+		"ve_fild02", "1",
+		"lou_dun03", "1",
+		"prt_maze03", "1",
+		"bra_dun02", "1",
+		"gl_chyard", "1",
+		"abyss_03", "1",
+		"gef_dun02", "1",
+		"gef_dun01", "1",
+		"treasure02", "1",
+		"pay_fild11", "1",
+		"gon_dun03", "1",
+		"abbey02", "1",
+		"xmas_fild01", "1",
+		"ra_san05", "1",
+		"prt_sewb4", "1",
+		"mosk_dun03", "1",
+		"ama_dun03", "1",
+		"kh_dun02", "1",
+		"xmas_dun02", "1",
+		"ayo_dun02", "1",
+		"niflheim", "1",
+		"anthell02", "1",
+		"mjolnir_04", "1",
+		"pay_dun04", "1",
+		"gef_fild02", "1",
+		"gef_fild14", "1",
+		"gef_fild10", "1",
+		"moc_pryd04", "1",
+		"in_sphinx5", "1",
+		"moc_fild17", "1",
+		"ein_dun02", "1",
+		"beach_dun", "1",
+		"tur_dun04", "1",
+		"jupe_core", "1",
+		"lhz_dun02", "1",
+		"lhz_dun03", "1",
+		"odin_tem03", "1",
+		"moc_fild21", "1",
+		"moc_fild22", "1",
+		"thor_v03", "1",
+		"abbey03", "1",
+		
+		//-- WoE Maps -- //
+		"prtg_cas01", "1",
+		"prtg_cas02", "1",
+		"prtg_cas03", "1",
+		"prtg_cas04", "1",
+		"prtg_cas05", "1",
+		"payg_cas01", "1",
+		"payg_cas02", "1",
+		"payg_cas03", "1",
+		"payg_cas04", "1",
+		"payg_cas05", "1",
+		"gefg_cas01", "1",
+		"gefg_cas02", "1",
+		"gefg_cas03", "1",
+		"gefg_cas04", "1",
+		"gefg_cas05", "1",
+		"aldeg_cas01", "1",
+		"aldeg_cas02", "1",
+		"aldeg_cas03", "1",
+		"aldeg_cas04", "1",
+		"aldeg_cas05", "1";
+end;
+
+}

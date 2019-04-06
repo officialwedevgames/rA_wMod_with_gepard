@@ -10,6 +10,7 @@
 #include "../common/showmsg.hpp" // ShowInfo
 #include "../common/strlib.hpp"
 #include "../common/timer.hpp"  // DIFF_TICK
+#include "../common/utils.hpp"  // DIFF_TICK
 
 #include "achievement.hpp"
 #include "atcommand.hpp"
@@ -341,6 +342,9 @@ int8 vending_openvending(struct map_session_data* sd, const char* message, const
 		||  sd->cart.u.items_cart[index].attribute == 1 // broken item
 		||  sd->cart.u.items_cart[index].expire_time // It should not be in the cart but just in case
 		||  (sd->cart.u.items_cart[index].bound && !pc_can_give_bounded_items(sd)) // can't trade account bound items and has no permission
+		||  (sd->cart.u.items_cart[index].card[0]==CARD0_CREATE && (MakeDWord(sd->cart.u.items_cart[index].card[2],sd->cart.u.items_cart[index].card[3]) == 
+		(battle_config.bg_reserved_char_id || battle_config.woe_reserved_char_id) && !battle_config.bg_can_trade))
+		// end Brian Bg Items
 		||  !itemdb_cantrade(&sd->cart.u.items_cart[index], pc_get_group_level(sd), pc_get_group_level(sd)) ) // untradeable item
 			continue;
 

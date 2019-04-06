@@ -1,0 +1,52 @@
+
+-	script	Healer	FAKE_NPC,{
+
+OnTouch:
+
+	if (HealCooldown > gettimetick(2)){
+		set .@k,HealCooldown - gettimetick(2);
+			set .@m,.@k % 3600 / 60;
+			set .@s,.@k % 60;
+		set .@m$, .@m+" minute"+((.@m <= 1)?"":"s");
+		set .@s$, .@s+" second"+((.@s <= 1)?"":"s");
+		set .@time$,""+((.@m >= 1 )?""+.@m$+" ":"")+""+((.@s >=1 )?""+.@s$+"":"")+"";
+		message strcharinfo(0), "Cooldown will be "+.@time$+"";
+		end;
+	}
+
+	if (.Price) {
+		if (Zeny < .Price){
+			message strcharinfo(0), "Healing costs " + callfunc("F_InsertComma",.Price) + " Zeny.";
+			end;
+		}
+		if (select("Heal + Buffs( ^0055FF"+ callfunc("F_InsertComma",.Price) +" Zeny^000000 )") == 1){
+			Zeny -= .Price;
+		}
+		
+	}
+	
+	specialeffect2 EF_HEAL2;
+	percentheal 100,100;
+	
+	if (.Buffs) {
+		specialeffect2 EF_INCAGILITY;
+		sc_start SC_INCREASEAGI,300000,10;
+		specialeffect2 EF_BLESSING;
+		sc_start SC_BLESSING,300000,10;
+	}
+	
+	if (.Delay){
+		HealCooldown = gettimetick(2) + .Delay;
+	}
+		
+end;
+
+OnInit:
+	set .Price, 3000;	// Zeny required for heal
+	set .Buffs, 1;		// Also buff players? (1: yes / 0: no)
+	set .Delay, 30;		// Heal delay, in seconds
+end;
+
+}
+
+prontera,123,80,4	duplicate(Healer)	Magic Poring#prt	4_PORING

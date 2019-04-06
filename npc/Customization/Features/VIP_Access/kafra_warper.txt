@@ -32,7 +32,7 @@
     set .lastwarp, 1;
 
 //- Partner Activate|Deactivate Menu
-    set .partnertowns, 1;
+    set .partnertowns, 0;
     set .partnerdungeons, 1;
     set .partnerfields, 0;
 
@@ -42,12 +42,12 @@
     set .premiumfields, 0;
 
 //- Warp Cooldown Time
-    set .seconds, 300;
+    set .seconds, 120;
 
 //- Last Warp Price
 // Calculation: Original Price - % = Last Warp
 // Default: 10 = 10% of Original Price
-    set .lastwarpprice, 50;
+    set .lastwarpprice, 10;
 
 	//Checks if maps are loaded, (prevents out of index)
 	if(.mapsloaded == 1) goto L_warpmenu;
@@ -58,13 +58,13 @@
     ///////////////////////
     //Add Town here
     //AddPremiumTown("<Map Menu Name>", <"map name">, <x>, <y>, <zeny>);
-    AddPremiumTown("Capital of Rune Midgard", "prontera", 116, 73, 300);
-    AddPremiumTown("Morroc Town", "morocc", 156, 46, 300);
-    AddPremiumTown("Geffen", "geffen", 119, 40, 300);
-    AddPremiumTown("Alberta", "alberta", 117, 57, 300);
-    AddPremiumTown("Izlude Town", "izlude", 94, 103, 300);
-    AddPremiumTown("Aldebaran", "aldebaran", 168, 112, 300);
-	AddPremiumTown("Yuno", "yuno", 158, 125, 300);
+    AddPremiumTown("Capital of Rune Midgard", "prontera", 116, 73, 0);
+    AddPremiumTown("Morroc Town", "morocc", 156, 46, 0);
+    AddPremiumTown("Geffen", "geffen", 119, 40, 0);
+    AddPremiumTown("Alberta", "alberta", 117, 57, 0);
+    AddPremiumTown("Izlude Town", "izlude", 94, 103, 0);
+    AddPremiumTown("Aldebaran", "aldebaran", 168, 112, 0);
+	AddPremiumTown("Yuno", "yuno", 158, 125, 0);
 	
     //Add Dungeon here
     //AddPremiumDungeon("<Map Menu Name>", <"map name">, <x>, <y>, <zeny>);
@@ -89,27 +89,27 @@
     ///////////////////////
     //Add Town here
     //AddPartnerTown("<Map Menu Name>", <"map name">, <x>, <y>, <zeny>);
-    AddPartnerTown("Capital of Rune Midgard", "prontera", 116, 73, 300);
-    AddPartnerTown("Morroc Town", "morocc", 156, 46, 300);
-    AddPartnerTown("Geffen", "geffen", 119, 40, 300);
-    AddPartnerTown("Alberta", "alberta", 117, 57, 300);
-    AddPartnerTown("Izlude Town", "izlude", 94, 103, 300);
-    AddPartnerTown("Aldebaran", "aldebaran", 168, 112, 300);
-	AddPartnerTown("Yuno", "yuno", 158, 125, 300);
+    //AddPartnerTown("Capital of Rune Midgard", "prontera", 116, 73, 300);
+    //AddPartnerTown("Morroc Town", "morocc", 156, 46, 300);
+    //AddPartnerTown("Geffen", "geffen", 119, 40, 300);
+    //AddPartnerTown("Alberta", "alberta", 117, 57, 300);
+    //AddPartnerTown("Izlude Town", "izlude", 94, 103, 300);
+    //AddPartnerTown("Aldebaran", "aldebaran", 168, 112, 300);
+	//AddPartnerTown("Yuno", "yuno", 158, 125, 300);
 
     //Add Dungeon here
     //AddPartnerDungeon("<Map Menu Name>", <"map name">, <x>, <y>, <zeny>);
-	AddPartnerDungeon("Ant Hell", "moc_fild04", 205, 328, 1500);
-	AddPartnerDungeon("Geffen Tower", "gef_tower", 153, 31, 1500);
-	AddPartnerDungeon("Glast Heim", "gef_fild06", 27, 304, 1500);
-	AddPartnerDungeon("Inside Pyramid", "moc_ruins", 62, 166, 1500);
-	AddPartnerDungeon("Mjolnir Dead Pit", "mjolnir_02", 86, 357, 1500);
-	AddPartnerDungeon("Sphinx", "moc_fild19", 106, 99, 1500);
-	AddPartnerDungeon("Toy Factory Warehouse", "xmas", 150, 313, 1500);
-	AddPartnerDungeon("Treasure Island", "alb2trea", 85, 107, 1500);
-	AddPartnerDungeon("Turtle Island Dungeon", "tur_dun01", 160, 35, 1500);
-	AddPartnerDungeon("Undersea Tunnel", "izlu2dun", 108, 88, 1500);
-	AddPartnerDungeon("Nogg Road F1", "yuno_fild03", 37, 140, 1500);
+	AddPartnerDungeon("Ant Hell", "moc_fild04", 205, 328, 10000);
+	AddPartnerDungeon("Geffen Tower", "gef_tower", 153, 31, 10000);
+	AddPartnerDungeon("Glast Heim", "gef_fild06", 27, 304, 10000);
+	AddPartnerDungeon("Inside Pyramid", "moc_ruins", 62, 166, 10000);
+	AddPartnerDungeon("Mjolnir Dead Pit", "mjolnir_02", 86, 357, 10000);
+	AddPartnerDungeon("Sphinx", "moc_fild19", 106, 99, 10000);
+	AddPartnerDungeon("Toy Factory Warehouse", "xmas", 150, 313, 10000);
+	AddPartnerDungeon("Treasure Island", "alb2trea", 85, 107, 10000);
+	AddPartnerDungeon("Turtle Island Dungeon", "tur_dun01", 160, 35, 10000);
+	AddPartnerDungeon("Undersea Tunnel", "izlu2dun", 108, 88, 10000);
+	AddPartnerDungeon("Nogg Road F1", "yuno_fild03", 37, 140, 10000);
 	
 	
     //Add Field here
@@ -121,8 +121,8 @@ end;
 L_warpmenu:
 	mes "[ ^FF7700Kafra Warper^000000 ]";
 	if(warp_cd > gettimetick(2)) {
-			set .@k,warp_cd - (gettimetick(2)-(.seconds));
-			set .@m,.@k % 300 / 60;
+			set .@k,warp_cd - (gettimetick(2) - .seconds);
+			set .@m,.@k % .seconds / 60;
 			set .@s,.@k % 60;
 			set .@m$, .@m+" minute"+((.@m <= 1)?"":"s");
 			set .@s$, .@s+" second"+((.@s <= 1)?"":"s");
@@ -132,17 +132,17 @@ L_warpmenu:
 			close;
 	}
 
-    if(getgroupid() < 1){
-        mes "Welcome Citizen of Midgard!";
-        mes "Our Warper system is applicable only for ^ff0000Premium and Partner Accounts^000000. You can ask our support team or message us how you can avail it.";
-        close;
-    }
+    //if(getgroupid() < 1){
+    //    mes "Welcome Citizen of Midgard!";
+    //    mes "Our Warper system is applicable only for ^ff0000Premium and Partner Accounts^000000. You can ask our support team or message us how you can avail it.";
+    //    close;
+    //}
 
 	mes "Welcome Citizen of Midgard!";
 	mes "Where is your destination?";
 	next;
     if(getgroupid() == 1){
-            switch(select(((.lastwarp)?"Last Warp [^0000FF"+((lastwarpname$)?lastwarpname$:"^0000FF Not Available ^000000")+"^000000]":""),
+            switch(select(((.lastwarp)?"Last Warp [ ^0000FF"+((lastwarpname$)?lastwarpname$:"^0000FF Not Available ^000000")+"^000000 ]":""),
                     ((.premiumtowns)?"Towns":""),
                     ((.premiumdungeons)?"Dungeons":""),
                     ((.premiumfields)?"Fields":""))) {
@@ -217,8 +217,8 @@ L_warpmenu:
                 LastWarp(.PremiumFieldname$[.@selection2], .PremiumFieldmap$[.@selection2], .PremiumFieldx[.@selection2], .PremiumFieldy[.@selection2],.PremiumFieldwf[.@selection2],.PremiumFieldlwf[.@selection2]);
                 break;
         }
-    } else if(getgroupid() >= 2){
-			switch(select(((.lastwarp)?"Last Warp [^0000FF"+((lastwarpname$)?lastwarpname$:"^0000FF Not Available ^000000")+"^000000]":""),
+    } else {
+			switch(select(((.lastwarp)?"Last Warp [ ^0000FF"+((lastwarpname$)?lastwarpname$:"^0000FF Not Available ^000000")+"^000000 ]":""),
                     ((.partnertowns)?"Towns":""),
                     ((.partnerdungeons)?"Dungeons":""),
                     ((.partnerfields)?"Fields":""))) {

@@ -973,7 +973,7 @@ short pc_maxaspd(struct map_session_data *sd);
 	#define pc_rightside_def(sd) ((sd)->battle_status.def)
 	#define pc_leftside_mdef(sd) ((sd)->battle_status.mdef2)
 	#define pc_rightside_mdef(sd) ((sd)->battle_status.mdef)
-	#define pc_leftside_matk(sd) (status_base_matk_min(&(sd)->bl, status_get_status_data(&(sd)->bl), (sd)->status.base_level))
+	#define pc_leftside_matk(sd) (status_base_matk(&(sd)->bl, status_get_status_data(&(sd)->bl), (sd)->status.base_level))
 	#define pc_rightside_matk(sd) ((sd)->battle_status.rhw.matk+(sd)->battle_status.lhw.matk+(sd)->bonus.ematk)
 #else
 	#define pc_leftside_atk(sd) ((sd)->battle_status.batk + (sd)->battle_status.rhw.atk + (sd)->battle_status.lhw.atk)
@@ -1002,6 +1002,7 @@ int pc_class2idx(int class_);
 int pc_get_group_level(struct map_session_data *sd);
 int pc_get_group_id(struct map_session_data *sd);
 bool pc_can_sell_item(struct map_session_data* sd, struct item * item, enum npc_subtype shoptype);
+bool pc_disable_drop_items(struct map_session_data *sd);
 bool pc_can_give_items(struct map_session_data *sd);
 #define pc_can_trade_rental(sd) ( pc_has_permission((sd),PC_PERM_TRADE_RENTAL) ) // Judas Rental
 bool pc_can_give_bounded_items(struct map_session_data *sd);
@@ -1220,6 +1221,8 @@ void pc_regen (struct map_session_data *sd, unsigned int diff_tick);
 
 bool pc_setstand(struct map_session_data *sd, bool force);
 bool pc_candrop(struct map_session_data *sd,struct item *item);
+bool pc_disabledrop(struct map_session_data *sd,struct item *item);
+
 bool pc_can_attack(struct map_session_data *sd, int target_id);
 
 int pc_jobid2mapid(unsigned short b_class);	// Skotlex

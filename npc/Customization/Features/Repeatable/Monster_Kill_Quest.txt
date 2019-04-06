@@ -1,11 +1,11 @@
-prontera,142,125,4	script	Midgard Officer	4W_M_02,{
+prontera,114,86,4	script	Midgard Bulletin	4_BOARD3,{
 	
 	function Comma;
 
-	mes "[ Midgard Officer ]";
-	mes "Nowadays adventurers are having a problem with their grinding spot, and so that we provided some monster hunting quest that fits on your level. You can also complete the quest with the help of your party members.";
+	mes "[ Midgard Bulletin ]";
+	mes "Nowadays adventurers are having a problem with their grinding spot, and so that we provided some Hunting Quest that fits on your level. You can also complete the quest with the help of your party members. Accepting a quest that is not in a range of your level will no longer receive a Mysterious Box.";
 	next;
-	mes "[ Midgard Officer ]";
+	mes "[ Midgard Bulletin ]";
 	mes "Repeatable Quest List:";
 	next;
 	for(set .@l,1; .@l < getarraysize(.item_list$); set .@l,.@l + 1){	
@@ -17,15 +17,15 @@ prontera,142,125,4	script	Midgard Officer	4W_M_02,{
 		set .@lr2, atoi(.@x$[3]);
 
 		if(checkquest(.@qi,HUNTING) == 1){
-			set .@status$, "[ ^0000ffActive^000000 ]";
+			set .@status$, "[ ^0000ffAccepted^000000 ]";
 		}else if(checkquest(.@qi,HUNTING) == 2){
 			set .@status$, "[ ^ff0000Completed^000000 ]";
 		}else{
 			set .@status$, "[ ^008000Available^000000 ]";
 		}
-
-		if(BaseLevel >= .@lr1 && BaseLevel <= .@lr2 || checkquest(.@qi) == 1 || checkquest(.@qi,HUNTING) == 2){
-			set .@QuestMenu$,.@QuestMenu$+""+.@status$+""+.@x$[0]+":";
+		
+		if( .@lr1 <= BaseLevel || checkquest(.@qi,HUNTING) == 1 || checkquest(.@qi,HUNTING) == 2){
+			set .@QuestMenu$,.@QuestMenu$+""+.@status$+" "+.@x$[0]+" [ "+.@lr1+" ~ "+.@lr2+" ]:";
 		}else{
 			set .@QuestMenu$,.@QuestMenu$+""+":";
 		}
@@ -36,13 +36,12 @@ prontera,142,125,4	script	Midgard Officer	4W_M_02,{
 	explode(.@questdata$,.item_list$[.@selection],"|");
 	set .@questname$, .@questdata$[0];
 	set .@questid, .@questdata$[1];
+	set .@minlevel, .@questdata$[2];
+	set .@maxlevel, .@questdata$[3];
 	set .@zeny, .@questdata$[4];
-
-	set .@base, (NextBaseExp/100) * atoi(.@questdata$[5]);
-	set .@job, (NextJobExp/100) * atoi(.@questdata$[6]);
-
-	set .@guildexp, .@questdata$[7];
-	
+	set .@guildexp, .@questdata$[5];
+	set .@itemid, .@questdata$[6];
+	set .@itemamount, .@questdata$[7];
 	
 	if(Class == Novice && JobLevel == 10){
 		set .@job, 0;
@@ -53,69 +52,78 @@ prontera,142,125,4	script	Midgard Officer	4W_M_02,{
 	if(@eac&EAJL_UPPER && JobLevel == 50 || @eac&EAJ_BASEMASK && JobLevel == 50){
 		set .@job, 0;
 	}
-	
 	if(checkquest(.@questid,HUNTING) == 2){
-		mes "[ Midgard Officer ]";
+		mes "[ Midgard Bulletin ]";
 		mes "Congratulations, you completed the "+.@questname$+" quest.";
 		mes " ";
 		mes "Do you want to claim the reward?";
 		next;
 		switch(select("Yes","No")) {
 			case 1:
-				mes "[ Midgard Officer ]";
+				mes "[ Midgard Bulletin ]";
 				mes "Congratulations again and enjoy your rewards.";
 				zeny += .@zeny * .zenyrate;			// Get zeny
-				getexp2(.@base * .exprate,.@job * .exprate);	// Get base and job exp.
-				if(getcharid(2)){
-				guildgetexp .@guildexp * .gexprate;	// Get guild exp.
+				dispbottom "You just received "+Comma(.@zeny * .zenyrate)+"z.";
+				
+				if(quest_active >= .@minlevel && quest_active <= .@maxlevel){
+					getitem .@itemid, .@itemamount;
 				}
+				
+				if(getcharid(2)){
+					guildgetexp .@guildexp * .gexprate;	// Get guild exp.
+				}
+				
 				erasequest .@questid;	// Delete the quest id.
 				close;
 			case 2:
-				mes "[ Midgard Officer ]";
+				mes "[ Midgard Bulletin ]";
 				mes "Comeback when you are ready.";
 				close;
 		}
 	}else if(checkquest(.@questid,HUNTING) == -1){
 		mes "^007000# ----- Quest Log -------- #^000000";
-		mes "[ ^008000QUEST^000000 ]: "+.@questdata$[0];
-		mes "[ ^008000LEVEL^000000 ]: "+.@questdata$[2]+" ~ "+.@questdata$[3];
+		mes "[ ^008000Quest Name^000000 ]: "+.@questdata$[0];
+		mes "[ ^008000Level^000000 ]: "+.@questdata$[2]+" ~ "+.@questdata$[3];
+		if(.@itemid && BaseLevel >= .@minlevel && BaseLevel <= .@maxlevel){
+			mes "[ ^008000Item^000000 ]: "+.@itemamount+""+((.@itemamount > 1)?"pcs":"pc")+" "+getitemname(.@itemid);
+		}
 		if(.@zeny){
-			mes "[ ^008000ZENY^000000 ]: "+Comma(.@zeny * .zenyrate,3)+"z";
-		}
-		if(.@base){
-			mes "[ ^008000BaseEXP^000000 ]: "+Comma(.@base * .exprate,3);
-		}
-		if(.@job){
-			mes "[ ^008000JobEXP^000000 ]: "+Comma(.@job * .exprate,3);
+			mes "[ ^008000Zeny^000000 ]: "+Comma(.@zeny * .zenyrate,3)+"z";
 		}
 		if(getcharid(2)){
-			mes "[ ^008000Guild EXP^000000 ]: "+Comma(.@guildexp * .gexprate,3);
+			mes "[ ^008000Guild Exp^000000 ]: "+Comma(.@guildexp * .gexprate,3);
 		}
 		mes " ";
-		mes "[ Midgard Officer ]";
+		mes "[ Midgard Bulletin ]";
 		mes "Are you sure that you want to accept this quest?";
 		next;
 		switch(select("Yes","No")) {
 			case 1:
-				mes "[ Midgard Officer ]";
+				if(quest_active){
+					mes "[ Midgard Bulletin ]";
+					mes "Sorry, but there still a quest that is progress. Take this quest when you are done.";
+					close;
+				}
+				mes "[ Midgard Bulletin ]";
 				mes "Press ALT + U  or press the quest button to check your quest information.";
+				set quest_active, BaseLevel;
 				setquest .@questid;
 				close;
 			case 2:
-				mes "[ Midgard Officer ]";
+				mes "[ Midgard Bulletin ]";
 				mes "Comeback when you are ready.";
 				close;
 		}
 	}else if(checkquest(.@questid,HUNTING) == 1){
-		mes "[ Midgard Officer ]";
+		mes "[ Midgard Bulletin ]";
 		mes "Do you want to remove this quest?";
 		next;
 		switch(select("Yes","No")) {
 			case 1:
-				mes "[ Midgard Officer ]";
+				mes "[ Midgard Bulletin ]";
 				mes "The "+.@questname$+" is no longer available in your quest log.";
 				erasequest .@questid;
+				set quest_active, 0;
 				close;
 			case 2:
 				close;
@@ -143,27 +151,26 @@ prontera,142,125,4	script	Midgard Officer	4W_M_02,{
 
 OnInit:
 
+questinfo 1,QTYPE_QUEST;	
 set .exprate, 1;
 set .gexprate, 3;
-set .zenyrate, 3;
+set .zenyrate, 1;
 
 //= <Title|QuestID|LvlRange1|LvlRange2|Zeny|BaseExp|JobExp|GuildExp|Item 1|Item 1 Amount>,....
 setarray .item_list$[1],
-	"[ ^ff0000Monster Hunt^000000 ] Hydra|8700|11|30|500|40|40|55555",
-	"[ ^ff0000Monster Hunt^000000 ] Elder Willow|8701|11|30|1000|40|40|111110",
-	"[ ^ff0000Monster Hunt^000000 ] Cookie|8702|31|40|1500|40|40|166665",
-	"[ ^ff0000Monster Hunt^000000 ] Munak|8703|31|40|2000|40|40|222220",
-	"[ ^ff0000Monster Hunt^000000 ] Cruiser|8704|41|50|2500|30|30|277775",
-	"[ ^ff0000Monster Hunt^000000 ] Ghoul|8705|41|50|3000|30|30|333330",
-	"[ ^ff0000Monster Hunt^000000 ] Sky Petite|8706|51|60|3500|30|30|388885",
-	"[ ^ff0000Monster Hunt^000000 ] Alligator|8707|51|60|4000|20|20|444440",
-	"[ ^ff0000Monster Hunt^000000 ] High Orc|8708|61|70|4500|20|20|499995",
-	"[ ^ff0000Monster Hunt^000000 ] Alarm|8709|61|70|5000|20|20|555550",
-	"[ ^ff0000Monster Hunt^000000 ] Anolian|8710|71|80|5500|20|20|611105",
-	"[ ^ff0000Monster Hunt^000000 ] Solider|8711|71|80|6000|10|10|666660",
-	"[ ^ff0000Monster Hunt^000000 ] Wanderer|8712|81|90|6500|10|10|722215",
-	"[ ^ff0000Monster Hunt^000000 ] Abysmal Knight|8713|81|90|7000|10|10|777770",
 
+	"[ ^000ff0Mission 1^000000 ]|8700|1|80|25000|10000|32026|1",
+	"[ ^000ff0Mission 2^000000 ]|8701|81|85|30000|20000|32026|1";
+	//"[ ^000ff0Mission 3^000000 ]|8702|86|90|35000|30000|32026|1",
+	//"[ ^000ff0Mission 4^000000 ]|8703|91|95|45000|40000|32026|1",
+	//"[ ^000ff0Mission 5^000000 ]|8704|96|99|50000|50000|32026|1",
+	//"[ ^000ff0Mission 6^000000 ]|8705|99|99|55000|60000|32026|2",
+	//"[ ^000ff0Mission 7^000000 ]|8706|99|99|60000|70000|32026|2",
+	//"[ ^000ff0Mission 8^000000 ]|8707|99|99|65000|80000|32026|2",
+	//"[ ^000ff0Mission 9^000000 ]|8708|99|99|70000|90000|32026|2",
+	//"[ ^000ff0Mission 10^000000 ]|8709|99|99|75000|100000|32026|3";
+	
+/*
 	"[ ^ff0000Boss Hunt^000000 ] Garm|8800|91|99|8000|1|0|999990",
 	"[ ^ff0000Boss Hunt^000000 ] Golden Thief Bug|8801|91|99|8000|1|0|999990",
 	"[ ^ff0000Boss Hunt^000000 ] Eddga|8802|91|99|8000|1|0|999990",
@@ -187,7 +194,7 @@ setarray .item_list$[1],
 	"[ ^ff0000Boss Hunt^000000 ] Amon Ra|8817|91|99|15000|1|0|999990",
 	"[ ^ff0000Boss Hunt^000000 ] Pharaoh|8818|91|99|15000|1|0|999990",
 	"[ ^ff0000Boss Hunt^000000 ] Turtle General|8819|91|99|15000|1|0|999990";
-
+*/
 end;
 
 }

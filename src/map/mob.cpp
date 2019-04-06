@@ -3748,7 +3748,8 @@ int mobskill_use(struct mob_data *md, unsigned int tick, int event)
 				if (unique != std::string::npos)
 					name = name.substr(0, unique); // discard extra name identifier if present [Daegaladh]
 				output = name + " : " + mc->msg;
- 				clif_messagecolor(&md->bl, mc->color, output.c_str(), true, AREA_CHAT_WOC);
+
+				clif_messagecolor(&md->bl, mc->color, output.c_str(), true, AREA_CHAT_WOC);
 			}
 		}
 		if(!(battle_config.mob_ai&0x200)) { //pass on delay to same skill.
@@ -3847,7 +3848,7 @@ int mob_clone_spawn(struct map_session_data *sd, int16 m, int16 x, int16 y, cons
 
 	try{
 		db = &mob_db_data[mob_id];
-	}catch( std::bad_alloc ){
+	}catch( const std::bad_alloc& ){
 		ShowError( "mob_clone_spawn: Memory allocation for clone %hu failed.\n", mob_id );
 		return 0;
 	}
@@ -4120,13 +4121,8 @@ static bool mob_parse_dbrow(char** str)
 	entry.job_exp = (unsigned int)cap_value(exp, 0, UINT_MAX);
 
 	status->rhw.range = atoi(str[9]);
-#ifdef RENEWAL
-	status->rhw.atk = atoi(str[10]); // BaseATK
-	status->rhw.matk = atoi(str[11]); // BaseMATK
-#else
-	status->rhw.atk = atoi(str[10]); // MinATK
-	status->rhw.atk2 = atoi(str[11]); // MaxATK
-#endif
+	status->rhw.atk = atoi(str[10]);
+	status->rhw.atk2 = atoi(str[11]);
 	status->def = atoi(str[12]);
 	status->mdef = atoi(str[13]);
 	status->str = atoi(str[14]);
@@ -4266,7 +4262,7 @@ static bool mob_parse_dbrow(char** str)
 	if (db == NULL) {
 		try{
 			db = &mob_db_data[mob_id];
-		}catch( std::bad_alloc ){
+		}catch( const std::bad_alloc& ){
 			ShowError( "Memory allocation for monster %hu failed.\n", mob_id );
 			return false;
 		}
@@ -4332,7 +4328,7 @@ static int mob_read_sqldb(void)
 		// free the query result
 		Sql_FreeResult(mmysql_handle);
 
-		ShowStatus("Done reading '" CL_WHITE "%lu" CL_RESET "' entries in '" CL_WHITE "%s" CL_RESET "'.\n", count, mob_db_name[fi]);
+		ShowStatus("Done reading '" CL_WHITE "%u" CL_RESET "' entries in '" CL_WHITE "%s" CL_RESET "'.\n", count, mob_db_name[fi]);
 	}
 	return 0;
 }
@@ -4457,7 +4453,7 @@ static bool mob_parse_row_chatdb(char* fields[], int columns, int current)
 	if( ms == NULL ){
 		try{
 			ms = &mob_chat_db[msg_id];
-		}catch( std::bad_alloc ){
+		}catch( const std::bad_alloc& ){
 			ShowError( "mob_parse_row_chatdb: Memory allocation for chat ID '%d' failed.\n", msg_id );
 			return false;
 		}
@@ -4800,7 +4796,7 @@ static int mob_read_sqlskilldb(void)
 		// free the query result
 		Sql_FreeResult(mmysql_handle);
 
-		ShowStatus("Done reading '" CL_WHITE "%lu" CL_RESET "' entries in '" CL_WHITE "%s" CL_RESET "'.\n", count, mob_skill_db_name[fi]);
+		ShowStatus("Done reading '" CL_WHITE "%u" CL_RESET "' entries in '" CL_WHITE "%s" CL_RESET "'.\n", count, mob_skill_db_name[fi]);
 	}
 	return 0;
 }
@@ -5279,7 +5275,7 @@ static void mob_load(void)
 		sv_readdb(dbsubpath2, "mob_branch.txt", ',', 4, 4, -1, &mob_readdb_group, silent);
 		sv_readdb(dbsubpath2, "mob_poring.txt", ',', 4, 4, -1, &mob_readdb_group, silent);
 		sv_readdb(dbsubpath2, "mob_boss.txt", ',', 4, 4, -1, &mob_readdb_group, silent);
-		//sv_readdb(dbsubpath1, "mob_pouch.txt", ',', 4, 4, -1, &mob_readdb_group, silent);
+		sv_readdb(dbsubpath1, "mob_pouch.txt", ',', 4, 4, -1, &mob_readdb_group, silent);
 		sv_readdb(dbsubpath1, "mob_mission.txt", ',', 4, 4, -1, &mob_readdb_group, silent);
 		sv_readdb(dbsubpath1, "mob_classchange.txt", ',', 4, 4, -1, &mob_readdb_group, silent);
 		sv_readdb(dbsubpath2, "mob_drop.txt", ',', 3, 5, -1, &mob_readdb_drop, silent);

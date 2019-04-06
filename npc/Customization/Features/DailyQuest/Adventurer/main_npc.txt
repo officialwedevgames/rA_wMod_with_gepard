@@ -1,13 +1,13 @@
 prontera,144,125,5	script	Thaddeus	4_M_04,{
 	function quest_npc_loc;
 	
-	if(BaseLevel < 30){
+	if(BaseLevel < 60){
 		mes .NpcName$;
 		mes "An adventurer receives exp and item rewards by completing their mission everyday. It may also lead you to reach the max level by repeating it each day.";
 		next;
 		if (select("I want to be an Adventurer.") == 1){
 			mes .NpcName$;
-			mes "I able to start taking the quest. You may need to reach lv30 or above.";
+			mes "I able to start taking the quest. You may need to reach lv60 or above.";
 			close;
 		}
 	}
@@ -198,6 +198,12 @@ prontera,144,125,5	script	Thaddeus	4_M_04,{
 	
 OnInit:
 	.NpcName$ = "[ Thaddeus ]";
+	questinfo 1,QTYPE_QUEST;	
+	//bindatcmd "onexp", "Thaddeus::OnExp", 0,100;	
+end;
+
+OnExp:
+	callfunc "Quest_Exp";	//-- Experience
 end;
 
 

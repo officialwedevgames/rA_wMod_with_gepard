@@ -106,7 +106,7 @@ OnInit:
 	// Rewards per castle.
 	// -- when given directly: <itemID>,<amount>{,<itemID>,<amount>,...}
 	// -- via mail (option 2): <itemID>,<amount>,<Zeny>
-	setarray .Reward[0],32066,1,32013,1;
+	setarray .Reward[0],32066,1,32013,1,32375,5;
 
 // -----------------------------------------------------------
 //  Constants (leave this section alone).
@@ -343,8 +343,8 @@ OnReward:
 					.@title$ = "Siege Reward: "+getcastlename(.Castles$[.@i])+"";
 					.@body$ = "Brave one, Congratulations! Your guild has successfully occupied territory in the War of Emperium on "+.@str$+".";
 					.@zeny = 0;
-					setarray .@mailitem[0], .Reward[0], .Reward[2];
-					setarray .@mailamount[0], .Reward[1], .Reward[3];
+					setarray .@mailitem[0], .Reward[0], .Reward[2], .Reward[4];
+					setarray .@mailamount[0], .Reward[1], .Reward[3], .Reward[5];
 					mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
 					
 					//- WoE Event Rewards

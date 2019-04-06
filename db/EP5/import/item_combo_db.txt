@@ -3,3 +3,4 @@
 // Structure of Database:
 // ID:ID:ID:ID,{ Script }
 
+20130:20132,{bonus bAllStats,1;}

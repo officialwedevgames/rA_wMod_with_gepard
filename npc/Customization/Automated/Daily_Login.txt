@@ -1,15 +1,15 @@
 -	script	Daily_Login	FAKE_NPC,{
  
 OnInit:
-	.enable = 1;	
-	.grouplevel = 101;
-	.online_time = 900;			// One hour = 3600 seconds
+	set .enable, 1;	
+	set .grouplevel, 5;
+	set .online_time, 900;			// One hour = 3600 seconds
 	bindatcmd "dltime", "Daily_Login::OnDoDailyCheckTime", 0,100;
     end;
  
 OnDoDailyCheckTime:
 	if(getgroupid() < .grouplevel && checkvending() != 2){
-		query_sql "SELECT `status`,`online_status` FROM `daily_login` WHERE `account_id` = '"+getcharid(3)+"'",.@sst, .@ss;
+		query_sql "SELECT `status`,`online_status` FROM `cpanel_daily_login` WHERE `account_id` = '"+getcharid(3)+"'",.@sst, .@ss;
 		.@time_check = #dailytick - gettimetick(2);
 		set .@day, gettime(DT_DAYOFWEEK);
 		if (.@ss == 1 && .@sst == 0 && #daily_login_day != .@day){
@@ -46,18 +46,18 @@ OnPCLoginEvent:
 	while(.enable)
 	{
 		sleep2 1000;
-		query_sql "SELECT `status`,`online_status` FROM `daily_login` WHERE `account_id` = '"+getcharid(3)+"'",.@sst, .@os;
+		query_sql "SELECT `status`,`online_status` FROM `cpanel_daily_login` WHERE `account_id` = '"+getcharid(3)+"'",.@sst, .@os;
 		if(checkvending() != 2 && .@os == 0 && .@sst == 0){
 			@backup_time = .@time_left = #dailytick - gettimetick(2);
 			set .@day, gettime(DT_DAYOFWEEK);
 			if (.@time_left <= 0 && #daily_login_day == .@day)
 			{
 				#dailytick = gettimetick(2) + .online_time;
-				query_sql "SELECT `account_id` FROM `daily_login` WHERE `account_id` = '"+getcharid(3)+"'", .@account;
+				query_sql "SELECT `account_id` FROM `cpanel_daily_login` WHERE `account_id` = '"+getcharid(3)+"'", .@account;
 				if(!.@account){
-					query_sql "INSERT INTO `daily_login` (`account_id`) VALUES ('"+getcharid(3)+"')";
+					query_sql "INSERT INTO `cpanel_daily_login` (`account_id`) VALUES ('"+getcharid(3)+"')";
 				}else{
-					query_sql "UPDATE `daily_login` SET `online_status` = 1 WHERE `account_id` = '"+getcharid(3)+"'";
+					query_sql "UPDATE `cpanel_daily_login` SET `online_status` = 1 WHERE `account_id` = '"+getcharid(3)+"'";
 				}
 				
 				if (!#dailytick || #dailytick > .online_time)
@@ -84,7 +84,7 @@ OnPCLoginEvent:
  
 OnPCLogoutEvent:
 	if(getgroupid() < .grouplevel && checkvending() != 2){
-		query_sql "SELECT `status`,`online_status` FROM `daily_login` WHERE `account_id` = '"+getcharid(3)+"'",.@sst, .@ss;
+		query_sql "SELECT `status`,`online_status` FROM `cpanel_daily_login` WHERE `account_id` = '"+getcharid(3)+"'",.@sst, .@ss;
 		if (.@ss == 0 && .@sst == 0){
 			// BackUP online time
 			if (@backup_time)

@@ -1736,7 +1736,6 @@
 2570,Shawl_Of_Judgement,Shawl Of Judgement,4,20,,400,,12,,0,0x00000100,63,2,4,,100,1,0,{ bonus bFlee,5; .@i = max(2,getskilllv("AB_ORATIO")); bonus5 bAutoSpellWhenHit,"AB_ORATIO",.@i,30,BF_WEAPON,0; bonus5 bAutoSpellWhenHit,"AB_ORATIO",.@i,40,BF_MAGIC,0; },{},{}
 2571,Para_Team_Manteau2,Eden Team Manteau II,4,0,,0,,18,,0,0xFFFFFFFF,63,2,4,,60,0,0,{ bonus bFlee,12; bonus2 bSubEle,Ele_Neutral,10; },{},{}
 2572,Katabart_Sholder,Katabart Sholder,4,20,,3000,,4,,1,0xFFFFFFFF,63,2,4,,70,1,0,{},{},{}
-2573,Archangel_Wing,Archangel Wings,4,0,,200,,7,,1,0xFFFFFFFF,63,2,4,,0,1,1,{},{},{}
 2574,Ur_Manteau,Ur's Manteau,4,20,,600,,20,,0,0x00000080,56,2,4,,100,1,0,{ bonus bMaxHPrate,2; bonus2 bSubEle,Ele_Neutral,10; },{},{}
 2575,Peuz_Manteau,Peuz's Manteau,4,20,,600,,16,,0,0x00000080,56,2,4,,100,1,0,{ bonus bFlee,10; bonus bCritical,10; },{},{}
 2576,Bravery_Bag,Adventurer's Backpack,4,0,,200,,20,,1,0xFFFFFFFF,63,2,4,,0,1,2,{ skill "BS_GREED",1; .@r = getrefine(); if(.@r>=7) { if(readparam(bStr)>=90) { bonus bBaseAtk,(.@r>=9)?30:20; } if(readparam(bInt)>=90) { bonus bMatk,(.@r>=9)?50:30; } if(readparam(bVit)>=90) { bonus2 bSubEle,Ele_Neutral,(.@r>=9)?10:5; } if(readparam(bAgi)>=90) { bonus bAspdRate,8; if(.@r>=9) { bonus bAspd,1; } } if(readparam(bDex)>=90) { bonus bLongAtkRate,(.@r>=9)?10:5; } if(readparam(bLuk)>=90) { bonus bCritAtkRate,(.@r>=9)?15:10; } } },{},{}
@@ -4193,6 +4192,8 @@
 6395,Angel_Magic_Power,Angel Magic Power,3,820,,10,,,,,,,,,,,,,{},{},{}
 6396,Auger_Of_Spirit,Auger Of Spirit,3,0,,10,,,,,,,,,,,,,{},{},{}
 //
+6440,Lubricant_1,Low Grade Lubricant,11,20,,0,,,,,,63,2,,,,,,{ callfunc "card_remover",6440,0; },{},{}
+6441,Lubricant_2,High Grade Lubricant,11,20,,0,,,,,,63,2,,,,,,{ callfunc "card_remover",6441,1; },{},{}
 6456,Guarantee_Weapon_5Up,+5 Weapon Refine Ticket,3,0,,0,,,,,,,,,,,,,{},{},{}
 6457,Guarantee_Armor_5Up,+5 Armor Refine Ticket,3,0,,0,,,,,,,,,,,,,{},{},{}
 6493,Makibishi,Makibishi,3,30,,1,,,,,,,,,,,,,{},{},{}
@@ -7739,7 +7740,7 @@
 //
 18598,Mini_Tree_J,Mini Tree J,4,20,,50,,0,,1,0xFFFFFFFF,63,2,256,,0,0,727,{ bonus bMdef,20; },{},{}
 18599,Black_Devil_Mask,Black Devil Mask,4,20,,100,,0,,0,0xFFFFFFFF,63,2,512,,0,0,760,{ bonus bAllStats,2; },{},{}
-18600,Cat_Ears_Beret,Cat Ear Beret,4,20,,100,,5,,0,0xFFFFFFFF,7,2,256,,0,1,761,{ bonus bAtkRate,5; if(getrefine() > 5 && getrefine() <= 12) { bonus2 bAddRace,RC_DemiHuman,(getrefine() - 5); bonus2 bSubRace,RC_DemiHuman,(getrefine() - 5); bonus2 bAddRace,RC_Player,(getrefine() - 5); bonus2 bSubRace,RC_Player,(getrefine() - 5); } if(getrefine() > 12) { bonus2 bAddRace,RC_DemiHuman,7; bonus2 bAddRace,RC_Player,7; bonus2 bSubRace,RC_DemiHuman,7; bonus2 bSubRace,RC_Player,7; } },{},{}
+18600,Cat_Ears_Beret,Cat Ear Beret,4,20,,100,,5,,0,0xFFFFFFFF,7,2,256,,0,1,761,{ bonus2 bAddClass,Class_All,5; .@r = getrefine(); if(.@r < 5) .@r = 5; bonus2 bSubRace,RC_DemiHuman,(.@r - 5); bonus2 bAddRace,RC_DemiHuman,(.@r - 5); },{},{}
 //
 18601,Red_Bread_Hat,Red Bread Hat,4,20,,300,,0,,1,0xFFFFFFFF,63,2,256,,0,1,762,{ bonus bMdef,5; .@r = getrefine(); if (.@r < 5) .@r = 5; bonus2 bSubRace,RC_DemiHuman,(.@r - 5); bonus2 bMagicAddRace,RC_DemiHuman,(.@r - 5); },{},{}
 18602,Watermelon_Slice,Watermelon Bite,4,20,,100,,4,,0,0xFFFFFFFF,63,2,1,,30,0,763,{},{},{}

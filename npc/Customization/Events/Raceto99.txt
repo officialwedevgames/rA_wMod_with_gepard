@@ -1,47 +1,73 @@
-payon,73,117,4	script	Race to 99	2_BULLETIN_BOARD,{
+prontera,114,86,4	script	Race to 99	2_BULLETIN_BOARD,{
 switch(select("Information:Rankings")){
 	case 1:
 		mes "[ Race to 99 ]";
+		mes "Class: "+jobname(Class)+"";
 		mes "Character Status: "+((getcharid(0) >= .starting_charid)? "^006000Qualified^000000":"^ff0000Not Qualified^000000")+"";
 		mes " ";
 		mes "Mechanics";
-		mes "1. The player must create a 2nd Job Character and reach the max level.";
+		mes "1. The player must create a "+((.mode == 2)?"Transcendent Job":"2nd Job")+" Character and reach the max level.";
 		mes "2. Only "+.limit+" winner for each job class and rewards will be sent via rodex.";
-		mes "3. Event will end on September 20,2018 11:59AM GMT+8.";
+		mes "3. Event will end on November 17,2018 11:59AM GMT+8.";
 		mes " ";
 		mes "[ Rewards ]";
 		mes "* 1,000 Rok Points";
-		mes "* 1pc "+getitemname(31483)+"";
-		mes "* 2,000,000z";
+		mes "* 1pc "+getitemname(.reward_item_id)+"";
+		mes "* 10,000,000z";
 		mes " ";
 		close;
 	case 2:
 		mes "Top "+.limit+" Character's/Job Class.";
 		mes " ";
 		mes "Availability:";
-			for ( .@o = 0; .@o < getarraysize(.class); .@o++ ) {
-				mes " "+jobname(.class[.@o])+" : ^FF0000"+(.limit - getd ("$job" + .class[.@o]))+"^000000";
+		if(.mode == 1){
+			for ( .@o = 0; .@o < getarraysize(.classic_jobs); .@o++ ) {
+				mes " "+jobname(.classic_jobs[.@o])+" : ^FF0000"+(.limit - getd ("$job_" + .classic_jobs[.@o]))+"^000000";
 			}
+		}else if(.mode == 2){
+			for ( .@o = 0; .@o < getarraysize(.trans_jobs); .@o++ ) {
+				mes " "+jobname(.trans_jobs[.@o])+" : ^FF0000"+(.limit - getd ("$job_" + .trans_jobs[.@o]))+"^000000";
+			}
+		}
 		mes " ";
 		mes "Note: List will be update once the character re-login.";
 		next;
-		switch(select("Alchemist:Assassin:Bard:Blacksmith:Crusader:Dancer:Hunter:Knight:Monk:Priest:Rogue:Sage:Wizard")){
-			case 1: set @jid,18; break;
-			case 2: set @jid,12; break;
-			case 3: set @jid,19; break;
-			case 4: set @jid,10; break;
-			case 5: set @jid,14; break;
-			case 6: set @jid,20; break;
-			case 7: set @jid,11; break;
-			case 8: set @jid,7; break;
-			case 9: set @jid,15; break;
-			case 10: set @jid,8; break;
-			case 11: set @jid,17; break;
-			case 12: set @jid,16; break;
-			case 13: set @jid,9; break;
-			goto OnProcess;
+		if(.mode == 1){
+			switch(select("Alchemist:Assassin:Bard:Blacksmith:Crusader:Dancer:Hunter:Knight:Monk:Priest:Rogue:Sage:Wizard")){
+				case 1: set @jid,18; break;
+				case 2: set @jid,12; break;
+				case 3: set @jid,19; break;
+				case 4: set @jid,10; break;
+				case 5: set @jid,14; break;
+				case 6: set @jid,20; break;
+				case 7: set @jid,11; break;
+				case 8: set @jid,7; break;
+				case 9: set @jid,15; break;
+				case 10: set @jid,8; break;
+				case 11: set @jid,17; break;
+				case 12: set @jid,16; break;
+				case 13: set @jid,9; break;
+				goto OnProcess;
+			}
+		}else if(.mode == 2){
+			switch(select(jobname(4008)+":"+jobname(4009)+":"+jobname(4010)+":"+jobname(4011)+":"+jobname(4012)+":"+jobname(4013)+":"+jobname(4015)+":"+jobname(4016)+":"+jobname(4017)+":"+jobname(4018)+":"+jobname(4019)+":"+jobname(4020)+":"+jobname(4021))){
+				case 1: set @jid,4008; break;
+				case 2: set @jid,4009; break;
+				case 3: set @jid,4010; break;
+				case 4: set @jid,4011; break;
+				case 5: set @jid,4012; break;
+				case 6: set @jid,4013; break;
+				case 7: set @jid,4015; break;
+				case 8: set @jid,4016; break;
+				case 9: set @jid,4017; break;
+				case 10: set @jid,4018; break;
+				case 11: set @jid,4019; break;
+				case 12: set @jid,4020; break;
+				case 13: set @jid,4021; break;
+				goto OnProcess;
+			}
 		}
-}
+		}
 
 
 
@@ -66,26 +92,27 @@ OnPCLoginEvent:
 	while(1){
 		if(!#job_completed && getgroupid() < .min_group && getcharid(0) > .starting_charid){
 		
-			for ( .@o = 0; .@o < getarraysize(.class); .@o++ ) {
-				if(Class == .class[.@o] && getd ("$job" + Class) < .limit){
+			for ( .@o = 0; .@o < getarraysize(.classic_jobs); .@o++ ) {
+				if(.mode == 1){
+					set .@job, .classic_jobs[.@o];
+				}else if(.mode == 2){
+					set .@job, .trans_jobs[.@o];
+				}
+				if(Class == .@job && getd ("$job_" + Class) < .limit){
 					if(BaseLevel == .base && JobLevel == .job){
 						.@charid = getcharid(0);
 						.@sender$ = "System";
 						.@title$ = "Race to 99";
-						.@body$ = "Congratulations! You just received your rewards for being the first "+jobname(Class)+" who reached level 99/50.";
-						.@zeny = 2000000;
-						setarray .@mailitem[0], 31483;
-						setarray .@mailamount[0], 1;
-						setarray .@mailcard0[0], 255;
-						setarray .@mailcard1[0], 0;
-						setarray .@mailcard2[0], getcharid(0);
-						setarray .@mailcard3[0], 0;
-						mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount, .@mailcard0, .@mailcard1, .@mailcard2, .@mailcard3;
+						.@body$ = "Congratulations! You just received your rewards for being the first "+jobname(Class)+" who reached level "+.base+"/"+.job+".";
+						.@zeny = .reward_zeny;
 	
-						points #ROKPOINTS, #ROKPOINTS + .reward_points;
+						mail .@charid, .@sender$, .@title$, .@body$, .@zeny;
+						
+						getitembound .reward_item_id, 1, 1;
+						points #ROKPOINTS, #ROKPOINTS + .reward_rok_points;
 
 						set #job_completed,1;
-						setd "$job" + Class,getd ("$job" + Class) + 1;
+						setd "$job_" + Class,getd ("$job_" + Class) + 1;
 						break;
 					}
 				}
@@ -96,13 +123,23 @@ OnPCLoginEvent:
 end;
 
 OnInit:
-	setarray .class,7,8,9,10,11,12,14,15,16,17,18,19,20;
-	.reward_points = 1000;
-
+	//- 2nd Jobs
+	setarray .classic_jobs,7,8,9,10,11,12,14,15,16,17,18,19,20;
+	//- Trans Jobs
+	setarray .trans_jobs,4008,4009,4010,4011,4012,4013,4015,4016,4017,4018,4019,4020,4021;
+	
+	set .mode, 2; //- 1 = Classic | 2 - Transcendent
 	set .base, 99;
-	set .job, 50;
+	set .job, 70;
 	set .limit, 1;
-	.min_group = 5;
-	set .starting_charid, 150876;
+	set .min_group, 5;
+	set .starting_charid, 151050;
+	
+	//- Reward Setting
+	set .reward_item_id, 20034;
+	set .reward_rok_points, 1000;
+	set .reward_zeny, 10000000;
 end;
 }
+
+

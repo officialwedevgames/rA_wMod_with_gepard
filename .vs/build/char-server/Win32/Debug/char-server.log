@@ -3,6 +3,7 @@
   char_cnslif.cpp
   char_logif.cpp
   char_mapif.cpp
+  inter.cpp
   int_achievement.cpp
   int_auction.cpp
   int_clan.cpp
@@ -15,6 +16,5 @@
   int_pet.cpp
   int_quest.cpp
   int_storage.cpp
-  inter.cpp
   Generating Code...
   char-server.vcxproj -> D:\Ragnarok_Emulators\rA_wMod_with_gepard\char-server.exe

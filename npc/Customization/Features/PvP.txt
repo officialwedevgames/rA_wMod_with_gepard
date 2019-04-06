@@ -4,6 +4,11 @@
 	next;
 	switch(select("^3355FF' PvP Yoyo Mode '^000000:^FF5533' PvP Nightmare Mode '^000000:Explain me everything.")) {
 		case 1:
+			if(Zeny < .pvp_payment){
+				mes "[ PvP Master ]";
+				mes "You need at least 2,500 Zeny to enter the room.";
+				close;
+			}
 			.@size = getarraysize( .pvproom1$ );
 				for( .@i = 1; .@i < .@size; .@i++ ){
 					set .@menu$,.@menu$ + "[^3355FF Yoyo ^000000] PvP Room "+.@i+" [" + getmapusers(.pvproom1$[.@i]) + " / "+.pvproomlimit+"]:";
@@ -16,10 +21,16 @@
 					}
 				mes "Good Luck Brave Warrior!";
 				close2;
+				Zeny -= .pvp_payment;
 				warp .pvproom1$[.@i],0,0;
 				end;
 			
 		case 2:
+			if(Zeny < .pvp_payment){
+				mes "[ PvP Master ]";
+				mes "You need at least 2,500 Zeny to enter the room.";
+				close;
+			}
 			.@size = getarraysize( .pvproom2$ );
 				for( .@i = 1; .@i < .@size; .@i++ ){
 					set .@menu$,.@menu$ + "[^FF5533 Nightmare ^000000] PvP Room "+.@i+" [" + getmapusers(.pvproom2$[.@i]) + " / "+.pvproomlimit+"]:";
@@ -32,6 +43,7 @@
 					}
 				mes "Good Luck Brave Warrior!";
 				close2;
+				Zeny -= .pvp_payment;
 				warp .pvproom2$[.@i],0,0;
 				end;
 		case 3:
@@ -87,10 +99,11 @@ OnInit:
 		//"pvp_n_8-5",
 		"pvp_n_8-2";
 	
-	set .pvproomlimit, 35;
+	set .pvproomlimit, 20;
+	set .pvp_payment, 2500;
 	waitingroom "Player Vs Player",0;
 end;
 
 }
 
-prontera,146,107,4	duplicate(Andere)	Andere#pront	8W_SOLDIER
+prontera,129,94,4	duplicate(Andere)	Andere#pront	8W_SOLDIER

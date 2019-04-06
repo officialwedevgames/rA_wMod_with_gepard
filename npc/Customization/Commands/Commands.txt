@@ -2,7 +2,7 @@
 
 OnInit:
 	bindatcmd "joinevent","Commands::OnDoStart",0,100;	
-	bindatcmd "removecoin", "Commands::OnAtcommand", 0, 100;	
+	//bindatcmd "removecoin", "Commands::OnAtcommand", 0, 100;	
 	set .coin, 32001;
 end;
 

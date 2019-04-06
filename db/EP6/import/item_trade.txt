@@ -20,6 +20,14 @@
 //	Balmung cannot be dropped, traded, or placed in Guild Storage (1+2+64).
 //	Only groups of group-level 50 and up can override this setting.
 
+19777,453,100	// C_Shiny_Small_Star
+19917,493,100	// C_Gloomy_Pumpkin_Hat
+19990,453,100	// C_Snow_Rabbit_Knit_Hat
+20034,469,100	// C_Jack_Castle_Bat
+20130,461,100	// C_Whisper_Tall_Hat
+20132,461,100	// C_Subject_Aura
+20172,461,100	// C_Pumpkin_Head
+20191,461,100	// C_Black_Cat_Ears_Beret
 31001,453,100	// Costume_1
 31002,453,100	// Costume_2
 31003,453,100	// Costume_3
@@ -74,6 +82,7 @@
 31867,511,100	// BG_Normal_Silver
 31868,511,100	// BG_Normal_Gold
 32001,511,99	// Beginner_Quest_Book
+32002,511,100	// Adventurer_Coin
 32003,471,99	// Poring_Event_Token
 32004,471,99	// Dice_Event_Ticket
 32006,511,99	// Zeny_Envelope
@@ -117,6 +126,7 @@
 32105,503,100	// Baseball_Cap_Yellow
 32106,479,99	// Dimensional_Key1
 32107,461,99	// Dimensional_Key2
+32108,461,100	// Newbie_Sign
 32109,479,99	// Beta_Sign
 32204,511,100	// Quest_Extract1
 32205,511,99	// Quest_Extract2
@@ -169,6 +179,8 @@
 32377,511,99	// reset_coupon
 32378,479,100	// c_potion_white_box
 32379,479,100	// c_potion_blue_box
+32380,471,100	// Daily_White_Potion
+32381,471,100	// Daily_Blue_Potion
 32401,479,99	// 3DG_Fragment
 32402,479,99	// FLC_Fragment
 32403,479,99	// Academy_Completion_Fragment

@@ -8,6 +8,7 @@
 
 #include "../common/nullpo.hpp"
 #include "../common/socket.hpp"
+#include "../common/utils.hpp"
 
 #include "atcommand.hpp"
 #include "battle.hpp"
@@ -70,12 +71,21 @@ void trade_traderequest(struct map_session_data *sd, struct map_session_data *ta
 		return;
 	}
 
-	if (!pc_can_give_items(sd) || !pc_can_give_items(target_sd)) { // check if both GMs are allowed to trade
-		clif_displaymessage(sd->fd, msg_txt(sd,246));
-		clif_tradestart(sd, 2); // GM is not allowed to trade
+	if (!pc_has_permission(sd, PC_PERM_DISABLE_TRADE)) { // check if both GMs are allowed to trade
+		clif_displaymessage(sd->fd, "You are not authorize to trade.");
 		return;
 	}
 
+	if (!pc_has_permission(target_sd, PC_PERM_DISABLE_TRADE)) { // check if both GMs are allowed to trade
+		clif_displaymessage(sd->fd, "Player is not authorize to trade.");
+		return;
+	}
+
+	//if (!pc_can_give_items(sd) || !pc_can_give_items(target_sd)) { // check if both GMs are allowed to trade
+	//	clif_displaymessage(sd->fd, msg_txt(sd,246));
+	//	clif_tradestart(sd, 2); // GM is not allowed to trade
+	//	return;
+	//}
 	// Players can not request trade from far away, unless they are allowed to use @trade.
 	if (!pc_can_use_command(sd, "trade", COMMAND_ATCOMMAND) &&
 	    (sd->bl.m != target_sd->bl.m || !check_distance_bl(&sd->bl, &target_sd->bl, TRADE_DISTANCE))) {
@@ -386,6 +396,13 @@ void trade_tradeadditem(struct map_session_data *sd, short index, short amount)
 	}
 
 	if( item->expire_time && !pc_can_trade_rental(sd) ) { // Rental System
+		clif_displaymessage (sd->fd, msg_txt(sd,260));
+		clif_tradeitemok(sd, index+2, 1);
+		return;
+	}
+	
+	if( item->card[0]==CARD0_CREATE && (MakeDWord(item->card[2],item->card[3])== (battle_config.bg_reserved_char_id || battle_config.woe_reserved_char_id )&& !battle_config.bg_can_trade) )
+	{	// "Battleground's Items"
 		clif_displaymessage (sd->fd, msg_txt(sd,260));
 		clif_tradeitemok(sd, index+2, 1);
 		return;

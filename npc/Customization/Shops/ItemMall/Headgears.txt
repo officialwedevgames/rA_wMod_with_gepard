@@ -1,16 +1,30 @@
--	trader	Headgears	FAKE_NPC,{
+-	trader	itemmall_Headgears	FAKE_NPC,{
 
 OnInit:
 	tradertype("NST_CASH");
+	sellitem "Baphomet_Horn's",7500,0,0;
+	sellitem "Hockey_Mask",3000,0,0;
+	sellitem "Little_Angel_Doll",2500,0,0;
+	sellitem "Wings_Of_Victory",1500,0,0;
+	
+	sellitem "Cat_Ears_Beret",7500,0,0;
+	//sellitem "C_Gloomy_Pumpkin_Hat",2000,0,0;
+	//sellitem "C_Whisper_Tall_Hat",2000,0,0;
+	//sellitem "Ramen_Hat",7500,0,0;
+	//sellitem "Lovecap_China",7500,0,0;
+	//sellitem "Alice_Doll",7500,0,0;
+	//sellitem "Blush_Of_Groom",1500,0,0;
+	//sellitem "Robo_Eye",4000,0,0;
+	//sellitem "C_Snow_Rabbit_Knit_Hat",2500,0,0;
+	//sellitem "Bread_Bag2",2000,0,0;
+	
+	sellitem "Ear_Of_Black_Cat",1000,0,0;
 	sellitem "Newbie_Sign",1000,1440,0;
-	sellitem "C_Snow_Rabbit_Knit_Hat",2500,0,0;
 	sellitem "Cyclops_Visor",1000,0,0;
-	sellitem "Alice_Doll",7500,0,0;
 	sellitem "Angel_Spirit",2000,0,0;
 	sellitem "Bf_Recruiter_Hat",700,0,0;
-	sellitem "Black_Bunny_Band",2000,0,0;
-	sellitem "Blush_Of_Groom",1500,0,0;
-	sellitem "Bread_Bag2",2000,0,0;
+	sellitem "Black_Bunny_Band",400,0,0;
+	
 	sellitem "Darkness_Helm",2000,0,0;
 	sellitem "Deviling_Hat",3000,0,0;
 	sellitem "Dress_Hat",3000,0,0;
@@ -28,18 +42,15 @@ OnInit:
 	sellitem "Holy_Marching_Hat_J",2000,0,0;
 	sellitem "J_Captain_Hat",3000,0,0;
 	sellitem "Large_Hibiscus",3000,0,0;
-	sellitem "Lovecap_China",7500,0,0;
 	sellitem "Marcher_Hat",2000,0,0;
 	sellitem "Party_Recruiter_Hat",700,0,0;
 	sellitem "Pecopeco_Hairband",4000,0,0;
-	sellitem "Pecopeco_Wing_Ears",1000,0,0;
 	sellitem "Rabbit_Earplug",2000,0,0;
-	sellitem "Ramen_Hat",7500,0,0;
-	sellitem "Robo_Eye",4000,0,0;
+	
 	sellitem "Snake_Head",2000,0,0;
 	sellitem "Soldier_Hat",1500,0,0;
 	end;
 
 }
 
-prontera,104,80,4	duplicate(Headgears)	Headgears#pront	4_F_KAFRA2
+//prontera,104,80,4	duplicate(Headgears)	Headgears#pront	4_F_KAFRA2

@@ -1,6 +1,6 @@
 //- New Payon
-//payon,271,228,3	script	Irish	4_F_04,{
-payon,152,104,5	script	Irish	4_F_04,{
+payon,271,228,3	script	Irish	4_F_04,{
+//payon,152,104,5	script	Irish	4_F_04,{
 		if(checkquest(8604) == 2){
 			mes "[ Irish ]";
 			mes "Tell Thaddeus that I am okay now. Thank you for your help.";

@@ -33,14 +33,13 @@
 #include "script.hpp" // script_config
 #include "storage.hpp"
 
-
 static TIMER_FUNC(check_connect_char_server);
 
 static struct eri *auth_db_ers; //For reutilizing player login structures.
 static DBMap* auth_db; // int id -> struct auth_node*
 static bool char_init_done = false; //server already initialized? Used for InterInitOnce and vending loadings
 
-static const int packet_len_table[0x50] = { // U - used, F - free
+static const int packet_len_table[0x3d] = { // U - used, F - free
 	60, 3,-1,-1,10,-1, 6,-1,	// 2af8-2aff: U->2af8, U->2af9, U->2afa, U->2afb, U->2afc, U->2afd, U->2afe, U->2aff
 	 6,-1,18, 7,-1,39,30, 10,	// 2b00-2b07: U->2b00, U->2b01, U->2b02, U->2b03, U->2b04, U->2b05, U->2b06, U->2b07
 	 6,30, 10, -1,86, 7,44,34,	// 2b08-2b0f: U->2b08, U->2b09, U->2b0a, U->2b0b, U->2b0c, U->2b0d, U->2b0e, U->2b0f
@@ -48,7 +47,6 @@ static const int packet_len_table[0x50] = { // U - used, F - free
 	 2,10, 2,-1,-1,-1, 2, 7,	// 2b18-2b1f: U->2b18, U->2b19, U->2b1a, U->2b1b, U->2b1c, U->2b1d, U->2b1e, U->2b1f
 	-1,10, 8, 2, 2,14,19,19,	// 2b20-2b27: U->2b20, U->2b21, U->2b22, U->2b23, U->2b24, U->2b25, U->2b26, U->2b27
 	-1, 0, 6,15, 0, 6,-1,-1,	// 2b28-2b2f: U->2b28, F->2b29, U->2b2a, U->2b2b, F->2b2c, U->2b2d, U->2b2e, U->2b2f
-	4, 4, 4, 4, -1, 6, 0, 0,	// 2b30-2b37: U->2b30, U->2b31, U->2b32, U->2b33, U->2b34, F->2b35, F->2b36, F->2b37
  };
 
 //Used Packets:
@@ -286,13 +284,11 @@ int chrif_isconnected(void) {
 int chrif_itemdestroy(int nameid)
 {
 	chrif_check(-1);
-
-	WFIFOHEAD(char_fd, 4);
+ 	WFIFOHEAD(char_fd, 4);
 	WFIFOW(char_fd, 0) = 0x2b32;
 	WFIFOW(char_fd, 2) = nameid;
 	WFIFOSET(char_fd, 4);
-
-	return 0;
+ 	return 0;
 }
 
 int chrif_itemdestroy_ack(int nameid)
@@ -712,7 +708,7 @@ void chrif_authok(int fd) {
 
 	//Check if both servers agree on the struct's size
 	if( RFIFOW(fd,2) - 25 != sizeof(struct mmo_charstatus) ) {
-		ShowError("chrif_authok: Data size mismatch! %d != %d\n", RFIFOW(fd,2) - 25, sizeof(struct mmo_charstatus));
+		ShowError("chrif_authok: Data size mismatch! %d != %" PRIuPTR "\n", RFIFOW(fd,2) - 25, sizeof(struct mmo_charstatus));
 		return;
 	}
 
@@ -985,7 +981,7 @@ static void chrif_ack_login_req(int aid, const char* player_name, uint16 type, u
 	char output[256];
 
 	sd = map_id2sd(aid);
-
+	
 	// Judas Request - Reward
 	if (answer > 9000) {
 		if (answer == 9999) {
@@ -1001,12 +997,10 @@ static void chrif_ack_login_req(int aid, const char* player_name, uint16 type, u
 		else {
 			sprintf(output, "The player '%.*s' has been rewarded", NAME_LENGTH, player_name);
 		}
-
-		if (sd != NULL) {
+ 		if (sd != NULL) {
 			clif_displaymessage(sd->fd, output);
 		}
-
-		return;
+ 		return;
 	}
 
 	if( aid < 0 || sd == NULL ) {
@@ -2072,13 +2066,13 @@ void do_final_chrif(void) {
  *------------------------------------------*/
 void do_init_chrif(void) {
 	if(sizeof(struct mmo_charstatus) > 0xFFFF){
-		ShowError("mmo_charstatus size = %d is too big to be transmitted. (must be below 0xFFFF)\n",
+		ShowError("mmo_charstatus size = %" PRIuPTR " is too big to be transmitted. (must be below 0xFFFF)\n",
 			sizeof(struct mmo_charstatus));
 		exit(EXIT_FAILURE);
 	}
 
 	if (sizeof(struct s_storage) > 0xFFFF) {
-		ShowError("s_storage size = %d is too big to be transmitted. (must be below 0xFFFF)\n", sizeof(struct s_storage));
+		ShowError("s_storage size = %" PRIuPTR " is too big to be transmitted. (must be below 0xFFFF)\n", sizeof(struct s_storage));
 		exit(EXIT_FAILURE);
 	}
 

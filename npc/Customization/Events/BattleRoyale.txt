@@ -119,7 +119,7 @@ prontera,147,174,4	script	Battle Royale Manager::Battle_Royale	4_M_JP_RUN,{
 OnInit:
 	hideonnpc "Battle_Royale";
 	bindatcmd "battleroyale","Battle_Royale::OnDoCommand",90,100;	
-	bindatcmd "brrank","Battle_Royale::OnDoRank",0,100;	
+	//bindatcmd "brrank","Battle_Royale::OnDoRank",0,100;	
 	bindatcmd "tests","Battle_Royale::OnDoTest",90,100;	
 	
 end;

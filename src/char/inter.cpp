@@ -952,7 +952,7 @@ void inter_config_readConf(void) {
 				try {
 					id = node["ID"].as<unsigned int>();
 				}
-				catch (std::exception) {
+				catch (const std::exception&) {
 					yaml_invalid_warning("inter_config_readConf: Storage definition with invalid ID field in '" CL_WHITE "%s" CL_RESET "', skipping.\n", node, current_file);
 					continue;
 				}
@@ -978,7 +978,7 @@ void inter_config_readConf(void) {
 					try {
 						storage_table->max_num = node["Max"].as<uint16>();
 					}
-					catch (std::exception) {
+					catch (const std::exception&) {
 						yaml_invalid_warning("inter_config_readConf: Storage definition with invalid Max field in '" CL_WHITE "%s" CL_RESET "', skipping.\n", node, current_file);
 						continue;
 					}
