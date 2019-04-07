@@ -219,7 +219,7 @@ int channel_join(struct Channel *channel, struct map_session_data *sd) {
 	RECREATE(sd->channels, struct Channel *, ++sd->channel_count);
 	sd->channels[ sd->channel_count - 1 ] = channel;
 	idb_put(channel->users, sd->status.char_id, sd);
-	RECREATE(sd->channel_tick, unsigned int, sd->channel_count);
+	RECREATE(sd->channel_tick, t_tick, sd->channel_count);
 	sd->channel_tick[sd->channel_count-1] = 0;
 
 	if( sd->stealth ) {
@@ -446,12 +446,10 @@ int channel_send(struct Channel *channel, struct map_session_data *sd, const cha
 
 	if(!pc_has_permission(sd, PC_PERM_CHANNEL_ADMIN) && channel->msg_delay != 0 && DIFF_TICK(sd->channel_tick[idx] + channel->msg_delay, gettick()) > 0) {
 		char cdmessage[CHAT_SIZE_MAX];
-		
-		int cdseconds = DIFF_TICK(sd->channel_tick[idx] + channel->msg_delay, gettick()) / 1000;
-		int cdmilliseconds = (DIFF_TICK(sd->channel_tick[idx] + channel->msg_delay, gettick()) - (cdseconds * 1000))/100;
+
 		
 		//clif_messagecolor(&sd->bl,color_table[COLOR_RED],msg_txt(sd,1455),false,SELF); //You're talking too fast!
-		safesnprintf(cdmessage, sizeof(cdmessage), "You still have %d.%d second(s) left before you can use the channel again.", cdseconds, cdmilliseconds);
+		safesnprintf(cdmessage, sizeof(cdmessage), "You still have %d.%d second(s) left before you can use the channel again.", DIFF_TICK(sd->channel_tick[idx] + channel->msg_delay, gettick()) / 1000, (DIFF_TICK(sd->channel_tick[idx] + channel->msg_delay, gettick()) - (DIFF_TICK(sd->channel_tick[idx] + channel->msg_delay, gettick()) / 1000 * 1000)) / 100);
 		clif_displaymessage(sd->fd, cdmessage);
 		return -2;
 	}
