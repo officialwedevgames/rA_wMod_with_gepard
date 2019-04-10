@@ -1,25 +1,25 @@
 
 -	script	Hourly Points::hourlypoints	FAKE_NPC,{
- 
+
 OnInit:
     announce "[ Hourly Points System ] The system have been reloaded, please relog again to get more points.", bc_all;
- 
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Basic Settings (Judas)
-	//   1: Item | 2: Points | 4: Exp  
+	//   1: Item | 2: Points | 4: Exp
 	// (a bit value, e.g. 3 = Items & Points from Multi)
 	set .Mode,1 + 2 + 4;
-	
+
 	//  Point Type
 	//   [0] Points earned
 	//   [1] Point name in mes
 	setarray .RewardPoints$,"#LOYALPOINTS","Loyal Points";
-	
+
 	//  Point Type
 	//   [0] Points earned
 	//   [1] Point name in mes
 	setarray .RokPoints$,"#ROKPOINTS","Rok Points";
-	
+
 	// Daily Prize items (max 128 Hours):
 	//   "<Zeny>|<online Points>|<Rok Points>|<BaseExp>|<JobExp>|<itemID-1>|<amount-1>|<itemID-2>|<amount-2>...etc", // Hour 1
 	//   "<Zeny>|<online Points>|<Rok Points>|<BaseExp>|<JobExp>|<itemID-1>|<amount-1>|<itemID-2>|<amount-2>...etc"  // Hour 2
@@ -41,17 +41,17 @@ OnInit:
 		"11000|55|0|0|0",					// Hour 11: 11 Loyal Points
 		"12000|60|50|0|0";					// Hour 12: 12 Loyal Points, 20 Rok Points
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
- 	
-	.dlimit = 600;				// Stop points if afk greater then in seconds. 600s = 10 minutes	
-	.enable = 1;	
-	.level = 50;	
+
+	.dlimit = 600;				// Stop points if afk greater then in seconds. 600s = 10 minutes
+	.enable = 1;
+	.level = 50;
 	.grouplevel = 10;
-	.timelimit = 12;	
+	.timelimit = 12;
 	.online_time = 3600;			// One hour = 3600 seconds
- 
+
     bindatcmd "ht", "hourlypoints::OnAtcommand", 0, 100;
     end;
- 
+
 OnPCLoginEvent:
 	query_sql "SELECT COUNT(char_id) from `char` WHERE base_level >= '"+.level+"' AND account_id = '"+getcharid(3)+"'", .@count;
 	if (getgroupid() >= .grouplevel){end;}
@@ -66,21 +66,21 @@ OnPCLoginEvent:
 			@backup_time = 0;
 			#acclimit = 0;
 			#HourlyPoints = 7;
-			
+
 				if (!#acctick || #acctick > .online_time)
 					#acctick = gettimetick(2) + .online_time;
 				else
-					#acctick += gettimetick(2);	
+					#acctick += gettimetick(2);
 		}
 
- 
+
         while(.enable && #HourlyPoints != gettime(DT_DAYOFWEEK))
         {
-            @idle_time = checkidle();	
-			
+            @idle_time = checkidle();
+
 			// Check the players current location.
-			getmapxy(.@mapname$, .@mapx, .@mapy, UNITTYPE_PC);
-			
+			getmapxy(.@mapname$, .@mapx, .@mapy, BL_PC);
+
 			if (.@map$ == .@mapname$ && .@mx == .@mapx && .@my == .@mapy) {
 				set .@idle, .@idle + 1;
 				if(.@idle >= .dlimit){
@@ -91,10 +91,10 @@ OnPCLoginEvent:
 					break;
 				}
 			}else{
-				getmapxy(.@map$, .@mx, .@my, UNITTYPE_PC);
+				getmapxy(.@map$, .@mx, .@my, BL_PC);
 				set .@idle, 0;
 			}
- 
+
             if (checkvending() >= 1 && @idle_time >= .dlimit || checkchatting() == 1 && @idle_time >= .dlimit || @idle_time >= .dlimit)
             {
                 #acctick += @idle_time; // Add idle time
@@ -106,41 +106,41 @@ OnPCLoginEvent:
             else
             {
                 sleep2 1000;
- 
+
                 @backup_time = .@time_left = #acctick - gettimetick(2);
- 
+
                 if (.@time_left <= 0)
                 {
                     #acctick = gettimetick(2) + .online_time;
-					
+
 					// Judas Reward
-					
+
 					if (#acclimit >= .timelimit) {
 					    #HourlyPoints = gettime(DT_DAYOFWEEK);
 					}
 					else {
 						#acclimit += 1;
-						
+
 						set .@g, #acclimit;
 						explode(.@XT$,.rewards$[.@g],"|");
 						for(set .@x,0; .@x < getarraysize(.@XT$); set .@x,.@x + 1){
 							set .@TT[.@x], atoi(.@XT$[.@x]);
 						}
-						
+
 						if(.Mode & 1 && .@TT[5]){	//[Note]: I need to figure out a checkweight for all items tired atm lol, for now ill leave it missing
 							for(set .@x,5; .@x < getarraysize(.@TT); set .@x,.@x + 2){
-								getitembound  .@TT[.@x], .@TT[.@x+1],1;	message strcharinfo(0),"Recived "+  .@TT[.@x+1] +" "+ getitemname(.@TT[.@x]);	
+								getitembound  .@TT[.@x], .@TT[.@x+1],1;	message strcharinfo(0),"Recived "+  .@TT[.@x+1] +" "+ getitemname(.@TT[.@x]);
 							}
 						}
 						if(.Mode & 2)	{
 							if(.@TT[0]){	set Zeny,Zeny + .@TT[0];	message strcharinfo(0),"Recived "+ .@TT[0] +"z";	}
 							if(.@TT[1]){
 								points getd(.RewardPoints$), getd(.RewardPoints$)+ .@TT[1];
-								message strcharinfo(0),"Recived "+ .@TT[1] +" "+.RewardPoints$[1];	
+								message strcharinfo(0),"Recived "+ .@TT[1] +" "+.RewardPoints$[1];
 							}
 							if(.@TT[2]){
 								points getd(.RokPoints$), getd(.RokPoints$)+ .@TT[2];
-								message strcharinfo(0),"Recived "+ .@TT[2] +" "+.RokPoints$[1];	
+								message strcharinfo(0),"Recived "+ .@TT[2] +" "+.RokPoints$[1];
 							}
 						}
 						if(.Mode & 4 && (.@TT[3] || .@TT[4])) getexp .@TT[3], .@TT[4];
@@ -159,28 +159,28 @@ OnPCLoginEvent:
                     .@Time$ = "";
                     .@Minutes = .@time_left / 60;
                     .@time_left -= (.@Minutes * 60);
- 
+
                     if (.@Minutes > 1)
                         .@Time$ += .@Minutes + " minutes, ";
                     else if (.@Minutes > 0)
                         .@Time$ += .@Minutes + " minute, ";
- 
+
                     if (.@time_left > 1 || .@time_left == 0)
                         .@Time$ += .@time_left + " seconds";
                     else if (.@time_left == 1)
                         .@Time$ += .@time_left + " second";
- 
+
                     if (.@Minutes == 15 && .@time_left == 0 || .@Minutes == 30 && .@time_left == 0 || .@Minutes == 45 && .@time_left == 0)
                         dispbottom "You spend a total of [" + .@Time$ + "] playing.";
                 }
             }
- 
+
             if (#idle)
                 break;
         }
     }
     end;
- 
+
 OnPCLogoutEvent:
 	if (getgroupid() >= .grouplevel){end;}
 	query_sql "SELECT COUNT(char_id) from `char` WHERE base_level >= '"+.level+"' AND account_id = '"+getcharid(3)+"'", .@count;
@@ -191,47 +191,47 @@ OnPCLogoutEvent:
             #acctick = @backup_time;
     }
     end;
- 
+
 OnAtcommand:
 	if (getgroupid() >= .grouplevel){end;}
 	query_sql "SELECT COUNT(char_id) from `char` WHERE base_level >= '"+.level+"' AND account_id = '"+getcharid(3)+"'", .@count;
     if (.@count)
     {
-	
-		if(#HourlyPoints == gettime(DT_DAYOFWEEK)){ 
+
+		if(#HourlyPoints == gettime(DT_DAYOFWEEK)){
 			dispbottom "You have to wait for 12:00 Midnight for the reset.";
 		}else if (#idle){
             .@Time$ = "";
             .@Minutes = @idle_time / 60;
             .@time_left = @idle_time - (.@Minutes * 60);
- 
+
             if (.@Minutes > 1)
                 .@Time$ += .@Minutes + " minutes, ";
             else if (.@Minutes > 0)
                 .@Time$ += .@Minutes + " minute, ";
- 
+
             if (.@time_left > 1 || .@time_left == 0)
                 .@Time$ += .@time_left + " seconds";
             else if (.@time_left == 1)
                 .@Time$ += .@time_left + " second";
- 
+
             dispbottom "You been idle for " + .@Time$ + ". Please relog again.";
         }else{
             .@time_left = @backup_time;
             .@Time$ = "";
             .@Minutes = .@time_left / 60;
             .@time_left -= (.@Minutes * 60);
- 
+
             if (.@Minutes > 1)
                 .@Time$ += .@Minutes + " minutes, ";
             else if (.@Minutes > 0)
                 .@Time$ += .@Minutes + " minute, ";
- 
+
             if (.@time_left > 1 || .@time_left == 0)
                 .@Time$ += .@time_left + " seconds";
             else if (.@time_left == 1)
                 .@Time$ += .@time_left + " second";
- 
+
             dispbottom "You have [" + .@Time$ + "] left in able to gain rewards.";
         }
     }else{

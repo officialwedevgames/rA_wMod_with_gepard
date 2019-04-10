@@ -2,20 +2,10 @@ prontera,105,80,5	trader2	Event Manager	4_M_ZONDAOYAJI,{
 
 OnInit:
 	waitingroom "Event Shop",0;
-	
-	sellitem "Blessing_10_Scroll",3000;
-	sellitem "Inc_Agi_10_Scroll",3000;
-	sellitem "Battle_Manual",50000;
-	sellitem "Bubble_Gum",100000;
-	sellitem "Str_Dish10_M",250000;
-	sellitem "Agi_Dish10_M",250000;
-	sellitem "Int_Dish10_M",250000;
-	sellitem "Dex_Dish10_M",250000;
-	sellitem "Luk_Dish10_M",250000;
-	sellitem "Vit_Dish10_M",250000;
-	sellitem "Clothing_Dye_Coupon",2000000;
-	sellitem "Neuralizer",10000000;
-	sellitem "Premium_Reset_Stone",1000000;
+	sellitem "Adventurer_Coin",15000,0,1;
+	sellitem "Clothing_Dye_Coupon",5000000;
+	sellitem "Neuralizer",15000000;
+	sellitem "Premium_Reset_Stone",25000000;
 end;
 
 }

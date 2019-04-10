@@ -1,6 +1,5 @@
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\common.pdb
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\common.idb
-d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\winapi.obj
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\utils.obj
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\timer.obj
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\strlib.obj
@@ -17,10 +16,12 @@ d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\grfio.obj
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\ers.obj
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\des.obj
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\db.obj
+d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\database.obj
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\core.obj
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\conf.obj
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\cli.obj
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\utilities.obj
+d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\winapi.obj
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common.lib
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common.pdb
 d:\ragnarok_emulators\ra_wmod_with_gepard\.vs\build\common\win32\debug\common.tlog\cl.command.1.tlog

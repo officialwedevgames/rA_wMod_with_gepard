@@ -1,8 +1,8 @@
--	script	Commands	FAKE_NPC,{  
+-	script	Commands	FAKE_NPC,{
 
 OnInit:
-	bindatcmd "joinevent","Commands::OnDoStart",0,100;	
-	//bindatcmd "removecoin", "Commands::OnAtcommand", 0, 100;	
+	bindatcmd "joinevent","Commands::OnDoStart",0,100;
+	//bindatcmd "removecoin", "Commands::OnAtcommand", 0, 100;
 	set .coin, 32001;
 end;
 
@@ -20,7 +20,7 @@ OnDoStart:
 		dispbottom "You are not allowed to participate while chatting, vending or buying store status is still active.";
 		end;
 	}
-	getmapxy(@oldloc$, @oldx, @oldy, UNITTYPE_PC);
+	getmapxy(@oldloc$, @oldx, @oldy, BL_PC);
 	if(gettime(4)==1 && $pcstart == 1||gettime(4)==3 && $pcstart == 1||gettime(4)==5 && $pcstart == 1){
 		if(strcharinfo(3) != "poring_w01"){
 			warp "poring_w01",112,136;

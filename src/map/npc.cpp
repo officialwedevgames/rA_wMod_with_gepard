@@ -234,14 +234,14 @@ int npc_enable_sub(struct block_list *bl, va_list ap)
 /*==========================================
  * Disable / Enable NPC
  *------------------------------------------*/
-int npc_enable(const char* name, int flag)
+bool npc_enable(const char* name, int flag)
 {
 	struct npc_data* nd = npc_name2id(name);
 
 	if (nd==NULL)
 	{
 		ShowError("npc_enable: Attempted to %s a non-existing NPC '%s' (flag=%d).\n", (flag&3) ? "show" : "hide", name, flag);
-		return 0;
+		return false;
 	}
 
 	if (flag&1) {
@@ -268,7 +268,7 @@ int npc_enable(const char* name, int flag)
 	if( flag&3 && (nd->u.scr.xs >= 0 || nd->u.scr.ys >= 0) )// check if player standing on a OnTouchArea
 		map_foreachinallarea( npc_enable_sub, nd->bl.m, nd->bl.x-nd->u.scr.xs, nd->bl.y-nd->u.scr.ys, nd->bl.x+nd->u.scr.xs, nd->bl.y+nd->u.scr.ys, BL_PC, nd );
 
-	return 0;
+	return true;
 }
 
 /*==========================================
@@ -553,10 +553,10 @@ void npc_event_do_oninit(void)
  * Judges whether to allow and spawn a trader's window.
  **/
 bool npc_trader_open(struct map_session_data *sd, struct npc_data *nd) {
-	
+
 	if( !nd->u.scr.shop || !nd->u.scr.shop->items )
 		return false;
-		
+
 	switch( nd->u.scr.shop->type ) {
 		case NST_ZENY:
 			sd->state.callshop = 1;
@@ -583,9 +583,9 @@ bool npc_trader_open(struct map_session_data *sd, struct npc_data *nd) {
 			clif_cashshop_show(sd,nd);
 			break;
 	}
-	
+
 	sd->npc_shopid = nd->bl.id;
-	
+
 	return true;
 }
 
@@ -602,19 +602,19 @@ bool npc_trader_open(struct map_session_data *sd, struct npc_data *nd) {
 bool npc_trader_pay(struct npc_data *nd, struct map_session_data *sd, int price, int points) {
 	char evname[EVENT_NAME_LENGTH];
 	struct event_data *ev = NULL;
-	
+
 	nd->trader_ok = false;/* clear */
-	
+
 	snprintf(evname, EVENT_NAME_LENGTH, "%s::OnPayFunds",nd->exname);
-	
+
 	if ( (ev = (struct event_data*) strdb_get(ev_db, evname)) ) {
 		pc_setreg(sd,add_str("@price"),price);
 		pc_setreg(sd,add_str("@points"),points);
-		
+
 		run_script(ev->nd->u.scr.script, ev->pos, sd->bl.id, ev->nd->bl.id);
 	} else
 		ShowError("npc_trader_pay: '%s' event '%s' not found, operation failed\n",nd->exname,evname);
-	
+
 	return nd->trader_ok;/* run script will deal with it */
 }
 
@@ -1192,7 +1192,7 @@ int npc_touch_areanpc(struct map_session_data* sd, int16 m, int16 x, int16 y)
 			}
 		}
 	}
-	
+
 	if (f == 1) {
 		ShowError("npc_touch_areanpc : stray NPC cell/NPC not found in the block on coordinates '%s',%d,%d\n", mapdata->name, x, y);
 		return 1;
@@ -1716,13 +1716,13 @@ int npc_cashshop_buylist(struct map_session_data *sd, int points, int count, uns
 
 	if( count <= 0 )
 		return 5;
-	
+
 	if( points < 0 )
 		return 6;
-	
+
 	if( !(nd = (struct npc_data *)map_id2bl(sd->npc_shopid)) )
 		return 1;
-	
+
 	if( nd->subtype != NPCTYPE_CASHSHOP ) {
 		if( nd->subtype == NPCTYPE_SCRIPT && nd->u.scr.shop && nd->u.scr.shop->type != NST_ZENY && nd->u.scr.shop->type != NST_MARKET ) {
 			shop = nd->u.scr.shop->item;
@@ -1890,7 +1890,7 @@ void npc_shop_currency_type(struct map_session_data *sd, struct npc_data *nd, in
 				sprintf(output, msg_txt(sd, 715), nd->u.shop.pointshop_str); // Point Shop List: '%s'
 				clif_broadcast(&sd->bl, output, strlen(output) + 1, BC_BLUE,SELF);
 			}
-			
+
 			cost[0] = pc_readreg2(sd, nd->u.shop.pointshop_str);
 			break;
 	}
@@ -2139,7 +2139,7 @@ uint8 npc_buylist(struct map_session_data* sd, uint16 n, struct s_npc_buy_list *
 				value = pc_modifybuyvalue(sd, value);
 			}
 		}
-		
+
 		z += (double)value * amount;
 		w += itemdb_weight(nameid) * amount;
 	}
@@ -2343,7 +2343,7 @@ uint8 npc_selllist(struct map_session_data* sd, int n, unsigned short *item_list
 		{// Script-controlled shops decide by themselves, what can be sold and at what price.
 			continue;
 		}
-		
+
 		if (!pc_can_sell_item(sd, &sd->inventory.u.items_inventory[idx], nd->subtype)) {
 			return 1; // In official server, this illegal attempt the player will be disconnected
 		}
@@ -2533,7 +2533,7 @@ int npc_unload(struct npc_data* nd, bool single) {
 			}
 		}
 	}
-	
+
 	if( single && nd->bl.m != -1 )
 		map_remove_questinfo(nd->bl.m, nd);
 
@@ -2641,7 +2641,7 @@ int npc_addsrcfile(const char* name, bool loadscript)
 		ShowError("npc_addsrcfile: Can't find source file \"%s\"\n", name );
 		return 0;
 	}
-        
+
 	// prevent multiple insert of source files
 	file = npc_src_files;
 	while( file != NULL )
@@ -3094,7 +3094,7 @@ static const char* npc_parse_shop(char* w1, char* w2, char* w3, char* w4, const 
 			is_discount = 1;
 			break;
 	}
-	
+
 	nd = npc_create_npc(m, x, y);
 	nd->u.shop.count = 0;
 	while ( p ) {
@@ -3150,7 +3150,7 @@ static const char* npc_parse_shop(char* w1, char* w2, char* w3, char* w4, const 
 		//for logs filters, atcommands and iteminfo script command
 		if( id->maxchance == 0 )
 			id->maxchance = -1; // -1 would show that the item's sold in NPC Shop
-		
+
 #if PACKETVER >= 20131223
 		if (nd->u.shop.count && type == NPCTYPE_MARKETSHOP) {
 			uint16 i;
@@ -4029,7 +4029,7 @@ void npc_unsetcells(struct npc_data* nd)
 
 bool npc_movenpc(struct npc_data* nd, int16 x, int16 y)
 {
-	if (nd->bl.m < 0 || nd->bl.prev == NULL) 
+	if (nd->bl.m < 0 || nd->bl.prev == NULL)
 		return false;	//Not on a map.
 
 	struct map_data *mapdata = map_getmapdata(nd->bl.m);
@@ -4510,7 +4510,7 @@ static const char* npc_parse_mapflag(char* w1, char* w2, char* w3, char* w4, con
 
 						args.skill_damage.caster = val;
 					}
-					
+
 					if (!args.skill_damage.caster)
 						args.skill_damage.caster = BL_ALL;
 
@@ -4577,11 +4577,11 @@ int npc_parsesrcfile(const char* filepath, bool runOnInit)
 	char* buffer;
 	const char* p;
 
-	if(check_filepath(filepath)!=2) { //this is not a file 
+	if(check_filepath(filepath)!=2) { //this is not a file
 		ShowDebug("npc_parsesrcfile: Path doesn't seem to be a file skipping it : '%s'.\n", filepath);
 		return 0;
-	} 
-            
+	}
+
 	// read whole file to buffer
 	fp = fopen(filepath, "rb");
 	if( fp == NULL )
@@ -4672,7 +4672,7 @@ int npc_parsesrcfile(const char* filepath, bool runOnInit)
 			int count2;
 
 			count2 = sscanf(w1,"%15[^,],%6hd,%6hd[^,]",mapname,&x,&y);
-			
+
 			if ( count2 < 1 ) {
 				ShowError("npc_parsesrcfile: Invalid script definition in file '%s', line '%d'. Skipping line...\n * w1=%s\n * w2=%s\n * w3=%s\n * w4=%s\n", filepath, strline(buffer,p-buffer), w1, w2, w3, w4);
 				if (strcasecmp(w2,"script") == 0 && count > 3) {

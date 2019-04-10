@@ -1,28 +1,9 @@
 prontera,124,75,3	script	Bargchest	4_DOG01,{
-
-	if(!#starter_freebies){
-		mes "[ Bargchest ]";
-		mes "Welcome adventurer ^ff0000"+strcharinfo(0)+"^000000!";
-		mes "Your journey will start and never ends.";
-		next;
-		mes "[ Bargchest ]";
-		mes "Good Luck Adventurer!";
-		
-		rentitem "C_World_Star", 1, 4320;
-		getitembound "Battle_Manual_X3", 3, 1;
-		getitembound "Adventurer_Coin", 10000, 1;
-		set #starter_freebies,1;
-		
-		close;
-	}else{
 		mes "[ Bargchest ]";
 		mes "Choose a shop category..";
 		mes " ";
-		mes "** NOTE **";
-		mes "-- Usables are Account Bound.";
-		mes "-- Headgears are rentals for 7 Days.";
 		next;
-		switch( select("Usables:Headgears") ){
+		switch( select("Usables [ TRADEABLE ]:Headgears [ 7 DAYS ]") ){
 			case 1:
 				mes "[ Bargchest ]";
 				mes "Okay.. great choice.";
@@ -34,12 +15,11 @@ prontera,124,75,3	script	Bargchest	4_DOG01,{
 				mes "Okay.. great choice.";
 				close2;
 				callshop "Advent_Headgears",4;
-			end;	
+			end;
 		}
-	}
-	
+
 	end;
-	
+
 	OnInit:
 		questinfo 1, QTYPE_EVENT, 0;
 	end;

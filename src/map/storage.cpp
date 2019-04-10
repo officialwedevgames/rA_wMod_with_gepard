@@ -513,7 +513,7 @@ void storage_storageclose(struct map_session_data *sd)
  * @param sd : player to close storage
  * @param flag :
  *  1: Character is quitting
- *	2(x): Character is changing map-servers 
+ *	2(x): Character is changing map-servers
  */
 void storage_storage_quit(struct map_session_data* sd, int flag)
 {
@@ -539,7 +539,7 @@ struct s_storage *guild2storage(int guild_id)
 		return nullptr;
 
 	gs = guild2storage2(guild_id);
-	
+
 	if( gs == nullptr ){
 		gs = &guild_storage_db[guild_id];
 		gs->id = guild_id;
@@ -773,14 +773,14 @@ bool storage_guild_additem(struct map_session_data* sd, struct s_storage* stor, 
 		clif_displaymessage(sd->fd, msg_txt(sd,294));
 		return false;
 	}
-	
+
 	//Brian Bg Items - updated by [AnubisK]
 	if( item_data->card[0]==CARD0_CREATE && (MakeDWord(item_data->card[2],item_data->card[3]) == (battle_config.bg_reserved_char_id || battle_config.woe_reserved_char_id)  && !battle_config.bg_can_trade))
 	{	// "Battleground's Items"
 		clif_displaymessage (sd->fd, msg_txt(sd,264));
 		return 1;
 	}
-	
+
 	if(itemdb_isstackable2(id)) { //Stackable
 		for(i = 0; i < stor->max_amount; i++) {
 			if(compare_item(&stor->u.items_guild[i], item_data)) {
@@ -1227,7 +1227,7 @@ void storage_premiumStorage_close(struct map_session_data *sd) {
 			clif_storageclose(sd);
 		}
 	}
-	else 
+	else
 		storage_premiumStorage_saved(sd);
 }
 

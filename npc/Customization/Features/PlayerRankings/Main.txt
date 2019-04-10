@@ -15,7 +15,7 @@ OnNPCKillEvent:
 		callfunc "mob_mvp_kills",getcharid(0),getcharid(3),1,200;
 	}else if(getmonsterinfo( killedrid, MOB_LV ) >= .monsterlevel){
 		callfunc "mob_normal_kills",getcharid(0),getcharid(3),1,1;
-	} 
+	}
 end;
 
 OnPCKillEvent:
@@ -30,26 +30,26 @@ end;
 
 
 -	script	Online_Time_NPC	FAKE_NPC,{
- 
+
 OnInit:
-	.enable = 1;	
+	.enable = 1;
 	.grouplevel = 10;
 	.online_time = 3600;			// One hour = 3600 seconds
     end;
- 
+
 OnPCLoginEvent:
 	if (getgroupid() >= .grouplevel){end;}
 	if(checkvending() != 2){
 		@backup_time = 0;
-		
+
 		if (!#onlinetick || #onlinetick > .online_time)
 			#onlinetick = gettimetick(2) + .online_time;
 		else
-			#onlinetick += gettimetick(2);	
+			#onlinetick += gettimetick(2);
 		goto OnProcessTime;
 	}
 end;
-	
+
 OnProcessTime:
 	if(checkvending() != 2){
 		@backup_time = .@time_left = #onlinetick - gettimetick(2);
@@ -63,9 +63,9 @@ OnProcessTime:
 	sleep2 1000;
 	goto OnProcessTime;
 end;
- 
+
 OnPCLogoutEvent:
-	if (getgroupid() >= .grouplevel){end;};	
+	if (getgroupid() >= .grouplevel){end;};
 	// BackUP online time
 	if (@backup_time && checkvending() != 2)
 		#onlinetick = @backup_time;

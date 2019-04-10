@@ -6,9 +6,9 @@ OnInit:
 	set .account_id2, 0;
 	set .char_id1, 0;
 	set .char_id2, 0;
-	bindatcmd "showdown","1vs1_showdown::OnDoStart",90,100;		// Admin reset command	
+	bindatcmd "showdown","1vs1_showdown::OnDoStart",90,100;		// Admin reset command
 end;
-	
+
 OnPCDieEvent:
 	if("poring_c02" == strcharinfo(3)){
 		if(strcharinfo(0) == .char_name1$){
@@ -37,7 +37,7 @@ OnDoStart:
 	}
 	set .account_id1, .@atcmd_parameters$[0];
 	set .account_id2, .@atcmd_parameters$[1];
-	
+
 	if ( !isloggedin( .account_id1 ) ){
 		dispbottom "Player 1 is offline.";
 		end;
@@ -45,17 +45,17 @@ OnDoStart:
 		dispbottom "Player 2 is offline.";
 		end;
 	}
-	
+
 	attachrid(.account_id1);
 		set .char_id1, getcharid(0);
 		set .char_name1$, strcharinfo(0);
 	detachrid;
-	
+
 	attachrid(.account_id2);
 		set .char_id2, getcharid(0);
 		set .char_name2$, strcharinfo(0);
 	detachrid;
-	
+
 	if ( !isloggedin( .account_id1, .char_id1 ) ){
 		dispbottom "Player "+.char_name1$+" is offline.";
 		end;
@@ -63,31 +63,31 @@ OnDoStart:
 		dispbottom "Player "+.char_name2$+" is offline.";
 		end;
 	}
-	
+
 	announce .char_name1$+" vs "+.char_name2$+" match will start after 30 seconds.",0;
 	set .ongoing, 1;
-	
+
 	attachrid(.account_id1);
 		setoption OPTION_HIDE, 1;
 		sc_start SC_Freeze,60000,0;
 		if("poring_c02" != strcharinfo(3)){
-			getmapxy(@oldloc$, @oldx, @oldy, UNITTYPE_PC);
+			getmapxy(@oldloc$, @oldx, @oldy, BL_PC);
 		}
 		percentheal 100,100;
 		warp "poring_c02",13,221;
 	detachrid;
-	
-	
+
+
 	attachrid(.account_id2);
 		setoption OPTION_HIDE, 1;
 		sc_start SC_Freeze,60000,0;
 		if("poring_c02" != strcharinfo(3)){
-			getmapxy(@oldloc$, @oldx, @oldy, UNITTYPE_PC);
+			getmapxy(@oldloc$, @oldx, @oldy, BL_PC);
 		}
 		percentheal 100,100;
 		warp "poring_c02",24,220;
 	detachrid;
-	
+
 	setmapflag "poring_c02",mf_noskill;
 	sleep 30000;
 	mapannounce  "poring_c02", "Match will start in 5...",0;
@@ -160,7 +160,7 @@ OnTimer120000:
 	warp @oldloc$, @oldx, @oldy;
 	detachrid;
 	end;
-	
+
 }
 
 

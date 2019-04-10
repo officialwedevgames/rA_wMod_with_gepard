@@ -12,6 +12,7 @@
 #include "../common/socket.hpp"  // RBUF*
 #include "../common/strlib.hpp"  // safestrncpy
 #include "../common/timer.hpp"  // gettick
+#include "../common/utils.hpp"
 
 #include "atcommand.hpp"  // msg_txt
 #include "battle.hpp"  // battle_config.*
@@ -401,7 +402,14 @@ void buyingstore_trade(struct map_session_data* sd, uint32 account_id, unsigned 
 			clif_buyingstore_trade_failed_seller(sd, BUYINGSTORE_TRADE_SELLER_FAILED, nameid);
 			return;
 		}
-
+		
+		if (sd->inventory.u.items_inventory[index].card[0] == CARD0_CREATE && ((MakeDWord(sd->inventory.u.items_inventory[index].card[2], sd->inventory.u.items_inventory[index].card[3])) == (battle_config.bg_reserved_char_id || battle_config.woe_reserved_char_id) && !battle_config.bg_can_trade ))
+		{ // Items where creator's ID is important
+			clif_buyingstore_trade_failed_seller(sd, BUYINGSTORE_TRADE_SELLER_FAILED, nameid);
+			clif_displaymessage(sd->fd, "Cannot Trade event reserved Items (Battleground, WoE).");
+			return;
+		}
+		
 		ARR_FIND( 0, pl_sd->buyingstore.slots, listidx, pl_sd->buyingstore.items[listidx].nameid == nameid );
 		if( listidx == pl_sd->buyingstore.slots || pl_sd->buyingstore.items[listidx].amount == 0 )
 		{// there is no such item or the buyer has already bought all of them

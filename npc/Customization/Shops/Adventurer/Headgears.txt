@@ -1,19 +1,19 @@
 -	trader	Advent_Usable	FAKE_NPC,{
 OnInit:
 	tradertype("NST_CUSTOM");
-	sellitem "Elite_Siege_Supply_Box",50,0,1;
-	sellitem "Battle_Manual_Box2",350,0,1;
-	sellitem "Bubble_Gum_Box",350,0,1;
-	sellitem "Kafra_Card_Box",125,0,1;
-	sellitem "Job_Manual_Box",350,0,1;
-	sellitem "Insurance_Package",250,0,1;
-	sellitem "F_Regeneration_Box10",150,0,1;
-	sellitem "Str_Dish10_",200,0,1;
-	sellitem "Agi_Dish10_",200,0,1;
-	sellitem "Int_Dish10_",200,0,1;
-	sellitem "Dex_Dish10_",200,0,1;
-	sellitem "Luk_Dish10_",200,0,1;
-	sellitem "Vit_Dish10_",200,0,1;
+	sellitem "Elite_Siege_Supply_Box",50;
+	sellitem "Battle_Manual_Box2",350;
+	sellitem "Bubble_Gum_Box",350;
+	sellitem "Kafra_Card_Box",125;
+	sellitem "Job_Manual_Box",350;
+	sellitem "Insurance_Package",250;
+	sellitem "F_Regeneration_Box10",150;
+	sellitem "Str_Dish10_",200;
+	sellitem "Agi_Dish10_",200;
+	sellitem "Int_Dish10_",200;
+	sellitem "Dex_Dish10_",200;
+	sellitem "Luk_Dish10_",200;
+	sellitem "Vit_Dish10_",200;
 	end;
 
 /* allows currency to be item 501 and 502 */
@@ -33,28 +33,28 @@ OnPayFunds:
 OnInit:
 	tradertype("NST_CUSTOM");
 
-	sellitem "Angel_Spirit",2000,10080,0;
-	sellitem "Blush_Of_Groom",1500,10080,0;
-	sellitem "Bread_Bag2",2000,10080,0;
-	sellitem "Cyclops_Visor",1000,10080,0;
-	sellitem "Darkness_Helm",2000,10080,0;
-	sellitem "Deviling_Hat",3000,10080,0;
-	sellitem "Dress_Hat",3000,10080,0;
-	sellitem "Drooping_White_Kitty",2000,10080,0;
-	sellitem "Ear_Of_Black_Cat",1000,10080,0;
-	sellitem "Evil_Marcher_Hat",2000,10080,0;
-	sellitem "Gang_Scarf",1000,10080,0;
-	sellitem "Gemini_Crown",2500,10080,0;
-	sellitem "Gemini_Diadem",2500,10080,0;
-	sellitem "Headset_OST",1000,10080,0;
-	sellitem "Helm_Of_Darkness",2500,10080,0;
-	sellitem "Holy_Marching_Hat_J",2000,10080,0;
-	sellitem "J_Captain_Hat",3000,10080,0;
-	sellitem "Large_Hibiscus",3000,10080,0;
-	sellitem "Marcher_Hat",2000,10080,0;
-	sellitem "Rabbit_Earplug",2000,10080,0;
-	sellitem "Snake_Head",2000,10080,0;
-	sellitem "Soldier_Hat",1500,10080,0;
+	sellitem "Angel_Spirit",500,10080,0;
+	sellitem "Blush_Of_Groom",350,10080,0;
+	sellitem "Bread_Bag2",350,10080,0;
+	sellitem "Cyclops_Visor",400,10080,0;
+	sellitem "Darkness_Helm",300,10080,0;
+	sellitem "Deviling_Hat",250,10080,0;
+	sellitem "Dress_Hat",350,10080,0;
+	sellitem "Drooping_White_Kitty",500,10080,0;
+	sellitem "Ear_Of_Black_Cat",150,10080,0;
+	sellitem "Evil_Marcher_Hat",350,10080,0;
+	sellitem "Gang_Scarf",300,10080,0;
+	sellitem "Gemini_Crown",350,10080,0;
+	sellitem "Gemini_Diadem",350,10080,0;
+	sellitem "Headset_OST",250,10080,0;
+	sellitem "Helm_Of_Darkness",250,10080,0;
+	sellitem "Holy_Marching_Hat_J",350,10080,0;
+	sellitem "J_Captain_Hat",750,10080,0;
+	sellitem "Large_Hibiscus",350,10080,0;
+	sellitem "Marcher_Hat",500,10080,0;
+	sellitem "Rabbit_Earplug",500,10080,0;
+	sellitem "Snake_Head",550,10080,0;
+	sellitem "Soldier_Hat",350,10080,0;
 	end;
 
 /* allows currency to be item 501 and 502 */
